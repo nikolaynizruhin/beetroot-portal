@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Beetroot') }}</title>
+    <title>Beetroot</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/png" href="https://beetroot.se/wp-content/uploads/2016/04/cropped-favicon-150x150.png"/>
