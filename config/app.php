@@ -168,6 +168,7 @@ return [
          */
         Laravel\Tinker\TinkerServiceProvider::class,
         Laravel\Passport\PassportServiceProvider::class,
+        Fideloper\Proxy\TrustedProxyServiceProvider::class,
 
         /*
          * Application Service Providers...
