@@ -76,7 +76,10 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        
+        $clients = Client::pluck('name', 'id');
+        $offices = Office::pluck('city', 'id');
+
+        return view('users.edit')->with(['user' => $user, 'clients' => $clients, 'offices' => $offices]);
     }
 
     /**
@@ -88,7 +91,20 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        
+        $this->validate($request, [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255',
+            'position' => 'required|string|max:255',
+            'birthday' => 'required|date',
+            'avatar' => 'required|url',
+            'client_id' => 'required|exists:clients,id',
+            'office_id' => 'required|exists:offices,id',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        $user->update(request()->all());
+
+        return back()->with('status', 'The user was successfully updated!');
     }
 
     /**
