@@ -38,10 +38,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $clients = Client::pluck('name', 'id');
-        $offices = Office::pluck('city', 'id');
-
-        return view('users.create')->with(['clients' => $clients, 'offices' => $offices]);
+        return view('users.create');
     }
 
     /**
@@ -76,10 +73,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $clients = Client::pluck('name', 'id');
-        $offices = Office::pluck('city', 'id');
-
-        return view('users.edit')->with(['user' => $user, 'clients' => $clients, 'offices' => $offices]);
+        return view('users.edit')->with('user', $user);
     }
 
     /**
@@ -115,6 +109,6 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        
+        $user->delete();
     }
 }
