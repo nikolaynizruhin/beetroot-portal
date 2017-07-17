@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Client;
 use App\Office;
+use App\Http\Requests\StoreUser;
+use App\Http\Requests\UpdateUser;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -44,23 +46,12 @@ class UserController extends Controller
     /**
      * Store a newly created user in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreUser  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUser $request)
     {
-        $this->validate($request, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'position' => 'required|string|max:255',
-            'birthday' => 'required|date',
-            'avatar' => 'required|url',
-            'client_id' => 'required|exists:clients,id',
-            'office_id' => 'required|exists:offices,id',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
-
-        User::create(request()->all());
+        User::create($request->all());
 
         return back()->with('status', 'The user was successfully created!');
     }
@@ -79,24 +70,13 @@ class UserController extends Controller
     /**
      * Update the specified user in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\UpdateUser  $request
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UpdateUser $request, User $user)
     {
-        $this->validate($request, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255',
-            'position' => 'required|string|max:255',
-            'birthday' => 'required|date',
-            'avatar' => 'required|url',
-            'client_id' => 'required|exists:clients,id',
-            'office_id' => 'required|exists:offices,id',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
-
-        $user->update(request()->all());
+        $user->update($request->all());
 
         return back()->with('status', 'The user was successfully updated!');
     }
