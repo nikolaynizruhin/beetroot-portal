@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use \App\Client;
+use App\Client;
+use App\Http\Requests\StoreClient;
+use App\Http\Requests\UpdateClient;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -27,5 +29,64 @@ class ClientController extends Controller
         $clients = Client::all();
 
         return view('clients')->with('clients', $clients);
+    }
+
+    /**
+     * Show the form for creating a new client.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('clients.create');
+    }
+
+    /**
+     * Store a newly created client in storage.
+     *
+     * @param  \App\Http\Requests\StoreClient  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(StoreClient $request)
+    {
+        Client::create($request->all());
+
+        return back()->with('status', 'The client was successfully created!');
+    }
+
+    /**
+     * Show the form for editing the specified client.
+     *
+     * @param  \App\Client  $client
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Client $client)
+    {
+        return view('clients.edit')->with('client', $client);
+    }
+
+    /**
+     * Update the specified client in storage.
+     *
+     * @param  \App\Http\Requests\UpdateClient  $request
+     * @param  \App\Client  $client
+     * @return \Illuminate\Http\Response
+     */
+    public function update(UpdateClient $request, Client $client)
+    {
+        $client->update($request->all());
+
+        return back()->with('status', 'The client was successfully updated!');
+    }
+
+    /**
+     * Remove the specified client from storage.
+     *
+     * @param  \App\Client  $client
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Client $client)
+    {
+        $client->delete();
     }
 }
