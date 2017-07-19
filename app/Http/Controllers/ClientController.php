@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Client;
 use App\Http\Requests\StoreClient;
-use App\Http\Requests\UpdateClient;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -68,11 +67,11 @@ class ClientController extends Controller
     /**
      * Update the specified client in storage.
      *
-     * @param  \App\Http\Requests\UpdateClient  $request
+     * @param  \App\Http\Requests\StoreClient  $request
      * @param  \App\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateClient $request, Client $client)
+    public function update(StoreClient $request, Client $client)
     {
         $client->update($request->all());
 

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateClient extends FormRequest
+class StoreOffice extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,9 @@ class UpdateClient extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:255',
-            'logo' => 'required|url',
-            'location' => 'required|string|max:255',
-            'description' => 'required|string|max:255',
-            'site' => 'required|url'
+            'city' => 'required|string|max:255',
+            'country' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
         ];
     }
 }
