@@ -50,15 +50,15 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('location') ? ' has-error' : '' }}">
-                            <label for="location" class="col-md-4 control-label">Location</label>
+                        <div class="form-group{{ $errors->has('country') ? ' has-error' : '' }}">
+                            <label for="country" class="col-md-4 control-label">Country</label>
 
                             <div class="col-md-6">
-                                <input id="location" type="text" class="form-control" name="location" value="{{ old('location') }}" required>
+                                <input id="country" type="text" class="form-control" name="country" value="{{ old('country') }}" required>
 
-                                @if ($errors->has('location'))
+                                @if ($errors->has('country'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('location') }}</strong>
+                                        <strong>{{ $errors->first('country') }}</strong>
                                     </span>
                                 @endif
                             </div>

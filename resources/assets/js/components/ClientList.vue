@@ -25,7 +25,7 @@
                         <p>
                             <i class="fa fa-map-marker fa-fw" aria-hidden="true"></i>
                             &nbsp;
-                            {{ client.location }}
+                            {{ client.country }}
                         </p>
                     </div>
                 </div>

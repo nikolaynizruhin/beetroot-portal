@@ -12,7 +12,7 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-sm-3">
-                                <select-filter default-value="All Locations" :field.sync="location" :list="locations"></select-filter>
+                                <select-filter default-value="All Countries" :field.sync="country" :list="countries"></select-filter>
                             </div>
                             <div class="col-sm-3">
                                 <div class="form-group">
@@ -39,27 +39,27 @@
         data() {
             return {
                 name: '',
-                location: 'All Locations',
+                country: 'All Countries',
             }
         },
         computed: {
             filteredClients() {
                 return this.clients.filter(client => this.applyFilters(client));
             },
-            locations() {
-                let locations = new Set();
-                this.clients.map(client => locations.add(client.location));
-                return Array.from(locations);
+            countries() {
+                let countries = new Set();
+                this.clients.map(client => countries.add(client.country));
+                return Array.from(countries);
             }
         },
         methods: {
             applyFilters(client) {
                 return (
-                    this.applyLocationFilter(client) && this.applyNameFilter(client)
+                    this.applyCountryFilter(client) && this.applyNameFilter(client)
                 );
             },
-            applyLocationFilter(client) {
-                return this.location === 'All Locations' ? true : client.location === this.location;
+            applyCountryFilter(client) {
+                return this.country === 'All Countries' ? true : client.country === this.country;
             },
             applyNameFilter(client) {
                 return client.name.toLowerCase().includes(this.name.toLowerCase());

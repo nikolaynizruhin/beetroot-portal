@@ -38,7 +38,7 @@ $factory->define(App\Client::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->company,
         'site' => $faker->url,
-        'location' => $faker->country,
+        'country' => $faker->country,
         'description' => $faker->text($maxNbChars = 200),
         'logo' => $faker->imageUrl($width = 300, $height = 300, 'business')
     ];

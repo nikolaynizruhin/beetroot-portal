@@ -26,7 +26,7 @@ class StoreClient extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'logo' => 'required|url',
-            'location' => 'required|string|max:255',
+            'country' => 'required|string|max:255',
             'description' => 'required|string|max:255',
             'site' => 'required|url'
         ];
