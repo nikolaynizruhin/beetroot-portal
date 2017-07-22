@@ -21,7 +21,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'avatar' => $faker->imageUrl($width = 300, $height = 300, 'people'),
         'position' => $faker->jobTitle,
         'birthday' => $faker->date(),
-        'password' => $password ?: $password = bcrypt('secret'),
+        'password' => $password ?: $password = 'secret',
         'remember_token' => str_random(10),
         'client_id' => function () {
             return factory(App\Client::class)->create()->id;
