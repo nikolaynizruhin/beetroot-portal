@@ -27,7 +27,7 @@ class OfficeController extends Controller
     {
         $offices = Office::all();
 
-        return view('offices')->with('offices', $offices);
+        return view('offices.index')->with('offices', $offices);
     }
 
     /**

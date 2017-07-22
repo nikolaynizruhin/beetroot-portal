@@ -30,7 +30,7 @@ class UserController extends Controller
     {
         $users = User::with(['client', 'office'])->get();
 
-        return view('users')->with('users', $users);
+        return view('users.index')->with('users', $users);
     }
 
     /**
