@@ -1,3 +1,5 @@
+@inject('countries', 'App\Http\Utilities\Country')
+
 @extends('layouts.app')
 
 @section('content')
@@ -26,7 +28,7 @@
                             <label for="city" class="col-md-4 control-label">City</label>
 
                             <div class="col-md-6">
-                                <input id="city" type="text" class="form-control" name="city" value="{{ old('city') }}" required autofocus>
+                                <input id="city" type="text" class="form-control" name="city" value="{{ old('city') }}" required>
 
                                 @if ($errors->has('city'))
                                     <span class="help-block">
@@ -40,7 +42,15 @@
                             <label for="country" class="col-md-4 control-label">Country</label>
 
                             <div class="col-md-6">
-                                <input id="country" type="text" class="form-control" name="country" value="{{ old('country') }}" required autofocus>
+                                <select id="country" class="form-control" name="country" required>
+                                    @foreach ( $countries::all() as $country => $code )
+                                        @if (old('country') == $country)
+                                            <option value="{{ $country }}" selected>{{ $country }}</option>
+                                        @else
+                                            <option value="{{ $country }}">{{ $country }}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
 
                                 @if ($errors->has('country'))
                                     <span class="help-block">
@@ -54,7 +64,7 @@
                             <label for="address" class="col-md-4 control-label">Address</label>
 
                             <div class="col-md-6">
-                                <input id="address" type="text" class="form-control" name="address" value="{{ old('address') }}" required autofocus>
+                                <input id="address" type="text" class="form-control" name="address" value="{{ old('address') }}" required>
 
                                 @if ($errors->has('address'))
                                     <span class="help-block">

@@ -1,3 +1,5 @@
+@inject('countries', 'App\Http\Utilities\Country')
+
 @extends('layouts.app')
 
 @section('content')
@@ -55,7 +57,15 @@
                             <label for="country" class="col-md-4 control-label">Country</label>
 
                             <div class="col-md-6">
-                                <input id="country" type="text" class="form-control" name="country" value="{{ old('country', $client->country) }}" required>
+                                <select id="country" class="form-control" name="country" required>
+                                    @foreach ( $countries::all() as $country => $code )
+                                        @if (old('country', $client->country) == $country)
+                                            <option value="{{ $country }}" selected>{{ $country }}</option>
+                                        @else
+                                            <option value="{{ $country }}">{{ $country }}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
 
                                 @if ($errors->has('country'))
                                     <span class="help-block">
