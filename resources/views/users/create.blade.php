@@ -1,3 +1,5 @@
+@inject('positions', 'App\Http\Utilities\Position')
+
 @extends('layouts.app')
 
 @section('content')
@@ -54,7 +56,15 @@
                             <label for="position" class="col-md-4 control-label">Position</label>
 
                             <div class="col-md-6">
-                                <input id="position" type="text" class="form-control" name="position" value="{{ old('position') }}" required>
+                                <select id="position" class="form-control" name="position" required>
+                                    @foreach ( $positions::all() as $position )
+                                        @if (old('position') == $position)
+                                            <option value="{{ $position }}" selected>{{ $position }}</option>
+                                        @else
+                                            <option value="{{ $position }}">{{ $position }}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
 
                                 @if ($errors->has('position'))
                                     <span class="help-block">
