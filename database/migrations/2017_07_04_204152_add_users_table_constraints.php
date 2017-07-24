@@ -23,10 +23,10 @@ class AddUsersTableConstraints extends Migration
 
             $table->foreign('client_id')
                 ->references('id')
-                ->on('clients');
+                ->on('clients')->onDelete('cascade');
             $table->foreign('office_id')
                 ->references('id')
-                ->on('offices');
+                ->on('offices')->onDelete('cascade');
         });
     }
 

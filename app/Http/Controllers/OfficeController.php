@@ -87,5 +87,7 @@ class OfficeController extends Controller
     public function destroy(Office $office)
     {
         $office->delete();
+
+        return redirect()->route('offices.create')->with('status', 'The office was successfully deleted!');
     }
 }
