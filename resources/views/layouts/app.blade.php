@@ -85,7 +85,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('home') }}">
+                                        <a href="{{ route('users.edit', Auth::id()) }}">
                                             <i class="fa fa-pencil fa-fw" aria-hidden="true"></i>
                                             &nbsp;
                                             Edit
