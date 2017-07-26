@@ -21,6 +21,10 @@
                         </div>
                     @endif
 
+                    <img src="{{ $user->avatar }}" alt="avatar" class="img-circle img-thumbnail img-responsive center-block" height="150" width="150">
+
+                    <br>
+
                     <form class="form-horizontal" method="POST" action="{{ route('users.update', $user->id) }}">
                         {{ method_field('PUT') }}
                         {{ csrf_field() }}

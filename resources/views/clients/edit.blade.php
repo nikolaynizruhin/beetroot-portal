@@ -21,6 +21,10 @@
                         </div>
                     @endif
 
+                    <img src="{{ $client->logo }}" alt="logo" class="img-circle img-thumbnail img-responsive center-block" height="150" width="150">
+
+                    <br>
+
                     <form class="form-horizontal" method="POST" action="{{ route('clients.update', $client->id) }}">
                         {{ method_field('PUT') }}
                         {{ csrf_field() }}
