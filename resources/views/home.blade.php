@@ -16,7 +16,7 @@
                         <div class="col-sm-4">
                             <img src="{{ Auth::user()->avatar }}" class="img-circle img-thumbnail img-responsive" alt="avatar">
                         </div>
-                        <div class="col-sm-5">
+                        <div class="col-sm-4">
                             <h3>{{ Auth::user()->name }}</h3>
                             <h4><em>{{ Auth::user()->position }}</em></h4>
                             <p>
@@ -40,7 +40,7 @@
                                 {{ Auth::user()->office->city }}
                             </p>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">
                             <br>
                             <ul class="nav nav-pills nav-stacked">
                                 <li role="presentation">
@@ -65,6 +65,29 @@
                                     <a href="{{ route('users.edit', Auth::id()) }}">
                                         <i class="fa fa-pencil fa-fw" aria-hidden="true"></i>
                                         Edit
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-2">
+                            <br>
+                            <ul class="nav nav-pills nav-stacked">
+                                <li role="presentation">
+                                    <a href="{{ route('users.create') }}">
+                                        <i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i>
+                                        User
+                                    </a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="{{ route('clients.create') }}">
+                                        <i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i>
+                                        Client
+                                    </a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="{{ route('offices.create') }}">
+                                        <i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i>
+                                        Office
                                     </a>
                                 </li>
                             </ul>
