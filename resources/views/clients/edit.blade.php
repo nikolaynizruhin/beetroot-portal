@@ -15,11 +15,7 @@
 
                 <div class="panel-body">
 
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                    @include('partials.flash')
 
                     <img src="{{ $client->logo }}" alt="logo" class="img-circle img-thumbnail img-responsive center-block" height="150" width="150">
 

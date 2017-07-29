@@ -15,11 +15,7 @@
 
                 <div class="panel-body">
 
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                    @include('partials.flash')
 
                     <form class="form-horizontal" method="POST" action="{{ route('users.store') }}">
                         {{ csrf_field() }}
