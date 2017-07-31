@@ -163,23 +163,21 @@
 
                         <div class="form-group">
                             <div class="col-md-3 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary btn-block">
                                     Update
                                 </button>
                             </div>
-                        </div>
-                    </form>
-                    <form class="form-horizontal" method="POST" action="{{ route('users.destroy', $user->id) }}">
-                        {{ method_field('DELETE') }}
-                        {{ csrf_field() }}
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-danger">
+                            <div class="col-md-3">
+                                <button type="submit" class="btn btn-danger btn-block"
+                                        onclick="event.preventDefault();if(confirm('Are you sure you want to delete a user?'))document.getElementById('delete-form').submit();">
                                     Delete
                                 </button>
                             </div>
                         </div>
+                    </form>
+                    <form id="delete-form" class="form-horizontal" method="POST" action="{{ route('users.destroy', $user->id) }}">
+                        {{ method_field('DELETE') }}
+                        {{ csrf_field() }}
                     </form>
                 </div>
             </div>
