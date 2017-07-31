@@ -27,6 +27,8 @@
                                         <i class="fa fa-map-marker fa-fw" aria-hidden="true"></i>
                                         &nbsp;
                                         <strong>{{ $office->country }}, {{ $office->city }}</strong>
+                                         &nbsp;
+                                         <a href="{{ route('offices.edit', $office->id) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                                     </p>
                                     <p>
                                         <i class="fa fa-location-arrow fa-fw" aria-hidden="true"></i>
