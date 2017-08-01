@@ -25,7 +25,10 @@ class Position
         'HR',
         'DevOps',
         'Designer',
-        'QA engineer'
+        'QA engineer',
+        'CEO',
+        'CFO',
+        'CMO'
     ];
 
     /**
