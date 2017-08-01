@@ -107,9 +107,13 @@
                             <label for="client-id" class="col-md-4 control-label">Client</label>
 
                             <div class="col-md-6">
-                                <select id="client-id" class="form-control" name="client_id" value="{{ old('client_id', $user->client_id) }}" required>
+                                <select id="client-id" class="form-control" name="client_id" required>
                                     @foreach ($clients as $id => $name)
-                                        <option value="{{ $id }}">{{ $name }}</option>
+                                        @if (old('client_id', $user->client_id) == $id)
+                                            <option value="{{ $id }}" selected>{{ $name }}</option>
+                                        @else
+                                            <option value="{{ $id }}">{{ $name }}</option>
+                                        @endif
                                     @endforeach
                                 </select>
 
@@ -125,9 +129,13 @@
                             <label for="office-id" class="col-md-4 control-label">Office</label>
 
                             <div class="col-md-6">
-                                <select id="office-id" class="form-control" name="office_id" value="{{ old('office_id', $user->office_id) }}" required>
-                                    @foreach ($offices as $id => $name)
-                                        <option value="{{ $id }}">{{ $name }}</option>
+                                <select id="office-id" class="form-control" name="office_id" required>
+                                    @foreach ($offices as $id => $city)
+                                        @if (old('office_id', $user->office_id) == $id)
+                                            <option value="{{ $id }}" selected>{{ $city }}</option>
+                                        @else
+                                            <option value="{{ $id }}">{{ $city }}</option>
+                                        @endif
                                     @endforeach
                                 </select>
 
