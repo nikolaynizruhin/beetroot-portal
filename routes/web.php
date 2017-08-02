@@ -18,12 +18,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/users', 'UserController@index')->name('users');
-Route::get('/clients', 'ClientController@index')->name('clients');
-Route::get('/offices', 'OfficeController@index')->name('offices');
 
-Route::prefix('admin')->group(function () {
-    Route::resource('users', 'UserController', ['except' => ['index', 'show']]);
-    Route::resource('clients', 'ClientController', ['except' => ['index', 'show']]);
-    Route::resource('offices', 'OfficeController', ['except' => ['index', 'show']]);
-});
+Route::resource('users', 'UserController', ['except' => ['show']]);
+Route::resource('clients', 'ClientController', ['except' => ['show']]);
+Route::resource('offices', 'OfficeController', ['except' => ['show']]);
+
+Route::put('users/{user}/change-password', 'UserController@changePassword')->name('users.change-password');

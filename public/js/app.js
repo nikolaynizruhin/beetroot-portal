@@ -58396,7 +58396,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "col-sm-12"
     }, [_c('p', [_c('strong', [_vm._v(_vm._s(user.name))]), _vm._v("   "), _c('a', {
       attrs: {
-        "href": 'admin/users/' + user.id + '/edit'
+        "href": 'users/' + user.id + '/edit'
       }
     }, [_c('i', {
       staticClass: "fa fa-pencil",
@@ -58564,7 +58564,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "col-sm-12"
     }, [_c('p', [_c('strong', [_vm._v(_vm._s(client.name))]), _vm._v("   "), _c('a', {
       attrs: {
-        "href": 'admin/clients/' + client.id + '/edit'
+        "href": 'clients/' + client.id + '/edit'
       }
     }, [_c('i', {
       staticClass: "fa fa-pencil",

@@ -8,7 +8,7 @@
             <div class="col-sm-8">
                 <div class="row">
                     <div class="col-sm-12">
-                        <p><strong>{{ user.name }}</strong> &nbsp; <a :href="'admin/users/' + user.id + '/edit'"><i class="fa fa-pencil" aria-hidden="true"></i></a></p>
+                        <p><strong>{{ user.name }}</strong> &nbsp; <a :href="'users/' + user.id + '/edit'"><i class="fa fa-pencil" aria-hidden="true"></i></a></p>
                     </div>
                 </div>
                 <div class="row">

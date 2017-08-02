@@ -64,21 +64,21 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('users') }}">
+                                        <a href="{{ route('users.index') }}">
                                             <i class="fa fa-id-card-o fa-fw" aria-hidden="true"></i>
                                             &nbsp;
                                             Users
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('clients') }}">
+                                        <a href="{{ route('clients.index') }}">
                                             <i class="fa fa-users fa-fw" aria-hidden="true"></i>
                                             &nbsp;
                                             Clients
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('offices') }}">
+                                        <a href="{{ route('offices.index') }}">
                                             <i class="fa fa-map-marker fa-fw" aria-hidden="true"></i>
                                             &nbsp;
                                             Offices
