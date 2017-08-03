@@ -7,7 +7,6 @@ use App\Client;
 use App\Office;
 use App\Http\Requests\StoreUser;
 use App\Http\Requests\UpdateUser;
-use App\Http\Requests\UpdateUserPassword;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -93,19 +92,5 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->route('users.create')->with('status', 'The user was successfully deleted!');
-    }
-
-    /**
-     * Change user password.
-     *
-     * @param  \App\Http\Requests\UpdateUserPassword  $request
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function changePassword(UpdateUserPassword $request, User $user)
-    {
-        $user->update($request->all());
-
-        return back()->with('status', 'The user password was successfully updated!');
     }
 }

@@ -172,7 +172,7 @@
                         </div>
                     </div>
 
-                    <form class="form-horizontal" method="POST" action="{{ route('users.change-password', $user->id) }}">
+                    <form class="form-horizontal" method="POST" action="{{ route('users.password.update', $user->id) }}">
                         {{ method_field('PUT') }}
                         {{ csrf_field() }}
 
