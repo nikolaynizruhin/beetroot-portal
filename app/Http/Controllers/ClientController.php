@@ -48,7 +48,7 @@ class ClientController extends Controller
      */
     public function store(StoreClient $request)
     {
-        Client::create($request->all());
+        Client::create($request->only(['name', 'logo', 'country', 'description', 'site']));
 
         return back()->with('status', 'The client was successfully created!');
     }
@@ -73,7 +73,7 @@ class ClientController extends Controller
      */
     public function update(StoreClient $request, Client $client)
     {
-        $client->update($request->all());
+        $client->update($request->only(['name', 'logo', 'country', 'description', 'site']));
 
         return back()->with('status', 'The client was successfully updated!');
     }

@@ -51,7 +51,7 @@ class UserController extends Controller
      */
     public function store(StoreUser $request)
     {
-        User::create($request->all());
+        User::create($request->only(['name', 'email', 'position', 'birthday', 'avatar', 'client_id', 'office_id', 'password']));
 
         return back()->with('status', 'The user was successfully created!');
     }
@@ -76,7 +76,7 @@ class UserController extends Controller
      */
     public function update(UpdateUser $request, User $user)
     {
-        $user->update($request->all());
+        $user->update($request->only(['name', 'email', 'position', 'birthday', 'avatar', 'client_id', 'office_id']));
 
         return back()->with('status', 'The user was successfully updated!');
     }
