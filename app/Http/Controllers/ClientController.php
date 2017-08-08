@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Client;
 use App\Http\Requests\StoreClient;
+use App\Http\Requests\UpdateClient;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -48,7 +49,7 @@ class ClientController extends Controller
      */
     public function store(StoreClient $request)
     {
-        Client::create($request->only(['name', 'logo', 'country', 'description', 'site']));
+        Client::createFromRequest($request);
 
         return back()->with('status', 'The client was successfully created!');
     }
@@ -67,13 +68,13 @@ class ClientController extends Controller
     /**
      * Update the specified client in storage.
      *
-     * @param  \App\Http\Requests\StoreClient  $request
+     * @param  \App\Http\Requests\UpdateClient  $request
      * @param  \App\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreClient $request, Client $client)
+    public function update(UpdateClient $request, Client $client)
     {
-        $client->update($request->only(['name', 'logo', 'country', 'description', 'site']));
+        $client->updateFromRequest($request);
 
         return back()->with('status', 'The client was successfully updated!');
     }

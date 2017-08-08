@@ -58383,7 +58383,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_c('img', {
       staticClass: "img-thumbnail img-circle img-responsive center-block",
       attrs: {
-        "src": user.avatar,
+        "src": 'storage/' + user.avatar,
         "alt": "Avatar",
         "width": "150",
         "height": "150"
@@ -58551,7 +58551,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_c('img', {
       staticClass: "img-thumbnail img-circle img-responsive center-block",
       attrs: {
-        "src": client.logo,
+        "src": 'storage/' + client.logo,
         "alt": "Logo",
         "width": "150",
         "height": "150"

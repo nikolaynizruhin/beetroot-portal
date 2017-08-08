@@ -2,7 +2,7 @@
     <div>
         <div class="row" v-for="client in clients">
             <div class="col-sm-4">
-                <img :src="client.logo" alt="Logo" class="img-thumbnail img-circle img-responsive center-block" width="150" height="150">
+                <img :src="'storage/' + client.logo" alt="Logo" class="img-thumbnail img-circle img-responsive center-block" width="150" height="150">
                 <br>
             </div>
             <div class="col-sm-8">

@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Http\Requests\StoreClient;
+use App\Http\Requests\UpdateClient;
 
 class Client extends Model
 {
@@ -25,5 +27,43 @@ class Client extends Model
     public function users()
     {
         return $this->hasMany('App\User');
+    }
+
+    /**
+     * Create a client from request.
+     *
+     * @param  \App\Http\Requests\StoreClient  $request
+     * @return \App\User
+     */
+    public static function createFromRequest(StoreClient $request)
+    {
+        $attributes = $request->only(['name', 'country', 'description', 'site']);
+
+        $path = $request->file('logo')->store('logos');
+
+        $attributes['logo'] = $path;
+
+        return static::create($attributes);
+    }
+
+    /**
+     * Update a client from request.
+     *
+     * @param  \App\Http\Requests\UpdateClient  $request
+     * @return \App\User
+     */
+    public function updateFromRequest(UpdateClient $request)
+    {
+        $attributes = $request->only(['name', 'country', 'description', 'site']);
+
+        if ($request->hasFile('logo')) {
+
+            $path = $request->file('logo')->store('logos');
+
+            $attributes['logo'] = $path;
+
+        }
+
+        return $this->update($attributes);
     }
 }

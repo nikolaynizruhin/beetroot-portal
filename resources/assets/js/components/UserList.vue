@@ -2,7 +2,7 @@
     <div>
         <div class="row" v-for="user in users">
             <div class="col-sm-4">
-                <img :src="user.avatar" alt="Avatar" class="img-thumbnail img-circle img-responsive center-block" width="150" height="150">
+                <img :src="'storage/' + user.avatar" alt="Avatar" class="img-thumbnail img-circle img-responsive center-block" width="150" height="150">
                 <br>
             </div>
             <div class="col-sm-8">

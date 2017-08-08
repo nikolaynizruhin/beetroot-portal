@@ -17,13 +17,27 @@
 
                     @include('partials.flash')
 
-                    <img src="{{ $user->avatar }}" alt="avatar" class="img-circle img-thumbnail img-responsive center-block" height="150" width="150">
+                    <img src="{{ asset('storage/' . $user->avatar) }}" alt="avatar" class="img-circle img-thumbnail img-responsive center-block" height="150" width="150">
 
                     <br>
 
-                    <form class="form-horizontal" method="POST" action="{{ route('users.update', $user->id) }}">
+                    <form class="form-horizontal" method="POST" action="{{ route('users.update', $user->id) }}" enctype="multipart/form-data">
                         {{ method_field('PUT') }}
                         {{ csrf_field() }}
+
+                        <div class="form-group{{ $errors->has('avatar') ? ' has-error' : '' }}">
+                            <label for="avatar" class="col-md-4 control-label">Avatar</label>
+
+                            <div class="col-md-6">
+                                <input id="avatar" type="file" name="avatar">
+
+                                @if ($errors->has('avatar'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('avatar') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">Name</label>
@@ -70,20 +84,6 @@
                                 @if ($errors->has('position'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('position') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('avatar') ? ' has-error' : '' }}">
-                            <label for="avatar" class="col-md-4 control-label">Avatar</label>
-
-                            <div class="col-md-6">
-                                <input id="avatar" type="text" class="form-control" name="avatar" value="{{ old('avatar', $user->avatar) }}" required>
-
-                                @if ($errors->has('avatar'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('avatar') }}</strong>
                                     </span>
                                 @endif
                             </div>

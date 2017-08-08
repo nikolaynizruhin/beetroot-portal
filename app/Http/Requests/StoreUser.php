@@ -28,7 +28,7 @@ class StoreUser extends FormRequest
             'email' => 'required|string|email|max:255|unique:users',
             'position' => 'required|string|max:255',
             'birthday' => 'required|date',
-            'avatar' => 'required|url',
+            'avatar' => 'required|image',
             'client_id' => 'required|numeric|exists:clients,id',
             'office_id' => 'required|numeric|exists:offices,id',
             'password' => 'required|string|min:6|confirmed'

@@ -17,7 +17,7 @@
 
                     @include('partials.flash')
 
-                    <form class="form-horizontal" method="POST" action="{{ route('clients.store') }}">
+                    <form class="form-horizontal" method="POST" action="{{ route('clients.store') }}" enctype="multipart/form-data">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -38,7 +38,7 @@
                             <label for="logo" class="col-md-4 control-label">Logo</label>
 
                             <div class="col-md-6">
-                                <input id="logo" type="text" class="form-control" name="logo" value="{{ old('logo') }}" required>
+                                <input id="logo" type="file" name="logo" required>
 
                                 @if ($errors->has('logo'))
                                     <span class="help-block">

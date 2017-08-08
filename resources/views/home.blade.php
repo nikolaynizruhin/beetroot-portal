@@ -14,7 +14,7 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-sm-3">
-                            <img src="{{ Auth::user()->avatar }}" class="img-circle img-thumbnail img-responsive" alt="avatar">
+                            <img src="{{ asset('storage/' . Auth::user()->avatar) }}" class="img-circle img-thumbnail img-responsive" alt="avatar">
                         </div>
                         <div class="col-sm-9">
                             <h3>{{ Auth::user()->name }}</h3>

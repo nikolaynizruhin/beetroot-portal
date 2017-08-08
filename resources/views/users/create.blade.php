@@ -17,7 +17,7 @@
 
                     @include('partials.flash')
 
-                    <form class="form-horizontal" method="POST" action="{{ route('users.store') }}">
+                    <form class="form-horizontal" method="POST" action="{{ route('users.store') }}" enctype="multipart/form-data">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -74,7 +74,7 @@
                             <label for="avatar" class="col-md-4 control-label">Avatar</label>
 
                             <div class="col-md-6">
-                                <input id="avatar" type="text" class="form-control" name="avatar" value="{{ old('avatar') }}" required>
+                                <input id="avatar" type="file" name="avatar" required>
 
                                 @if ($errors->has('avatar'))
                                     <span class="help-block">
