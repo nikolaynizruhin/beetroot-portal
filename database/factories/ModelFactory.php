@@ -14,12 +14,14 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
+    $positions = \App\Http\Utilities\Position::all();
+    $randKey = array_rand($positions);
 
     return [
         'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'avatar' => $faker->imageUrl($width = 300, $height = 300, 'people'),
-        'position' => $faker->jobTitle,
+        'email' => $faker->unique()->userName . '@beetroot.se',
+        'avatar' => 'avatars/default.jpg',
+        'position' => $positions[$randKey],
         'birthday' => $faker->date(),
         'password' => $password ?: $password = 'secret',
         'remember_token' => str_random(10),
@@ -37,10 +39,10 @@ $factory->define(App\Client::class, function (Faker\Generator $faker) {
 
     return [
         'name' => $faker->company,
-        'site' => $faker->url,
+        'site' => 'https://' . $faker->domainName,
         'country' => $faker->country,
         'description' => $faker->text($maxNbChars = 200),
-        'logo' => $faker->imageUrl($width = 300, $height = 300, 'business')
+        'logo' => 'logos/default.jpg'
     ];
 });
 
