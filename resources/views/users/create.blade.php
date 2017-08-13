@@ -98,6 +98,62 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('bio') ? ' has-error' : '' }}">
+                            <label for="bio" class="col-md-4 control-label">Bio</label>
+
+                            <div class="col-md-6">
+                                <textarea class="form-control" rows="3" name="bio">{{ old('bio') }}</textarea>
+
+                                @if ($errors->has('bio'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('bio') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('slack') ? ' has-error' : '' }}">
+                            <label for="slack" class="col-md-4 control-label">Slack</label>
+
+                            <div class="col-md-6">
+                                <input id="slack" type="text" class="form-control" name="slack" value="{{ old('slack') }}" required>
+
+                                @if ($errors->has('slack'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('slack') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('skype') ? ' has-error' : '' }}">
+                            <label for="skype" class="col-md-4 control-label">Skype</label>
+
+                            <div class="col-md-6">
+                                <input id="skype" type="text" class="form-control" name="skype" value="{{ old('skype') }}">
+
+                                @if ($errors->has('skype'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('skype') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('github') ? ' has-error' : '' }}">
+                            <label for="github" class="col-md-4 control-label">Github</label>
+
+                            <div class="col-md-6">
+                                <input id="github" type="text" class="form-control" name="github" value="{{ old('github') }}">
+
+                                @if ($errors->has('github'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('github') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('client_id') ? ' has-error' : '' }}">
                             <label for="client-id" class="col-md-4 control-label">Client</label>
 

@@ -29,6 +29,10 @@ class StoreUser extends FormRequest
             'position' => 'required|string|max:255',
             'birthday' => 'required|date',
             'avatar' => 'required|image',
+            'bio' => 'nullable|string|max:255',
+            'skype' => 'nullable|string|max:255',
+            'slack' => 'required|string|max:255|unique:users',
+            'github' => 'nullable|string|max:255',
             'client_id' => 'required|numeric|exists:clients,id',
             'office_id' => 'required|numeric|exists:offices,id',
             'password' => 'required|string|min:6|confirmed'

@@ -24,6 +24,10 @@ class User extends Authenticatable
         'position',
         'avatar',
         'birthday',
+        'bio',
+        'slack',
+        'skype',
+        'github',
         'office_id',
         'client_id',
     ];
@@ -83,7 +87,7 @@ class User extends Authenticatable
      */
     public static function createFromRequest(StoreUser $request)
     {
-        $attributes = $request->only(['name', 'email', 'position', 'birthday', 'client_id', 'office_id', 'password']);
+        $attributes = $request->only(['name', 'email', 'position', 'birthday', 'bio', 'slack', 'skype', 'github', 'client_id', 'office_id', 'password']);
 
         $path = $request->file('avatar')->store('avatars');
 
@@ -100,7 +104,7 @@ class User extends Authenticatable
      */
     public function updateFromRequest(UpdateUser $request)
     {
-        $attributes = $request->only(['name', 'email', 'position', 'birthday', 'client_id', 'office_id']);
+        $attributes = $request->only(['name', 'email', 'position', 'birthday', 'bio', 'slack', 'skype', 'github', 'client_id', 'office_id']);
 
         if ($request->hasFile('avatar')) {
 

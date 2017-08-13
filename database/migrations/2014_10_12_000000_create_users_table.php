@@ -20,6 +20,10 @@ class CreateUsersTable extends Migration
             $table->string('avatar');
             $table->string('position');
             $table->date('birthday');
+            $table->string('bio')->nullable();
+            $table->string('slack')->nullable();
+            $table->string('skype')->nullable();
+            $table->string('github')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
