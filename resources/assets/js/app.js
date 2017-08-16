@@ -20,6 +20,7 @@ Vue.component('clients', require('./components/Clients.vue'));
 Vue.component('select-filter', require('./components/SelectFilter.vue'));
 Vue.component('user-list', require('./components/UserList.vue'));
 Vue.component('client-list', require('./components/ClientList.vue'));
+Vue.component('user-modal', require('./components/UserModal.vue'));
 
 const app = new Vue({
     el: '#app'

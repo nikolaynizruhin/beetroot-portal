@@ -16477,6 +16477,7 @@ Vue.component('clients', __webpack_require__(157));
 Vue.component('select-filter', __webpack_require__(160));
 Vue.component('user-list', __webpack_require__(163));
 Vue.component('client-list', __webpack_require__(166));
+Vue.component('user-modal', __webpack_require__(179));
 
 var app = new Vue({
   el: '#app'
@@ -58358,6 +58359,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -58378,7 +58380,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('div', _vm._l((_vm.users), function(user) {
     return _c('div', {
       staticClass: "row"
-    }, [_c('div', {
+    }, [_c('user-modal', {
+      attrs: {
+        "user": user
+      }
+    }), _vm._v(" "), _c('div', {
       staticClass: "col-sm-4"
     }, [_c('img', {
       staticClass: "img-thumbnail img-circle img-responsive center-block",
@@ -58394,7 +58400,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "row"
     }, [_c('div', {
       staticClass: "col-sm-12"
-    }, [_c('p', [_c('strong', [_vm._v(_vm._s(user.name))]), _vm._v("   "), _c('a', {
+    }, [_c('p', [_c('strong', [_c('a', {
+      attrs: {
+        "href": "#",
+        "data-toggle": "modal",
+        "data-target": '#userModal' + user.id
+      }
+    }, [_vm._v(_vm._s(user.name))])]), _vm._v("   "), _c('a', {
       attrs: {
         "href": 'users/' + user.id + '/edit'
       }
@@ -58433,7 +58445,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "aria-hidden": "true"
       }
-    }), _vm._v("\n                         \n                        " + _vm._s(user.office.city) + "\n                    ")])])])])])
+    }), _vm._v("\n                         \n                        " + _vm._s(user.office.city) + "\n                    ")])])])])], 1)
   }))
 },staticRenderFns: []}
 module.exports.render._withStripped = true
@@ -58612,6 +58624,238 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 170 */,
+/* 171 */,
+/* 172 */,
+/* 173 */,
+/* 174 */,
+/* 175 */,
+/* 176 */,
+/* 177 */,
+/* 178 */,
+/* 179 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(2)(
+  /* script */
+  __webpack_require__(180),
+  /* template */
+  __webpack_require__(181),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/home/vagrant/Code/Laravel/resources/assets/js/components/UserModal.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] UserModal.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-31662631", Component.options)
+  } else {
+    hotAPI.reload("data-v-31662631", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 180 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        user: Object
+    },
+    filters: {
+        date: function date(_date) {
+            return moment(_date).format('DD-MM-YYYY');
+        }
+    }
+});
+
+/***/ }),
+/* 181 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal fade",
+    attrs: {
+      "id": 'userModal' + _vm.user.id,
+      "tabindex": "-1",
+      "role": "dialog",
+      "aria-labelledby": "myModalLabel"
+    }
+  }, [_c('div', {
+    staticClass: "modal-dialog",
+    attrs: {
+      "role": "document"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_c('div', {
+    staticClass: "modal-body"
+  }, [_vm._m(0), _vm._v(" "), _c('img', {
+    staticClass: "img-thumbnail img-circle img-responsive center-block",
+    attrs: {
+      "src": 'storage/' + _vm.user.avatar,
+      "alt": "Avatar",
+      "width": "150",
+      "height": "150"
+    }
+  }), _vm._v(" "), _c('h3', {
+    staticClass: "text-center"
+  }, [_vm._v(_vm._s(_vm.user.name))]), _vm._v(" "), _c('h4', {
+    staticClass: "text-center"
+  }, [_c('em', [_vm._v(_vm._s(_vm.user.position))])]), _vm._v(" "), _c('br'), _vm._v(" "), _c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col-sm-5 col-sm-offset-1"
+  }, [_c('p', [_c('i', {
+    staticClass: "fa fa-handshake-o fa-fw",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }), _vm._v("\n                             \n                            " + _vm._s(_vm.user.client.name) + "\n                        ")]), _vm._v(" "), _c('p', [_c('i', {
+    staticClass: "fa fa-map-marker fa-fw",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }), _vm._v("\n                             \n                            " + _vm._s(_vm.user.office.city) + "\n                        ")]), _vm._v(" "), _c('p', [_c('i', {
+    staticClass: "fa fa-birthday-cake fa-fw",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }), _vm._v("\n                             \n                            " + _vm._s(_vm._f("date")(_vm.user.birthday)) + "\n                        ")])]), _vm._v(" "), _c('div', {
+    staticClass: "col-sm-5"
+  }, [_c('p', [_c('i', {
+    staticClass: "fa fa-envelope-o fa-fw",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }), _vm._v("\n                             \n                            " + _vm._s(_vm.user.email) + "\n                        ")]), _vm._v(" "), _c('p', [_c('i', {
+    staticClass: "fa fa-slack fa-fw",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }), _vm._v("\n                             \n                            " + _vm._s(_vm.user.slack) + "\n                        ")]), _vm._v(" "), _c('p', [_c('i', {
+    staticClass: "fa fa-skype fa-fw",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }), _vm._v("\n                             \n                            " + _vm._s(_vm.user.skype) + "\n                        ")]), _vm._v(" "), _c('p', [_c('i', {
+    staticClass: "fa fa-github fa-fw",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }), _vm._v("\n                             \n                            " + _vm._s(_vm.user.github) + "\n                        ")])])]), _vm._v(" "), _c('br'), _vm._v(" "), _c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col-sm-10 col-sm-offset-1"
+  }, [_c('p', [_vm._v(_vm._s(_vm.user.bio))])])])])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('button', {
+    staticClass: "close pull-right",
+    attrs: {
+      "type": "button",
+      "data-dismiss": "modal",
+      "aria-label": "Close"
+    }
+  }, [_c('span', {
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }, [_vm._v("×")])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-31662631", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
