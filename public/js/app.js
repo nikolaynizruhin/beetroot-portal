@@ -16448,7 +16448,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(127);
-module.exports = __webpack_require__(169);
+module.exports = __webpack_require__(172);
 
 
 /***/ }),
@@ -16477,7 +16477,7 @@ Vue.component('clients', __webpack_require__(157));
 Vue.component('select-filter', __webpack_require__(160));
 Vue.component('user-list', __webpack_require__(163));
 Vue.component('client-list', __webpack_require__(166));
-Vue.component('user-modal', __webpack_require__(179));
+Vue.component('user-modal', __webpack_require__(169));
 
 var app = new Vue({
   el: '#app'
@@ -57777,7 +57777,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
-        users: Array
+        users: Array,
+        user: Object
     },
     data: function data() {
         return {
@@ -57933,7 +57934,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   })])])]), _vm._v(" "), _c('user-list', {
     attrs: {
-      "users": _vm.filteredUsers
+      "users": _vm.filteredUsers,
+      "authUser": _vm.user
     }
   })], 1)])])])])
 },staticRenderFns: []}
@@ -58027,7 +58029,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
-        clients: Array
+        clients: Array,
+        user: Object
     },
     data: function data() {
         return {
@@ -58135,7 +58138,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   })])])]), _vm._v(" "), _c('client-list', {
     attrs: {
-      "clients": _vm.filteredClients
+      "clients": _vm.filteredClients,
+      "user": _vm.user
     }
   })], 1)])])])])
 },staticRenderFns: []}
@@ -58360,10 +58364,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
-        users: Array
+        users: Array,
+        authUser: Object
     },
     filters: {
         date: function date(_date) {
@@ -58377,9 +58391,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', _vm._l((_vm.users), function(user) {
+  return _c('div', {
+    staticClass: "list-group"
+  }, _vm._l((_vm.users), function(user) {
     return _c('div', {
-      staticClass: "row"
+      staticClass: "row list-group-item"
     }, [_c('user-modal', {
       attrs: {
         "user": user
@@ -58394,7 +58410,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "width": "150",
         "height": "150"
       }
-    }), _vm._v(" "), _c('br')]), _vm._v(" "), _c('div', {
+    })]), _vm._v(" "), _c('div', {
       staticClass: "col-sm-8"
     }, [_c('div', {
       staticClass: "row"
@@ -58406,7 +58422,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "data-toggle": "modal",
         "data-target": '#userModal' + user.id
       }
-    }, [_vm._v(_vm._s(user.name))])]), _vm._v("   "), _c('a', {
+    }, [_vm._v("\n                                " + _vm._s(user.name) + "\n                            ")])]), _vm._v("\n                         \n                        "), (_vm.authUser.is_admin) ? _c('a', {
       attrs: {
         "href": 'users/' + user.id + '/edit'
       }
@@ -58415,7 +58431,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "aria-hidden": "true"
       }
-    })])])])]), _vm._v(" "), _c('div', {
+    })]) : _vm._e()])])]), _vm._v(" "), _c('div', {
       staticClass: "row"
     }, [_c('div', {
       staticClass: "col-sm-12"
@@ -58543,10 +58559,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
-        clients: Array
+        clients: Array,
+        user: Object
     }
 });
 
@@ -58555,9 +58577,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', _vm._l((_vm.clients), function(client) {
+  return _c('div', {
+    staticClass: "list-group"
+  }, _vm._l((_vm.clients), function(client) {
     return _c('div', {
-      staticClass: "row"
+      staticClass: "row list-group-item"
     }, [_c('div', {
       staticClass: "col-sm-4"
     }, [_c('img', {
@@ -58568,13 +58592,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "width": "150",
         "height": "150"
       }
-    }), _vm._v(" "), _c('br')]), _vm._v(" "), _c('div', {
+    })]), _vm._v(" "), _c('div', {
       staticClass: "col-sm-8"
     }, [_c('div', {
       staticClass: "row"
     }, [_c('div', {
       staticClass: "col-sm-12"
-    }, [_c('p', [_c('strong', [_vm._v(_vm._s(client.name))]), _vm._v("   "), _c('a', {
+    }, [_c('p', [_c('strong', [_vm._v(_vm._s(client.name))]), _vm._v("\n                         \n                        "), (_vm.user.is_admin) ? _c('a', {
       attrs: {
         "href": 'clients/' + client.id + '/edit'
       }
@@ -58583,7 +58607,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "aria-hidden": "true"
       }
-    })])])])]), _vm._v(" "), _c('div', {
+    })]) : _vm._e()])])]), _vm._v(" "), _c('div', {
       staticClass: "row"
     }, [_c('div', {
       staticClass: "col-sm-6"
@@ -58621,29 +58645,14 @@ if (false) {
 
 /***/ }),
 /* 169 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 170 */,
-/* 171 */,
-/* 172 */,
-/* 173 */,
-/* 174 */,
-/* 175 */,
-/* 176 */,
-/* 177 */,
-/* 178 */,
-/* 179 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(2)(
   /* script */
-  __webpack_require__(180),
+  __webpack_require__(170),
   /* template */
-  __webpack_require__(181),
+  __webpack_require__(171),
   /* styles */
   null,
   /* scopeId */
@@ -58675,7 +58684,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 180 */
+/* 170 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -58756,7 +58765,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 181 */
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -58856,6 +58865,12 @@ if (false) {
      require("vue-hot-reload-api").rerender("data-v-31662631", module.exports)
   }
 }
+
+/***/ }),
+/* 172 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

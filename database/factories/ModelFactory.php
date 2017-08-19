@@ -29,6 +29,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'skype' => $userName,
         'github' => $userName,
         'password' => $password ?: $password = 'secret',
+        'is_admin' => $faker->boolean,
         'remember_token' => str_random(10),
         'client_id' => function () {
             return factory(App\Client::class)->create()->id;

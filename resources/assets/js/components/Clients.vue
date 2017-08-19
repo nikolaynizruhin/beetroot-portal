@@ -22,7 +22,7 @@
                             </div>
                         </div>
 
-                        <client-list :clients="filteredClients"></client-list>
+                        <client-list :clients="filteredClients" :user="user"></client-list>
 
                     </div>
                 </div>
@@ -34,7 +34,8 @@
 <script>
     export default {
         props: {
-            clients: Array
+            clients: Array,
+            user: Object
         },
         data() {
             return {

@@ -91,27 +91,29 @@
                                             Edit
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="{{ route('users.create') }}">
-                                            <i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i>
-                                            &nbsp;
-                                            Add User
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('clients.create') }}">
-                                            <i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i>
-                                            &nbsp;
-                                            Add Client
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('offices.create') }}">
-                                            <i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i>
-                                            &nbsp;
-                                            Add Office
-                                        </a>
-                                    </li>
+                                    @if (Auth::user()->is_admin)
+                                        <li>
+                                            <a href="{{ route('users.create') }}">
+                                                <i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i>
+                                                &nbsp;
+                                                Add User
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('clients.create') }}">
+                                                <i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i>
+                                                &nbsp;
+                                                Add Client
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('offices.create') }}">
+                                                <i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i>
+                                                &nbsp;
+                                                Add Office
+                                            </a>
+                                        </li>
+                                    @endif
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();

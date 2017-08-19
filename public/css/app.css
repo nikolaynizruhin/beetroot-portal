@@ -8368,6 +8368,10 @@ html body a.navbar-brand img {
   height: 40px;
 }
 
+html body .list-group-item {
+  border: none;
+}
+
 html body a.gray-link {
   color: #636b6f;
   text-decoration: none;

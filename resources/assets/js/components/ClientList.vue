@@ -1,14 +1,19 @@
 <template>
-    <div>
-        <div class="row" v-for="client in clients">
+    <div class="list-group">
+        <div class="row list-group-item" v-for="client in clients">
             <div class="col-sm-4">
                 <img :src="'storage/' + client.logo" alt="Logo" class="img-thumbnail img-circle img-responsive center-block" width="150" height="150">
-                <br>
             </div>
             <div class="col-sm-8">
                 <div class="row">
                     <div class="col-sm-12">
-                        <p><strong>{{ client.name }}</strong> &nbsp; <a :href="'clients/' + client.id + '/edit'"><i class="fa fa-pencil" aria-hidden="true"></i></a></p>
+                        <p>
+                            <strong>{{ client.name }}</strong>
+                            &nbsp;
+                            <a v-if="user.is_admin" :href="'clients/' + client.id + '/edit'">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </a>
+                        </p>
                     </div>
                 </div>
                 <div class="row">
@@ -42,7 +47,8 @@
 <script>
     export default {
         props: {
-            clients: Array
+            clients: Array,
+            user: Object
         }
     }
 </script>

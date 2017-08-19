@@ -28,7 +28,7 @@
                             </div>
                         </div>
 
-                        <user-list :users="filteredUsers"></user-list>
+                        <user-list :users="filteredUsers" :authUser="user"></user-list>
 
                     </div>
                 </div>
@@ -40,7 +40,8 @@
 <script>
     export default {
         props: {
-            users: Array
+            users: Array,
+            user: Object
         },
         data() {
             return {

@@ -11,14 +11,14 @@
                         Offices ({{ $offices->count() }})
                     </div>
 
-                    <div class="panel-body">
+                    <div class="panel-body list-group">
                         @foreach ($offices as $office)
-                            <div class="row">
+                            <div class="row list-group-item">
                                 <div class="col-sm-8">
                                     <iframe
                                             width="100%"
                                             height="350"
-                                            frameborder="0" style="border:0; margin-bottom: 20px"
+                                            frameborder="0" style="border:0"
                                             src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDSASvfMJudvEc-O5ugI0O6PE9NgCE4ACU&q=Beetroot+Academy,Kiev" allowfullscreen>
                                     </iframe>
                                 </div>
@@ -27,8 +27,12 @@
                                         <i class="fa fa-map-marker fa-fw" aria-hidden="true"></i>
                                         &nbsp;
                                         <strong>{{ $office->country }}, {{ $office->city }}</strong>
-                                         &nbsp;
-                                         <a href="{{ route('offices.edit', $office->id) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                        @if (Auth::user()->is_admin)
+                                            &nbsp;
+                                            <a href="{{ route('offices.edit', $office->id) }}">
+                                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                                            </a>
+                                        @endif
                                     </p>
                                     <p>
                                         <i class="fa fa-location-arrow fa-fw" aria-hidden="true"></i>

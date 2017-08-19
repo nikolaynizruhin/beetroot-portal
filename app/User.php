@@ -13,6 +13,15 @@ class User extends Authenticatable
     use HasApiTokens, Notifiable;
 
     /**
+         * The attributes that should be cast to native types.
+         *
+         * @var array
+         */
+        protected $casts = [
+            'is_admin' => 'boolean'
+        ];
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -30,6 +39,7 @@ class User extends Authenticatable
         'github',
         'office_id',
         'client_id',
+        'remember_token'
     ];
 
     /**
@@ -92,6 +102,8 @@ class User extends Authenticatable
         $path = $request->file('avatar')->store('avatars');
 
         $attributes['avatar'] = $path;
+
+        $attributes['remember_token'] = str_random(10);
 
         return static::create($attributes);
     }
