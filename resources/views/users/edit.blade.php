@@ -25,6 +25,24 @@
                         {{ method_field('PUT') }}
                         {{ csrf_field() }}
 
+                        @if (Auth::user()->is_admin)
+                            <div class="form-group{{ $errors->has('is_admin') ? ' has-error' : '' }}">
+                                <div class="col-md-6 col-md-offset-4">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="is_admin" value="1" {{ old('is_admin', $user->is_admin) ? 'checked' : '' }}> Admin
+                                        </label>
+
+                                        @if ($errors->has('is_admin'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('is_admin') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+
                         <div class="form-group{{ $errors->has('avatar') ? ' has-error' : '' }}">
                             <label for="avatar" class="col-md-4 control-label">Avatar</label>
 
@@ -209,12 +227,14 @@
                                     Update
                                 </button>
                             </div>
-                            <div class="col-md-3">
-                                <button type="submit" class="btn btn-danger btn-block"
-                                        onclick="event.preventDefault();if(confirm('Are you sure you want to delete a user?'))document.getElementById('delete-form').submit();">
-                                    Delete
-                                </button>
-                            </div>
+                            @if (Auth::user()->is_admin)
+                                <div class="col-md-3">
+                                    <button type="submit" class="btn btn-danger btn-block"
+                                            onclick="event.preventDefault();if(confirm('Are you sure you want to delete a user?'))document.getElementById('delete-form').submit();">
+                                        Delete
+                                    </button>
+                                </div>
+                            @endif
                         </div>
                     </form>
                     <form id="delete-form" class="form-horizontal" method="POST" action="{{ route('users.destroy', $user->id) }}">

@@ -17,8 +17,42 @@
 
                     @include('partials.flash')
 
+                    <img src="{{ asset('storage/avatars/default.png') }}" alt="avatar" class="img-circle img-thumbnail img-responsive center-block" height="150" width="150">
+
+                    <br>
+
                     <form class="form-horizontal" method="POST" action="{{ route('users.store') }}" enctype="multipart/form-data">
                         {{ csrf_field() }}
+
+                        <div class="form-group{{ $errors->has('is_admin') ? ' has-error' : '' }}">
+                            <div class="col-md-6 col-md-offset-4">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="is_admin" value="1" {{ old('is_admin') ? 'checked' : '' }}> Admin
+                                    </label>
+
+                                    @if ($errors->has('is_admin'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('is_admin') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('avatar') ? ' has-error' : '' }}">
+                            <label for="avatar" class="col-md-4 control-label">Avatar</label>
+
+                            <div class="col-md-6">
+                                <input id="avatar" type="file" name="avatar" required>
+
+                                @if ($errors->has('avatar'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('avatar') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">Name</label>
@@ -65,20 +99,6 @@
                                 @if ($errors->has('position'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('position') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('avatar') ? ' has-error' : '' }}">
-                            <label for="avatar" class="col-md-4 control-label">Avatar</label>
-
-                            <div class="col-md-6">
-                                <input id="avatar" type="file" name="avatar" required>
-
-                                @if ($errors->has('avatar'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('avatar') }}</strong>
                                     </span>
                                 @endif
                             </div>

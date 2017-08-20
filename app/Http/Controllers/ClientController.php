@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Client;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreClient;
 use App\Http\Requests\UpdateClient;
-use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
@@ -87,6 +87,8 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
+        $this->authorize('delete', $client);
+
         $client->delete();
 
         return redirect()->route('clients.create')->with('status', 'The client was successfully deleted!');

@@ -2,9 +2,10 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use App\User;
 use App\Http\Requests\StoreClient;
 use App\Http\Requests\UpdateClient;
+use Illuminate\Database\Eloquent\Model;
 
 class Client extends Model
 {
@@ -26,7 +27,7 @@ class Client extends Model
      */
     public function users()
     {
-        return $this->hasMany('App\User');
+        return $this->hasMany(User::class);
     }
 
     /**

@@ -109,12 +109,14 @@
                                     Update
                                 </button>
                             </div>
-                            <div class="col-md-3">
-                                <button type="submit" class="btn btn-danger btn-block"
-                                        onclick="event.preventDefault();if(confirm('Are you sure you want to delete a client?'))document.getElementById('delete-form').submit();">
-                                    Delete
-                                </button>
-                            </div>
+                            @if (Auth::user()->is_admin)
+                                <div class="col-md-3">
+                                    <button type="submit" class="btn btn-danger btn-block"
+                                            onclick="event.preventDefault();if(confirm('Are you sure you want to delete a client?'))document.getElementById('delete-form').submit();">
+                                        Delete
+                                    </button>
+                                </div>
+                            @endif
                         </div>
                     </form>
                     <form id="delete-form" class="form-horizontal" method="POST" action="{{ route('clients.destroy', $client->id) }}">

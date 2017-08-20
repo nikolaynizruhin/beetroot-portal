@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreUser extends FormRequest
@@ -13,7 +14,7 @@ class StoreUser extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return $this->user()->can('create', User::class);
     }
 
     /**
@@ -26,6 +27,7 @@ class StoreUser extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
+            'is_admin' => 'boolean',
             'position' => 'required|string|max:255',
             'birthday' => 'required|date',
             'avatar' => 'required|image',

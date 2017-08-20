@@ -2,11 +2,13 @@
 
 namespace App;
 
+use App\Client;
+use App\Office;
+use App\Http\Requests\StoreUser;
+use App\Http\Requests\UpdateUser;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Http\Requests\StoreUser;
-use App\Http\Requests\UpdateUser;
 
 class User extends Authenticatable
 {
@@ -29,6 +31,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'is_admin',
         'password',
         'position',
         'avatar',
@@ -78,7 +81,7 @@ class User extends Authenticatable
      */
     public function client()
     {
-        return $this->belongsTo('App\Client');
+        return $this->belongsTo(Client::class);
     }
 
     /**
@@ -86,7 +89,7 @@ class User extends Authenticatable
      */
     public function office()
     {
-        return $this->belongsTo('App\Office');
+        return $this->belongsTo(Office::class);
     }
 
     /**
@@ -104,6 +107,8 @@ class User extends Authenticatable
         $attributes['avatar'] = $path;
 
         $attributes['remember_token'] = str_random(10);
+
+        $request->is_admin ? $attributes['is_admin'] = 1 : $attributes['is_admin'] = 0;
 
         return static::create($attributes);
     }
@@ -124,6 +129,10 @@ class User extends Authenticatable
 
             $attributes['avatar'] = $path;
 
+        }
+
+        if (auth()->user()->is_admin) {
+            $request->is_admin ? $attributes['is_admin'] = 1 : $attributes['is_admin'] = 0;
         }
 
         return $this->update($attributes);

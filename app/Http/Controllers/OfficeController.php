@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Office;
-use App\Http\Requests\StoreOffice;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreOffice;
 
 class OfficeController extends Controller
 {
@@ -86,6 +86,8 @@ class OfficeController extends Controller
      */
     public function destroy(Office $office)
     {
+        $this->authorize('delete', $office);
+
         $office->delete();
 
         return redirect()->route('offices.create')->with('status', 'The office was successfully deleted!');

@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Client;
 use App\Office;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreUser;
 use App\Http\Requests\UpdateUser;
-use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -89,6 +89,8 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        $this->authorize('delete', $user);
+
         $user->delete();
 
         return redirect()->route('users.create')->with('status', 'The user was successfully deleted!');

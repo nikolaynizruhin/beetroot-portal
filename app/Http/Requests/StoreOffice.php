@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Office;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreOffice extends FormRequest
@@ -13,7 +14,7 @@ class StoreOffice extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return $this->user()->can('create', Office::class);
     }
 
     /**

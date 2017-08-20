@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Client;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreClient extends FormRequest
@@ -13,7 +14,7 @@ class StoreClient extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return $this->user()->can('create', Client::class);
     }
 
     /**
