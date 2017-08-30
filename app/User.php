@@ -108,7 +108,7 @@ class User extends Authenticatable
 
         $attributes['remember_token'] = str_random(10);
 
-        $request->is_admin ? $attributes['is_admin'] = 1 : $attributes['is_admin'] = 0;
+        $attributes['is_admin'] = (bool) $request->is_admin;
 
         return static::create($attributes);
     }
@@ -132,7 +132,7 @@ class User extends Authenticatable
         }
 
         if (auth()->user()->is_admin) {
-            $request->is_admin ? $attributes['is_admin'] = 1 : $attributes['is_admin'] = 0;
+            $attributes['is_admin'] = (bool) $request->is_admin;
         }
 
         return $this->update($attributes);
