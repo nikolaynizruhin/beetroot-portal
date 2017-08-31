@@ -8,13 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Office extends Model
 {
     /**
-     * The attributes that are mass assignable.
+     * The attributes that aren't mass assignable.
      *
      * @var array
      */
-    protected $fillable = [
-        'city', 'country', 'address'
-    ];
+    protected $guarded = [];
 
     /**
      * Get the users for the office.
