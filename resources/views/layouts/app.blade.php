@@ -91,7 +91,7 @@
                                             Edit
                                         </a>
                                     </li>
-                                    @if (Auth::user()->is_admin)
+                                    @admin
                                         <li>
                                             <a href="{{ route('users.create') }}">
                                                 <i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i>
@@ -113,7 +113,7 @@
                                                 Add Office
                                             </a>
                                         </li>
-                                    @endif
+                                    @endadmin
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();

@@ -27,12 +27,12 @@
                                         <i class="fa fa-map-marker fa-fw" aria-hidden="true"></i>
                                         &nbsp;
                                         <strong>{{ $office->country }}, {{ $office->city }}</strong>
-                                        @if (Auth::user()->is_admin)
+                                        @admin
                                             &nbsp;
                                             <a href="{{ route('offices.edit', $office->id) }}">
                                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                                             </a>
-                                        @endif
+                                        @endadmin
                                     </p>
                                     <p>
                                         <i class="fa fa-location-arrow fa-fw" aria-hidden="true"></i>
