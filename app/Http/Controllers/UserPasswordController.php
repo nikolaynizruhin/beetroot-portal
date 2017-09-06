@@ -17,7 +17,7 @@ class UserPasswordController extends Controller
      */
     public function update(UpdateUserPassword $request, User $user)
     {
-        $user->update($request->only(['password']));
+        $user->update(['password' => bcrypt($request->password)]);
 
         return back()->with('status', 'The user password was successfully updated!');
     }

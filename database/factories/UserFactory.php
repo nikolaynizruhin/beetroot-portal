@@ -29,7 +29,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         'slack' => $userName,
         'skype' => $userName,
         'github' => $userName,
-        'password' => $password ?: $password = 'secret',
+        'password' => $password ?: $password = bcrypt('secret'),
         'is_admin' => $faker->boolean,
         'remember_token' => str_random(10),
         'client_id' => function () {

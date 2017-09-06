@@ -51,17 +51,6 @@ class User extends Authenticatable
     ];
 
     /**
-     * Set the user password.
-     *
-     * @param  string  $value
-     * @return void
-     */
-    public function setPasswordAttribute($value)
-    {
-        $this->attributes['password'] = bcrypt($value);
-    }
-
-    /**
      * Get the client for the user.
      */
     public function client()
@@ -85,11 +74,12 @@ class User extends Authenticatable
      */
     public static function createFromRequest(StoreUser $request)
     {
-        $attributes = request(['name', 'email', 'position', 'birthday', 'bio', 'slack', 'skype', 'github', 'client_id', 'office_id', 'password']);
+        $attributes = request(['name', 'email', 'position', 'birthday', 'bio', 'slack', 'skype', 'github', 'client_id', 'office_id']);
 
         $attributes['avatar'] = $request->file('avatar')->store('avatars');
         $attributes['remember_token'] = str_random(10);
         $attributes['is_admin'] = (bool) $request->is_admin;
+        $attributes['password'] = bcrypt($request->password);
 
         return static::create($attributes);
     }
