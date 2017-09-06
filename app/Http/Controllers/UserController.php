@@ -51,22 +51,7 @@ class UserController extends Controller
      */
     public function store(StoreUser $request)
     {
-        User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'position' => $request->position,
-            'birthday' => $request->birthday,
-            'bio' => $request->bio,
-            'slack' => $request->slack,
-            'skype' => $request->skype,
-            'github' => $request->github,
-            'client_id' => $request->client_id,
-            'office_id' => $request->office_id,
-            'password' => $request->password,
-            'avatar' => $request->file('avatar')->store('avatars'),
-            'remember_token' => str_random(10),
-            'is_admin' => (bool) $request->is_admin
-        ]);
+        User::createFromRequest($request);
 
         return back()->with('status', 'The user was successfully created!');
     }

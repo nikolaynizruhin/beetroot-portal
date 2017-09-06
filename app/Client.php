@@ -28,15 +28,13 @@ class Client extends Model
      * Create a client from request.
      *
      * @param  \App\Http\Requests\StoreClient  $request
-     * @return \App\User
+     * @return \App\Client
      */
     public static function createFromRequest(StoreClient $request)
     {
-        $attributes = $request->only(['name', 'country', 'description', 'site']);
+        $attributes = request(['name', 'country', 'description', 'site']);
 
-        $path = $request->file('logo')->store('logos');
-
-        $attributes['logo'] = $path;
+        $attributes['logo'] = $request->file('logo')->store('logos');
 
         return static::create($attributes);
     }
@@ -45,18 +43,14 @@ class Client extends Model
      * Update a client from request.
      *
      * @param  \App\Http\Requests\UpdateClient  $request
-     * @return \App\User
+     * @return \App\Client
      */
     public function updateFromRequest(UpdateClient $request)
     {
-        $attributes = $request->only(['name', 'country', 'description', 'site']);
+        $attributes = request(['name', 'country', 'description', 'site']);
 
         if ($request->hasFile('logo')) {
-
-            $path = $request->file('logo')->store('logos');
-
-            $attributes['logo'] = $path;
-
+            $attributes['logo'] = $request->file('logo')->store('logos');
         }
 
         return $this->update($attributes);
