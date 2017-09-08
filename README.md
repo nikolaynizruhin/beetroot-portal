@@ -8,6 +8,6 @@ npm install
 npm run dev
 php artisan migrate
 php artisan db:seed
-.env FILESYSTEM_DRIVER=public
+cp .env.example .env
 php artisan storage:link
 ```
