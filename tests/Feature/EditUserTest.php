@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\User;
 use Tests\TestCase;
-use Tests\Unit\UserTest;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -66,7 +65,7 @@ class EditUserTest extends TestCase
     public function testAdminCanEditUserProfile()
     {
         $owner = factory(User::class)->create();
-        $admin = factory(User::class)->create(['is_admin' => true]);
+        $admin = factory(User::class)->states('admin')->create();
 
         Storage::fake('public');
 
