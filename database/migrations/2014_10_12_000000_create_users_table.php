@@ -26,6 +26,8 @@ class CreateUsersTable extends Migration
             $table->string('github')->nullable();
             $table->boolean('is_admin')->default(0);
             $table->string('password');
+            $table->unsignedInteger('client_id');
+            $table->unsignedInteger('office_id');
             $table->rememberToken();
             $table->timestamps();
         });

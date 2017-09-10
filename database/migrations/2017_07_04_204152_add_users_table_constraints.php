@@ -14,13 +14,6 @@ class AddUsersTableConstraints extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('client_id')
-                ->unsigned()
-                ->nullable();
-            $table->integer('office_id')
-                ->unsigned()
-                ->nullabel();
-
             $table->foreign('client_id')
                 ->references('id')
                 ->on('clients')->onDelete('cascade');

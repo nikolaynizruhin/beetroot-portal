@@ -24,4 +24,3 @@ Route::resource('clients', 'ClientController', ['except' => ['show']]);
 Route::resource('offices', 'OfficeController', ['except' => ['show']]);
 
 Route::put('users/{user}/password', 'UserPasswordController@update')->name('users.password.update');
-Route::put('users/{user}/avatar', 'UserAvatarController@update')->name('users.avatar.update');
