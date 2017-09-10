@@ -13,21 +13,21 @@ class EditUserTest extends TestCase
     use RefreshDatabase;
 
     /**
-     * The list of attributes.
+     * Avatar file.
      *
-     * @var array
-     */
-    private $attributes = [];
-
-    /**
-     * The avatar file.
-     *
-     * @var array
+     * @var object
      */
     private $file;
 
     /**
-     * Set up.
+     * User utility.
+     *
+     * @var object
+     */
+    private $userUtility;
+
+    /**
+     * Setup
      *
      * @return void
      */
@@ -35,8 +35,8 @@ class EditUserTest extends TestCase
     {
         parent::setUp();
 
-        $this->attributes = \Tests\Utilities\User::getAttributes();
         $this->file = UploadedFile::fake()->image('avatar.jpg');
+        $this->userUtility = resolve(\Tests\Utilities\User::class);
     }
 
     /**
@@ -69,11 +69,14 @@ class EditUserTest extends TestCase
 
         Storage::fake('public');
 
+        $inputAttributes = $this->getInputAttributes();
+        $resultAttributes = $this->getResultAttributes();
+
         $this->actingAs($admin)
-            ->put(route('users.update', $owner->id), \Tests\Utilities\User::getInputAttributes($this->attributes, $this->file))
+            ->put(route('users.update', $owner->id), $inputAttributes)
             ->assertSessionHas('status', 'The user was successfully updated!');
 
-        $this->assertDatabaseHas('users', \Tests\Utilities\User::getResultAttributes($this->attributes, $this->file));
+        $this->assertDatabaseHas('users', $resultAttributes);
 
         Storage::disk('public')->assertExists('avatars/' . $this->file->hashName());
     }
@@ -89,15 +92,54 @@ class EditUserTest extends TestCase
 
         Storage::fake('public');
 
-        $resultAttributes = \Tests\Utilities\User::getResultAttributes($this->attributes, $this->file);
+        $inputAttributes = $this->getInputAttributes();
+        $resultAttributes = $this->getResultAttributes();
         $resultAttributes['is_admin'] = false;
 
         $this->actingAs($owner)
-            ->put(route('users.update', $owner->id), \Tests\Utilities\User::getInputAttributes($this->attributes, $this->file))
+            ->put(route('users.update', $owner->id), $inputAttributes)
             ->assertSessionHas('status', 'The user was successfully updated!');
 
         $this->assertDatabaseHas('users', $resultAttributes);
 
         Storage::disk('public')->assertExists('avatars/' . $this->file->hashName());
+    }
+
+    /**
+     * User fields are required.
+     *
+     * @return void
+     */
+    public function testUserFieldsAreRequired()
+    {
+        $owner = factory(User::class)->create(['is_admin' => false]);
+
+        $this->actingAs($owner)
+            ->put(route('users.update', $owner->id))
+            ->assertSessionHasErrors(['name', 'email', 'position', 'birthday', 'slack', 'client_id', 'office_id']);
+    }
+
+    /**
+     * Get input attributes.
+     *
+     * @return array
+     */
+    private function getInputAttributes()
+    {
+        $this->userUtility->setAttribute('avatar', $this->file);
+
+        return $this->userUtility->getAttributes();
+    }
+
+    /**
+     * Get result attributes.
+     *
+     * @return array
+     */
+    private function getResultAttributes()
+    {
+        $this->userUtility->setAttribute('avatar', 'avatars/' . $this->file->hashName());
+
+        return $this->userUtility->getAttributes();
     }
 }

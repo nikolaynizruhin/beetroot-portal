@@ -13,6 +13,33 @@ class CreateUserTest extends TestCase
     use RefreshDatabase;
 
     /**
+     * Avatar file.
+     *
+     * @var object
+     */
+    private $file;
+
+    /**
+     * User utility.
+     *
+     * @var object
+     */
+    private $userUtility;
+
+    /**
+     * Setup
+     *
+     * @return void
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+
+        $this->file = UploadedFile::fake()->image('avatar.jpg');
+        $this->userUtility = resolve(\Tests\Utilities\User::class);
+    }
+
+    /**
      * Only admin can create user.
      *
      * @return void
@@ -40,19 +67,57 @@ class CreateUserTest extends TestCase
 
         Storage::fake('public');
 
-        $file = UploadedFile::fake()->image('avatar.jpg');
-        $attributes = \Tests\Utilities\User::getAttributes();
-        $attributes['password'] = 'secret';
-        $attributes['password_confirmation'] = 'secret';
-
-        $resultAttributes = \Tests\Utilities\User::getAttributes();
+        $inputAttributes = $this->getInputAttributes();
+        $resultAttributes = $this->getResultAttributes();
 
         $this->actingAs($admin)
-            ->post(route('users.store'), \Tests\Utilities\User::getInputAttributes($attributes, $file))
+            ->post(route('users.store'), $inputAttributes)
             ->assertSessionHas('status', 'The user was successfully created!');
 
-        $this->assertDatabaseHas('users', \Tests\Utilities\User::getResultAttributes($resultAttributes, $file));
+        $this->assertDatabaseHas('users', $resultAttributes);
 
-        Storage::disk('public')->assertExists('avatars/' . $file->hashName());
+        Storage::disk('public')->assertExists('avatars/' . $this->file->hashName());
+    }
+
+    /**
+     * User fields are required.
+     *
+     * @return void
+     */
+    public function testUserFieldsAreRequired()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+
+        $this->actingAs($admin)
+            ->post(route('users.store'))
+            ->assertSessionHasErrors(['name', 'email', 'position', 'birthday', 'slack', 'client_id', 'office_id', 'password', 'avatar']);
+    }
+
+    /**
+     * Get input attributes.
+     *
+     * @return array
+     */
+    private function getInputAttributes()
+    {
+        $this->userUtility->setAttribute('avatar', $this->file);
+        $this->userUtility->setAttribute('password', 'secret');
+        $this->userUtility->setAttribute('password_confirmation', 'secret');
+
+        return $this->userUtility->getAttributes();
+    }
+
+    /**
+     * Get result attributes.
+     *
+     * @return array
+     */
+    private function getResultAttributes()
+    {
+        $this->userUtility->setAttribute('avatar', 'avatars/' . $this->file->hashName());
+        $this->userUtility->removeAttribute('password');
+        $this->userUtility->removeAttribute('password_confirmation');
+
+        return $this->userUtility->getAttributes();
     }
 }

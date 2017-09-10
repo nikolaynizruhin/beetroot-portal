@@ -9,63 +9,54 @@ class User
      *
      * @var array
      */
-    protected static $attributes = [
-        'name' => 'John Doe',
-        'email' => 'johndoe@beetroot.se',
-        'is_admin' => true,
-        'position' => 'Python Developer',
-        'birthday' => '1983-12-02 00:00:00',
-        'slack' => 'johndoe',
-        'client_id' => 1,
-        'office_id' => 1,
-        'github' => 'johndoe',
-        'skype' => 'johndoe',
-        'bio' => 'johndoe',
-    ];
+    private $attributes = [];
+
+    /**
+     * Create a new instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $attributes = factory(\App\User::class)->states('admin')->make()->toArray();
+
+        unset($attributes['password']);
+        unset($attributes['avatar']);
+        unset($attributes['remember_token']);
+
+        $this->attributes = $attributes;
+    }
 
     /**
      * Get attributes.
      *
      * @return array
      */
-    public static function getAttributes()
+    public function getAttributes()
     {
-        // $attributes = factory(\App\User::class)->make(['is_admin' => true])->toArray();
-
-        // unset($attributes['password']);
-        // unset($attributes['avatar']);
-        // unset($attributes['birthday']);
-        // unset($attributes['remember_token']);
-
-        // return $attributes;
-        return static::$attributes;
+        return $this->attributes;
     }
 
     /**
-     * Get input attributes.
+     * Set attribute.
      *
-     * @param  array  $attributes
-     * @param  object  $file
+     * @param  string  $key
+     * @param  string|object  $value
      * @return array
      */
-    public static function getInputAttributes($attributes, $file)
+    public function setAttribute($key, $value)
     {
-        $attributes['avatar'] = $file;
-
-        return $attributes;
+        $this->attributes[$key] = $value;
     }
 
     /**
-     * Get result attributes.
+     * Remove attribute.
      *
-     * @param  array  $attributes
-     * @param  object  $file
+     * @param  string $key
      * @return array
      */
-    public static function getResultAttributes($attributes, $file)
+    public function removeAttribute($key)
     {
-        $attributes['avatar'] = 'avatars/' . $file->hashName();
-
-        return $attributes;
+        unset($this->attributes[$key]);
     }
 }
