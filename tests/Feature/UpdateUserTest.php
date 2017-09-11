@@ -8,7 +8,7 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class EditUserTest extends TestCase
+class UpdateUserTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -40,11 +40,11 @@ class EditUserTest extends TestCase
     }
 
     /**
-     * Only user can edit own profile.
+     * Only user can update own profile.
      *
      * @return void
      */
-    public function testOnlyUserCanEditOwnProfile()
+    public function testOnlyUserCanUpdateOwnProfile()
     {
         $owner = factory(User::class)->create();
         $user = factory(User::class)->create(['is_admin' => false]);
@@ -58,11 +58,11 @@ class EditUserTest extends TestCase
     }
 
     /**
-     * Admin can edit user profile.
+     * Admin can update user profile.
      *
      * @return void
      */
-    public function testAdminCanEditUserProfile()
+    public function testAdminCanUpdateUserProfile()
     {
         $owner = factory(User::class)->create();
         $admin = factory(User::class)->states('admin')->create();
@@ -82,11 +82,11 @@ class EditUserTest extends TestCase
     }
 
     /**
-     * User can edit own profile.
+     * User can update own profile.
      *
      * @return void
      */
-    public function testUserCanEditOwnProfile()
+    public function testUserCanUpdateOwnProfile()
     {
         $owner = factory(User::class)->create(['is_admin' => false]);
 
