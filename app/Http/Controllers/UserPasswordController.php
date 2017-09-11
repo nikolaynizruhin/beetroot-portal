@@ -9,6 +9,16 @@ use App\User;
 class UserPasswordController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Update user password.
      *
      * @param  \App\Http\Requests\UpdateUserPassword  $request
