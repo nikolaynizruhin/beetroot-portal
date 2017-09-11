@@ -2,11 +2,14 @@
 
 namespace Tests\Feature;
 
+use App\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class DeleteUser extends TestCase
+class DeleteUserTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * Only admin can delete a user.
      *
@@ -35,7 +38,8 @@ class DeleteUser extends TestCase
         $userToDelete = factory(User::class)->create();
         $admin = factory(User::class)->states('admin')->create();
 
-        $this->delete(route('users.destroy', $userToDelete->id))
+        $this->actingAs($admin)
+            ->delete(route('users.destroy', $userToDelete->id))
             ->assertSessionHas('status', 'The user was successfully deleted!');
     }
 }
