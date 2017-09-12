@@ -32,7 +32,7 @@ class UserPolicy
      */
     public function view(User $signedInUser, User $user)
     {
-        //
+        return false;
     }
 
     /**
@@ -43,7 +43,7 @@ class UserPolicy
      */
     public function create(User $user)
     {
-        //
+        return false;
     }
 
     /**
@@ -67,6 +67,6 @@ class UserPolicy
      */
     public function delete(User $signedInUser, User $user)
     {
-        //
+        return false;
     }
 }

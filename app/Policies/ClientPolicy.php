@@ -33,7 +33,7 @@ class ClientPolicy
      */
     public function view(User $user, Client $client)
     {
-        //
+        return false;
     }
 
     /**
@@ -44,7 +44,7 @@ class ClientPolicy
      */
     public function create(User $user)
     {
-        //
+        return false;
     }
 
     /**
@@ -56,7 +56,7 @@ class ClientPolicy
      */
     public function update(User $user, Client $client)
     {
-        //
+        return false;
     }
 
     /**
@@ -68,6 +68,6 @@ class ClientPolicy
      */
     public function delete(User $user, Client $client)
     {
-        //
+        return false;
     }
 }

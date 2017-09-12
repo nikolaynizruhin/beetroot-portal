@@ -33,7 +33,7 @@ class OfficePolicy
      */
     public function view(User $user, Office $office)
     {
-        //
+        return false;
     }
 
     /**
@@ -44,7 +44,7 @@ class OfficePolicy
      */
     public function create(User $user)
     {
-        //
+        return false;
     }
 
     /**
@@ -56,7 +56,7 @@ class OfficePolicy
      */
     public function update(User $user, Office $office)
     {
-        //
+        return false;
     }
 
     /**
@@ -68,6 +68,6 @@ class OfficePolicy
      */
     public function delete(User $user, Office $office)
     {
-        //
+        return false;
     }
 }
