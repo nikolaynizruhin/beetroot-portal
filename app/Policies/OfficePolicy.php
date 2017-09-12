@@ -25,24 +25,24 @@ class OfficePolicy
     }
 
     /**
-     * Determine whether the user can view the office.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Office  $office
-     * @return mixed
-     */
-    public function view(User $user, Office $office)
-    {
-        return false;
-    }
-
-    /**
      * Determine whether the user can create offices.
      *
      * @param  \App\User  $user
      * @return mixed
      */
     public function create(User $user)
+    {
+        return false;
+    }
+
+    /**
+     * Determine whether the user can view edit office page.
+     *
+     * @param  \App\User  $user
+     * @param  \App\Office  $office
+     * @return mixed
+     */
+    public function edit(User $user, Office $office)
     {
         return false;
     }

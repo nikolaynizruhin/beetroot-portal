@@ -58,6 +58,59 @@ class UpdateUserTest extends TestCase
     }
 
     /**
+     * Only admin can visit edit user page.
+     *
+     * @return void
+     */
+    public function testOnlyAdminCanVisitEditUserPage()
+    {
+        $user = factory(User::class)->create(['is_admin' => false]);
+        $userToEdit = factory(User::class)->create(['is_admin' => false]);
+
+        $this->get(route('users.edit', $userToEdit->id))
+            ->assertRedirect('login');
+
+        $this->actingAs($user)
+            ->get(route('users.edit', $userToEdit->id))
+            ->assertStatus(403);
+    }
+
+    /**
+     * User can visit own edit page.
+     *
+     * @return void
+     */
+    public function testUserCanVisitOwnEditPage()
+    {
+        $user = factory(User::class)->create(['is_admin' => false]);
+
+        $this->actingAs($user)
+            ->get(route('users.edit', $user->id))
+            ->assertStatus(200)
+            ->assertSee('Edit User')
+            ->assertSee($user->name)
+            ->assertSee($user->email);
+    }
+
+    /**
+     * Admin can visit edit user page.
+     *
+     * @return void
+     */
+    public function testAdminCanVisitEditUserPage()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $userToEdit = factory(User::class)->create(['is_admin' => false]);
+
+        $this->actingAs($admin)
+            ->get(route('users.edit', $userToEdit->id))
+            ->assertStatus(200)
+            ->assertSee('Edit User')
+            ->assertSee($userToEdit->name)
+            ->assertSee($userToEdit->email);
+    }
+
+    /**
      * Admin can update user profile.
      *
      * @return void

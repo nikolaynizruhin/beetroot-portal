@@ -57,6 +57,38 @@ class CreateUserTest extends TestCase
     }
 
     /**
+     * Only admin can visit create user page.
+     *
+     * @return void
+     */
+    public function testOnlyAdminCanVisitCreateUserPage()
+    {
+        $user = factory(User::class)->create(['is_admin' => false]);
+
+        $this->get(route('users.create'))
+            ->assertRedirect('login');
+
+        $this->actingAs($user)
+            ->get(route('users.create'))
+            ->assertStatus(403);
+    }
+
+    /**
+     * Admin can visit create user page.
+     *
+     * @return void
+     */
+    public function testAdminCanVisitCreateUserPage()
+    {
+        $user = factory(User::class)->states('admin')->create();
+
+        $this->actingAs($user)
+            ->get(route('users.create'))
+            ->assertStatus(200)
+            ->assertSee('Add User');
+    }
+
+    /**
      * Admin can create a user.
      *
      * @return void

@@ -51,6 +51,42 @@ class UpdateClientTest extends TestCase
     }
 
     /**
+     * Only admin can visit edit client page.
+     *
+     * @return void
+     */
+    public function testOnlyAdminCanVisitEditClientPage()
+    {
+        $user = factory(User::class)->create(['is_admin' => false]);
+        $client = factory(Client::class)->create();
+
+        $this->get(route('clients.edit', $client->id))
+            ->assertRedirect('login');
+
+        $this->actingAs($user)
+            ->get(route('clients.edit', $client->id))
+            ->assertStatus(403);
+    }
+
+    /**
+     * Admin can visit edit client page.
+     *
+     * @return void
+     */
+    public function testAdminCanVisitEditClientPage()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $client = factory(Client::class)->create();
+
+        $this->actingAs($admin)
+            ->get(route('clients.edit', $client->id))
+            ->assertStatus(200)
+            ->assertSee('Update Client')
+            ->assertSee($client->name)
+            ->assertSee($client->country);
+    }
+
+    /**
      * Admin can update a client.
      *
      * @return void

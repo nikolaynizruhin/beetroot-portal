@@ -38,6 +38,8 @@ class ClientController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Client::class);
+
         return view('clients.create');
     }
 
@@ -62,6 +64,8 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
+        $this->authorize('delete', $client);
+
         return view('clients.edit')->with('client', $client);
     }
 

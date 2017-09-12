@@ -30,6 +30,42 @@ class UpdateOfficeTest extends TestCase
     }
 
     /**
+     * Only admin can visit edit office page.
+     *
+     * @return void
+     */
+    public function testOnlyAdminCanVisitEditOfficePage()
+    {
+        $user = factory(User::class)->create(['is_admin' => false]);
+        $office = factory(User::class)->create();
+
+        $this->get(route('offices.edit', $office->id))
+            ->assertRedirect('login');
+
+        $this->actingAs($user)
+            ->get(route('offices.edit', $office->id))
+            ->assertStatus(403);
+    }
+
+    /**
+     * Admin can visit edit office page.
+     *
+     * @return void
+     */
+    public function testAdminCanVisitEditOfficePage()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $office = factory(Office::class)->create();
+
+        $this->actingAs($admin)
+            ->get(route('offices.edit', $office->id))
+            ->assertStatus(200)
+            ->assertSee('Update Office')
+            ->assertSee($office->city)
+            ->assertSee($office->country);
+    }
+
+    /**
      * Admin can update an office.
      *
      * @return void

@@ -50,6 +50,38 @@ class CreateClientTest extends TestCase
     }
 
     /**
+     * Only admin can visit create a client page.
+     *
+     * @return void
+     */
+    public function testOnlyAdminCanVisitCreateAClientPage()
+    {
+        $user = factory(User::class)->create(['is_admin' => false]);
+
+        $this->get(route('clients.create'))
+            ->assertRedirect('login');
+
+        $this->actingAs($user)
+            ->get(route('clients.create'))
+            ->assertStatus(403);
+    }
+
+    /**
+     * Admin can visit create client page.
+     *
+     * @return void
+     */
+    public function testAdminCanVisitCreateAClientPage()
+    {
+        $user = factory(User::class)->states('admin')->create();
+
+        $this->actingAs($user)
+            ->get(route('clients.create'))
+            ->assertStatus(200)
+            ->assertSee('Add Client');
+    }
+
+    /**
      * Admin can create a client.
      *
      * @return void

@@ -40,6 +40,8 @@ class UserController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', User::class);
+
         return view('users.create');
     }
 
@@ -64,6 +66,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        $this->authorize('edit', $user);
+
         return view('users.edit')->with('user', $user);
     }
 

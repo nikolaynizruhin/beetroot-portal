@@ -24,18 +24,6 @@ class UserPolicy
     }
 
     /**
-     * Determine whether the user can view the user.
-     *
-     * @param  \App\User  $signedInUser
-     * @param  \App\User  $user
-     * @return mixed
-     */
-    public function view(User $signedInUser, User $user)
-    {
-        return false;
-    }
-
-    /**
      * Determine whether the user can create users.
      *
      * @param  \App\User  $user
@@ -44,6 +32,18 @@ class UserPolicy
     public function create(User $user)
     {
         return false;
+    }
+
+    /**
+     * Determine whether the user can visit the edit user page.
+     *
+     * @param  \App\User  $signedInUser
+     * @param  \App\User  $user
+     * @return mixed
+     */
+    public function edit(User $signedInUser, User $user)
+    {
+        return $signedInUser->id === $user->id;
     }
 
     /**

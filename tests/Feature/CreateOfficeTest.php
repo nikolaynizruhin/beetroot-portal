@@ -29,6 +29,38 @@ class CreateOfficeTest extends TestCase
     }
 
     /**
+     * Only admin can visit create an office page.
+     *
+     * @return void
+     */
+    public function testOnlyAdminCanVisitCreateAnOfficePage()
+    {
+        $user = factory(User::class)->create(['is_admin' => false]);
+
+        $this->get(route('offices.create'))
+            ->assertRedirect('login');
+
+        $this->actingAs($user)
+            ->get(route('offices.create'))
+            ->assertStatus(403);
+    }
+
+    /**
+     * Admin can visit create office page.
+     *
+     * @return void
+     */
+    public function testAdminCanVisitCreateOfficePage()
+    {
+        $user = factory(User::class)->states('admin')->create();
+
+        $this->actingAs($user)
+            ->get(route('offices.create'))
+            ->assertStatus(200)
+            ->assertSee('Add Office');
+    }
+
+    /**
      * Admin can create an office.
      *
      * @return void

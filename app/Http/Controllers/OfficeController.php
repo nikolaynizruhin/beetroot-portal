@@ -37,6 +37,8 @@ class OfficeController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Office::class);
+
         return view('offices.create');
     }
 
@@ -61,6 +63,8 @@ class OfficeController extends Controller
      */
     public function edit(Office $office)
     {
+        $this->authorize('edit', $office);
+
         return view('offices.edit')->with('office', $office);
     }
 
