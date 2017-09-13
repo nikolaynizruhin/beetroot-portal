@@ -88,8 +88,7 @@ class UpdateUserTest extends TestCase
             ->get(route('users.edit', $user->id))
             ->assertStatus(200)
             ->assertSee('Edit User')
-            ->assertSee($user->name)
-            ->assertSee($user->email);
+            ->assertSee($user->name);
     }
 
     /**
@@ -106,8 +105,7 @@ class UpdateUserTest extends TestCase
             ->get(route('users.edit', $userToEdit->id))
             ->assertStatus(200)
             ->assertSee('Edit User')
-            ->assertSee($userToEdit->name)
-            ->assertSee($userToEdit->email);
+            ->assertSee($userToEdit->name);
     }
 
     /**
