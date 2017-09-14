@@ -52,4 +52,18 @@ class LoginTest extends TestCase
             'password' => 'secret',
         ])->assertSessionHasErrors(['email']);
     }
+
+    /**
+     * User can logout.
+     *
+     * @return void
+     */
+    public function testUserCanLogout()
+    {
+        $user = factory(User::class)->create();
+
+        $this->actingAs($user)
+            ->post(route('logout'))
+            ->assertStatus(302);
+    }
 }
