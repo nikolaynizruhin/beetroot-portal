@@ -10,4 +10,6 @@ php artisan migrate
 php artisan db:seed
 cp .env.example .env
 php artisan storage:link
+storage/public/avatars/default.png
+storage/public/logos/default.png
 ```
