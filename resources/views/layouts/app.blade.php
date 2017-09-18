@@ -145,6 +145,7 @@
     </div>
 
     <!-- Scripts -->
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

@@ -3,6 +3,8 @@ window._ = require('lodash');
 
 window.moment = require('moment');
 
+window.Chart = require('chart.js');
+
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
  * for JavaScript based Bootstrap features such as modals and tabs. This

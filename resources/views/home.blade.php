@@ -12,41 +12,52 @@
                 </div>
 
                 <div class="panel-body">
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <img src="{{ asset('storage/' . Auth::user()->avatar) }}" class="img-circle img-thumbnail img-responsive" alt="avatar">
+                    <div class="row text-center">
+                        <div class="col-md-4">
+                            <p>TOTAL USERS</p>
+                            <h2>{{ $userCount }}</h2>
                         </div>
-                        <div class="col-sm-9">
-                            <h3>{{ Auth::user()->name }}</h3>
-                            <h4><em>{{ Auth::user()->position }}</em></h4>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <p>
-                                        <i class="fa fa-handshake-o fa-fw" aria-hidden="true"></i>
-                                        &nbsp;
-                                        {{ Auth::user()->client->name }}
-                                    </p>
-                                    <p>
-                                        <i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i>
-                                        &nbsp;
-                                        {{ Auth::user()->email }}
-                                    </p>
-                                </div>
-                                <div class="col-sm-6">
-                                    <p>
-                                        <i class="fa fa-birthday-cake fa-fw" aria-hidden="true"></i>
-                                        &nbsp;
-                                        {{ Auth::user()->birthday->toFormattedDateString() }}
-                                    </p>
-                                    <p>
-                                        <i class="fa fa-map-marker fa-fw" aria-hidden="true"></i>
-                                        &nbsp;
-                                        {{ Auth::user()->office->city }}
-                                    </p>
-                                </div>
-                            </div>
+                        <div class="col-md-4">
+                            <p>TOTAL CLIENTS</p>
+                            <h2>{{ $clientCount }}</h2>
+                        </div>
+                        <div class="col-md-4">
+                            <p>TOTAL OFFICES</p>
+                            <h2>{{ $officeCount }}</h2>
                         </div>
                     </div>
+                    <hr>
+                    <h3 class="text-center">POSITIONS</h3>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Positions</th>
+                                        <th>Count</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($positions as $position)
+                                        <tr>
+                                            <th>{{ $loop->iteration }}</th>
+                                            <td>{{ $position->position }}</td>
+                                            <td>{{ $position->count }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <position-chart></position-chart>
+                        </div>
+                    </div>
+                    <hr>
+                    <h3 class="text-center">CLIENTS</h3>
+                    <hr>
+                    <client-map></client-map>
 
                 </div>
             </div>

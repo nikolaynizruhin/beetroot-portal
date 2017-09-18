@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use App\Client;
+use App\Office;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -23,6 +27,22 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $userCount = User::count();
+        $clientCount = Client::count();
+        $officeCount = Office::count();
+
+        $positions = DB::table('users')
+                ->select('position', DB::raw('COUNT(*) as count'))
+                ->groupBy('position')
+                ->orderBy('count', 'desc')
+                ->limit(8)
+                ->get();
+
+        return view('home')->with([
+            'userCount' => $userCount,
+            'clientCount' => $clientCount,
+            'officeCount' => $officeCount,
+            'positions' => $positions,
+        ]);
     }
 }
