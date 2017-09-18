@@ -4,7 +4,21 @@
 
 <script>
     export default {
+        props: {
+            clients: Array
+        },
+        data() {
+            return {
+                data: [['Country', 'Clients']],
+            }
+        },
         mounted() {
+            this.clients.forEach((client) => {
+                this.data.push([client.country, client.count]);
+            });
+
+            let clients = this.data;
+
             google.charts.load('current', {
                 'packages': ['geochart'],
                 'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
@@ -13,19 +27,10 @@
             google.charts.setOnLoadCallback(drawRegionsMap);
 
             function drawRegionsMap() {
-                const data = google.visualization.arrayToDataTable([
-                    ['Country', 'Clients'],
-                    ['Germany', 2],
-                    ['United States', 3],
-                    ['Brazil', 4],
-                    ['Canada', 5],
-                    ['France', 6],
-                    ['Russia', 3],
-                    ['Sweden', 7]
-                ]);
+                const data = google.visualization.arrayToDataTable(clients);
 
                 const options = {
-                    colorAxis: {colors: ['#BC204B']},
+                    colorAxis: { colors: ['#BC204B'] },
                 };
 
                 const chart = new google.visualization.GeoChart(document.getElementById('regions'));

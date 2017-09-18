@@ -51,13 +51,13 @@
                             </table>
                         </div>
                         <div class="col-md-6">
-                            <position-chart></position-chart>
+                            <position-chart :positions="{{ $positions }}"></position-chart>
                         </div>
                     </div>
                     <hr>
                     <h3 class="text-center">CLIENTS</h3>
                     <hr>
-                    <client-map></client-map>
+                    <client-map :clients="{{ $clients }}"></client-map>
 
                 </div>
             </div>

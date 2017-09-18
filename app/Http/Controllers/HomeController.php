@@ -35,7 +35,13 @@ class HomeController extends Controller
                 ->select('position', DB::raw('COUNT(*) as count'))
                 ->groupBy('position')
                 ->orderBy('count', 'desc')
-                ->limit(8)
+                ->limit(5)
+                ->get();
+
+        $clients = DB::table('clients')
+                ->select('country', DB::raw('COUNT(*) as count'))
+                ->groupBy('country')
+                ->orderBy('count', 'desc')
                 ->get();
 
         return view('home')->with([
@@ -43,6 +49,7 @@ class HomeController extends Controller
             'clientCount' => $clientCount,
             'officeCount' => $officeCount,
             'positions' => $positions,
+            'clients' => $clients,
         ]);
     }
 }

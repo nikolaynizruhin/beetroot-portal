@@ -73315,14 +73315,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        positions: Array
+    },
+    data: function data() {
+        return {
+            labels: [],
+            data: [],
+            backgroundColor: ['#BC204B', '#7C8483', '#71A2B6', '#60B2E5', '#53F4FF']
+        };
+    },
     mounted: function mounted() {
+        var _this = this;
+
+        this.positions.forEach(function (position) {
+            _this.labels.push(position.position);
+            _this.data.push(position.count);
+        });
+
         new Chart(this.$el, {
             type: 'doughnut',
             data: {
-                labels: ["Python", "JavaScript", "PHP", "Golang", "C++"],
+                labels: this.labels,
                 datasets: [{
-                    data: [35, 28, 25, 10, 5],
-                    backgroundColor: ['#BC204B', '#7C8483', '#71A2B6', '#60B2E5', '#53F4FF']
+                    data: this.data,
+                    backgroundColor: this.backgroundColor
                 }]
             }
         });
@@ -73396,7 +73413,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        clients: Array
+    },
+    data: function data() {
+        return {
+            data: [['Country', 'Clients']]
+        };
+    },
     mounted: function mounted() {
+        var _this = this;
+
+        this.clients.forEach(function (client) {
+            _this.data.push([client.country, client.count]);
+        });
+
+        var clients = this.data;
+
         google.charts.load('current', {
             'packages': ['geochart'],
             'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
@@ -73405,7 +73438,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         google.charts.setOnLoadCallback(drawRegionsMap);
 
         function drawRegionsMap() {
-            var data = google.visualization.arrayToDataTable([['Country', 'Clients'], ['Germany', 2], ['United States', 3], ['Brazil', 4], ['Canada', 5], ['France', 6], ['Russia', 3], ['Sweden', 7]]);
+            var data = google.visualization.arrayToDataTable(clients);
 
             var options = {
                 colorAxis: { colors: ['#BC204B'] }
