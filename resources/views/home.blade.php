@@ -43,7 +43,7 @@
                                     @foreach ($positions as $position)
                                         <tr>
                                             <th>{{ $loop->iteration }}</th>
-                                            <td>{{ $position->position }}</td>
+                                            <td>{{ $position->title }}</td>
                                             <td>{{ $position->count }}</td>
                                         </tr>
                                     @endforeach

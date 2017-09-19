@@ -15,10 +15,7 @@
             }
         },
         mounted() {
-            this.positions.forEach((position) => {
-                this.labels.push(position.position);
-                this.data.push(position.count);
-            });
+            this.init();
 
             new Chart(this.$el, {
                 type: 'doughnut',
@@ -30,6 +27,14 @@
                     }],
                 },
             });
+        },
+        methods: {
+            init() {
+                this.positions.forEach(position => {
+                    this.labels.push(position.title);
+                    this.data.push(position.count);
+                });
+            }
         }
     }
 </script>

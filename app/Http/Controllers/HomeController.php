@@ -27,12 +27,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $userCount = User::count();
-        $clientCount = Client::count();
-        $officeCount = Office::count();
-
         $positions = DB::table('users')
-                ->select('position', DB::raw('COUNT(*) as count'))
+                ->select('position as title', DB::raw('COUNT(*) as count'))
                 ->groupBy('position')
                 ->orderBy('count', 'desc')
                 ->limit(5)
@@ -45,9 +41,9 @@ class HomeController extends Controller
                 ->get();
 
         return view('home')->with([
-            'userCount' => $userCount,
-            'clientCount' => $clientCount,
-            'officeCount' => $officeCount,
+            'userCount' => User::count(),
+            'clientCount' => Client::count(),
+            'officeCount' => Office::count(),
             'positions' => $positions,
             'clients' => $clients,
         ]);

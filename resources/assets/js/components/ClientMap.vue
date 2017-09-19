@@ -13,9 +13,7 @@
             }
         },
         mounted() {
-            this.clients.forEach((client) => {
-                this.data.push([client.country, client.count]);
-            });
+            this.init();
 
             let clients = this.data;
 
@@ -36,6 +34,13 @@
                 const chart = new google.visualization.GeoChart(document.getElementById('regions'));
 
                 chart.draw(data, options);
+            }
+        },
+        methods: {
+            init() {
+                this.clients.forEach((client) => {
+                    this.data.push([client.country, client.count]);
+                });
             }
         }
     }

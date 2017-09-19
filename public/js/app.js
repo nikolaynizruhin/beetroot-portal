@@ -73326,12 +73326,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     mounted: function mounted() {
-        var _this = this;
-
-        this.positions.forEach(function (position) {
-            _this.labels.push(position.position);
-            _this.data.push(position.count);
-        });
+        this.init();
 
         new Chart(this.$el, {
             type: 'doughnut',
@@ -73343,6 +73338,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }]
             }
         });
+    },
+
+    methods: {
+        init: function init() {
+            var _this = this;
+
+            this.positions.forEach(function (position) {
+                _this.labels.push(position.title);
+                _this.data.push(position.count);
+            });
+        }
     }
 });
 
@@ -73422,11 +73428,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     mounted: function mounted() {
-        var _this = this;
-
-        this.clients.forEach(function (client) {
-            _this.data.push([client.country, client.count]);
-        });
+        this.init();
 
         var clients = this.data;
 
@@ -73447,6 +73449,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var chart = new google.visualization.GeoChart(document.getElementById('regions'));
 
             chart.draw(data, options);
+        }
+    },
+
+    methods: {
+        init: function init() {
+            var _this = this;
+
+            this.clients.forEach(function (client) {
+                _this.data.push([client.country, client.count]);
+            });
         }
     }
 });
