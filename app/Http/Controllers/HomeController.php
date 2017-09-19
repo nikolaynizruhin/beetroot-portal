@@ -6,7 +6,8 @@ use App\User;
 use App\Client;
 use App\Office;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Queries\ClientCountQuery;
+use App\Queries\PositionCountQuery;
 
 class HomeController extends Controller
 {
@@ -23,29 +24,18 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
+     * @param  \App\Queries\ClientCountQuery  $clients
+     * @param  \App\Queries\PositionCountQuery  $positions
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(ClientCountQuery $clients, PositionCountQuery $positions)
     {
-        $positions = DB::table('users')
-                ->select('position as title', DB::raw('COUNT(*) as count'))
-                ->groupBy('position')
-                ->orderBy('count', 'desc')
-                ->limit(5)
-                ->get();
-
-        $clients = DB::table('clients')
-                ->select('country', DB::raw('COUNT(*) as count'))
-                ->groupBy('country')
-                ->orderBy('count', 'desc')
-                ->get();
-
         return view('home')->with([
             'userCount' => User::count(),
             'clientCount' => Client::count(),
             'officeCount' => Office::count(),
-            'positions' => $positions,
-            'clients' => $clients,
+            'positions' => $positions(),
+            'clients' => $clients(),
         ]);
     }
 }
