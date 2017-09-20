@@ -8,7 +8,7 @@
         <title>Beetroot</title>
 
         <!-- Favicon -->
-        <link rel="shortcut icon" type="image/png" href="https://beetroot.se/wp-content/uploads/2016/04/cropped-favicon-150x150.png"/>
+        <link rel="shortcut icon" type="image/ico" href="favicon.ico"/>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Roboto:100,600" rel="stylesheet" type="text/css">
@@ -44,14 +44,6 @@
                 top: 18px;
             }
 
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
             .links > a {
                 color: #636b6f;
                 padding: 0 25px;
@@ -63,7 +55,7 @@
             }
 
             img {
-                max-width: 100%;
+                max-width: 90%;
             }
         </style>
     </head>
@@ -75,16 +67,11 @@
                         <a href="{{ url('/home') }}">Home</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
-                        <!-- <a href="{{ route('register') }}">Register</a> -->
                     @endauth
                 </div>
             @endif
 
-            <div class="content">
-                <div class="title">
-                    <img src="https://beetroot.se/wp-content/uploads/2016/04/logo.svg" alt="Beetroot" width="500">
-                </div>
-            </div>
+            <img src="/images/logo.svg" alt="Beetroot" width="500">
         </div>
     </body>
 </html>
