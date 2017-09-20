@@ -71,7 +71,7 @@
                 </div>
             @endif
 
-            <img src="/images/logo.svg" alt="Beetroot" width="500">
+            <img src="{{ asset('images/logo.svg') }}" alt="Beetroot" width="500">
         </div>
     </body>
 </html>
