@@ -145,6 +145,7 @@ class UpdateUserTest extends TestCase
 
         $inputAttributes = $this->getInputAttributes();
         $resultAttributes = $this->getResultAttributes();
+        $resultAttributes['email'] = $owner->email;
         $resultAttributes['is_admin'] = false;
 
         $this->actingAs($owner)
@@ -167,7 +168,7 @@ class UpdateUserTest extends TestCase
 
         $this->actingAs($owner)
             ->put(route('users.update', $owner->id))
-            ->assertSessionHasErrors(['name', 'email', 'position', 'birthday', 'slack', 'client_id', 'office_id']);
+            ->assertSessionHasErrors(['name', 'position', 'birthday', 'slack', 'client_id', 'office_id']);
     }
 
     /**

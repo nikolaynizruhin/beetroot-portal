@@ -27,7 +27,7 @@ class UpdateUser extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255',
+            'email' => 'string|email|max:255',
             'is_admin' => 'boolean',
             'position' => 'required|string|max:255',
             'birthday' => 'required|date',
