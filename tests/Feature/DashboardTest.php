@@ -6,7 +6,7 @@ use App\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class HomeTest extends TestCase
+class DashboardTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -21,21 +21,22 @@ class HomeTest extends TestCase
 
         $this->actingAs($user)
             ->get(route('login'))
-            ->assertRedirect('home');
+            ->assertRedirect('dashboard');
     }
 
     /**
-     * User can view home page.
+     * User can view dashboard page.
      *
      * @return void
      */
-    public function testUserCanViewHomePage()
+    public function testUserCanViewDashboardPage()
     {
         $user = factory(User::class)->create();
 
         $this->actingAs($user)
-            ->get(route('home'))
-            ->assertSee('Home')
-            ->assertSee($user->name);
+            ->get(route('dashboard'))
+            ->assertSee('Dashboard')
+            ->assertSee('POSITIONS')
+            ->assertSee('CLIENTS');
     }
 }

@@ -76,27 +76,27 @@ class UpdateUserTest extends TestCase
     }
 
     /**
-     * User can visit own edit page.
+     * User can visit own profile page.
      *
      * @return void
      */
-    public function testUserCanVisitOwnEditPage()
+    public function testUserCanVisitOwnProfilePage()
     {
         $user = factory(User::class)->create(['is_admin' => false]);
 
         $this->actingAs($user)
             ->get(route('users.edit', $user->id))
             ->assertStatus(200)
-            ->assertSee('Edit User')
+            ->assertSee('Profile')
             ->assertSee($user->name);
     }
 
     /**
-     * Admin can visit edit user page.
+     * Admin can visit profile user page.
      *
      * @return void
      */
-    public function testAdminCanVisitEditUserPage()
+    public function testAdminCanVisitProfileUserPage()
     {
         $admin = factory(User::class)->states('admin')->create();
         $userToEdit = factory(User::class)->create(['is_admin' => false]);
@@ -104,7 +104,7 @@ class UpdateUserTest extends TestCase
         $this->actingAs($admin)
             ->get(route('users.edit', $userToEdit->id))
             ->assertStatus(200)
-            ->assertSee('Edit User')
+            ->assertSee('Profile')
             ->assertSee($userToEdit->name);
     }
 

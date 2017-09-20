@@ -8,9 +8,9 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <i class="fa fa-id-card-o fa-lg fa-fw" aria-hidden="true"></i>
+                    <i class="fa fa-user fa-lg fa-fw" aria-hidden="true"></i>
                     &nbsp;
-                    Edit User
+                    Profile
                 </div>
 
                 <div class="panel-body">

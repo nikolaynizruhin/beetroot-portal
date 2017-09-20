@@ -56,10 +56,17 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="{{ route('home') }}">
-                                            <i class="fa fa-home fa-fw" aria-hidden="true"></i>
+                                        <a href="{{ route('dashboard') }}">
+                                            <i class="fa fa-tachometer fa-fw" aria-hidden="true"></i>
                                             &nbsp;
-                                            Home
+                                            Dashboard
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('users.edit', Auth::id()) }}">
+                                            <i class="fa fa-user fa-fw" aria-hidden="true"></i>
+                                            &nbsp;
+                                            Profile
                                         </a>
                                     </li>
                                     <li>
@@ -81,13 +88,6 @@
                                             <i class="fa fa-map-marker fa-fw" aria-hidden="true"></i>
                                             &nbsp;
                                             Offices
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('users.edit', Auth::id()) }}">
-                                            <i class="fa fa-pencil fa-fw" aria-hidden="true"></i>
-                                            &nbsp;
-                                            Edit
                                         </a>
                                     </li>
                                     @admin

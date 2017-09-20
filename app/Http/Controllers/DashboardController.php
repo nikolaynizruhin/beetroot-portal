@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use App\Queries\ClientCountQuery;
 use App\Queries\PositionCountQuery;
 
-class HomeController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -30,7 +30,7 @@ class HomeController extends Controller
      */
     public function index(ClientCountQuery $clients, PositionCountQuery $positions)
     {
-        return view('home')->with([
+        return view('dashboard')->with([
             'userCount' => User::count(),
             'clientCount' => Client::count(),
             'officeCount' => Office::count(),
