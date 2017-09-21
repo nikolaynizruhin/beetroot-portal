@@ -43,7 +43,7 @@ class Client extends Model
      * Update a client from request.
      *
      * @param  \App\Http\Requests\UpdateClient  $request
-     * @return \App\Client
+     * @return bool
      */
     public function updateFromRequest(UpdateClient $request)
     {

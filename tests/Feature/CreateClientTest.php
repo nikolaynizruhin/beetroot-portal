@@ -133,6 +133,7 @@ class CreateClientTest extends TestCase
     /**
      * Get result attributes.
      *
+     * @param  array $attributes
      * @return array
      */
     private function getResultAttributes($attributes)

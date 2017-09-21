@@ -88,7 +88,7 @@ class User extends Authenticatable
      * Update a user from request.
      *
      * @param  \App\Http\Requests\UpdateUser  $request
-     * @return \App\User
+     * @return bool
      */
     public function updateFromRequest(UpdateUser $request)
     {
