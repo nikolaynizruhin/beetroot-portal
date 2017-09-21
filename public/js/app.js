@@ -73226,21 +73226,21 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "aria-hidden": "true"
     }
-  }), _vm._v("\n                             \n                            " + _vm._s(_vm.user.slack) + "\n                        ")]), _vm._v(" "), _c('p', [_c('i', {
+  }), _vm._v("\n                             \n                            " + _vm._s(_vm.user.slack) + "\n                        ")]), _vm._v(" "), (_vm.user.skype) ? _c('p', [_c('i', {
     staticClass: "fa fa-skype fa-fw",
     attrs: {
       "aria-hidden": "true"
     }
-  }), _vm._v("\n                             \n                            " + _vm._s(_vm.user.skype) + "\n                        ")]), _vm._v(" "), _c('p', [_c('i', {
+  }), _vm._v("\n                             \n                            " + _vm._s(_vm.user.skype) + "\n                        ")]) : _vm._e(), _vm._v(" "), (_vm.user.github) ? _c('p', [_c('i', {
     staticClass: "fa fa-github fa-fw",
     attrs: {
       "aria-hidden": "true"
     }
-  }), _vm._v("\n                             \n                            " + _vm._s(_vm.user.github) + "\n                        ")])])]), _vm._v(" "), _c('br'), _vm._v(" "), _c('div', {
+  }), _vm._v("\n                             \n                            " + _vm._s(_vm.user.github) + "\n                        ")]) : _vm._e()])]), _vm._v(" "), _c('br'), _vm._v(" "), (_vm.user.bio) ? _c('div', {
     staticClass: "row"
   }, [_c('div', {
     staticClass: "col-sm-10 col-sm-offset-1"
-  }, [_c('p', [_vm._v(_vm._s(_vm.user.bio))])])])])])])])
+  }, [_c('p', [_vm._v(_vm._s(_vm.user.bio))])])]) : _vm._e()])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('button', {
     staticClass: "close pull-right",

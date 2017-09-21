@@ -3,11 +3,18 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-body">
-                    <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
                     <img :src="'storage/' + user.avatar" alt="Avatar" class="img-thumbnail img-circle img-responsive center-block" width="150" height="150">
+
                     <h3 class="text-center">{{ user.name }}</h3>
+
                     <h4 class="text-center"><em>{{ user.position }}</em></h4>
+
                     <br>
+
                     <div class="row">
                         <div class="col-sm-5 col-sm-offset-1">
                             <p>
@@ -37,12 +44,12 @@
                                 &nbsp;
                                 {{ user.slack }}
                             </p>
-                            <p>
+                            <p v-if="user.skype">
                                 <i aria-hidden="true" class="fa fa-skype fa-fw"></i>
                                 &nbsp;
                                 {{ user.skype }}
                             </p>
-                            <p>
+                            <p v-if="user.github">
                                 <i aria-hidden="true" class="fa fa-github fa-fw"></i>
                                 &nbsp;
                                 {{ user.github }}
@@ -50,7 +57,7 @@
                         </div>
                     </div>
                     <br>
-                    <div class="row">
+                    <div v-if="user.bio" class="row">
                         <div class="col-sm-10 col-sm-offset-1">
                             <p>{{ user.bio }}</p>
                         </div>
