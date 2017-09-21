@@ -1,6 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
+use App\Http\Utilities\Position;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,14 +17,12 @@ use Faker\Generator as Faker;
 $factory->define(App\User::class, function (Faker $faker) {
     static $password;
     $userName = $faker->unique()->userName;
-    $positions = \App\Http\Utilities\Position::all();
-    $randKey = array_rand($positions);
 
     return [
         'name' => $faker->name,
         'email' => $userName . '@beetroot.se',
         'avatar' => 'avatars/default.jpg',
-        'position' => $positions[$randKey],
+        'position' => Position::rand(),
         'birthday' => $faker->date(),
         'bio' => $faker->text($maxNbChars = 200),
         'slack' => $userName,
