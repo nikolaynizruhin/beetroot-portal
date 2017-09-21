@@ -246,7 +246,7 @@
 
                     <div class="row">
                         <div class="col-md-6 col-md-offset-4">
-                            <h3>Change Password</h3>
+                            <h4>Change Password</h4>
                         </div>
                     </div>
 
