@@ -41,7 +41,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('avatar') ? ' has-error' : '' }}">
-                            <label for="avatar" class="col-md-4 control-label">Avatar</label>
+                            <label for="avatar" class="col-md-4 control-label">Avatar <small>*</small></label>
 
                             <div class="col-md-6">
                                 <input id="avatar" type="file" name="avatar" required>
@@ -55,7 +55,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
+                            <label for="name" class="col-md-4 control-label">Name <small>*</small></label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
@@ -69,7 +69,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">Email</label>
+                            <label for="email" class="col-md-4 control-label">Email <small>*</small></label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
@@ -83,7 +83,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('position') ? ' has-error' : '' }}">
-                            <label for="position" class="col-md-4 control-label">Position</label>
+                            <label for="position" class="col-md-4 control-label">Position <small>*</small></label>
 
                             <div class="col-md-6">
                                 <select id="position" class="form-control" name="position" required>
@@ -104,8 +104,52 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('client_id') ? ' has-error' : '' }}">
+                            <label for="client-id" class="col-md-4 control-label">Client <small>*</small></label>
+
+                            <div class="col-md-6">
+                                <select id="client-id" class="form-control" name="client_id" required>
+                                    @foreach ($clients as $id => $name)
+                                        @if (old('client_id') == $id)
+                                            <option value="{{ $id }}" selected>{{ $name }}</option>
+                                        @else
+                                            <option value="{{ $id }}">{{ $name }}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+
+                                @if ($errors->has('client_id'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('client_id') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('office_id') ? ' has-error' : '' }}">
+                            <label for="office-id" class="col-md-4 control-label">Office <small>*</small></label>
+
+                            <div class="col-md-6">
+                                <select id="office-id" class="form-control" name="office_id" required>
+                                    @foreach ($offices as $id => $city)
+                                        @if (old('office_id') == $id)
+                                            <option value="{{ $id }}" selected>{{ $city }}</option>
+                                        @else
+                                            <option value="{{ $id }}">{{ $city }}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+
+                                @if ($errors->has('office_id'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('office_id') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('birthday') ? ' has-error' : '' }}">
-                            <label for="birthday" class="col-md-4 control-label">Birthday</label>
+                            <label for="birthday" class="col-md-4 control-label">Birthday <small>*</small></label>
 
                             <div class="col-md-6">
                                 <input id="birthday" type="date" class="form-control" name="birthday" value="{{ old('birthday') }}" required>
@@ -118,22 +162,8 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('bio') ? ' has-error' : '' }}">
-                            <label for="bio" class="col-md-4 control-label">Bio</label>
-
-                            <div class="col-md-6">
-                                <textarea class="form-control" rows="3" name="bio">{{ old('bio') }}</textarea>
-
-                                @if ($errors->has('bio'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('bio') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
                         <div class="form-group{{ $errors->has('slack') ? ' has-error' : '' }}">
-                            <label for="slack" class="col-md-4 control-label">Slack</label>
+                            <label for="slack" class="col-md-4 control-label">Slack <small>*</small></label>
 
                             <div class="col-md-6">
                                 <input id="slack" type="text" class="form-control" name="slack" value="{{ old('slack') }}" required>
@@ -174,52 +204,22 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('client_id') ? ' has-error' : '' }}">
-                            <label for="client-id" class="col-md-4 control-label">Client</label>
+                        <div class="form-group{{ $errors->has('bio') ? ' has-error' : '' }}">
+                            <label for="bio" class="col-md-4 control-label">Bio</label>
 
                             <div class="col-md-6">
-                                <select id="client-id" class="form-control" name="client_id" required>
-                                    @foreach ($clients as $id => $name)
-                                        @if (old('client_id') == $id)
-                                            <option value="{{ $id }}" selected>{{ $name }}</option>
-                                        @else
-                                            <option value="{{ $id }}">{{ $name }}</option>
-                                        @endif
-                                    @endforeach
-                                </select>
+                                <textarea class="form-control" rows="3" name="bio">{{ old('bio') }}</textarea>
 
-                                @if ($errors->has('client_id'))
+                                @if ($errors->has('bio'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('client_id') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('office_id') ? ' has-error' : '' }}">
-                            <label for="office-id" class="col-md-4 control-label">Office</label>
-
-                            <div class="col-md-6">
-                                <select id="office-id" class="form-control" name="office_id" required>
-                                    @foreach ($offices as $id => $city)
-                                        @if (old('office_id') == $id)
-                                            <option value="{{ $id }}" selected>{{ $city }}</option>
-                                        @else
-                                            <option value="{{ $id }}">{{ $city }}</option>
-                                        @endif
-                                    @endforeach
-                                </select>
-
-                                @if ($errors->has('office_id'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('office_id') }}</strong>
+                                        <strong>{{ $errors->first('bio') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
+                            <label for="password" class="col-md-4 control-label">Password <small>*</small></label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control" name="password" required>
@@ -233,7 +233,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
+                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password <small>*</small></label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>

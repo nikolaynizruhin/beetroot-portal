@@ -8393,6 +8393,10 @@ html body label {
   font-weight: 300;
 }
 
+html body label.control-label small {
+  color: #BC204B;
+}
+
 html body .footer {
   position: absolute;
   bottom: 0;

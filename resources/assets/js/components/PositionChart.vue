@@ -26,6 +26,11 @@
                         backgroundColor: this.backgroundColor,
                     }],
                 },
+                options: {
+                    legend: {
+                        position: 'left'
+                    }
+                }
             });
         },
         methods: {

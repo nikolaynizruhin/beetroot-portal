@@ -30,27 +30,7 @@
                     <h3 class="text-center">POSITIONS</h3>
                     <hr>
                     <div class="row">
-                        <div class="col-md-6">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Positions</th>
-                                        <th>Count</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($positions as $position)
-                                        <tr>
-                                            <th>{{ $loop->iteration }}</th>
-                                            <td>{{ $position->title }}</td>
-                                            <td>{{ $position->count }}</td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <position-chart :positions="{{ $positions }}"></position-chart>
                         </div>
                     </div>

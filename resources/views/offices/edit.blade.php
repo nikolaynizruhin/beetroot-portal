@@ -22,7 +22,7 @@
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('city') ? ' has-error' : '' }}">
-                            <label for="city" class="col-md-4 control-label">City</label>
+                            <label for="city" class="col-md-4 control-label">City <small>*</small></label>
 
                             <div class="col-md-6">
                                 <input id="city" type="text" class="form-control" name="city" value="{{ old('city', $office->city) }}" required autofocus>
@@ -36,7 +36,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('country') ? ' has-error' : '' }}">
-                            <label for="country" class="col-md-4 control-label">Country</label>
+                            <label for="country" class="col-md-4 control-label">Country <small>*</small></label>
 
                             <div class="col-md-6">
                                 <select id="country" class="form-control" name="country" required>
@@ -58,7 +58,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
-                            <label for="address" class="col-md-4 control-label">Address</label>
+                            <label for="address" class="col-md-4 control-label">Address <small>*</small></label>
 
                             <div class="col-md-6">
                                 <input id="address" type="text" class="form-control" name="address" value="{{ old('address', $office->address) }}" required autofocus>

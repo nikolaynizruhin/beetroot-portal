@@ -58,7 +58,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name <small style="color: #BC204B">*</small></label>
+                            <label for="name" class="col-md-4 control-label">Name <small>*</small></label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control" name="name" value="{{ old('name', $user->name) }}" required autofocus>
@@ -73,7 +73,7 @@
 
                         @admin
                             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                <label for="email" class="col-md-4 control-label">Email <small style="color: #BC204B">*</small></label>
+                                <label for="email" class="col-md-4 control-label">Email <small>*</small></label>
 
                                 <div class="col-md-6">
                                     <input id="email" type="email" class="form-control" name="email" value="{{ old('email', $user->email) }}" required>
@@ -88,7 +88,7 @@
                         @endadmin
 
                         <div class="form-group{{ $errors->has('position') ? ' has-error' : '' }}">
-                            <label for="position" class="col-md-4 control-label">Position <small style="color: #BC204B">*</small></label>
+                            <label for="position" class="col-md-4 control-label">Position <small>*</small></label>
 
                             <div class="col-md-6">
                                 <select id="position" class="form-control" name="position" required>
@@ -110,7 +110,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('client_id') ? ' has-error' : '' }}">
-                            <label for="client-id" class="col-md-4 control-label">Client <small style="color: #BC204B">*</small></label>
+                            <label for="client-id" class="col-md-4 control-label">Client <small>*</small></label>
 
                             <div class="col-md-6">
                                 <select id="client-id" class="form-control" name="client_id" required>
@@ -132,7 +132,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('office_id') ? ' has-error' : '' }}">
-                            <label for="office-id" class="col-md-4 control-label">Office <small style="color: #BC204B">*</small></label>
+                            <label for="office-id" class="col-md-4 control-label">Office <small>*</small></label>
 
                             <div class="col-md-6">
                                 <select id="office-id" class="form-control" name="office_id" required>
@@ -154,7 +154,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('birthday') ? ' has-error' : '' }}">
-                            <label for="birthday" class="col-md-4 control-label">Birthday <small style="color: #BC204B">*</small></label>
+                            <label for="birthday" class="col-md-4 control-label">Birthday <small>*</small></label>
 
                             <div class="col-md-6">
                                 <input id="birthday" type="date" class="form-control" name="birthday" value="{{ old('birthday', $user->birthday->toDateString()) }}" required>
@@ -168,7 +168,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('slack') ? ' has-error' : '' }}">
-                            <label for="slack" class="col-md-4 control-label">Slack <small style="color: #BC204B">*</small></label>
+                            <label for="slack" class="col-md-4 control-label">Slack <small>*</small></label>
 
                             <div class="col-md-6">
                                 <input id="slack" type="text" class="form-control" name="slack" value="{{ old('slack', $user->slack) }}" required>
@@ -255,7 +255,7 @@
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password <small style="color: #BC204B">*</small></label>
+                            <label for="password" class="col-md-4 control-label">New Password <small>*</small></label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control" name="password" required>
@@ -269,7 +269,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password <small style="color: #BC204B">*</small></label>
+                            <label for="password-confirm" class="col-md-4 control-label">Confirm New Password <small>*</small></label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
