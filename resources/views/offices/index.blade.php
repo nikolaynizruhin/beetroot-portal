@@ -19,7 +19,7 @@
                                             width="100%"
                                             height="350"
                                             frameborder="0" style="border:0"
-                                            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDSASvfMJudvEc-O5ugI0O6PE9NgCE4ACU&q=Beetroot+Academy,Kiev" allowfullscreen>
+                                            src="https://www.google.com/maps/embed/v1/place?key={{ config('map.key') }}&q=Beetroot+Academy,Kiev" allowfullscreen>
                                     </iframe>
                                 </div>
                                 <div class="col-sm-4">
