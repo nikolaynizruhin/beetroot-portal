@@ -23,6 +23,7 @@ Vue.component('client-list', require('./components/ClientList.vue'));
 Vue.component('user-modal', require('./components/UserModal.vue'));
 Vue.component('position-chart', require('./components/PositionChart.vue'));
 Vue.component('client-map', require('./components/ClientMap.vue'));
+Vue.component('number-counter', require('./components/NumberCounter.vue'));
 
 const app = new Vue({
     el: '#app'

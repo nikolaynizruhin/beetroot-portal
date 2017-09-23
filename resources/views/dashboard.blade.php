@@ -15,15 +15,15 @@
                     <div class="row text-center">
                         <div class="col-md-4">
                             <p>TOTAL USERS</p>
-                            <h2>{{ $userCount }}</h2>
+                            <number-counter :count="{{ $userCount }}"></number-counter>
                         </div>
                         <div class="col-md-4">
                             <p>TOTAL CLIENTS</p>
-                            <h2>{{ $clientCount }}</h2>
+                            <number-counter :count="{{ $clientCount }}"></number-counter>
                         </div>
                         <div class="col-md-4">
                             <p>TOTAL OFFICES</p>
-                            <h2>{{ $officeCount }}</h2>
+                            <number-counter :count="{{ $officeCount }}"></number-counter>
                         </div>
                     </div>
                     <hr>
