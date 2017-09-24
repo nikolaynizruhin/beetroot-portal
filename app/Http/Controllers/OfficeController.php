@@ -50,7 +50,7 @@ class OfficeController extends Controller
      */
     public function store(StoreOffice $request)
     {
-        Office::create(request(['city', 'country', 'address']));
+        Office::create(request(['city', 'country', 'address', 'link']));
 
         return back()->with('status', 'The office was successfully created!');
     }
@@ -77,7 +77,7 @@ class OfficeController extends Controller
      */
     public function update(StoreOffice $request, Office $office)
     {
-        $office->update(request(['city', 'country', 'address']));
+        $office->update(request(['city', 'country', 'address', 'link']));
 
         return back()->with('status', 'The office was successfully updated!');
     }

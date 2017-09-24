@@ -17,6 +17,7 @@ $factory->define(App\Office::class, function (Faker $faker) {
     return [
         'city' => $faker->city,
         'country' => $faker->country,
-        'address' => $faker->streetAddress
+        'address' => $faker->streetAddress,
+        'link' => 'Beetroot+Academy,Kiev',
     ];
 });

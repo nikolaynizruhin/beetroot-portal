@@ -18,6 +18,7 @@ class CreateOfficesTable extends Migration
             $table->string('city');
             $table->string('country');
             $table->string('address');
+            $table->string('link');
             $table->timestamps();
         });
     }

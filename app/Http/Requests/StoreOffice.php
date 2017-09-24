@@ -28,6 +28,7 @@ class StoreOffice extends FormRequest
             'city' => 'required|string|max:255',
             'country' => 'required|string|max:255',
             'address' => 'required|string|max:255',
+            'link' => 'required|string|max:255',
         ];
     }
 }
