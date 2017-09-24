@@ -32,7 +32,7 @@ class DisplayUsersTest extends TestCase
 
         $this->actingAs($user)
             ->get(route('users.index'))
-            ->assertSee('Users')
+            ->assertSee('Employees')
             ->assertStatus(200);
     }
 }

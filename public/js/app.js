@@ -72256,7 +72256,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "aria-hidden": "true"
     }
-  }), _vm._v("\n                     \n                    Users (" + _vm._s(_vm.filteredUsers.length) + ")\n                ")]), _vm._v(" "), _c('div', {
+  }), _vm._v("\n                     \n                    Employees (" + _vm._s(_vm.filteredUsers.length) + ")\n                ")]), _vm._v(" "), _c('div', {
     staticClass: "panel-body"
   }, [_c('div', {
     staticClass: "row"

@@ -8,7 +8,7 @@
                 <div class="panel-heading">
                     <i class="fa fa-id-card-o fa-lg fa-fw" aria-hidden="true"></i>
                     &nbsp;
-                    Add User
+                    Add Employee
                 </div>
 
                 <div class="panel-body">

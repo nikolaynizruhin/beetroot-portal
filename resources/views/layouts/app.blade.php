@@ -66,7 +66,7 @@
                                         <a href="{{ route('users.index') }}">
                                             <i class="fa fa-id-card-o fa-fw" aria-hidden="true"></i>
                                             &nbsp;
-                                            Users
+                                            Employees
                                         </a>
                                     </li>
                                     <li>
@@ -95,7 +95,7 @@
                                             <a href="{{ route('users.create') }}">
                                                 <i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i>
                                                 &nbsp;
-                                                Add User
+                                                Add Employee
                                             </a>
                                         </li>
                                         <li>

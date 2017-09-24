@@ -85,7 +85,7 @@ class CreateUserTest extends TestCase
         $this->actingAs($user)
             ->get(route('users.create'))
             ->assertStatus(200)
-            ->assertSee('Add User');
+            ->assertSee('Add Employee');
     }
 
     /**
