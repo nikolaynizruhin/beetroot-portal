@@ -20,20 +20,6 @@
                     <form class="form-horizontal" method="POST" action="{{ route('offices.store') }}">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('city') ? ' has-error' : '' }}">
-                            <label for="city" class="col-md-4 control-label">City <small>*</small></label>
-
-                            <div class="col-md-6">
-                                <input id="city" type="text" class="form-control" name="city" value="{{ old('city') }}" required>
-
-                                @if ($errors->has('city'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('city') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
                         <div class="form-group{{ $errors->has('country') ? ' has-error' : '' }}">
                             <label for="country" class="col-md-4 control-label">Country <small>*</small></label>
 
@@ -51,6 +37,20 @@
                                 @if ($errors->has('country'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('country') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('city') ? ' has-error' : '' }}">
+                            <label for="city" class="col-md-4 control-label">City <small>*</small></label>
+
+                            <div class="col-md-6">
+                                <input id="city" type="text" class="form-control" name="city" value="{{ old('city') }}" required>
+
+                                @if ($errors->has('city'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('city') }}</strong>
                                     </span>
                                 @endif
                             </div>

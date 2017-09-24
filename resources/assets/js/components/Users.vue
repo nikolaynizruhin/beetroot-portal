@@ -6,7 +6,7 @@
                     <div class="panel-heading">
                         <i class="fa fa-id-card-o fa-lg fa-fw" aria-hidden="true"></i>
                         &nbsp;
-                        Employees ({{ filteredUsers.length }})
+                        Employees {{ filteredUsers.length }}
                     </div>
 
                     <div class="panel-body">

@@ -8,7 +8,7 @@
                     <div class="panel-heading">
                         <i class="fa fa-map-marker fa-lg fa-fw" aria-hidden="true"></i>
                         &nbsp;
-                        Offices ({{ $offices->count() }})
+                        Offices {{ $offices->count() }}
                     </div>
 
                     <div class="panel-body list-group">

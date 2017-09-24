@@ -53,6 +53,20 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('site') ? ' has-error' : '' }}">
+                            <label for="site" class="col-md-4 control-label">Site <small>*</small></label>
+
+                            <div class="col-md-6">
+                                <input id="site" type="text" class="form-control" name="site" value="{{ old('site', $client->site) }}" required>
+
+                                @if ($errors->has('site'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('site') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('country') ? ' has-error' : '' }}">
                             <label for="country" class="col-md-4 control-label">Country <small>*</small></label>
 
@@ -84,20 +98,6 @@
                                 @if ($errors->has('description'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('description') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('site') ? ' has-error' : '' }}">
-                            <label for="site" class="col-md-4 control-label">Site <small>*</small></label>
-
-                            <div class="col-md-6">
-                                <input id="site" type="text" class="form-control" name="site" value="{{ old('site', $client->site) }}" required>
-
-                                @if ($errors->has('site'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('site') }}</strong>
                                     </span>
                                 @endif
                             </div>

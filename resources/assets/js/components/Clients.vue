@@ -6,7 +6,7 @@
                     <div class="panel-heading">
                         <i class="fa fa-users fa-lg fa-fw" aria-hidden="true"></i>
                         &nbsp;
-                        Clients ({{ filteredClients.length }})
+                        Clients {{ filteredClients.length }}
                     </div>
 
                     <div class="panel-body">
