@@ -1514,7 +1514,7 @@ h6,
 .h5,
 .h6 {
   font-family: inherit;
-  font-weight: 300;
+  font-weight: 500;
   line-height: 1.1;
   color: inherit;
 }
@@ -3962,7 +3962,7 @@ select[multiple].input-lg,
 .btn {
   display: inline-block;
   margin-bottom: 0;
-  font-weight: lighter;
+  font-weight: normal;
   text-align: center;
   vertical-align: middle;
   -ms-touch-action: manipulation;
@@ -8356,7 +8356,6 @@ html {
 }
 
 html body {
-  font-weight: lighter;
   margin-bottom: 60px;
 }
 
@@ -8382,17 +8381,6 @@ html body a.gray-link:hover {
   text-decoration: none;
 }
 
-html body ul.dropdown-menu li a,
-html body .btn-link,
-html body .radio label,
-html body .checkbox label {
-  font-weight: lighter;
-}
-
-html body label {
-  font-weight: 300;
-}
-
 html body label.control-label small {
   color: #BC204B;
 }
@@ -8408,6 +8396,5 @@ html body .footer {
 html body .footer .container .text-muted {
   margin: 19px 0;
   color: #C1C0BA;
-  font-weight: lighter;
 }
 
