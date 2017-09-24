@@ -63,13 +63,6 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('users.edit', Auth::id()) }}">
-                                            <i class="fa fa-user fa-fw" aria-hidden="true"></i>
-                                            &nbsp;
-                                            Profile
-                                        </a>
-                                    </li>
-                                    <li>
                                         <a href="{{ route('users.index') }}">
                                             <i class="fa fa-id-card-o fa-fw" aria-hidden="true"></i>
                                             &nbsp;
@@ -88,6 +81,13 @@
                                             <i class="fa fa-map-marker fa-fw" aria-hidden="true"></i>
                                             &nbsp;
                                             Offices
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('users.edit', Auth::id()) }}">
+                                            <i class="fa fa-cog fa-fw" aria-hidden="true"></i>
+                                            &nbsp;
+                                            Settings
                                         </a>
                                     </li>
                                     @admin

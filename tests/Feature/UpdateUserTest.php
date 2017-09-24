@@ -58,11 +58,11 @@ class UpdateUserTest extends TestCase
     }
 
     /**
-     * Only admin can visit edit user page.
+     * Only admin can visit user settings page.
      *
      * @return void
      */
-    public function testOnlyAdminCanVisitEditUserPage()
+    public function testOnlyAdminCanVisitUserSettingsPage()
     {
         $user = factory(User::class)->create(['is_admin' => false]);
         $userToEdit = factory(User::class)->create(['is_admin' => false]);
@@ -76,27 +76,29 @@ class UpdateUserTest extends TestCase
     }
 
     /**
-     * User can visit own profile page.
+     * User can visit own settings page.
      *
      * @return void
      */
-    public function testUserCanVisitOwnProfilePage()
+    public function testUserCanVisitOwnSettingsPage()
     {
         $user = factory(User::class)->create(['is_admin' => false]);
 
         $this->actingAs($user)
             ->get(route('users.edit', $user->id))
             ->assertStatus(200)
+            ->assertSee('Settings')
             ->assertSee('Profile')
+            ->assertSee('Change Password')
             ->assertSee($user->name);
     }
 
     /**
-     * Admin can visit profile user page.
+     * Admin can visit user setting page.
      *
      * @return void
      */
-    public function testAdminCanVisitProfileUserPage()
+    public function testAdminCanVisitUserSettingsPage()
     {
         $admin = factory(User::class)->states('admin')->create();
         $userToEdit = factory(User::class)->create(['is_admin' => false]);
@@ -104,7 +106,9 @@ class UpdateUserTest extends TestCase
         $this->actingAs($admin)
             ->get(route('users.edit', $userToEdit->id))
             ->assertStatus(200)
+            ->assertSee('Settings')
             ->assertSee('Profile')
+            ->assertSee('Change Password')
             ->assertSee($userToEdit->name);
     }
 

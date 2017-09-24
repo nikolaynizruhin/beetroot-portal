@@ -6,14 +6,17 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <i class="fa fa-user fa-lg fa-fw" aria-hidden="true"></i>
+                    <i class="fa fa-cog fa-lg fa-fw" aria-hidden="true"></i>
                     &nbsp;
-                    Profile
+                    Settings
                 </div>
 
                 <div class="panel-body">
 
                     @include('partials.flash')
+
+                    <h4>Profile</h4>
+                    <hr>
 
                     <img src="{{ asset('storage/' . $user->avatar) }}" alt="avatar" class="img-circle img-thumbnail img-responsive center-block" height="150" width="150">
 
@@ -242,11 +245,8 @@
                         {{ csrf_field() }}
                     </form>
 
-                    <div class="row">
-                        <div class="col-md-6 col-md-offset-4">
-                            <h4>Change Password</h4>
-                        </div>
-                    </div>
+                    <h4>Change Password</h4>
+                    <hr>
 
                     <form class="form-horizontal" method="POST" action="{{ route('users.password.update', $user->id) }}">
                         {{ method_field('PUT') }}
@@ -275,8 +275,8 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
+                            <div class="col-md-3 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary btn-block">
                                     Update password
                                 </button>
                             </div>

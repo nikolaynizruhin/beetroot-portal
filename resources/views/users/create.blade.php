@@ -239,8 +239,8 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
+                            <div class="col-md-3 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary btn-block">
                                     Create
                                 </button>
                             </div>

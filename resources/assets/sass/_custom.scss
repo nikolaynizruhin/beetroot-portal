@@ -3,7 +3,6 @@ html {
   min-height: 100%;
 
   body {
-    // font-weight: lighter;
     margin-bottom: 60px;
 
     a.navbar-brand {
@@ -28,14 +27,6 @@ html {
       text-decoration: none;
     }
 
-    ul.dropdown-menu li a, .btn-link, .radio label, .checkbox label {
-      // font-weight: lighter;
-    }
-
-    label {
-      // font-weight: 300;
-    }
-
     label.control-label small {
       color: #BC204B;
     }
@@ -50,7 +41,6 @@ html {
       .container .text-muted {
         margin: 19px 0;
         color: #C1C0BA;
-        // font-weight: lighter;
       }
     }
   }
