@@ -2,9 +2,10 @@
 
 namespace App\Http\ViewComposers;
 
-use Illuminate\View\View;
 use App\Client;
 use App\Office;
+use Illuminate\View\View;
+use App\Http\Utilities\Position;
 
 class UsersComposer
 {
@@ -23,6 +24,13 @@ class UsersComposer
     protected $offices;
 
     /**
+     * The positions.
+     *
+     * @var Client
+     */
+    protected $positions;
+
+    /**
      * Create a new users composer.
      *
      * @return void
@@ -31,6 +39,7 @@ class UsersComposer
     {
         $this->clients = Client::pluck('name', 'id');
         $this->offices = Office::pluck('city', 'id');
+        $this->positions = Position::all();
     }
 
     /**
@@ -41,6 +50,10 @@ class UsersComposer
      */
     public function compose(View $view)
     {
-        $view->with(['clients' => $this->clients, 'offices' => $this->offices]);
+        $view->with([
+            'clients' => $this->clients,
+            'offices' => $this->offices,
+            'positions' => $this->positions,
+        ]);
     }
 }

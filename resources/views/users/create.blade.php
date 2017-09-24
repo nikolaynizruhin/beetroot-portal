@@ -1,5 +1,3 @@
-@inject('positions', 'App\Http\Utilities\Position')
-
 @extends('layouts.app')
 
 @section('content')
@@ -87,7 +85,7 @@
 
                             <div class="col-md-6">
                                 <select id="position" class="form-control" name="position" required>
-                                    @foreach ( $positions::all() as $position )
+                                    @foreach ( $positions as $position )
                                         @if (old('position') == $position)
                                             <option value="{{ $position }}" selected>{{ $position }}</option>
                                         @else
