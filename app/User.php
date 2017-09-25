@@ -4,10 +4,10 @@ namespace App;
 
 use App\Client;
 use App\Office;
+use App\Utilities\Image;
 use App\Http\Requests\StoreUser;
 use App\Http\Requests\UpdateUser;
 use Laravel\Passport\HasApiTokens;
-use Intervention\Image\Facades\Image;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -77,9 +77,7 @@ class User extends Authenticatable
     {
         $attributes = request(['name', 'email', 'position', 'birthday', 'bio', 'slack', 'skype', 'github', 'client_id', 'office_id']);
 
-        $path = $request->file('avatar')->store('avatars');
-        $attributes['avatar'] = $path;
-        Image::make('storage/' . $path)->fit(150)->save();
+        $attributes['avatar'] = Image::fit($request->file('avatar')->store('avatars'));
         $attributes['remember_token'] = str_random(10);
         $attributes['is_admin'] = (bool) $request->is_admin;
         $attributes['password'] = bcrypt($request->password);
@@ -98,9 +96,7 @@ class User extends Authenticatable
         $attributes = request(['name', 'position', 'birthday', 'bio', 'slack', 'skype', 'github', 'client_id', 'office_id']);
 
         if ($request->hasFile('avatar')) {
-            $path = $request->file('avatar')->store('avatars');
-            $attributes['avatar'] = $path;
-            Image::make('storage/' . $path)->fit(150)->save();
+            $attributes['avatar'] = Image::fit($request->file('avatar')->store('avatars'));
         }
 
         if (auth()->user()->is_admin) {
