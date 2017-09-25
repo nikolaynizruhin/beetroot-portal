@@ -5,6 +5,7 @@ namespace App;
 use App\User;
 use App\Http\Requests\StoreClient;
 use App\Http\Requests\UpdateClient;
+use Intervention\Image\Facades\Image;
 use Illuminate\Database\Eloquent\Model;
 
 class Client extends Model
@@ -34,7 +35,9 @@ class Client extends Model
     {
         $attributes = request(['name', 'country', 'description', 'site']);
 
-        $attributes['logo'] = $request->file('logo')->store('logos');
+        $path = $request->file('logo')->store('logos');
+        $attributes['logo'] = $path;
+        Image::make('storage/' . $path)->fit(150)->save();
 
         return static::create($attributes);
     }
@@ -50,7 +53,9 @@ class Client extends Model
         $attributes = request(['name', 'country', 'description', 'site']);
 
         if ($request->hasFile('logo')) {
-            $attributes['logo'] = $request->file('logo')->store('logos');
+            $path = $request->file('logo')->store('logos');
+            $attributes['logo'] = $path;
+            Image::make('storage/' . $path)->fit(150)->save();
         }
 
         return $this->update($attributes);

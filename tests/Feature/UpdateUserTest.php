@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\User;
 use Tests\TestCase;
 use Illuminate\Http\UploadedFile;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -123,6 +124,7 @@ class UpdateUserTest extends TestCase
         $admin = factory(User::class)->states('admin')->create();
 
         Storage::fake('public');
+        Image::shouldReceive('make->fit->save')->once();
 
         $inputAttributes = $this->getInputAttributes();
         $resultAttributes = $this->getResultAttributes();
@@ -146,6 +148,7 @@ class UpdateUserTest extends TestCase
         $owner = factory(User::class)->create(['is_admin' => false]);
 
         Storage::fake('public');
+        Image::shouldReceive('make->fit->save')->once();
 
         $inputAttributes = $this->getInputAttributes();
         $resultAttributes = $this->getResultAttributes();

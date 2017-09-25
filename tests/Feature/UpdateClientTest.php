@@ -6,6 +6,7 @@ use App\User;
 use App\Client;
 use Tests\TestCase;
 use Illuminate\Http\UploadedFile;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -96,6 +97,7 @@ class UpdateClientTest extends TestCase
         $admin = factory(User::class)->states('admin')->create();
 
         Storage::fake('public');
+        Image::shouldReceive('make->fit->save')->once();
 
         $inputAttributes = $this->getInputAttributes();
         $resultAttributes = $this->getResultAttributes($inputAttributes);
