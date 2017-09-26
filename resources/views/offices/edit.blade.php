@@ -92,7 +92,7 @@
                                 </button>
                             </div>
                             @admin
-                                <div class="col-md-3">
+                                <div class="col-md-3 mt-1">
                                     <button type="submit" class="btn btn-danger btn-block"
                                             onclick="event.preventDefault();if(confirm('Are you sure you want to delete an office?'))document.getElementById('delete-form').submit();">
                                         Delete

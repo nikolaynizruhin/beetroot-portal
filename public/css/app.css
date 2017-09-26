@@ -8398,3 +8398,9 @@ html body .footer .container .text-muted {
   color: #C1C0BA;
 }
 
+@media only screen and (max-width: 991px) {
+  .mt-1 {
+    margin-top: 5px;
+  }
+}
+
