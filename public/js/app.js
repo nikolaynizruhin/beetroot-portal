@@ -73359,6 +73359,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -73421,50 +73426,24 @@ var render = function() {
               _c("div", { staticClass: "col-sm-5 col-sm-offset-1" }, [
                 _c("p", [
                   _c("i", {
-                    staticClass: "fa fa-handshake-o fa-fw",
-                    attrs: { "aria-hidden": "true" }
-                  }),
-                  _vm._v(
-                    "\n                             \n                            " +
-                      _vm._s(_vm.user.client.name) +
-                      "\n                        "
-                  )
-                ]),
-                _vm._v(" "),
-                _c("p", [
-                  _c("i", {
-                    staticClass: "fa fa-map-marker fa-fw",
-                    attrs: { "aria-hidden": "true" }
-                  }),
-                  _vm._v(
-                    "\n                             \n                            " +
-                      _vm._s(_vm.user.office.city) +
-                      "\n                        "
-                  )
-                ]),
-                _vm._v(" "),
-                _c("p", [
-                  _c("i", {
-                    staticClass: "fa fa-birthday-cake fa-fw",
-                    attrs: { "aria-hidden": "true" }
-                  }),
-                  _vm._v(
-                    "\n                             \n                            " +
-                      _vm._s(_vm._f("date")(_vm.user.birthday)) +
-                      "\n                        "
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-5" }, [
-                _c("p", [
-                  _c("i", {
                     staticClass: "fa fa-envelope-o fa-fw",
                     attrs: { "aria-hidden": "true" }
                   }),
                   _vm._v(
                     "\n                             \n                            " +
                       _vm._s(_vm.user.email) +
+                      "\n                        "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("p", [
+                  _c("i", {
+                    staticClass: "fa fa-phone fa-fw",
+                    attrs: { "aria-hidden": "true" }
+                  }),
+                  _vm._v(
+                    "\n                             \n                            " +
+                      _vm._s(_vm.user.phone) +
                       "\n                        "
                   )
                 ]),
@@ -73508,6 +73487,44 @@ var render = function() {
                       )
                     ])
                   : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-5" }, [
+                _c("p", [
+                  _c("i", {
+                    staticClass: "fa fa-handshake-o fa-fw",
+                    attrs: { "aria-hidden": "true" }
+                  }),
+                  _vm._v(
+                    "\n                             \n                            " +
+                      _vm._s(_vm.user.client.name) +
+                      "\n                        "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("p", [
+                  _c("i", {
+                    staticClass: "fa fa-map-marker fa-fw",
+                    attrs: { "aria-hidden": "true" }
+                  }),
+                  _vm._v(
+                    "\n                             \n                            " +
+                      _vm._s(_vm.user.office.city) +
+                      "\n                        "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("p", [
+                  _c("i", {
+                    staticClass: "fa fa-birthday-cake fa-fw",
+                    attrs: { "aria-hidden": "true" }
+                  }),
+                  _vm._v(
+                    "\n                             \n                            " +
+                      _vm._s(_vm._f("date")(_vm.user.birthday)) +
+                      "\n                        "
+                  )
+                ])
               ])
             ]),
             _vm._v(" "),

@@ -30,6 +30,7 @@ class StoreUser extends FormRequest
             'is_admin' => 'boolean',
             'position' => 'required|string|max:255',
             'birthday' => 'required|date',
+            'phone' => 'nullable|string|max:255',
             'avatar' => 'required|image',
             'bio' => 'nullable|string|max:255',
             'skype' => 'nullable|string|max:255',

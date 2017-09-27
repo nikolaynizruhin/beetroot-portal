@@ -18,26 +18,14 @@
                     <div class="row">
                         <div class="col-sm-5 col-sm-offset-1">
                             <p>
-                                <i aria-hidden="true" class="fa fa-handshake-o fa-fw"></i>
-                                &nbsp;
-                                {{ user.client.name }}
-                            </p>
-                            <p>
-                                <i aria-hidden="true" class="fa fa-map-marker fa-fw"></i>
-                                &nbsp;
-                                {{ user.office.city }}
-                            </p>
-                            <p>
-                                <i aria-hidden="true" class="fa fa-birthday-cake fa-fw"></i>
-                                &nbsp;
-                                {{ user.birthday | date}}
-                            </p>
-                        </div>
-                        <div class="col-sm-5">
-                            <p>
                                 <i aria-hidden="true" class="fa fa-envelope-o fa-fw"></i>
                                 &nbsp;
                                 {{ user.email }}
+                            </p>
+                            <p>
+                                <i aria-hidden="true" class="fa fa-phone fa-fw"></i>
+                                &nbsp;
+                                {{ user.phone }}
                             </p>
                             <p>
                                 <i aria-hidden="true" class="fa fa-slack fa-fw"></i>
@@ -53,6 +41,23 @@
                                 <i aria-hidden="true" class="fa fa-github fa-fw"></i>
                                 &nbsp;
                                 {{ user.github }}
+                            </p>
+                        </div>
+                        <div class="col-sm-5">
+                            <p>
+                                <i aria-hidden="true" class="fa fa-handshake-o fa-fw"></i>
+                                &nbsp;
+                                {{ user.client.name }}
+                            </p>
+                            <p>
+                                <i aria-hidden="true" class="fa fa-map-marker fa-fw"></i>
+                                &nbsp;
+                                {{ user.office.city }}
+                            </p>
+                            <p>
+                                <i aria-hidden="true" class="fa fa-birthday-cake fa-fw"></i>
+                                &nbsp;
+                                {{ user.birthday | date}}
                             </p>
                         </div>
                     </div>

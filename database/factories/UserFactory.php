@@ -24,6 +24,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         'avatar' => 'avatars/default.jpg',
         'position' => Position::rand(),
         'birthday' => $faker->date(),
+        'phone' => $faker->e164PhoneNumber,
         'bio' => $faker->text($maxNbChars = 200),
         'slack' => $userName,
         'skype' => $userName,
