@@ -25,6 +25,18 @@ class LoginTest extends TestCase
     }
 
     /**
+     * Redirect to login page when try to visit register page.
+     *
+     * @return void
+     */
+    public function testRedirectToLoginPageWhenVisitRegister()
+    {
+        $this->get(route('register'))
+            ->assertStatus(302)
+            ->assertRedirect(route('login'));
+    }
+
+    /**
      * User can login.
      *
      * @return void
