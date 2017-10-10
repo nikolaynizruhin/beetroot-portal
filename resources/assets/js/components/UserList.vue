@@ -1,6 +1,6 @@
 <template>
     <div class="list-group">
-        <div class="row list-group-item" v-for="user in users">
+        <div class="row list-group-item" v-for="user in users" :key="user.id">
             <user-modal :user="user"></user-modal>
             <div class="col-sm-4">
                 <img :src="'storage/' + user.avatar" alt="Avatar" class="img-thumbnail img-circle img-responsive center-block" width="150" height="150">

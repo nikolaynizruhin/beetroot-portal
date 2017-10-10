@@ -72897,7 +72897,7 @@ var render = function() {
     _vm._l(_vm.users, function(user) {
       return _c(
         "div",
-        { staticClass: "row list-group-item" },
+        { key: user.id, staticClass: "row list-group-item" },
         [
           _c("user-modal", { attrs: { user: user } }),
           _vm._v(" "),
@@ -73150,7 +73150,7 @@ var render = function() {
     "div",
     { staticClass: "list-group" },
     _vm._l(_vm.clients, function(client) {
-      return _c("div", { staticClass: "row list-group-item" }, [
+      return _c("div", { key: client.id, staticClass: "row list-group-item" }, [
         _c("div", { staticClass: "col-sm-4" }, [
           _c("img", {
             staticClass: "img-thumbnail img-circle img-responsive center-block",
