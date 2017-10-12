@@ -11,6 +11,7 @@ php artisan db:seed
 cp .env.example .env
 php artisan key:generate
 php artisan storage:link
+php artisan passport:install
 storage/public/avatars/default.png
 storage/public/logos/default.png
 ```
