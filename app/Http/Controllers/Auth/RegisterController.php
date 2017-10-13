@@ -52,6 +52,7 @@ class RegisterController extends Controller
     /**
      * Handle a registration request for the application.
      *
+     * @codeCoverageIgnore
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -63,6 +64,7 @@ class RegisterController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
+     * @codeCoverageIgnore
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
@@ -78,6 +80,7 @@ class RegisterController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
+     * @codeCoverageIgnore
      * @param  array  $data
      * @return \App\User
      */

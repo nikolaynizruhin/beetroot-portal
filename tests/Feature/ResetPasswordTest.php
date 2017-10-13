@@ -21,7 +21,21 @@ class ResetPasswordTest extends TestCase
     {
         $this->get(route('password.request'))
             ->assertStatus(200)
-            ->assertSee('Reset Password');
+            ->assertSee('Send Password Reset Link');
+    }
+
+    /**
+     * User can visit reset password page with token.
+     *
+     * @return void
+     */
+    public function testUserCanVisitResetPasswordPageWithToken()
+    {
+        $this->get(url('password/reset/token'))
+            ->assertStatus(200)
+            ->assertSee('E-Mail Address')
+            ->assertSee('Password')
+            ->assertSee('Confirm Password');
     }
 
     /**
@@ -57,6 +71,7 @@ class ResetPasswordTest extends TestCase
     public function testUserCanReceiveResetPasswordEmail()
     {
         $user = factory(User::class)->create();
+        $token = null;
 
         Notification::fake();
 
@@ -64,7 +79,20 @@ class ResetPasswordTest extends TestCase
             ->assertSessionHas('status', 'We have e-mailed your password reset link!');
 
         Notification::assertSentTo(
-            [$user], ResetPassword::class
+            $user,
+            ResetPassword::class,
+            function ($notification, $channels) use (&$token) {
+                $token = $notification->token;
+                return true;
+            }
         );
+
+        $this->post('password/reset', [
+            'email' => $user->email,
+            'token' => $token,
+            'password' => 'new_password',
+            'password_confirmation' => 'new_password'
+        ])
+            ->assertRedirect(route('dashboard'));
     }
 }
