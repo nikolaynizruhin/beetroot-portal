@@ -35,7 +35,7 @@ class ClientTest extends TestCase
     {
         $client = factory(Client::class)->create();
 
-        $this->assertEquals('logos/default.jpg', $client->logo);
+        $this->assertEquals('logos/default.png', $client->logo);
 
         $client->logo = 'logos/new.jpg';
 

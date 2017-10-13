@@ -19,6 +19,6 @@ $factory->define(App\Client::class, function (Faker $faker) {
         'site' => 'https://' . $faker->domainName,
         'country' => $faker->country,
         'description' => $faker->text($maxNbChars = 200),
-        'logo' => 'logos/default.jpg'
+        'logo' => 'logos/default.png'
     ];
 });

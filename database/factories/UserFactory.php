@@ -21,7 +21,7 @@ $factory->define(App\User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'email' => $userName . '@beetroot.se',
-        'avatar' => 'avatars/default.jpg',
+        'avatar' => 'avatars/default.png',
         'position' => Position::rand(),
         'birthday' => $faker->date(),
         'phone' => $faker->e164PhoneNumber,
