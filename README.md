@@ -1,5 +1,5 @@
 # Beetroot Portal
-### Built with Laravel 5.5 + Vue 2.4
+### Built with Laravel 5.5 + Vue 2.5
 ## Installation
 ```
 git clone
