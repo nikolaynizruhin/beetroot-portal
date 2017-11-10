@@ -89759,8 +89759,8 @@ var render = function() {
           _vm._v(_vm._s(_vm.defaultValue))
         ]),
         _vm._v(" "),
-        _vm._l(_vm.list, function(item) {
-          return _c("option", [_vm._v(_vm._s(item))])
+        _vm._l(_vm.list, function(item, index) {
+          return _c("option", { key: index }, [_vm._v(_vm._s(item))])
         })
       ],
       2

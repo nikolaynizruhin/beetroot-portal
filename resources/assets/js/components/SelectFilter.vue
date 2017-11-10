@@ -2,7 +2,7 @@
     <div class="form-group">
         <select class="form-control" v-model="selectedField" @change="update">
             <option selected>{{ defaultValue }}</option>
-            <option v-for="item in list">{{ item }}</option>
+            <option v-for="(item, index) in list" :key="index">{{ item }}</option>
         </select>
     </div>
 </template>
