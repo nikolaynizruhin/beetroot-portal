@@ -11,7 +11,7 @@
     <title>Beetroot</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/ico" href="favicon.ico"/>
+    <link rel="shortcut icon" type="image/ico" href="{{ asset('favicon.ico') }}"/>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
