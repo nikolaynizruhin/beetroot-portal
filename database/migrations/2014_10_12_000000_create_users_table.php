@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('avatar');
             $table->string('position');
             $table->date('birthday');
-            $table->string('phone');
+            $table->string('phone')->nullable();
             $table->string('bio')->nullable();
             $table->string('slack')->nullable();
             $table->string('skype')->nullable();
