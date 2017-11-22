@@ -17,7 +17,7 @@
 
                     @include('partials.flash')
 
-                    <img src="{{ asset('storage/logos/default.jpg') }}" alt="avatar" class="img-circle img-thumbnail img-responsive center-block" height="150" width="150">
+                    <img src="{{ asset('storage/logos/default.png') }}" alt="avatar" class="img-circle img-thumbnail img-responsive center-block" height="150" width="150">
 
                     <br>
 
