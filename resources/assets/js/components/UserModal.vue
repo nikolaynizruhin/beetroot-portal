@@ -18,14 +18,18 @@
                     <div class="row">
                         <div class="col-sm-5 col-sm-offset-1">
                             <p>
-                                <i aria-hidden="true" class="fa fa-envelope-o fa-fw"></i>
-                                &nbsp;
-                                {{ user.email }}
+                                <a :href="'mailto:' + user.email">
+                                    <i aria-hidden="true" class="fa fa-envelope-o fa-fw"></i>
+                                    &nbsp;
+                                    {{ user.email }}
+                                </a>
                             </p>
-                            <p>
-                                <i aria-hidden="true" class="fa fa-phone fa-fw"></i>
-                                &nbsp;
-                                {{ user.phone }}
+                            <p v-if="user.phone">
+                                <a :href="'tel:' + user.phone">
+                                    <i aria-hidden="true" class="fa fa-phone fa-fw"></i>
+                                    &nbsp;
+                                    {{ user.phone }}
+                                </a>
                             </p>
                             <p>
                                 <i aria-hidden="true" class="fa fa-slack fa-fw"></i>
@@ -33,14 +37,18 @@
                                 {{ user.slack }}
                             </p>
                             <p v-if="user.skype">
-                                <i aria-hidden="true" class="fa fa-skype fa-fw"></i>
-                                &nbsp;
-                                {{ user.skype }}
+                                <a :href="'skype:' + user.skype + '?userinfo'">
+                                    <i aria-hidden="true" class="fa fa-skype fa-fw"></i>
+                                    &nbsp;
+                                    {{ user.skype }}
+                                </a>
                             </p>
                             <p v-if="user.github">
-                                <i aria-hidden="true" class="fa fa-github fa-fw"></i>
-                                &nbsp;
-                                {{ user.github }}
+                                <a :href="'https://github.com/' + user.github" target="_blank">
+                                    <i aria-hidden="true" class="fa fa-github fa-fw"></i>
+                                    &nbsp;
+                                    {{ user.github }}
+                                </a>
                             </p>
                         </div>
                         <div class="col-sm-5">

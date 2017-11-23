@@ -90464,6 +90464,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -90525,28 +90533,34 @@ var render = function() {
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-sm-5 col-sm-offset-1" }, [
                 _c("p", [
-                  _c("i", {
-                    staticClass: "fa fa-envelope-o fa-fw",
-                    attrs: { "aria-hidden": "true" }
-                  }),
-                  _vm._v(
-                    "\n                             \n                            " +
-                      _vm._s(_vm.user.email) +
-                      "\n                        "
-                  )
+                  _c("a", { attrs: { href: "mailto:" + _vm.user.email } }, [
+                    _c("i", {
+                      staticClass: "fa fa-envelope-o fa-fw",
+                      attrs: { "aria-hidden": "true" }
+                    }),
+                    _vm._v(
+                      "\n                                 \n                                " +
+                        _vm._s(_vm.user.email) +
+                        "\n                            "
+                    )
+                  ])
                 ]),
                 _vm._v(" "),
-                _c("p", [
-                  _c("i", {
-                    staticClass: "fa fa-phone fa-fw",
-                    attrs: { "aria-hidden": "true" }
-                  }),
-                  _vm._v(
-                    "\n                             \n                            " +
-                      _vm._s(_vm.user.phone) +
-                      "\n                        "
-                  )
-                ]),
+                _vm.user.phone
+                  ? _c("p", [
+                      _c("a", { attrs: { href: "tel:" + _vm.user.phone } }, [
+                        _c("i", {
+                          staticClass: "fa fa-phone fa-fw",
+                          attrs: { "aria-hidden": "true" }
+                        }),
+                        _vm._v(
+                          "\n                                 \n                                " +
+                            _vm._s(_vm.user.phone) +
+                            "\n                            "
+                        )
+                      ])
+                    ])
+                  : _vm._e(),
                 _vm._v(" "),
                 _c("p", [
                   _c("i", {
@@ -90562,28 +90576,49 @@ var render = function() {
                 _vm._v(" "),
                 _vm.user.skype
                   ? _c("p", [
-                      _c("i", {
-                        staticClass: "fa fa-skype fa-fw",
-                        attrs: { "aria-hidden": "true" }
-                      }),
-                      _vm._v(
-                        "\n                             \n                            " +
-                          _vm._s(_vm.user.skype) +
-                          "\n                        "
+                      _c(
+                        "a",
+                        {
+                          attrs: {
+                            href: "skype:" + _vm.user.skype + "?userinfo"
+                          }
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "fa fa-skype fa-fw",
+                            attrs: { "aria-hidden": "true" }
+                          }),
+                          _vm._v(
+                            "\n                                 \n                                " +
+                              _vm._s(_vm.user.skype) +
+                              "\n                            "
+                          )
+                        ]
                       )
                     ])
                   : _vm._e(),
                 _vm._v(" "),
                 _vm.user.github
                   ? _c("p", [
-                      _c("i", {
-                        staticClass: "fa fa-github fa-fw",
-                        attrs: { "aria-hidden": "true" }
-                      }),
-                      _vm._v(
-                        "\n                             \n                            " +
-                          _vm._s(_vm.user.github) +
-                          "\n                        "
+                      _c(
+                        "a",
+                        {
+                          attrs: {
+                            href: "https://github.com/" + _vm.user.github,
+                            target: "_blank"
+                          }
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "fa fa-github fa-fw",
+                            attrs: { "aria-hidden": "true" }
+                          }),
+                          _vm._v(
+                            "\n                                 \n                                " +
+                              _vm._s(_vm.user.github) +
+                              "\n                            "
+                          )
+                        ]
                       )
                     ])
                   : _vm._e()

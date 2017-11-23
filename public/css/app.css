@@ -1426,7 +1426,7 @@ a {
 a:hover,
 a:focus {
   color: #7b1531;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 a:focus {
@@ -4437,7 +4437,7 @@ fieldset[disabled] .btn-link {
 .btn-link:hover,
 .btn-link:focus {
   color: #7b1531;
-  text-decoration: underline;
+  text-decoration: none;
   background-color: transparent;
 }
 
@@ -8367,8 +8367,13 @@ html body a.navbar-brand img {
   height: 40px;
 }
 
-html body .nounderline {
-  text-decoration: none;
+html body .dashboard-link {
+  color: #636b6f;
+}
+
+html body .dashboard-panel:hover {
+  -webkit-box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.05);
+          box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.05);
 }
 
 html body .list-group-item {

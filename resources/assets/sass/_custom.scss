@@ -13,8 +13,12 @@ html {
       }
     }
 
-    .nounderline {
-      text-decoration: none;
+    .dashboard-link {
+      color: #636b6f;
+    }
+
+    .dashboard-panel:hover {
+      box-shadow: 3px 3px 3px rgba(0,0,0,.05);
     }
 
     .list-group-item {

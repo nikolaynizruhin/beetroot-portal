@@ -14,8 +14,8 @@
                 <div class="panel-body">
                     <div class="row text-center">
                         <div class="col-md-4">
-                            <a href="{{ route('users.index') }}" class="nounderline">
-                                <div class="panel panel-default">
+                            <a href="{{ route('users.index') }}" class="dashboard-link">
+                                <div class="panel panel-default dashboard-panel">
                                     <div class="panel-body">
                                         <p>TOTAL EMPLOYEES</p>
                                         <number-counter :count="{{ $userCount }}"></number-counter>
@@ -24,8 +24,8 @@
                             </a>
                         </div>
                         <div class="col-md-4">
-                            <a href="{{ route('clients.index') }}" class="nounderline">
-                                <div class="panel panel-default">
+                            <a href="{{ route('clients.index') }}" class="dashboard-link">
+                                <div class="panel panel-default dashboard-panel">
                                     <div class="panel-body">
                                         <p>TOTAL CLIENTS</p>
                                         <number-counter :count="{{ $clientCount }}"></number-counter>
@@ -34,8 +34,8 @@
                             </a>
                         </div>
                         <div class="col-md-4">
-                            <a href="{{ route('offices.index') }}" class="nounderline">
-                                <div class="panel panel-default">
+                            <a href="{{ route('offices.index') }}" class="dashboard-link">
+                                <div class="panel panel-default dashboard-panel">
                                     <div class="panel-body">
                                         <p>TOTAL OFFICES</p>
                                         <number-counter :count="{{ $officeCount }}"></number-counter>
