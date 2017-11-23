@@ -46,7 +46,7 @@ class UpdateUserPasswordTest extends TestCase
 
         $this->actingAs($admin)
             ->put(route('users.password.update', $owner->id), $attributes)
-            ->assertSessionHas('status', 'The user password was successfully updated!');
+            ->assertSessionHas('status', 'The employee password was successfully updated!');
 
         $owner = $owner->fresh();
 
@@ -69,7 +69,7 @@ class UpdateUserPasswordTest extends TestCase
 
         $this->actingAs($owner)
             ->put(route('users.password.update', $owner->id), $attributes)
-            ->assertSessionHas('status', 'The user password was successfully updated!');
+            ->assertSessionHas('status', 'The employee password was successfully updated!');
 
         $owner = $owner->fresh();
 

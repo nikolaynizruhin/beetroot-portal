@@ -107,7 +107,7 @@ class CreateUserTest extends TestCase
 
         $this->actingAs($admin)
             ->post(route('users.store'), $inputAttributes)
-            ->assertSessionHas('status', 'The user was successfully created!');
+            ->assertSessionHas('status', 'The employee was successfully created!');
 
         $this->assertDatabaseHas('users', $resultAttributes);
 

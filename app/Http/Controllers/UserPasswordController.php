@@ -29,6 +29,6 @@ class UserPasswordController extends Controller
     {
         $user->update(['password' => bcrypt($request->password)]);
 
-        return back()->with('status', 'The user password was successfully updated!');
+        return back()->with('status', 'The employee password was successfully updated!');
     }
 }
