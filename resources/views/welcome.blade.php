@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Beetroot</title>
+        <title>Beetroot Family Portal</title>
 
         <!-- Favicon -->
         <link rel="shortcut icon" type="image/ico" href="favicon.ico"/>
