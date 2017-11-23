@@ -14,16 +14,34 @@
                 <div class="panel-body">
                     <div class="row text-center">
                         <div class="col-md-4">
-                            <p>TOTAL EMPLOYEES</p>
-                            <number-counter :count="{{ $userCount }}"></number-counter>
+                            <a href="{{ route('users.index') }}" class="nounderline">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <p>TOTAL EMPLOYEES</p>
+                                        <number-counter :count="{{ $userCount }}"></number-counter>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
                         <div class="col-md-4">
-                            <p>TOTAL CLIENTS</p>
-                            <number-counter :count="{{ $clientCount }}"></number-counter>
+                            <a href="{{ route('clients.index') }}" class="nounderline">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <p>TOTAL CLIENTS</p>
+                                        <number-counter :count="{{ $clientCount }}"></number-counter>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
                         <div class="col-md-4">
-                            <p>TOTAL OFFICES</p>
-                            <number-counter :count="{{ $officeCount }}"></number-counter>
+                            <a href="{{ route('offices.index') }}" class="nounderline">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <p>TOTAL OFFICES</p>
+                                        <number-counter :count="{{ $officeCount }}"></number-counter>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
                     </div>
                     <hr>
