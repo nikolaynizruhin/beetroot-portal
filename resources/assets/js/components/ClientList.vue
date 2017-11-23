@@ -2,7 +2,7 @@
     <div class="list-group">
         <div class="row list-group-item" v-for="client in clients" :key="client.id">
             <div class="col-sm-4">
-                <img :src="'storage/' + client.logo" alt="Logo" class="img-thumbnail img-circle img-responsive center-block" width="150" height="150">
+                <img :src="`storage/${client.logo}`" alt="Logo" class="img-thumbnail img-circle img-responsive center-block" width="150" height="150">
             </div>
             <div class="col-sm-8">
                 <div class="row">
@@ -10,7 +10,7 @@
                         <p>
                             <strong>{{ client.name }}</strong>
                             &nbsp;
-                            <a v-if="user.is_admin" :href="'clients/' + client.id + '/edit'">
+                            <a v-if="user.is_admin" :href="`clients/${client.id}/edit`">
                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                             </a>
                         </p>

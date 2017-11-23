@@ -1,5 +1,5 @@
 <template>
-    <div class="modal fade" :id="'userModal' + user.id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade" :id="`userModal${user.id}`" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-body">
@@ -7,7 +7,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
 
-                    <img :src="'storage/' + user.avatar" alt="Avatar" class="img-thumbnail img-circle img-responsive center-block" width="150" height="150">
+                    <img :src="`storage/${user.avatar}`" alt="Avatar" class="img-thumbnail img-circle img-responsive center-block" width="150" height="150">
 
                     <h3 class="text-center">{{ user.name }}</h3>
 
@@ -18,14 +18,14 @@
                     <div class="row">
                         <div class="col-sm-5 col-sm-offset-1">
                             <p>
-                                <a :href="'mailto:' + user.email">
+                                <a :href="`mailto:${user.email}`">
                                     <i aria-hidden="true" class="fa fa-envelope-o fa-fw"></i>
                                     &nbsp;
                                     {{ user.email }}
                                 </a>
                             </p>
                             <p v-if="user.phone">
-                                <a :href="'tel:' + user.phone">
+                                <a :href="`tel:${user.phone}`">
                                     <i aria-hidden="true" class="fa fa-phone fa-fw"></i>
                                     &nbsp;
                                     {{ user.phone }}
@@ -37,14 +37,14 @@
                                 {{ user.slack }}
                             </p>
                             <p v-if="user.skype">
-                                <a :href="'skype:' + user.skype + '?userinfo'">
+                                <a :href="`skype:${user.skype}?userinfo`">
                                     <i aria-hidden="true" class="fa fa-skype fa-fw"></i>
                                     &nbsp;
                                     {{ user.skype }}
                                 </a>
                             </p>
                             <p v-if="user.github">
-                                <a :href="'https://github.com/' + user.github" target="_blank">
+                                <a :href="`https://github.com/${user.github}`" target="_blank">
                                     <i aria-hidden="true" class="fa fa-github fa-fw"></i>
                                     &nbsp;
                                     {{ user.github }}
