@@ -1,7 +1,7 @@
 <tr>
     <td class="header">
         <a href="{{ $url }}">
-            <img src="{{ asset('images/logo.svg') }}" alt="{{ $slot }}">
+            {{ App\Http\Utilities\Markdown::parse($slot) }}
         </a>
     </td>
 </tr>
