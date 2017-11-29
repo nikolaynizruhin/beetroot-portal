@@ -3,7 +3,9 @@
         <div class="row list-group-item" v-for="user in users" :key="user.id">
             <user-modal :user="user"></user-modal>
             <div class="col-sm-4">
-                <img :src="`storage/${user.avatar}`" alt="Avatar" class="img-thumbnail img-circle img-responsive center-block" width="150" height="150">
+                <a href="#" data-toggle="modal" :data-target="`#userModal${user.id}`">
+                    <img :src="`storage/${user.avatar}`" alt="Avatar" class="img-thumbnail img-circle img-responsive center-block" width="150" height="150">
+                </a>
             </div>
             <div class="col-sm-8">
                 <div class="row">

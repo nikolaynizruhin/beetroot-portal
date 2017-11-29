@@ -89966,6 +89966,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -89998,16 +90000,28 @@ var render = function() {
           _c("user-modal", { attrs: { user: user } }),
           _vm._v(" "),
           _c("div", { staticClass: "col-sm-4" }, [
-            _c("img", {
-              staticClass:
-                "img-thumbnail img-circle img-responsive center-block",
-              attrs: {
-                src: "storage/" + user.avatar,
-                alt: "Avatar",
-                width: "150",
-                height: "150"
-              }
-            })
+            _c(
+              "a",
+              {
+                attrs: {
+                  href: "#",
+                  "data-toggle": "modal",
+                  "data-target": "#userModal" + user.id
+                }
+              },
+              [
+                _c("img", {
+                  staticClass:
+                    "img-thumbnail img-circle img-responsive center-block",
+                  attrs: {
+                    src: "storage/" + user.avatar,
+                    alt: "Avatar",
+                    width: "150",
+                    height: "150"
+                  }
+                })
+              ]
+            )
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-sm-8" }, [
