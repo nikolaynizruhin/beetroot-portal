@@ -55,7 +55,7 @@
                     <hr>
                     <h3 class="text-center">CLIENTS</h3>
                     <hr>
-                    <client-map :clients="{{ $clients }}"></client-map>
+                    <client-map :clients="{{ $clients }}" :api-key="'{{ config('map.key') }}'"></client-map>
 
                 </div>
             </div>

@@ -90903,7 +90903,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
-        clients: Array
+        clients: Array,
+        apiKey: String
     },
     data: function data() {
         return {
@@ -90917,7 +90918,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         google.charts.load('current', {
             'packages': ['geochart'],
-            'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+            'mapsApiKey': this.apiKey
         });
 
         google.charts.setOnLoadCallback(drawRegionsMap);
