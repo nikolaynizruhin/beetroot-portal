@@ -62,7 +62,7 @@
                             <label for="name" class="col-md-4 control-label">Name <small>*</small></label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name', $user->name) }}" required autofocus>
+                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name', $user->name) }}" required @if ($errors->isEmpty()) autofocus @endif>
 
                                 @if ($errors->has('name'))
                                     <span class="help-block">
