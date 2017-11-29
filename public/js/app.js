@@ -90288,7 +90288,7 @@ var render = function() {
               _c("p", [
                 _c("a", { attrs: { target: "_blank", href: client.site } }, [
                   _c("i", {
-                    staticClass: "fa fa-link fa-fw",
+                    staticClass: "fa fa-globe fa-fw",
                     attrs: { "aria-hidden": "true" }
                   }),
                   _vm._v(

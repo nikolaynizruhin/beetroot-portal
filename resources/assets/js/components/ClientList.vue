@@ -20,7 +20,7 @@
                     <div class="col-sm-6">
                         <p>
                             <a target="_blank" :href="client.site">
-                                <i class="fa fa-link fa-fw" aria-hidden="true"></i>
+                                <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
                                 &nbsp;
                                 {{ client.site }}
                             </a>
