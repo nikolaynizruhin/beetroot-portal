@@ -72,7 +72,12 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('link') ? ' has-error' : '' }}">
-                            <label for="link" class="col-md-4 control-label">Link <small>*</small></label>
+                            <label for="link" class="col-md-4 control-label">
+                                <span data-toggle="tooltip" data-placement="top" title="Google maps query (e.g., Beetroot+Academy,Kiev)">
+                                    Link
+                                    <small>*</small>
+                                </span>
+                            </label>
 
                             <div class="col-md-6">
                                 <input id="link" type="text" class="form-control" name="link" value="{{ old('link', $office->link) }}" required>

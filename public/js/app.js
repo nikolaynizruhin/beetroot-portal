@@ -34276,6 +34276,10 @@ try {
   window.$ = window.jQuery = __webpack_require__(308);
 
   __webpack_require__(309);
+
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+  });
 } catch (e) {}
 
 /**

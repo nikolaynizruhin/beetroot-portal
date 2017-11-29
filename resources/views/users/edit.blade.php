@@ -45,7 +45,11 @@
                         @endadmin
 
                         <div class="form-group{{ $errors->has('avatar') ? ' has-error' : '' }}">
-                            <label for="avatar" class="col-md-4 control-label">Avatar</label>
+                            <label for="avatar" class="col-md-4 control-label">
+                                <span data-toggle="tooltip" data-placement="top" title="Square image (jpeg, png, bmp, gif, svg)">
+                                    Avatar
+                                </span>
+                            </label>
 
                             <div class="col-md-6">
                                 <input id="avatar" type="file" name="avatar">
@@ -59,7 +63,12 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name <small>*</small></label>
+                            <label for="name" class="col-md-4 control-label">
+                                <span data-toggle="tooltip" data-placement="top" title="Full name (e.g., John Doe)">
+                                    Name
+                                    <small>*</small>
+                                </span>
+                            </label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control" name="name" value="{{ old('name', $user->name) }}" required @if ($errors->isEmpty()) autofocus @endif>
@@ -211,7 +220,11 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('github') ? ' has-error' : '' }}">
-                            <label for="github" class="col-md-4 control-label">Github</label>
+                            <label for="github" class="col-md-4 control-label">
+                                <span data-toggle="tooltip" data-placement="top" title="Github username">
+                                    Github
+                                </span>
+                            </label>
 
                             <div class="col-md-6">
                                 <input id="github" type="text" class="form-control" name="github" value="{{ old('github', $user->github) }}">

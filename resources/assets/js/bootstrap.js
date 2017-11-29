@@ -15,6 +15,10 @@ try {
     window.$ = window.jQuery = require('jquery');
 
     require('bootstrap-sass');
+
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
 } catch (e) {}
 
 /**

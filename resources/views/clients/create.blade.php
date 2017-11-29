@@ -25,7 +25,12 @@
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('logo') ? ' has-error' : '' }}">
-                            <label for="logo" class="col-md-4 control-label">Logo <small>*</small></label>
+                            <label for="logo" class="col-md-4 control-label">
+                                <span data-toggle="tooltip" data-placement="top" title="Square image (jpeg, png, bmp, gif, svg)">
+                                    Logo
+                                    <small>*</small>
+                                </span>
+                            </label>
 
                             <div class="col-md-6">
                                 <input id="logo" type="file" name="logo" required>
@@ -53,7 +58,12 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('site') ? ' has-error' : '' }}">
-                            <label for="site" class="col-md-4 control-label">Site <small>*</small></label>
+                            <label for="site" class="col-md-4 control-label">
+                                <span data-toggle="tooltip" data-placement="top" title="Full url with schema (e.g., https://example.com)">
+                                    Site
+                                    <small>*</small>
+                                </span>
+                            </label>
 
                             <div class="col-md-6">
                                 <input id="site" type="text" class="form-control" name="site" value="{{ old('site') }}" required>
