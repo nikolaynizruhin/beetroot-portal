@@ -47,13 +47,24 @@ class UpdateUserTest extends TestCase
      */
     public function testOnlyUserCanUpdateOwnProfile()
     {
-        $owner = factory(User::class)->create();
+        $owner = factory(User::class)->create(['is_admin' => false]);
         $user = factory(User::class)->create(['is_admin' => false]);
+
+        $this->put(route('profile.update', $owner->id))
+            ->assertRedirect('login');
 
         $this->put(route('users.update', $owner->id))
             ->assertRedirect('login');
 
         $this->actingAs($user)
+            ->put(route('profile.update', $owner->id))
+            ->assertStatus(403);
+
+        $this->actingAs($user)
+            ->put(route('users.update', $owner->id))
+            ->assertStatus(403);
+
+        $this->actingAs($owner)
             ->put(route('users.update', $owner->id))
             ->assertStatus(403);
     }
@@ -127,7 +138,7 @@ class UpdateUserTest extends TestCase
         Image::shouldReceive('make->fit->save')->once();
 
         $inputAttributes = $this->getInputAttributes();
-        $resultAttributes = $this->getResultAttributes();
+        $resultAttributes = $this->getResultAttributesForAdmin();
 
         $this->actingAs($admin)
             ->put(route('users.update', $owner->id), $inputAttributes)
@@ -147,21 +158,14 @@ class UpdateUserTest extends TestCase
     {
         $owner = factory(User::class)->create(['is_admin' => false]);
 
-        Storage::fake('public');
-        Image::shouldReceive('make->fit->save')->once();
-
         $inputAttributes = $this->getInputAttributes();
-        $resultAttributes = $this->getResultAttributes();
-        $resultAttributes['email'] = $owner->email;
-        $resultAttributes['is_admin'] = false;
+        $resultAttributes = $this->getResultAttributesForEmployee();
 
         $this->actingAs($owner)
-            ->put(route('users.update', $owner->id), $inputAttributes)
+            ->put(route('profile.update', $owner->id), $inputAttributes)
             ->assertSessionHas('status', 'The employee was successfully updated!');
 
         $this->assertDatabaseHas('users', $resultAttributes);
-
-        Storage::disk('public')->assertExists('avatars/' . $this->file->hashName());
     }
 
     /**
@@ -171,15 +175,15 @@ class UpdateUserTest extends TestCase
      */
     public function testUserFieldsAreRequired()
     {
-        $owner = factory(User::class)->create(['is_admin' => false]);
+        $admin = factory(User::class)->states('admin')->create();
 
-        $this->actingAs($owner)
-            ->put(route('users.update', $owner->id))
+        $this->actingAs($admin)
+            ->put(route('users.update', $admin->id))
             ->assertSessionHasErrors(['name', 'position', 'birthday', 'slack', 'client_id', 'office_id']);
     }
 
     /**
-     * Get input attributes.
+     * Get input attributes for admin.
      *
      * @return array
      */
@@ -191,13 +195,27 @@ class UpdateUserTest extends TestCase
     }
 
     /**
-     * Get result attributes.
+     * Get result attributes for admin.
      *
      * @return array
      */
-    private function getResultAttributes()
+    private function getResultAttributesForAdmin()
     {
         $this->userUtility->setAttribute('avatar', 'avatars/' . $this->file->hashName());
+
+        return $this->userUtility->getAttributes();
+    }
+
+    /**
+     * Get result attributes for employee.
+     *
+     * @return array
+     */
+    private function getResultAttributesForEmployee()
+    {
+        $this->userUtility->removeAttributes([
+            'name', 'email', 'position', 'birthday', 'is_admin', 'slack', 'avatar', 'client_id', 'office_id'
+        ]);
 
         return $this->userUtility->getAttributes();
     }

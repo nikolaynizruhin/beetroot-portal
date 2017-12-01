@@ -58,14 +58,14 @@
                                 {{ user.client.name }}
                             </p>
                             <p>
-                                <i aria-hidden="true" class="fa fa-map-marker fa-fw"></i>
-                                &nbsp;
-                                {{ user.office.city }}
-                            </p>
-                            <p>
                                 <i aria-hidden="true" class="fa fa-birthday-cake fa-fw"></i>
                                 &nbsp;
                                 {{ user.birthday | date}}
+                            </p>
+                            <p>
+                                <i aria-hidden="true" class="fa fa-map-marker fa-fw"></i>
+                                &nbsp;
+                                {{ user.office.city }}
                             </p>
                         </div>
                     </div>

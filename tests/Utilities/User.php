@@ -20,9 +20,11 @@ class User
     {
         $attributes = factory(\App\User::class)->states('admin')->make()->toArray();
 
-        unset($attributes['password']);
-        unset($attributes['avatar']);
-        unset($attributes['remember_token']);
+        unset(
+            $attributes['avatar'], 
+            $attributes['password'], 
+            $attributes['remember_token']
+        );
 
         $this->attributes = $attributes;
     }
@@ -42,7 +44,7 @@ class User
      *
      * @param  string  $key
      * @param  string|object  $value
-     * @return array
+     * @return void
      */
     public function setAttribute($key, $value)
     {
@@ -53,10 +55,23 @@ class User
      * Remove attribute.
      *
      * @param  string $key
-     * @return array
+     * @return void
      */
     public function removeAttribute($key)
     {
         unset($this->attributes[$key]);
+    }
+
+    /**
+     * Remove attributes.
+     *
+     * @param  array $keys
+     * @return void
+     */
+    public function removeAttributes($keys)
+    {
+        foreach ($keys as $key) {
+            unset($this->attributes[$key]);
+        }
     }
 }

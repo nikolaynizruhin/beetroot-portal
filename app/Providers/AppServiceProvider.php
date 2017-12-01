@@ -19,6 +19,10 @@ class AppServiceProvider extends ServiceProvider
             return auth()->user()->is_admin;
         });
 
+        Blade::if('employee', function () {
+            return ! auth()->user()->is_admin;
+        });
+
         Blade::if('routeis', function ($route) {
             return Route::currentRouteName() === $route;
         });

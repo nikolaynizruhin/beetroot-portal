@@ -55,6 +55,18 @@ class UserPolicy
      */
     public function update(User $signedInUser, User $user)
     {
+        return false;
+    }
+
+    /**
+     * Determine whether the user can update own profile.
+     *
+     * @param  \App\User  $signedInUser
+     * @param  \App\User  $user
+     * @return mixed
+     */
+    public function updateProfile(User $signedInUser, User $user)
+    {
         return $signedInUser->id === $user->id;
     }
 

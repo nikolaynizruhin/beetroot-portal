@@ -90684,24 +90684,24 @@ var render = function() {
                 _vm._v(" "),
                 _c("p", [
                   _c("i", {
-                    staticClass: "fa fa-map-marker fa-fw",
-                    attrs: { "aria-hidden": "true" }
-                  }),
-                  _vm._v(
-                    "\n                             \n                            " +
-                      _vm._s(_vm.user.office.city) +
-                      "\n                        "
-                  )
-                ]),
-                _vm._v(" "),
-                _c("p", [
-                  _c("i", {
                     staticClass: "fa fa-birthday-cake fa-fw",
                     attrs: { "aria-hidden": "true" }
                   }),
                   _vm._v(
                     "\n                             \n                            " +
                       _vm._s(_vm._f("date")(_vm.user.birthday)) +
+                      "\n                        "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("p", [
+                  _c("i", {
+                    staticClass: "fa fa-map-marker fa-fw",
+                    attrs: { "aria-hidden": "true" }
+                  }),
+                  _vm._v(
+                    "\n                             \n                            " +
+                      _vm._s(_vm.user.office.city) +
                       "\n                        "
                   )
                 ])
