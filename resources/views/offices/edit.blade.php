@@ -23,6 +23,7 @@
                         {{ method_field('PUT') }}
                         {{ csrf_field() }}
 
+                        <!-- Country -->
                         <div class="form-group{{ $errors->has('country') ? ' has-error' : '' }}">
                             <label for="country" class="col-md-4 control-label">
                                 Country <small>*</small>
@@ -51,6 +52,7 @@
                             </div>
                         </div>
 
+                        <!-- City -->
                         <div class="form-group{{ $errors->has('city') ? ' has-error' : '' }}">
                             <label for="city" class="col-md-4 control-label">
                                 City <small>*</small>
@@ -73,6 +75,7 @@
                             </div>
                         </div>
 
+                        <!-- Address -->
                         <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
                             <label for="address" class="col-md-4 control-label">
                                 Address <small>*</small>
@@ -95,6 +98,7 @@
                             </div>
                         </div>
 
+                        <!-- Link -->
                         <div class="form-group{{ $errors->has('link') ? ' has-error' : '' }}">
                             <label for="link" class="col-md-4 control-label">
                                 <span data-toggle="tooltip"
@@ -121,6 +125,7 @@
                             </div>
                         </div>
 
+                        <!-- Update Button -->
                         <div class="form-group">
                             <div class="col-md-3 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary btn-block">
@@ -128,6 +133,7 @@
                                 </button>
                             </div>
                             @admin
+                                <!-- Delete Button -->
                                 <div class="col-md-3 mt-1">
                                     <button type="submit"
                                             class="btn btn-default btn-block"
@@ -140,6 +146,7 @@
                             @endadmin
                         </div>
                     </form>
+
                     <form id="delete-form"
                           class="form-horizontal"
                           method="POST"

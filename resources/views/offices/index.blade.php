@@ -14,6 +14,8 @@
                     <div class="panel-body list-group">
                         @foreach ($offices as $office)
                             <div class="row list-group-item">
+
+                                <!-- Office Map -->
                                 <div class="col-sm-8">
                                     <iframe width="100%"
                                             height="350"
@@ -23,6 +25,8 @@
                                             allowfullscreen>
                                     </iframe>
                                 </div>
+
+                                <!-- Office Info -->
                                 <div class="col-sm-4">
                                     <p>
                                         <i class="fa fa-map-marker fa-fw" aria-hidden="true"></i>

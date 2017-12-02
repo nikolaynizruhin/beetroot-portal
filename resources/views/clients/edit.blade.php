@@ -17,6 +17,7 @@
 
                     @include('partials.flash')
 
+                    <!-- Client Logo -->
                     <img src="{{ asset('storage/' . $client->logo) }}"
                          alt="logo"
                          class="img-circle img-thumbnail img-responsive center-block"
@@ -32,6 +33,7 @@
                         {{ method_field('PUT') }}
                         {{ csrf_field() }}
 
+                        <!-- Logo -->
                         <div class="form-group{{ $errors->has('logo') ? ' has-error' : '' }}">
                             <label for="logo" class="col-md-4 control-label">
                                 <span data-toggle="tooltip"
@@ -52,6 +54,7 @@
                             </div>
                         </div>
 
+                        <!-- Name -->
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">
                                 Name <small>*</small>
@@ -74,6 +77,7 @@
                             </div>
                         </div>
 
+                        <!-- Site -->
                         <div class="form-group{{ $errors->has('site') ? ' has-error' : '' }}">
                             <label for="site" class="col-md-4 control-label">
                                 <span data-toggle="tooltip"
@@ -100,6 +104,7 @@
                             </div>
                         </div>
 
+                        <!-- Country -->
                         <div class="form-group{{ $errors->has('country') ? ' has-error' : '' }}">
                             <label for="country" class="col-md-4 control-label">
                                 Country <small>*</small>
@@ -128,6 +133,7 @@
                             </div>
                         </div>
 
+                        <!-- Description -->
                         <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
                             <label for="description" class="col-md-4 control-label">
                                 Description <small>*</small>
@@ -135,10 +141,9 @@
 
                             <div class="col-md-6">
                                 <textarea class="form-control"
-                                          rows="3" name="description"
-                                          required>
-                                    {{ old('description', $client->description) }}
-                                </textarea>
+                                          rows="3"
+                                          name="description"
+                                          required>{{ old('description', $client->description) }}</textarea>
 
                                 @if ($errors->has('description'))
                                     <span class="help-block">
@@ -148,6 +153,7 @@
                             </div>
                         </div>
 
+                        <!-- Update Button -->
                         <div class="form-group">
                             <div class="col-md-3 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary btn-block">
@@ -155,6 +161,7 @@
                                 </button>
                             </div>
                             @admin
+                                <!-- Delete Button -->
                                 <div class="col-md-3 mt-1">
                                     <button type="submit"
                                             class="btn btn-default btn-block"
@@ -167,6 +174,7 @@
                             @endadmin
                         </div>
                     </form>
+
                     <form id="delete-form"
                           class="form-horizontal"
                           method="POST"
