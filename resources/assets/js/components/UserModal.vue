@@ -1,5 +1,9 @@
 <template>
-    <div class="modal fade" :id="`userModal${user.id}`" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade"
+         :id="`userModal${user.id}`"
+         tabindex="-1"
+         role="dialog"
+         aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-body">
@@ -7,7 +11,11 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
 
-                    <img :src="`storage/${user.avatar}`" alt="Avatar" class="img-thumbnail img-circle img-responsive center-block" width="150" height="150">
+                    <img :src="`storage/${user.avatar}`"
+                         alt="Avatar"
+                         class="img-thumbnail img-circle img-responsive center-block"
+                         width="150"
+                         height="150">
 
                     <h3 class="text-center">{{ user.name }}</h3>
 

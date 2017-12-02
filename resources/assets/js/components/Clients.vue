@@ -12,8 +12,12 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-sm-3">
-                                <select-filter default-value="All Countries" :field.sync="country" :list="countries"></select-filter>
+                                <select-filter default-value="All Countries"
+                                               :field.sync="country"
+                                               :list="countries">
+                                </select-filter>
                             </div>
+
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <label for="name" class="sr-only">Name</label>

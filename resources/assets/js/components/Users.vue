@@ -12,18 +12,34 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-sm-3">
-                                <select-filter default-value="All Cities" :field.sync="office" :list="offices"></select-filter>
+                                <select-filter default-value="All Cities"
+                                               :field.sync="office"
+                                               :list="offices">
+                                </select-filter>
                             </div>
+
                             <div class="col-sm-3">
-                                <select-filter default-value="All Positions" :field.sync="position" :list="positions"></select-filter>
+                                <select-filter default-value="All Positions"
+                                               :field.sync="position"
+                                               :list="positions">
+                                </select-filter>
                             </div>
+
                             <div class="col-sm-3">
-                                <select-filter default-value="All Clients" :field.sync="client" :list="clients"></select-filter>
+                                <select-filter default-value="All Clients"
+                                               :field.sync="client"
+                                               :list="clients">
+                                </select-filter>
                             </div>
+
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <label for="name" class="sr-only">Name</label>
-                                    <input type="text" class="form-control" id="name" placeholder="Name" v-model="name">
+                                    <input type="text"
+                                           class="form-control"
+                                           id="name"
+                                           placeholder="Name"
+                                           v-model="name">
                                 </div>
                             </div>
                         </div>

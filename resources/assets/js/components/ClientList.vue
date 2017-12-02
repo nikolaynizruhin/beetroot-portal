@@ -2,7 +2,11 @@
     <div class="list-group">
         <div class="row list-group-item" v-for="client in clients" :key="client.id">
             <div class="col-sm-4">
-                <img :src="`storage/${client.logo}`" alt="Logo" class="img-thumbnail img-circle img-responsive center-block" width="150" height="150">
+                <img :src="`storage/${client.logo}`"
+                     alt="Logo"
+                     class="img-thumbnail img-circle img-responsive center-block"
+                     width="150"
+                     height="150">
             </div>
             <div class="col-sm-8">
                 <div class="row">

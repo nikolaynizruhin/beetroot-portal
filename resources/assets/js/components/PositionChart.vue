@@ -11,7 +11,13 @@
             return {
                 labels: [],
                 data: [],
-                backgroundColor: ['#BC204B', '#7C8483', '#71A2B6', '#60B2E5', '#53F4FF'],
+                backgroundColor: [
+                    '#BC204B',
+                    '#7C8483',
+                    '#71A2B6',
+                    '#60B2E5',
+                    '#53F4FF'
+                ],
             }
         },
         mounted() {
