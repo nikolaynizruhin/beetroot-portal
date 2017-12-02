@@ -367,26 +367,7 @@
                                     Update
                                 </button>
                             </div>
-                            @admin
-                                <!-- Delete Button -->
-                                <div class="col-md-3 mt-1">
-                                    <button type="submit" class="btn btn-default btn-block"
-                                            onclick="event.preventDefault();
-                                                if (confirm('Are you sure you want to delete an employee?'))
-                                                document.getElementById('delete-form').submit();">
-                                        Delete
-                                    </button>
-                                </div>
-                            @endadmin
                         </div>
-                    </form>
-
-                    <form id="delete-form"
-                          class="form-horizontal"
-                          method="POST"
-                          action="{{ route('users.destroy', $user->id) }}">
-                        {{ method_field('DELETE') }}
-                        {{ csrf_field() }}
                     </form>
 
                     <!-- Change Password -->
@@ -444,6 +425,32 @@
                             </div>
                         </div>
                     </form>
+
+                    @admin
+                        <!-- Delete Account -->
+                        <h4>Delete Account</h4>
+                        <hr>
+
+                        <form id="delete-form"
+                              class="form-horizontal"
+                              method="POST"
+                              action="{{ route('users.destroy', $user->id) }}">
+                            {{ method_field('DELETE') }}
+                            {{ csrf_field() }}
+
+                            <div class="form-group">
+                                <!-- Delete Button -->
+                                <div class="col-md-3 col-md-offset-4">
+                                    <button type="submit" class="btn btn-default btn-block"
+                                            onclick="event.preventDefault();
+                                                    if (confirm('Are you sure you want to delete an employee?'))
+                                                    document.getElementById('delete-form').submit();">
+                                        Delete
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    @endadmin
                 </div>
             </div>
         </div>
