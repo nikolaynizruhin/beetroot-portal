@@ -15,6 +15,7 @@
 
                     @include('partials.flash')
 
+                    <!-- Profile Avatar -->
                     <img src="{{ asset('storage/avatars/default.png') }}"
                          alt="avatar"
                          class="img-circle img-thumbnail img-responsive center-block"
@@ -29,6 +30,7 @@
                           enctype="multipart/form-data">
                         {{ csrf_field() }}
 
+                        <!-- Is Admin -->
                         <div class="form-group{{ $errors->has('is_admin') ? ' has-error' : '' }}">
                             <div class="col-md-6 col-md-offset-4">
                                 <div class="checkbox">
@@ -49,6 +51,7 @@
                             </div>
                         </div>
 
+                        <!-- Avatar -->
                         <div class="form-group{{ $errors->has('avatar') ? ' has-error' : '' }}">
                             <label for="avatar" class="col-md-4 control-label">
                                 <span data-toggle="tooltip"
@@ -70,6 +73,7 @@
                             </div>
                         </div>
 
+                        <!-- Name -->
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">
                                 <span data-toggle="tooltip"
@@ -97,6 +101,7 @@
                             </div>
                         </div>
 
+                        <!-- Email -->
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">
                                 Email <small>*</small>
@@ -118,6 +123,7 @@
                             </div>
                         </div>
 
+                        <!-- Position -->
                         <div class="form-group{{ $errors->has('position') ? ' has-error' : '' }}">
                             <label for="position" class="col-md-4 control-label">
                                 Position <small>*</small>
@@ -146,6 +152,7 @@
                             </div>
                         </div>
 
+                        <!-- Client -->
                         <div class="form-group{{ $errors->has('client_id') ? ' has-error' : '' }}">
                             <label for="client-id" class="col-md-4 control-label">
                                 Client <small>*</small>
@@ -174,6 +181,7 @@
                             </div>
                         </div>
 
+                        <!-- Office -->
                         <div class="form-group{{ $errors->has('office_id') ? ' has-error' : '' }}">
                             <label for="office-id" class="col-md-4 control-label">
                                 Office <small>*</small>
@@ -202,6 +210,7 @@
                             </div>
                         </div>
 
+                        <!-- Birthday -->
                         <div class="form-group{{ $errors->has('birthday') ? ' has-error' : '' }}">
                             <label for="birthday" class="col-md-4 control-label">
                                 Birthday <small>*</small>
@@ -223,6 +232,7 @@
                             </div>
                         </div>
 
+                        <!-- Phone -->
                         <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
                             <label for="phone" class="col-md-4 control-label">Phone</label>
 
@@ -241,6 +251,7 @@
                             </div>
                         </div>
 
+                        <!-- Slack -->
                         <div class="form-group{{ $errors->has('slack') ? ' has-error' : '' }}">
                             <label for="slack" class="col-md-4 control-label">
                                 Slack <small>*</small>
@@ -262,6 +273,7 @@
                             </div>
                         </div>
 
+                        <!-- Skype -->
                         <div class="form-group{{ $errors->has('skype') ? ' has-error' : '' }}">
                             <label for="skype" class="col-md-4 control-label">Skype</label>
 
@@ -280,6 +292,7 @@
                             </div>
                         </div>
 
+                        <!-- Github -->
                         <div class="form-group{{ $errors->has('github') ? ' has-error' : '' }}">
                             <label for="github" class="col-md-4 control-label">
                                 <span data-toggle="tooltip"
@@ -304,13 +317,12 @@
                             </div>
                         </div>
 
+                        <!-- Bio -->
                         <div class="form-group{{ $errors->has('bio') ? ' has-error' : '' }}">
                             <label for="bio" class="col-md-4 control-label">Bio</label>
 
                             <div class="col-md-6">
-                                <textarea class="form-control" rows="3" name="bio">
-                                    {{ old('bio') }}
-                                </textarea>
+                                <textarea class="form-control" rows="3" name="bio">{{ old('bio') }}</textarea>
 
                                 @if ($errors->has('bio'))
                                     <span class="help-block">
@@ -320,6 +332,7 @@
                             </div>
                         </div>
 
+                        <!-- Password -->
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label">
                                 Password <small>*</small>
@@ -340,6 +353,7 @@
                             </div>
                         </div>
 
+                        <!-- Confirm Password -->
                         <div class="form-group">
                             <label for="password-confirm" class="col-md-4 control-label">
                                 Confirm Password <small>*</small>
@@ -354,6 +368,7 @@
                             </div>
                         </div>
 
+                        <!-- Create Button -->
                         <div class="form-group">
                             <div class="col-md-3 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary btn-block">

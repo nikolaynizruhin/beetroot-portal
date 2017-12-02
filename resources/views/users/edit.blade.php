@@ -15,9 +15,11 @@
 
                     @include('partials.flash')
 
+                    <!-- Profile -->
                     <h4>Profile</h4>
                     <hr>
 
+                    <!-- Profile Avatar -->
                     <img src="{{ asset('storage/' . $user->avatar) }}"
                          alt="avatar"
                          class="img-circle img-thumbnail img-responsive center-block"
@@ -28,16 +30,17 @@
 
                     <form class="form-horizontal"
                           method="POST"
+                          enctype="multipart/form-data"
                           action="{{
                               Auth::user()->is_admin ?
                                   route('users.update', $user->id) :
                                   route('profile.update', $user->id)
-                          }}"
-                          enctype="multipart/form-data">
+                          }}">
                         {{ method_field('PUT') }}
                         {{ csrf_field() }}
 
                         @admin
+                            <!-- Is Admin -->
                             <div class="form-group{{ $errors->has('is_admin') ? ' has-error' : '' }}">
                                 <div class="col-md-6 col-md-offset-4">
                                     <div class="checkbox">
@@ -58,6 +61,7 @@
                                 </div>
                             </div>
 
+                            <!-- Avatar -->
                             <div class="form-group{{ $errors->has('avatar') ? ' has-error' : '' }}">
                                 <label for="avatar" class="col-md-4 control-label">
                                     <span data-toggle="tooltip"
@@ -79,6 +83,7 @@
                             </div>
                         @endadmin
 
+                        <!-- Name -->
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">
                                 <span data-toggle="tooltip"
@@ -107,30 +112,30 @@
                             </div>
                         </div>
 
-                        @admin
-                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                <label for="email" class="col-md-4 control-label">
-                                    Email <small>*</small>
-                                </label>
+                        <!-- Email -->
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label for="email" class="col-md-4 control-label">
+                                Email <small>*</small>
+                            </label>
 
-                                <div class="col-md-6">
-                                    <input id="email"
-                                           type="email"
-                                           class="form-control"
-                                           name="email"
-                                           value="{{ old('email', $user->email) }}"
-                                           required
-                                           @employee disabled @endemployee>
+                            <div class="col-md-6">
+                                <input id="email"
+                                       type="email"
+                                       class="form-control"
+                                       name="email"
+                                       value="{{ old('email', $user->email) }}"
+                                       required
+                                       @employee disabled @endemployee>
 
-                                    @if ($errors->has('email'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('email') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
                             </div>
-                        @endadmin
+                        </div>
 
+                        <!-- Position -->
                         <div class="form-group{{ $errors->has('position') ? ' has-error' : '' }}">
                             <label for="position" class="col-md-4 control-label">
                                 Position <small>*</small>
@@ -163,6 +168,7 @@
                             </div>
                         </div>
 
+                        <!-- Client -->
                         <div class="form-group{{ $errors->has('client_id') ? ' has-error' : '' }}">
                             <label for="client-id" class="col-md-4 control-label">
                                 Client <small>*</small>
@@ -195,6 +201,7 @@
                             </div>
                         </div>
 
+                        <!-- Office -->
                         <div class="form-group{{ $errors->has('office_id') ? ' has-error' : '' }}">
                             <label for="office-id" class="col-md-4 control-label">
                                 Office <small>*</small>
@@ -227,6 +234,7 @@
                             </div>
                         </div>
 
+                        <!-- Birthday -->
                         <div class="form-group{{ $errors->has('birthday') ? ' has-error' : '' }}">
                             <label for="birthday" class="col-md-4 control-label">
                                 Birthday <small>*</small>
@@ -249,6 +257,7 @@
                             </div>
                         </div>
 
+                        <!-- Phone -->
                         <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
                             <label for="phone" class="col-md-4 control-label">Phone</label>
 
@@ -267,6 +276,7 @@
                             </div>
                         </div>
 
+                        <!-- Slack -->
                         <div class="form-group{{ $errors->has('slack') ? ' has-error' : '' }}">
                             <label for="slack" class="col-md-4 control-label">
                                 Slack <small>*</small>
@@ -289,6 +299,7 @@
                             </div>
                         </div>
 
+                        <!-- Skype -->
                         <div class="form-group{{ $errors->has('skype') ? ' has-error' : '' }}">
                             <label for="skype" class="col-md-4 control-label">
                                 Skype
@@ -309,6 +320,7 @@
                             </div>
                         </div>
 
+                        <!-- Github -->
                         <div class="form-group{{ $errors->has('github') ? ' has-error' : '' }}">
                             <label for="github" class="col-md-4 control-label">
                                 <span data-toggle="tooltip"
@@ -333,13 +345,12 @@
                             </div>
                         </div>
 
+                        <!-- Bio -->
                         <div class="form-group{{ $errors->has('bio') ? ' has-error' : '' }}">
                             <label for="bio" class="col-md-4 control-label">Bio</label>
 
                             <div class="col-md-6">
-                                <textarea class="form-control" rows="3" name="bio">
-                                    {{ old('bio', $user->bio) }}
-                                </textarea>
+                                <textarea class="form-control" rows="3" name="bio">{{ old('bio', $user->bio) }}</textarea>
 
                                 @if ($errors->has('bio'))
                                     <span class="help-block">
@@ -349,6 +360,7 @@
                             </div>
                         </div>
 
+                        <!-- Update Button -->
                         <div class="form-group">
                             <div class="col-md-3 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary btn-block">
@@ -356,6 +368,7 @@
                                 </button>
                             </div>
                             @admin
+                                <!-- Delete Button -->
                                 <div class="col-md-3 mt-1">
                                     <button type="submit" class="btn btn-default btn-block"
                                             onclick="event.preventDefault();
@@ -367,6 +380,7 @@
                             @endadmin
                         </div>
                     </form>
+
                     <form id="delete-form"
                           class="form-horizontal"
                           method="POST"
@@ -375,6 +389,7 @@
                         {{ csrf_field() }}
                     </form>
 
+                    <!-- Change Password -->
                     <h4>Change Password</h4>
                     <hr>
 
@@ -384,13 +399,18 @@
                         {{ method_field('PUT') }}
                         {{ csrf_field() }}
 
+                        <!-- New Password -->
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label">
                                 New Password <small>*</small>
                             </label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
+                                <input id="password"
+                                       type="password"
+                                       class="form-control"
+                                       name="password"
+                                       required>
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">
@@ -400,6 +420,7 @@
                             </div>
                         </div>
 
+                        <!-- Confirm New Password -->
                         <div class="form-group">
                             <label for="password-confirm" class="col-md-4 control-label">
                                 Confirm New Password <small>*</small>
@@ -414,6 +435,7 @@
                             </div>
                         </div>
 
+                        <!-- Update Password Button -->
                         <div class="form-group">
                             <div class="col-md-3 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary btn-block">

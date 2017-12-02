@@ -13,6 +13,8 @@
 
                 <div class="panel-body">
                     <div class="row text-center">
+
+                        <!-- Total Employees -->
                         <div class="col-md-4">
                             <a href="{{ route('users.index') }}" class="dashboard-link">
                                 <div class="panel panel-default dashboard-panel">
@@ -23,6 +25,8 @@
                                 </div>
                             </a>
                         </div>
+
+                        <!-- Total Clients -->
                         <div class="col-md-4">
                             <a href="{{ route('clients.index') }}" class="dashboard-link">
                                 <div class="panel panel-default dashboard-panel">
@@ -33,6 +37,8 @@
                                 </div>
                             </a>
                         </div>
+
+                        <!-- Total Offices -->
                         <div class="col-md-4">
                             <a href="{{ route('offices.index') }}" class="dashboard-link">
                                 <div class="panel panel-default dashboard-panel">
@@ -44,6 +50,8 @@
                             </a>
                         </div>
                     </div>
+
+                    <!-- Top Positions -->
                     <hr>
                     <h3 class="text-center">TOP 5 POSITIONS</h3>
                     <hr>
@@ -52,6 +60,8 @@
                             <position-chart :positions="{{ $positions }}"></position-chart>
                         </div>
                     </div>
+
+                    <!-- Clients -->
                     <hr>
                     <h3 class="text-center">CLIENTS</h3>
                     <hr>
