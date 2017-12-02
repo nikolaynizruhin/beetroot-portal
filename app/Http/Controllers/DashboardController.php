@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Client;
 use App\Office;
-use Illuminate\Http\Request;
 use App\Queries\ClientCountQuery;
 use App\Queries\PositionCountQuery;
 

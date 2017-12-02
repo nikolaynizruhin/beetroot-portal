@@ -24,21 +24,22 @@ class StoreUser extends FormRequest
      */
     public function rules()
     {
+
         return [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'is_admin' => 'boolean',
             'position' => 'required|string|max:255',
             'birthday' => 'required|date',
-            'phone' => 'nullable|string|max:255',
             'avatar' => 'required|image',
-            'bio' => 'nullable|string|max:255',
-            'skype' => 'nullable|string|max:255',
             'slack' => 'required|string|max:255|unique:users',
-            'github' => 'nullable|string|max:255',
             'client_id' => 'required|numeric|exists:clients,id',
             'office_id' => 'required|numeric|exists:offices,id',
-            'password' => 'required|string|min:6|confirmed'
+            'password' => 'required|string|min:6|confirmed',
+            'is_admin' => 'boolean',
+            'github' => 'nullable|string|max:255',
+            'skype' => 'nullable|string|max:255',
+            'bio' => 'nullable|string|max:255',
+            'phone' => 'nullable|string|max:255'
         ];
     }
 }

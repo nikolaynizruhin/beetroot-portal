@@ -10,7 +10,7 @@ class Image
      * Fit image.
      *
      * @param  string  $path
-     * @return array
+     * @return string
      */
     public static function fit($path)
     {

@@ -97,7 +97,7 @@ class User extends Authenticatable
     public function updateFromRequest(UpdateUser $request)
     {
         $attributes = request([
-            'name', 'position', 'birthday', 'phone', 'bio', 'slack', 'skype', 'github', 'client_id', 'office_id'
+            'name', 'email', 'position', 'birthday', 'phone', 'bio', 'slack', 'skype', 'github', 'client_id', 'office_id'
         ]);
 
         if ($request->hasFile('avatar')) {
@@ -105,7 +105,6 @@ class User extends Authenticatable
         }
 
         $attributes['is_admin'] = (bool) $request->is_admin;
-        $attributes['email'] = $request->email;
 
         return $this->update($attributes);
     }

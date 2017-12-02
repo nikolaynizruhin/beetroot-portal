@@ -27,18 +27,18 @@ class UpdateUser extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'email' => 'string|email|max:255',
-            'is_admin' => 'boolean',
+            'email' => 'required|email|max:255',
             'position' => 'required|string|max:255',
             'birthday' => 'required|date',
-            'phone' => 'nullable|string|max:255',
+            'slack' => 'required|string|max:255',
+            'client_id' => 'required|numeric|exists:clients,id',
+            'office_id' => 'required|numeric|exists:offices,id',
+            'is_admin' => 'boolean',
             'avatar' => 'image',
+            'phone' => 'nullable|string|max:255',
             'bio' => 'nullable|string|max:255',
             'skype' => 'nullable|string|max:255',
-            'slack' => 'required|string|max:255',
-            'github' => 'nullable|string|max:255',
-            'client_id' => 'required|numeric|exists:clients,id',
-            'office_id' => 'required|numeric|exists:offices,id'
+            'github' => 'nullable|string|max:255'
         ];
     }
 }

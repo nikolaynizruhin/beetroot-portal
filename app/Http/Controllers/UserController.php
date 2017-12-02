@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Client;
 use App\Office;
-use Illuminate\Http\Request;
 use App\Http\Requests\StoreUser;
 use App\Http\Requests\UpdateUser;
 
@@ -36,6 +35,7 @@ class UserController extends Controller
     /**
      * Show the form for creating a new user.
      *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -62,6 +62,7 @@ class UserController extends Controller
      * Show the form for editing the specified user.
      *
      * @param  \App\User  $user
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      * @return \Illuminate\Http\Response
      */
     public function edit(User $user)
@@ -89,6 +90,7 @@ class UserController extends Controller
      * Remove the specified user from storage.
      *
      * @param  \App\User  $user
+     * @throws \Illuminate\Auth\Access\AuthorizationException | \Exception
      * @return \Illuminate\Http\Response
      */
     public function destroy(User $user)

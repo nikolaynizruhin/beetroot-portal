@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Office;
-use Illuminate\Http\Request;
 use App\Http\Requests\StoreOffice;
 
 class OfficeController extends Controller
@@ -33,6 +32,7 @@ class OfficeController extends Controller
     /**
      * Show the form for creating a new office.
      *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -58,6 +58,7 @@ class OfficeController extends Controller
     /**
      * Show the form for editing the specified office.
      *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      * @param  \App\Office  $office
      * @return \Illuminate\Http\Response
      */
@@ -85,6 +86,7 @@ class OfficeController extends Controller
     /**
      * Remove the specified office from storage.
      *
+     * @throws \Illuminate\Auth\Access\AuthorizationException | \Exception
      * @param  \App\Office  $office
      * @return \Illuminate\Http\Response
      */
