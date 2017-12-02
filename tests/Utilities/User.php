@@ -18,7 +18,9 @@ class User
      */
     public function __construct()
     {
-        $attributes = factory(\App\User::class)->states('admin')->make()->toArray();
+        $attributes = factory(\App\User::class)
+            ->states('admin')
+            ->make()->toArray();
 
         unset(
             $attributes['avatar'], 

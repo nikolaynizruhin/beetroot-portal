@@ -179,7 +179,9 @@ class UpdateUserTest extends TestCase
 
         $this->actingAs($admin)
             ->put(route('users.update', $admin->id))
-            ->assertSessionHasErrors(['name', 'email', 'position', 'birthday', 'slack', 'client_id', 'office_id']);
+            ->assertSessionHasErrors([
+                'name', 'email', 'position', 'birthday', 'slack', 'client_id', 'office_id'
+            ]);
     }
 
     /**

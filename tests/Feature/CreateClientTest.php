@@ -117,7 +117,9 @@ class CreateClientTest extends TestCase
 
         $this->actingAs($admin)
             ->post(route('clients.store'))
-            ->assertSessionHasErrors(['name', 'logo', 'country', 'description', 'site']);
+            ->assertSessionHasErrors([
+                'name', 'logo', 'country', 'description', 'site'
+            ]);
     }
 
     /**
