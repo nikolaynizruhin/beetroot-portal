@@ -76,9 +76,7 @@ class User extends Authenticatable
      */
     public static function createFromRequest(StoreUser $request)
     {
-        $attributes = request([
-            'name', 'email', 'position', 'birthday', 'phone', 'bio', 'slack', 'skype', 'github', 'client_id', 'office_id'
-        ]);
+        $attributes = request(static::getStoreAttributes());
 
         $attributes['avatar'] = Image::fit($request->file('avatar')->store('avatars'));
         $attributes['remember_token'] = str_random(10);
@@ -96,9 +94,7 @@ class User extends Authenticatable
      */
     public function updateFromRequest(UpdateUser $request)
     {
-        $attributes = request([
-            'name', 'email', 'position', 'birthday', 'phone', 'bio', 'slack', 'skype', 'github', 'client_id', 'office_id'
-        ]);
+        $attributes = request(static::getStoreAttributes());
 
         if ($request->hasFile('avatar')) {
             $attributes['avatar'] = Image::fit($request->file('avatar')->store('avatars'));
@@ -107,5 +103,27 @@ class User extends Authenticatable
         $attributes['is_admin'] = (bool) $request->is_admin;
 
         return $this->update($attributes);
+    }
+
+    /**
+     * Get attributes
+     *
+     * @return array
+     */
+    public static function getStoreAttributes()
+    {
+        return [
+            'name',
+            'email',
+            'position',
+            'birthday',
+            'phone',
+            'bio',
+            'slack',
+            'skype',
+            'github',
+            'client_id',
+            'office_id'
+        ];
     }
 }
