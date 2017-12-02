@@ -18,11 +18,22 @@
                     <h4>Profile</h4>
                     <hr>
 
-                    <img src="{{ asset('storage/' . $user->avatar) }}" alt="avatar" class="img-circle img-thumbnail img-responsive center-block" height="150" width="150">
+                    <img src="{{ asset('storage/' . $user->avatar) }}"
+                         alt="avatar"
+                         class="img-circle img-thumbnail img-responsive center-block"
+                         height="150"
+                         width="150">
 
                     <br>
 
-                    <form class="form-horizontal" method="POST" action="{{ Auth::user()->is_admin ? route('users.update', $user->id) : route('profile.update', $user->id) }}" enctype="multipart/form-data">
+                    <form class="form-horizontal"
+                          method="POST"
+                          action="{{
+                              Auth::user()->is_admin ?
+                                  route('users.update', $user->id) :
+                                  route('profile.update', $user->id)
+                          }}"
+                          enctype="multipart/form-data">
                         {{ method_field('PUT') }}
                         {{ csrf_field() }}
 
@@ -31,7 +42,11 @@
                                 <div class="col-md-6 col-md-offset-4">
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" name="is_admin" value="1" {{ old('is_admin', $user->is_admin) ? 'checked' : '' }}> Admin
+                                            <input type="checkbox"
+                                                   name="is_admin"
+                                                   value="1"
+                                                   {{ old('is_admin', $user->is_admin) ? 'checked' : '' }}>
+                                            Admin
                                         </label>
 
                                         @if ($errors->has('is_admin'))
@@ -45,7 +60,9 @@
 
                             <div class="form-group{{ $errors->has('avatar') ? ' has-error' : '' }}">
                                 <label for="avatar" class="col-md-4 control-label">
-                                    <span data-toggle="tooltip" data-placement="top" title="Square image (jpeg, png, bmp, gif, svg)">
+                                    <span data-toggle="tooltip"
+                                          data-placement="top"
+                                          title="Square image (jpeg, png, bmp, gif, svg)">
                                         Avatar
                                     </span>
                                 </label>
@@ -64,14 +81,23 @@
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">
-                                <span data-toggle="tooltip" data-placement="top" title="Full name (e.g., John Doe)">
+                                <span data-toggle="tooltip"
+                                      data-placement="top"
+                                      title="Full name (e.g., John Doe)">
                                     Name
                                     <small>*</small>
                                 </span>
                             </label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name', $user->name) }}" required @if ($errors->isEmpty()) autofocus @endif @employee disabled @endemployee>
+                                <input id="name"
+                                       type="text"
+                                       class="form-control"
+                                       name="name"
+                                       value="{{ old('name', $user->name) }}"
+                                       required
+                                       @if ($errors->isEmpty()) autofocus @endif
+                                       @employee disabled @endemployee>
 
                                 @if ($errors->has('name'))
                                     <span class="help-block">
@@ -83,10 +109,18 @@
 
                         @admin
                             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                <label for="email" class="col-md-4 control-label">Email <small>*</small></label>
+                                <label for="email" class="col-md-4 control-label">
+                                    Email <small>*</small>
+                                </label>
 
                                 <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control" name="email" value="{{ old('email', $user->email) }}" required @employee disabled @endemployee>
+                                    <input id="email"
+                                           type="email"
+                                           class="form-control"
+                                           name="email"
+                                           value="{{ old('email', $user->email) }}"
+                                           required
+                                           @employee disabled @endemployee>
 
                                     @if ($errors->has('email'))
                                         <span class="help-block">
@@ -98,15 +132,25 @@
                         @endadmin
 
                         <div class="form-group{{ $errors->has('position') ? ' has-error' : '' }}">
-                            <label for="position" class="col-md-4 control-label">Position <small>*</small></label>
+                            <label for="position" class="col-md-4 control-label">
+                                Position <small>*</small>
+                            </label>
 
                             <div class="col-md-6">
-                                <select id="position" class="form-control" name="position" required @employee disabled @endemployee>
+                                <select id="position"
+                                        class="form-control"
+                                        name="position"
+                                        required
+                                        @employee disabled @endemployee>
                                     @foreach ( $positions as $position )
                                         @if (old('position', $user->position) == $position)
-                                            <option value="{{ $position }}" selected>{{ $position }}</option>
+                                            <option value="{{ $position }}" selected>
+                                                {{ $position }}
+                                            </option>
                                         @else
-                                            <option value="{{ $position }}">{{ $position }}</option>
+                                            <option value="{{ $position }}">
+                                                {{ $position }}
+                                            </option>
                                         @endif
                                     @endforeach
                                 </select>
@@ -120,15 +164,25 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('client_id') ? ' has-error' : '' }}">
-                            <label for="client-id" class="col-md-4 control-label">Client <small>*</small></label>
+                            <label for="client-id" class="col-md-4 control-label">
+                                Client <small>*</small>
+                            </label>
 
                             <div class="col-md-6">
-                                <select id="client-id" class="form-control" name="client_id" required @employee disabled @endemployee>
+                                <select id="client-id"
+                                        class="form-control"
+                                        name="client_id"
+                                        required
+                                        @employee disabled @endemployee>
                                     @foreach ($clients as $id => $name)
                                         @if (old('client_id', $user->client_id) == $id)
-                                            <option value="{{ $id }}" selected>{{ $name }}</option>
+                                            <option value="{{ $id }}" selected>
+                                                {{ $name }}
+                                            </option>
                                         @else
-                                            <option value="{{ $id }}">{{ $name }}</option>
+                                            <option value="{{ $id }}">
+                                                {{ $name }}
+                                            </option>
                                         @endif
                                     @endforeach
                                 </select>
@@ -142,15 +196,25 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('office_id') ? ' has-error' : '' }}">
-                            <label for="office-id" class="col-md-4 control-label">Office <small>*</small></label>
+                            <label for="office-id" class="col-md-4 control-label">
+                                Office <small>*</small>
+                            </label>
 
                             <div class="col-md-6">
-                                <select id="office-id" class="form-control" name="office_id" required @employee disabled @endemployee>
+                                <select id="office-id"
+                                        class="form-control"
+                                        name="office_id"
+                                        required
+                                        @employee disabled @endemployee>
                                     @foreach ($offices as $id => $city)
                                         @if (old('office_id', $user->office_id) == $id)
-                                            <option value="{{ $id }}" selected>{{ $city }}</option>
+                                            <option value="{{ $id }}" selected>
+                                                {{ $city }}
+                                            </option>
                                         @else
-                                            <option value="{{ $id }}">{{ $city }}</option>
+                                            <option value="{{ $id }}">
+                                                {{ $city }}
+                                            </option>
                                         @endif
                                     @endforeach
                                 </select>
@@ -164,10 +228,18 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('birthday') ? ' has-error' : '' }}">
-                            <label for="birthday" class="col-md-4 control-label">Birthday <small>*</small></label>
+                            <label for="birthday" class="col-md-4 control-label">
+                                Birthday <small>*</small>
+                            </label>
 
                             <div class="col-md-6">
-                                <input id="birthday" type="date" class="form-control" name="birthday" value="{{ old('birthday', $user->birthday->toDateString()) }}" required @employee disabled @endemployee>
+                                <input id="birthday"
+                                       type="date"
+                                       class="form-control"
+                                       name="birthday"
+                                       value="{{ old('birthday', $user->birthday->toDateString()) }}"
+                                       required
+                                       @employee disabled @endemployee>
 
                                 @if ($errors->has('birthday'))
                                     <span class="help-block">
@@ -181,7 +253,11 @@
                             <label for="phone" class="col-md-4 control-label">Phone</label>
 
                             <div class="col-md-6">
-                                <input id="phone" type="text" class="form-control" name="phone" value="{{ old('phone', $user->phone) }}">
+                                <input id="phone"
+                                       type="text"
+                                       class="form-control"
+                                       name="phone"
+                                       value="{{ old('phone', $user->phone) }}">
 
                                 @if ($errors->has('phone'))
                                     <span class="help-block">
@@ -192,10 +268,18 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('slack') ? ' has-error' : '' }}">
-                            <label for="slack" class="col-md-4 control-label">Slack <small>*</small></label>
+                            <label for="slack" class="col-md-4 control-label">
+                                Slack <small>*</small>
+                            </label>
 
                             <div class="col-md-6">
-                                <input id="slack" type="text" class="form-control" name="slack" value="{{ old('slack', $user->slack) }}" required @employee disabled @endemployee>
+                                <input id="slack"
+                                       type="text"
+                                       class="form-control"
+                                       name="slack"
+                                       value="{{ old('slack', $user->slack) }}"
+                                       required
+                                       @employee disabled @endemployee>
 
                                 @if ($errors->has('slack'))
                                     <span class="help-block">
@@ -206,10 +290,16 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('skype') ? ' has-error' : '' }}">
-                            <label for="skype" class="col-md-4 control-label">Skype</label>
+                            <label for="skype" class="col-md-4 control-label">
+                                Skype
+                            </label>
 
                             <div class="col-md-6">
-                                <input id="skype" type="text" class="form-control" name="skype" value="{{ old('skype', $user->skype) }}">
+                                <input id="skype"
+                                       type="text"
+                                       class="form-control"
+                                       name="skype"
+                                       value="{{ old('skype', $user->skype) }}">
 
                                 @if ($errors->has('skype'))
                                     <span class="help-block">
@@ -221,13 +311,19 @@
 
                         <div class="form-group{{ $errors->has('github') ? ' has-error' : '' }}">
                             <label for="github" class="col-md-4 control-label">
-                                <span data-toggle="tooltip" data-placement="top" title="Github username">
+                                <span data-toggle="tooltip"
+                                      data-placement="top"
+                                      title="Github username">
                                     Github
                                 </span>
                             </label>
 
                             <div class="col-md-6">
-                                <input id="github" type="text" class="form-control" name="github" value="{{ old('github', $user->github) }}">
+                                <input id="github"
+                                       type="text"
+                                       class="form-control"
+                                       name="github"
+                                       value="{{ old('github', $user->github) }}">
 
                                 @if ($errors->has('github'))
                                     <span class="help-block">
@@ -241,7 +337,9 @@
                             <label for="bio" class="col-md-4 control-label">Bio</label>
 
                             <div class="col-md-6">
-                                <textarea class="form-control" rows="3" name="bio">{{ old('bio', $user->bio) }}</textarea>
+                                <textarea class="form-control" rows="3" name="bio">
+                                    {{ old('bio', $user->bio) }}
+                                </textarea>
 
                                 @if ($errors->has('bio'))
                                     <span class="help-block">
@@ -260,14 +358,19 @@
                             @admin
                                 <div class="col-md-3 mt-1">
                                     <button type="submit" class="btn btn-default btn-block"
-                                            onclick="event.preventDefault();if(confirm('Are you sure you want to delete an employee?'))document.getElementById('delete-form').submit();">
+                                            onclick="event.preventDefault();
+                                                if (confirm('Are you sure you want to delete an employee?'))
+                                                document.getElementById('delete-form').submit();">
                                         Delete
                                     </button>
                                 </div>
                             @endadmin
                         </div>
                     </form>
-                    <form id="delete-form" class="form-horizontal" method="POST" action="{{ route('users.destroy', $user->id) }}">
+                    <form id="delete-form"
+                          class="form-horizontal"
+                          method="POST"
+                          action="{{ route('users.destroy', $user->id) }}">
                         {{ method_field('DELETE') }}
                         {{ csrf_field() }}
                     </form>
@@ -275,12 +378,16 @@
                     <h4>Change Password</h4>
                     <hr>
 
-                    <form class="form-horizontal" method="POST" action="{{ route('users.password.update', $user->id) }}">
+                    <form class="form-horizontal"
+                          method="POST"
+                          action="{{ route('users.password.update', $user->id) }}">
                         {{ method_field('PUT') }}
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">New Password <small>*</small></label>
+                            <label for="password" class="col-md-4 control-label">
+                                New Password <small>*</small>
+                            </label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control" name="password" required>
@@ -294,10 +401,16 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm New Password <small>*</small></label>
+                            <label for="password-confirm" class="col-md-4 control-label">
+                                Confirm New Password <small>*</small>
+                            </label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                <input id="password-confirm"
+                                       type="password"
+                                       class="form-control"
+                                       name="password_confirmation"
+                                       required>
                             </div>
                         </div>
 

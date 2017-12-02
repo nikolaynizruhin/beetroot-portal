@@ -21,15 +21,21 @@
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('country') ? ' has-error' : '' }}">
-                            <label for="country" class="col-md-4 control-label">Country <small>*</small></label>
+                            <label for="country" class="col-md-4 control-label">
+                                Country <small>*</small>
+                            </label>
 
                             <div class="col-md-6">
                                 <select id="country" class="form-control" name="country" required>
                                     @foreach ( $countries::all() as $country => $code )
                                         @if (old('country') == $country)
-                                            <option value="{{ $country }}" selected>{{ $country }}</option>
+                                            <option value="{{ $country }}" selected>
+                                                {{ $country }}
+                                            </option>
                                         @else
-                                            <option value="{{ $country }}">{{ $country }}</option>
+                                            <option value="{{ $country }}">
+                                                {{ $country }}
+                                            </option>
                                         @endif
                                     @endforeach
                                 </select>
@@ -43,10 +49,17 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('city') ? ' has-error' : '' }}">
-                            <label for="city" class="col-md-4 control-label">City <small>*</small></label>
+                            <label for="city" class="col-md-4 control-label">
+                                City <small>*</small>
+                            </label>
 
                             <div class="col-md-6">
-                                <input id="city" type="text" class="form-control" name="city" value="{{ old('city') }}" required>
+                                <input id="city"
+                                       type="text"
+                                       class="form-control"
+                                       name="city"
+                                       value="{{ old('city') }}"
+                                       required>
 
                                 @if ($errors->has('city'))
                                     <span class="help-block">
@@ -57,10 +70,17 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
-                            <label for="address" class="col-md-4 control-label">Address <small>*</small></label>
+                            <label for="address" class="col-md-4 control-label">
+                                Address <small>*</small>
+                            </label>
 
                             <div class="col-md-6">
-                                <input id="address" type="text" class="form-control" name="address" value="{{ old('address') }}" required>
+                                <input id="address"
+                                       type="text"
+                                       class="form-control"
+                                       name="address"
+                                       value="{{ old('address') }}"
+                                       required>
 
                                 @if ($errors->has('address'))
                                     <span class="help-block">
@@ -72,14 +92,21 @@
 
                         <div class="form-group{{ $errors->has('link') ? ' has-error' : '' }}">
                             <label for="link" class="col-md-4 control-label">
-                                <span data-toggle="tooltip" data-placement="top" title="Google maps query (e.g., Beetroot+Academy,Kiev)">
+                                <span data-toggle="tooltip"
+                                      data-placement="top"
+                                      title="Google maps query (e.g., Beetroot+Academy,Kiev)">
                                     Link
                                     <small>*</small>
                                 </span>
                             </label>
 
                             <div class="col-md-6">
-                                <input id="link" type="text" class="form-control" name="link" value="{{ old('link') }}" required>
+                                <input id="link"
+                                       type="text"
+                                       class="form-control"
+                                       name="link"
+                                       value="{{ old('link') }}"
+                                       required>
 
                                 @if ($errors->has('link'))
                                     <span class="help-block">

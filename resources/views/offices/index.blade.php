@@ -15,11 +15,12 @@
                         @foreach ($offices as $office)
                             <div class="row list-group-item">
                                 <div class="col-sm-8">
-                                    <iframe
-                                            width="100%"
+                                    <iframe width="100%"
                                             height="350"
-                                            frameborder="0" style="border:0"
-                                            src="https://www.google.com/maps/embed/v1/place?key={{ config('map.key') }}&q={{ $office->link }}" allowfullscreen>
+                                            frameborder="0"
+                                            style="border:0"
+                                            src="https://www.google.com/maps/embed/v1/place?key={{ config('map.key') }}&q={{ $office->link }}"
+                                            allowfullscreen>
                                     </iframe>
                                 </div>
                                 <div class="col-sm-4">
