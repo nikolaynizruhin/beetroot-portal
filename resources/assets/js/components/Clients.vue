@@ -21,7 +21,11 @@
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <label for="name" class="sr-only">Name</label>
-                                    <input type="text" class="form-control" id="name" placeholder="Name" v-model="name">
+                                    <input type="text"
+                                           class="form-control"
+                                           id="name"
+                                           placeholder="Name"
+                                           v-model="name">
                                 </div>
                             </div>
                         </div>
