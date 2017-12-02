@@ -2,6 +2,8 @@
 
 namespace Tests\Utilities;
 
+use App\User as UserModel;
+
 class User
 {
     /**
@@ -18,7 +20,7 @@ class User
      */
     public function __construct()
     {
-        $attributes = factory(\App\User::class)
+        $attributes = factory(UserModel::class)
             ->states('admin')
             ->make()->toArray();
 
