@@ -29,7 +29,7 @@ class Position
         'Project Manager',
         'Office Manager',
         'Account Manager',
-        'Financial manager',
+        'Financial Manager',
         'Sales Manager',
         'Marketing',
         'HR',
