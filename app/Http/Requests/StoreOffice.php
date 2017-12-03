@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Office;
+use App\Http\Utilities\Country;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreOffice extends FormRequest
@@ -26,7 +27,7 @@ class StoreOffice extends FormRequest
     {
         return [
             'city' => 'required|string|max:255',
-            'country' => 'required|string|max:255',
+            'country' => 'required|string|max:255|in:' . Country::csv(),
             'address' => 'required|string|max:255',
             'link' => 'required|string|max:255',
         ];

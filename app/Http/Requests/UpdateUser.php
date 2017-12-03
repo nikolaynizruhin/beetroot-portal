@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Http\Utilities\Position;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateUser extends FormRequest
@@ -28,7 +29,7 @@ class UpdateUser extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'position' => 'required|string|max:255',
+            'position' => 'required|string|max:255|in:' . Position::csv(),
             'birthday' => 'required|date',
             'slack' => 'required|string|max:255',
             'client_id' => 'required|numeric|exists:clients,id',

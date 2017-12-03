@@ -52,6 +52,16 @@ class Position
     }
 
     /**
+     * Get positions csv.
+     *
+     * @return array
+     */
+    public static function csv()
+    {
+        return implode(',', static::$positions);
+    }
+
+    /**
      * Get random position.
      *
      * @return string

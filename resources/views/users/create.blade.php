@@ -131,6 +131,7 @@
 
                             <div class="col-md-6">
                                 <select id="position" class="form-control" name="position" required>
+                                    <option value="">Select a position...</option>
                                     @foreach ( $positions as $position )
                                         @if (old('position') == $position)
                                             <option value="{{ $position }}" selected>
@@ -160,6 +161,7 @@
 
                             <div class="col-md-6">
                                 <select id="client-id" class="form-control" name="client_id" required>
+                                    <option value="">Select a client...</option>
                                     @foreach ($clients as $id => $name)
                                         @if (old('client_id') == $id)
                                             <option value="{{ $id }}" selected>
@@ -189,6 +191,7 @@
 
                             <div class="col-md-6">
                                 <select id="office-id" class="form-control" name="office_id" required>
+                                    <option value="">Select an office...</option>
                                     @foreach ($offices as $id => $city)
                                         @if (old('office_id') == $id)
                                             <option value="{{ $id }}" selected>

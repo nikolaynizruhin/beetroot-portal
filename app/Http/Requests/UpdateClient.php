@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Http\Utilities\Country;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateClient extends FormRequest
@@ -27,7 +28,7 @@ class UpdateClient extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'country' => 'required|string|max:255',
+            'country' => 'required|string|max:255|in:' . Country::csv(),
             'description' => 'required|string|max:255',
             'site' => 'required|url',
             'logo' => 'image'

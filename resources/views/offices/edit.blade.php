@@ -31,7 +31,7 @@
 
                             <div class="col-md-6">
                                 <select id="country" class="form-control" name="country" required>
-                                    @foreach ( $countries::all() as $country => $code )
+                                    @foreach ( $countries::all() as $country )
                                         @if (old('country', $office->country) == $country)
                                             <option value="{{ $country }}" selected>
                                                 {{ $country }}

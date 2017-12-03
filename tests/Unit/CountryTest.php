@@ -2,8 +2,8 @@
 
 namespace Tests\Unit;
 
-use App\Http\Utilities\Country;
 use Tests\TestCase;
+use App\Http\Utilities\Country;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CountryTest extends TestCase
@@ -17,7 +17,19 @@ class CountryTest extends TestCase
     {
         $countries = Country::all();
 
-        $this->assertEquals($countries['Argentina'], 'ar');
-        $this->assertEquals($countries['Armenia'], 'am');
+        $this->assertEquals(count($countries), 238);
+        $this->assertEquals($countries[0], 'Afghanistan');
+    }
+
+    /**
+     * Get csv countries.
+     *
+     * @return void
+     */
+    public function testGetCsvCountries()
+    {
+        $countries = Country::csv();
+
+        $this->assertEquals(strpos($countries, 'Afghanistan'), 0);
     }
 }

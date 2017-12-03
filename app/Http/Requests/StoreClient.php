@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Client;
+use App\Http\Utilities\Country;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreClient extends FormRequest
@@ -27,7 +28,7 @@ class StoreClient extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'logo' => 'required|image',
-            'country' => 'required|string|max:255',
+            'country' => 'required|string|max:255|in:' . Country::csv(),
             'description' => 'required|string|max:255',
             'site' => 'required|url'
         ];
