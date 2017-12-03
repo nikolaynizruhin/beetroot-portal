@@ -160,20 +160,12 @@
                                     Update
                                 </button>
                             </div>
-                            @admin
-                                <!-- Delete Button -->
-                                <div class="col-md-3 mt-1">
-                                    <button type="submit"
-                                            class="btn btn-default btn-block"
-                                            onclick="event.preventDefault();
-                                                if (confirm('Are you sure you want to delete a client?'))
-                                                document.getElementById('delete-form').submit();">
-                                        Delete
-                                    </button>
-                                </div>
-                            @endadmin
                         </div>
                     </form>
+
+                    <!-- Delete Client -->
+                    <h4>Delete Client</h4>
+                    <hr>
 
                     <form id="delete-form"
                           class="form-horizontal"
@@ -181,6 +173,19 @@
                           action="{{ route('clients.destroy', $client->id) }}">
                         {{ method_field('DELETE') }}
                         {{ csrf_field() }}
+
+                        <div class="form-group">
+                            <!-- Delete Button -->
+                            <div class="col-md-3 col-md-offset-4">
+                                <button type="submit"
+                                        class="btn btn-default btn-block"
+                                        onclick="event.preventDefault();
+                                                if (confirm('Are you sure you want to delete a client?'))
+                                                document.getElementById('delete-form').submit();">
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
