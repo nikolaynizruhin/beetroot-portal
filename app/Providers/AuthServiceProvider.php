@@ -34,8 +34,6 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('update-profile', 'UserPolicy@updateProfile');
-
         Passport::routes();
     }
 }
