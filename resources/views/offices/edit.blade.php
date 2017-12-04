@@ -152,7 +152,7 @@
                                 <button type="submit"
                                         class="btn btn-default btn-block"
                                         onclick="event.preventDefault();
-                                                if (confirm('Are you sure you want to delete an office?'))
+                                                if (confirm('Are you sure you want to delete an office? This will remove an office and all associated employees!'))
                                                 document.getElementById('delete-form').submit();">
                                     Delete
                                 </button>
