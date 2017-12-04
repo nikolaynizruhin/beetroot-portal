@@ -180,7 +180,7 @@
                                 <button type="submit"
                                         class="btn btn-default btn-block"
                                         onclick="event.preventDefault();
-                                                if (confirm('Are you sure you want to delete a client?'))
+                                                if (confirm('Are you sure you want to delete a client? This will remove a client and all associated employees!'))
                                                 document.getElementById('delete-form').submit();">
                                     Delete
                                 </button>
