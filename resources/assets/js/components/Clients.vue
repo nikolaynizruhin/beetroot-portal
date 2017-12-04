@@ -14,8 +14,7 @@
                             <div class="col-sm-3">
                                 <select-filter default-value="All Countries"
                                                :field.sync="country"
-                                               :list="countries">
-                                </select-filter>
+                                               :list="countries"/>
                             </div>
 
                             <div class="col-sm-3">
@@ -30,7 +29,7 @@
                             </div>
                         </div>
 
-                        <client-list :clients="filteredClients" :user="user"></client-list>
+                        <client-list :clients="filteredClients" :user="user"/>
 
                     </div>
                 </div>

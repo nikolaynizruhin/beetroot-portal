@@ -71,7 +71,7 @@
                             <p>
                                 <i aria-hidden="true" class="fa fa-birthday-cake fa-fw"></i>
                                 &nbsp;
-                                {{ user.birthday | date}}
+                                {{ user.birthday | date }}
                             </p>
                             <p>
                                 <i aria-hidden="true" class="fa fa-map-marker fa-fw"></i>

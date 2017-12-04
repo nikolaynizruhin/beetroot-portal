@@ -14,22 +14,19 @@
                             <div class="col-sm-3">
                                 <select-filter default-value="All Cities"
                                                :field.sync="office"
-                                               :list="offices">
-                                </select-filter>
+                                               :list="offices"/>
                             </div>
 
                             <div class="col-sm-3">
                                 <select-filter default-value="All Positions"
                                                :field.sync="position"
-                                               :list="positions">
-                                </select-filter>
+                                               :list="positions"/>
                             </div>
 
                             <div class="col-sm-3">
                                 <select-filter default-value="All Clients"
                                                :field.sync="client"
-                                               :list="clients">
-                                </select-filter>
+                                               :list="clients"/>
                             </div>
 
                             <div class="col-sm-3">
@@ -44,7 +41,7 @@
                             </div>
                         </div>
 
-                        <user-list :users="filteredUsers" :authUser="user"></user-list>
+                        <user-list :users="filteredUsers" :auth-user="user"/>
 
                     </div>
                 </div>

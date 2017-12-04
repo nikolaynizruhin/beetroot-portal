@@ -1,7 +1,7 @@
 <template>
     <div class="list-group">
         <div class="row list-group-item" v-for="user in users" :key="user.id">
-            <user-modal :user="user"></user-modal>
+            <user-modal :user="user"/>
             <div class="col-sm-4">
                 <a href="#" data-toggle="modal" :data-target="`#userModal${user.id}`">
                     <img :src="`storage/${user.avatar}`"

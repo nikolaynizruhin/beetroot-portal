@@ -89312,9 +89312,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -89502,7 +89499,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("user-list", {
-                attrs: { users: _vm.filteredUsers, authUser: _vm.user }
+                attrs: { users: _vm.filteredUsers, "auth-user": _vm.user }
               })
             ],
             1
@@ -89576,7 +89573,6 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
 //
 //
 //
