@@ -83,6 +83,7 @@ class UpdateClientTest extends TestCase
             ->get(route('clients.edit', $client->id))
             ->assertStatus(200)
             ->assertSee('Update Client')
+            ->assertSee('Delete Client')
             ->assertSee($client->name);
     }
 

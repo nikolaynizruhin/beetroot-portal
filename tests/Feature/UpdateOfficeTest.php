@@ -61,6 +61,7 @@ class UpdateOfficeTest extends TestCase
             ->get(route('offices.edit', $office->id))
             ->assertStatus(200)
             ->assertSee('Update Office')
+            ->assertSee('Delete Office')
             ->assertSee($office->city);
     }
 
