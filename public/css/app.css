@@ -8371,6 +8371,13 @@ html body .dashboard-link {
   color: #636b6f;
 }
 
+html body .dashboard-panel {
+  -webkit-transition: -webkit-box-shadow 0.3s;
+  transition: -webkit-box-shadow 0.3s;
+  transition: box-shadow 0.3s;
+  transition: box-shadow 0.3s, -webkit-box-shadow 0.3s;
+}
+
 html body .dashboard-panel:hover {
   -webkit-box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.05);
           box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.05);
