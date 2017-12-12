@@ -10,12 +10,8 @@ class LoginTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * Everyone can visit a login page.
-     *
-     * @return void
-     */
-    public function testEveryoneCanVisitLoginPage()
+    /** @test */
+    public function guest_can_visit_login_page()
     {
         $this->get(route('login'))
             ->assertStatus(200)
@@ -24,24 +20,16 @@ class LoginTest extends TestCase
             ->assertSee('Password');
     }
 
-    /**
-     * Redirect to login page when try to visit register page.
-     *
-     * @return void
-     */
-    public function testRedirectToLoginPageWhenVisitRegister()
+    /** @test */
+    public function it_redirects_to_login_page_when_visit_register_page()
     {
         $this->get(route('register'))
             ->assertStatus(302)
             ->assertRedirect(route('login'));
     }
 
-    /**
-     * User can login.
-     *
-     * @return void
-     */
-    public function testUserCanLogin()
+    /** @test */
+    public function employee_can_login()
     {
         $user = factory(User::class)->create();
 
@@ -52,12 +40,8 @@ class LoginTest extends TestCase
             ->assertRedirect(route('dashboard'));
     }
 
-    /**
-     * Only existed user can login.
-     *
-     * @return void
-     */
-    public function testOnlyExistedUserCanLogin()
+    /** @test */
+    public function only_existed_employees_can_login()
     {
         $this->post(route('login'), [
             'email' => 'test@example.com',
@@ -65,17 +49,20 @@ class LoginTest extends TestCase
         ])->assertSessionHasErrors(['email']);
     }
 
-    /**
-     * User can logout.
-     *
-     * @return void
-     */
-    public function testUserCanLogout()
+    /** @test */
+    public function logged_in_employee_can_logout()
     {
         $user = factory(User::class)->create();
 
         $this->actingAs($user)
             ->post(route('logout'))
+            ->assertStatus(302);
+    }
+
+    /** @test */
+    public function it_redirects_to_logout_page_if_employee_not_logged_in()
+    {
+        $this->post(route('logout'))
             ->assertStatus(302);
     }
 }

@@ -10,12 +10,8 @@ class DashboardTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * Redirect if logged in.
-     *
-     * @return void
-     */
-    public function testRedirectIfLoggedIn()
+    /** @test */
+    public function it_redirects_to_dashboard_page_if_logged_in_user_trying_to_visit_login_page()
     {
         $user = factory(User::class)->create();
 
@@ -24,12 +20,8 @@ class DashboardTest extends TestCase
             ->assertRedirect('dashboard');
     }
 
-    /**
-     * User can view dashboard page.
-     *
-     * @return void
-     */
-    public function testUserCanViewDashboardPage()
+    /** @test */
+    public function a_user_can_visit_dashboard_page()
     {
         $user = factory(User::class)->create();
 
@@ -38,5 +30,12 @@ class DashboardTest extends TestCase
             ->assertSee('Dashboard')
             ->assertSee('POSITIONS')
             ->assertSee('CLIENTS');
+    }
+
+    /** @test */
+    public function guest_can_not_visit_dashboard_page()
+    {
+        $this->get(route('dashboard'))
+            ->assertRedirect('login');
     }
 }

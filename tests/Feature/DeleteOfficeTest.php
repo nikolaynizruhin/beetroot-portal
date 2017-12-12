@@ -11,30 +11,28 @@ class DeleteOfficeTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * Only admin can delete an office.
-     *
-     * @return void
-     */
-    public function testOnlyAdminCanDeleteAnOffice()
+    /** @test */
+    public function guest_can_not_delete_an_office()
     {
         $office = factory(Office::class)->create();
-        $user = factory(User::class)->create(['is_admin' => false]);
 
         $this->delete(route('offices.destroy', $office->id))
             ->assertRedirect('login');
+    }
+
+    /** @test */
+    public function employee_can_not_delete_an_office()
+    {
+        $office = factory(Office::class)->create();
+        $user = factory(User::class)->create(['is_admin' => false]);
 
         $this->actingAs($user)
             ->delete(route('offices.destroy', $office->id))
             ->assertStatus(403);
     }
 
-    /**
-     * Admin can delete an office.
-     *
-     * @return void
-     */
-    public function testAdminCanDeleteAnOffice()
+    /** @test */
+    public function admin_can_delete_an_office()
     {
         $office = factory(Office::class)->create();
         $admin = factory(User::class)->states('admin')->create();

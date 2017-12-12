@@ -40,21 +40,23 @@ class UpdateUserTest extends TestCase
         $this->userUtility = resolve(\Tests\Utilities\User::class);
     }
 
-    /**
-     * Only user can update own profile.
-     *
-     * @return void
-     */
-    public function testOnlyUserCanUpdateOwnProfile()
+    /** @test */
+    public function guest_can_not_update_employee_profile()
     {
         $owner = factory(User::class)->create(['is_admin' => false]);
-        $user = factory(User::class)->create(['is_admin' => false]);
 
         $this->put(route('profile.update', $owner->id))
             ->assertRedirect('login');
 
         $this->put(route('users.update', $owner->id))
             ->assertRedirect('login');
+    }
+
+    /** @test */
+    public function employee_can_not_update_another_employee_profile()
+    {
+        $owner = factory(User::class)->create(['is_admin' => false]);
+        $user = factory(User::class)->create(['is_admin' => false]);
 
         $this->actingAs($user)
             ->put(route('profile.update', $owner->id))
@@ -63,36 +65,40 @@ class UpdateUserTest extends TestCase
         $this->actingAs($user)
             ->put(route('users.update', $owner->id))
             ->assertStatus(403);
+    }
+
+    /** @test */
+    public function employee_can_not_update_own_protected_fields()
+    {
+        $owner = factory(User::class)->create(['is_admin' => false]);
 
         $this->actingAs($owner)
             ->put(route('users.update', $owner->id))
             ->assertStatus(403);
     }
 
-    /**
-     * Only admin can visit user settings page.
-     *
-     * @return void
-     */
-    public function testOnlyAdminCanVisitUserSettingsPage()
+    /** @test */
+    public function guest_can_not_visit_employee_settings_page()
     {
-        $user = factory(User::class)->create(['is_admin' => false]);
         $userToEdit = factory(User::class)->create(['is_admin' => false]);
 
         $this->get(route('users.edit', $userToEdit->id))
             ->assertRedirect('login');
+    }
+
+    /** @test */
+    public function employee_can_not_visit_another_employee_settings_page()
+    {
+        $user = factory(User::class)->create(['is_admin' => false]);
+        $userToEdit = factory(User::class)->create(['is_admin' => false]);
 
         $this->actingAs($user)
             ->get(route('users.edit', $userToEdit->id))
             ->assertStatus(403);
     }
 
-    /**
-     * User can visit own settings page.
-     *
-     * @return void
-     */
-    public function testUserCanVisitOwnSettingsPage()
+    /** @test */
+    public function employee_can_visit_own_settings_page()
     {
         $user = factory(User::class)->create(['is_admin' => false]);
 
@@ -106,12 +112,8 @@ class UpdateUserTest extends TestCase
             ->assertSee($user->name);
     }
 
-    /**
-     * Admin can visit user setting page.
-     *
-     * @return void
-     */
-    public function testAdminCanVisitUserSettingsPage()
+    /** @test */
+    public function admin_can_visit_any_employee_settings_page()
     {
         $admin = factory(User::class)->states('admin')->create();
         $userToEdit = factory(User::class)->create(['is_admin' => false]);
@@ -126,12 +128,8 @@ class UpdateUserTest extends TestCase
             ->assertSee($userToEdit->name);
     }
 
-    /**
-     * Admin can update user profile.
-     *
-     * @return void
-     */
-    public function testAdminCanUpdateUserProfile()
+    /** @test */
+    public function admin_can_update_any_employee_profile()
     {
         $owner = factory(User::class)->create();
         $admin = factory(User::class)->states('admin')->create();
@@ -139,43 +137,35 @@ class UpdateUserTest extends TestCase
         Storage::fake('public');
         Image::shouldReceive('make->fit->save')->once();
 
-        $inputAttributes = $this->getInputAttributes();
-        $resultAttributes = $this->getResultAttributesForAdmin();
+        $input = $this->inputAttributes();
+        $result = $this->resultAttributesForAdmin();
 
         $this->actingAs($admin)
-            ->put(route('users.update', $owner->id), $inputAttributes)
+            ->put(route('users.update', $owner->id), $input)
             ->assertSessionHas('status', 'The employee was successfully updated!');
 
-        $this->assertDatabaseHas('users', $resultAttributes);
+        $this->assertDatabaseHas('users', $result);
 
         Storage::disk('public')->assertExists('avatars/' . $this->file->hashName());
     }
 
-    /**
-     * User can update own profile.
-     *
-     * @return void
-     */
-    public function testUserCanUpdateOwnProfile()
+    /** @test */
+    public function employee_can_update_own_profile()
     {
         $owner = factory(User::class)->create(['is_admin' => false]);
 
-        $inputAttributes = $this->getInputAttributes();
-        $resultAttributes = $this->getResultAttributesForEmployee();
+        $input = $this->inputAttributes();
+        $result = $this->resultAttributesForEmployee();
 
         $this->actingAs($owner)
-            ->put(route('profile.update', $owner->id), $inputAttributes)
+            ->put(route('profile.update', $owner->id), $input)
             ->assertSessionHas('status', 'The employee was successfully updated!');
 
-        $this->assertDatabaseHas('users', $resultAttributes);
+        $this->assertDatabaseHas('users', $result);
     }
 
-    /**
-     * User fields are required.
-     *
-     * @return void
-     */
-    public function testUserFieldsAreRequired()
+    /** @test */
+    public function some_of_employee_fields_are_required()
     {
         $admin = factory(User::class)->states('admin')->create();
 
@@ -191,7 +181,7 @@ class UpdateUserTest extends TestCase
      *
      * @return array
      */
-    private function getInputAttributes()
+    private function inputAttributes()
     {
         $this->userUtility->setAttribute('avatar', $this->file);
 
@@ -203,7 +193,7 @@ class UpdateUserTest extends TestCase
      *
      * @return array
      */
-    private function getResultAttributesForAdmin()
+    private function resultAttributesForAdmin()
     {
         $this->userUtility->setAttribute('avatar', 'avatars/' . $this->file->hashName());
 
@@ -215,7 +205,7 @@ class UpdateUserTest extends TestCase
      *
      * @return array
      */
-    private function getResultAttributesForEmployee()
+    private function resultAttributesForEmployee()
     {
         $this->userUtility->removeAttributes([
             'name', 'email', 'position', 'birthday', 'is_admin', 'slack', 'avatar', 'client_id', 'office_id'

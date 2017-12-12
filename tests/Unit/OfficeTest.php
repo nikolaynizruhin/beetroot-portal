@@ -12,12 +12,8 @@ class OfficeTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * Office has many users.
-     *
-     * @return void
-     */
-    public function testOfficeHasManyUsers()
+    /** @test */
+    public function an_office_has_many_users()
     {
         $office = factory(Office::class)->create();
         $user = factory(User::class)->create(['office_id' => $office->id]);

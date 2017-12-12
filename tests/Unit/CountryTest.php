@@ -8,12 +8,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CountryTest extends TestCase
 {
-    /**
-     * Get all countries.
-     *
-     * @return void
-     */
-    public function testGetAllCountries()
+    /** @test */
+    public function it_can_get_all_countries()
     {
         $countries = Country::all();
 
@@ -21,12 +17,8 @@ class CountryTest extends TestCase
         $this->assertEquals($countries[0], 'Afghanistan');
     }
 
-    /**
-     * Get csv countries.
-     *
-     * @return void
-     */
-    public function testGetCsvCountries()
+    /** @test */
+    public function it_can_get_a_csv_of_countries()
     {
         $countries = Country::csv();
 

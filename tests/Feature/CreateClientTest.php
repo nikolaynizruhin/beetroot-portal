@@ -33,46 +33,42 @@ class CreateClientTest extends TestCase
         $this->file = UploadedFile::fake()->image('logo.jpg');
     }
 
-    /**
-     * Only admin can create a client.
-     *
-     * @return void
-     */
-    public function testOnlyAdminCanCreateAClient()
+    /** @test */
+    public function guest_can_not_create_a_client()
     {
-        $user = factory(User::class)->create(['is_admin' => false]);
-
         $this->post(route('clients.store'))
             ->assertRedirect('login');
+    }
+
+    /** @test */
+    public function employee_can_not_create_a_client()
+    {
+        $user = factory(User::class)->create(['is_admin' => false]);
 
         $this->actingAs($user)
             ->post(route('clients.store'))
             ->assertStatus(403);
     }
 
-    /**
-     * Only admin can visit create a client page.
-     *
-     * @return void
-     */
-    public function testOnlyAdminCanVisitCreateAClientPage()
+    /** @test */
+    public function guest_can_not_visit_create_client_page()
     {
-        $user = factory(User::class)->create(['is_admin' => false]);
-
         $this->get(route('clients.create'))
             ->assertRedirect('login');
+    }
+
+    /** @test */
+    public function employee_can_not_visit_create_client_page()
+    {
+        $user = factory(User::class)->create(['is_admin' => false]);
 
         $this->actingAs($user)
             ->get(route('clients.create'))
             ->assertStatus(403);
     }
 
-    /**
-     * Admin can visit create client page.
-     *
-     * @return void
-     */
-    public function testAdminCanVisitCreateAClientPage()
+    /** @test */
+    public function admin_can_visit_create_client_page()
     {
         $user = factory(User::class)->states('admin')->create();
 
@@ -82,36 +78,28 @@ class CreateClientTest extends TestCase
             ->assertSee('Add Client');
     }
 
-    /**
-     * Admin can create a client.
-     *
-     * @return void
-     */
-    public function testAdminCanCreateAClient()
+    /** @test */
+    public function admin_can_create_a_client()
     {
         $admin = factory(User::class)->states('admin')->create();
 
         Storage::fake('public');
         Image::shouldReceive('make->fit->save')->once();
 
-        $inputAttributes = $this->getInputAttributes();
-        $resultAttributes = $this->getResultAttributes($inputAttributes);
+        $input = $this->inputAttributes();
+        $result = $this->resultAttributes($input);
 
         $this->actingAs($admin)
-            ->post(route('clients.store'), $inputAttributes)
+            ->post(route('clients.store'), $input)
             ->assertSessionHas('status', 'The client was successfully created!');
 
-        $this->assertDatabaseHas('clients', $resultAttributes);
+        $this->assertDatabaseHas('clients', $result);
 
         Storage::disk('public')->assertExists('logos/' . $this->file->hashName());
     }
 
-    /**
-     * Client fields are required.
-     *
-     * @return void
-     */
-    public function testClientFieldsAreRequired()
+    /** @test */
+    public function some_of_client_fields_are_required()
     {
         $admin = factory(User::class)->states('admin')->create();
 
@@ -127,7 +115,7 @@ class CreateClientTest extends TestCase
      *
      * @return array
      */
-    private function getInputAttributes()
+    private function inputAttributes()
     {
         $attributes = factory(Client::class)->make(['logo' => $this->file])->toArray();
 
@@ -140,7 +128,7 @@ class CreateClientTest extends TestCase
      * @param  array $attributes
      * @return array
      */
-    private function getResultAttributes($attributes)
+    private function resultAttributes($attributes)
     {
         $attributes['logo'] = 'logos/' . $this->file->hashName();
 

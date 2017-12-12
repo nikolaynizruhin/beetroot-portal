@@ -11,46 +11,42 @@ class CreateOfficeTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * Only admin can create an office.
-     *
-     * @return void
-     */
-    public function testOnlyAdminCanCreateAnOffice()
+    /** @test */
+    public function guest_can_not_create_an_office()
     {
-        $user = factory(User::class)->create(['is_admin' => false]);
-
         $this->post(route('offices.store'))
             ->assertRedirect('login');
+    }
+
+    /** @test */
+    public function employee_can_not_create_an_office()
+    {
+        $user = factory(User::class)->create(['is_admin' => false]);
 
         $this->actingAs($user)
             ->post(route('offices.store'))
             ->assertStatus(403);
     }
 
-    /**
-     * Only admin can visit create an office page.
-     *
-     * @return void
-     */
-    public function testOnlyAdminCanVisitCreateAnOfficePage()
+    /** @test */
+    public function guest_can_not_visit_create_office_page()
     {
-        $user = factory(User::class)->create(['is_admin' => false]);
-
         $this->get(route('offices.create'))
             ->assertRedirect('login');
+    }
+
+    /** @test */
+    public function employee_can_not_visit_create_office_page()
+    {
+        $user = factory(User::class)->create(['is_admin' => false]);
 
         $this->actingAs($user)
             ->get(route('offices.create'))
             ->assertStatus(403);
     }
 
-    /**
-     * Admin can visit create office page.
-     *
-     * @return void
-     */
-    public function testAdminCanVisitCreateOfficePage()
+    /** @test */
+    public function admin_can_visit_create_office_page()
     {
         $user = factory(User::class)->states('admin')->create();
 
@@ -60,12 +56,8 @@ class CreateOfficeTest extends TestCase
             ->assertSee('Add Office');
     }
 
-    /**
-     * Admin can create an office.
-     *
-     * @return void
-     */
-    public function testAdminCanCreateAnOffice()
+    /** @test */
+    public function admin_can_create_an_office()
     {
         $admin = factory(User::class)->states('admin')->create();
 
@@ -78,12 +70,8 @@ class CreateOfficeTest extends TestCase
         $this->assertDatabaseHas('offices', $attributes);
     }
 
-    /**
-     * Office fields are required.
-     *
-     * @return void
-     */
-    public function testOfficeFieldsAreRequired()
+    /** @test */
+    public function some_of_office_fields_are_required()
     {
         $admin = factory(User::class)->states('admin')->create();
 

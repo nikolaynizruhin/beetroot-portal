@@ -40,46 +40,42 @@ class CreateUserTest extends TestCase
         $this->userUtility = resolve(\Tests\Utilities\User::class);
     }
 
-    /**
-     * Only admin can create user.
-     *
-     * @return void
-     */
-    public function testOnlyAdminCanCreateUser()
+    /** @test */
+    public function guest_can_not_create_a_user()
     {
-        $user = factory(User::class)->create(['is_admin' => false]);
-
         $this->post(route('users.store'))
             ->assertRedirect('login');
+    }
+
+    /** @test */
+    public function employee_can_not_create_a_user()
+    {
+        $user = factory(User::class)->create(['is_admin' => false]);
 
         $this->actingAs($user)
             ->post(route('users.store'))
             ->assertStatus(403);
     }
 
-    /**
-     * Only admin can visit create user page.
-     *
-     * @return void
-     */
-    public function testOnlyAdminCanVisitCreateUserPage()
+    /** @test */
+    public function guest_can_not_visit_create_user_page()
     {
-        $user = factory(User::class)->create(['is_admin' => false]);
-
         $this->get(route('users.create'))
             ->assertRedirect('login');
+    }
+
+    /** @test */
+    public function employee_can_not_visit_create_user_page()
+    {
+        $user = factory(User::class)->create(['is_admin' => false]);
 
         $this->actingAs($user)
             ->get(route('users.create'))
             ->assertStatus(403);
     }
 
-    /**
-     * Admin can visit create user page.
-     *
-     * @return void
-     */
-    public function testAdminCanVisitCreateUserPage()
+    /** @test */
+    public function admin_can_visit_create_user_page()
     {
         $user = factory(User::class)->states('admin')->create();
 
@@ -89,12 +85,8 @@ class CreateUserTest extends TestCase
             ->assertSee('Add Employee');
     }
 
-    /**
-     * Admin can create a user.
-     *
-     * @return void
-     */
-    public function testAdminCanCreateAUser()
+    /** @test */
+    public function admin_can_create_a_user()
     {
         $admin = factory(User::class)->states('admin')->create();
 
@@ -102,24 +94,20 @@ class CreateUserTest extends TestCase
 
         Image::shouldReceive('make->fit->save')->once();
 
-        $inputAttributes = $this->getInputAttributes();
-        $resultAttributes = $this->getResultAttributes();
+        $input = $this->inputAttributes();
+        $result = $this->resultAttributes();
 
         $this->actingAs($admin)
-            ->post(route('users.store'), $inputAttributes)
+            ->post(route('users.store'), $input)
             ->assertSessionHas('status', 'The employee was successfully created!');
 
-        $this->assertDatabaseHas('users', $resultAttributes);
+        $this->assertDatabaseHas('users', $result);
 
         Storage::disk('public')->assertExists('avatars/' . $this->file->hashName());
     }
 
-    /**
-     * User fields are required.
-     *
-     * @return void
-     */
-    public function testUserFieldsAreRequired()
+    /** @test */
+    public function some_of_user_fields_are_required()
     {
         $admin = factory(User::class)->states('admin')->create();
 
@@ -135,7 +123,7 @@ class CreateUserTest extends TestCase
      *
      * @return array
      */
-    private function getInputAttributes()
+    private function inputAttributes()
     {
         $this->userUtility->setAttribute('avatar', $this->file);
         $this->userUtility->setAttribute('password', 'secret');
@@ -149,7 +137,7 @@ class CreateUserTest extends TestCase
      *
      * @return array
      */
-    private function getResultAttributes()
+    private function resultAttributes()
     {
         $this->userUtility->setAttribute('avatar', 'avatars/' . $this->file->hashName());
         $this->userUtility->removeAttribute('password');

@@ -12,24 +12,16 @@ class ResetPasswordTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * User can visit reset password page.
-     *
-     * @return void
-     */
-    public function testUserCanVisitResetPasswordPage()
+    /** @test */
+    public function guest_can_visit_reset_password_page()
     {
         $this->get(route('password.request'))
             ->assertStatus(200)
             ->assertSee('Send Password Reset Link');
     }
 
-    /**
-     * User can visit reset password page with token.
-     *
-     * @return void
-     */
-    public function testUserCanVisitResetPasswordPageWithToken()
+    /** @test */
+    public function guest_can_visit_reset_password_page_with_token()
     {
         $this->get(url('password/reset/token'))
             ->assertStatus(200)
@@ -38,12 +30,8 @@ class ResetPasswordTest extends TestCase
             ->assertSee('Confirm Password');
     }
 
-    /**
-     * Only not auth user can visit reset password page.
-     *
-     * @return void
-     */
-    public function testOnlyNotAuthUserCanVisitResetPasswordPage()
+    /** @test */
+    public function it_redirects_to_dashboard_page_if_logged_in_employee_visit_reset_password_page()
     {
         $user = factory(User::class)->create();
 
@@ -52,23 +40,15 @@ class ResetPasswordTest extends TestCase
             ->assertRedirect(route('dashboard'));
     }
 
-    /**
-     * Only existing user can reset password.
-     *
-     * @return void
-     */
-    public function testOnlyExistingUserCanResetPassword()
+    /** @test */
+    public function only_existing_employee_can_reset_password()
     {
         $this->post(route('password.email'), ['email' => 'not_existing@example.com'])
             ->assertSessionHasErrors(['email']);
     }
 
-    /**
-     * User can receive reset password email.
-     *
-     * @return void
-     */
-    public function testUserCanReceiveResetPasswordEmail()
+    /** @test */
+    public function employee_can_receive_reset_password_email()
     {
         $user = factory(User::class)->create();
         $token = null;

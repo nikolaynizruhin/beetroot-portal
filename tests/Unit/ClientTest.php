@@ -12,12 +12,8 @@ class ClientTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * Client has many users.
-     *
-     * @return void
-     */
-    public function testClientHasManyUsers()
+    /** @test */
+    public function a_client_has_many_users()
     {
         $client = factory(Client::class)->create();
         $user = factory(User::class)->create(['client_id' => $client->id]);
@@ -26,12 +22,8 @@ class ClientTest extends TestCase
         $this->assertInstanceOf(Collection::class, $client->users);
     }
 
-    /**
-     * Client can determine logo.
-     *
-     * @return void
-     */
-    public function testClientCanDetermineLogo()
+    /** @test */
+    public function a_client_can_determine_a_logo()
     {
         $client = factory(Client::class)->create();
 

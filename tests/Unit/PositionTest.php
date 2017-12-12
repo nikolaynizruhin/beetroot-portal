@@ -8,12 +8,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class PositionTest extends TestCase
 {
-    /**
-     * Get all positions.
-     *
-     * @return void
-     */
-    public function testGetAllPositions()
+    /** @test */
+    public function it_can_get_all_positions()
     {
         $positions = Position::all();
 
@@ -21,24 +17,16 @@ class PositionTest extends TestCase
         $this->assertEquals($positions[0], 'Python Developer');
     }
 
-    /**
-     * Get csv positions.
-     *
-     * @return void
-     */
-    public function testGetCsvPositions()
+    /** @test */
+    public function it_can_get_a_csv_of_positions()
     {
         $positions = Position::csv();
 
         $this->assertEquals(strpos($positions, 'Python Developer'), 0);
     }
 
-    /**
-     * Get random position.
-     *
-     * @return void
-     */
-    public function testGetRandomPosition()
+    /** @test */
+    public function it_can_get_a_random_position()
     {
         $position = Position::rand();
 

@@ -33,48 +33,48 @@ class UpdateClientTest extends TestCase
         $this->file = UploadedFile::fake()->image('logo.jpg');
     }
 
-    /**
-     * Only admin can update a client.
-     *
-     * @return void
-     */
-    public function testOnlyAdminCanUpdateAClient()
+    /** @test */
+    public function guest_can_not_update_a_client()
     {
         $client = factory(Client::class)->create();
-        $user = factory(User::class)->create(['is_admin' => false]);
 
         $this->put(route('clients.update', $client->id))
             ->assertRedirect('login');
+    }
+
+    /** @test */
+    public function employee_can_not_update_a_client()
+    {
+        $client = factory(Client::class)->create();
+        $user = factory(User::class)->create(['is_admin' => false]);
 
         $this->actingAs($user)
             ->put(route('clients.update', $client->id))
             ->assertStatus(403);
     }
 
-    /**
-     * Only admin can visit edit client page.
-     *
-     * @return void
-     */
-    public function testOnlyAdminCanVisitEditClientPage()
+    /** @test */
+    public function guest_can_not_visit_update_client_page()
     {
-        $user = factory(User::class)->create(['is_admin' => false]);
         $client = factory(Client::class)->create();
 
         $this->get(route('clients.edit', $client->id))
             ->assertRedirect('login');
+    }
+
+    /** @test */
+    public function employee_can_not_visit_update_client_page()
+    {
+        $user = factory(User::class)->create(['is_admin' => false]);
+        $client = factory(Client::class)->create();
 
         $this->actingAs($user)
             ->get(route('clients.edit', $client->id))
             ->assertStatus(403);
     }
 
-    /**
-     * Admin can visit edit client page.
-     *
-     * @return void
-     */
-    public function testAdminCanVisitEditClientPage()
+    /** @test */
+    public function admin_can_visit_update_client_page()
     {
         $admin = factory(User::class)->states('admin')->create();
         $client = factory(Client::class)->create();
@@ -87,12 +87,8 @@ class UpdateClientTest extends TestCase
             ->assertSee($client->name);
     }
 
-    /**
-     * Admin can update a client.
-     *
-     * @return void
-     */
-    public function testAdminCanUpdateAClient()
+    /** @test */
+    public function admin_can_update_a_client()
     {
         $client = factory(Client::class)->create();
         $admin = factory(User::class)->states('admin')->create();
@@ -100,24 +96,20 @@ class UpdateClientTest extends TestCase
         Storage::fake('public');
         Image::shouldReceive('make->fit->save')->once();
 
-        $inputAttributes = $this->getInputAttributes();
-        $resultAttributes = $this->getResultAttributes($inputAttributes);
+        $input = $this->inputAttributes();
+        $result = $this->resultAttributes($input);
 
         $this->actingAs($admin)
-            ->put(route('clients.update', $client->id), $inputAttributes)
+            ->put(route('clients.update', $client->id), $input)
             ->assertSessionHas('status', 'The client was successfully updated!');
 
-        $this->assertDatabaseHas('clients', $resultAttributes);
+        $this->assertDatabaseHas('clients', $result);
 
         Storage::disk('public')->assertExists('logos/' . $this->file->hashName());
     }
 
-    /**
-     * Client fields are required.
-     *
-     * @return void
-     */
-    public function testClientFieldsAreRequired()
+    /** @test */
+    public function some_of_client_fields_are_required()
     {
         $admin = factory(User::class)->states('admin')->create();
         $client = factory(Client::class)->create();
@@ -132,7 +124,7 @@ class UpdateClientTest extends TestCase
      *
      * @return array
      */
-    private function getInputAttributes()
+    private function inputAttributes()
     {
         $attributes = factory(Client::class)->make(['logo' => $this->file])->toArray();
 
@@ -145,7 +137,7 @@ class UpdateClientTest extends TestCase
      * @param  array  $attributes
      * @return array
      */
-    private function getResultAttributes($attributes)
+    private function resultAttributes($attributes)
     {
         $attributes['logo'] = 'logos/' . $this->file->hashName();
 

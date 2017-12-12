@@ -10,23 +10,15 @@ class DisplayUsersTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * Guest can not see users.
-     *
-     * @return void
-     */
-    public function testGuestCanNotSeeUsers()
+    /** @test */
+    public function guest_can_not_see_an_employees()
     {
         $this->get(route('users.index'))
             ->assertRedirect(route('login'));
     }
 
-    /**
-     * User can see users.
-     *
-     * @return void
-     */
-    public function testUserCanSeeUsers()
+    /** @test */
+    public function logged_in_employee_can_see_an_employees()
     {
         $user = factory(User::class)->create();
 

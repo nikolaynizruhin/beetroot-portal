@@ -10,30 +10,28 @@ class DeleteUserTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * Only admin can delete a user.
-     *
-     * @return void
-     */
-    public function testOnlyAdminCanDeleteAUser()
+    /** @test */
+    public function guest_can_not_delete_a_user()
     {
         $userToDelete = factory(User::class)->create();
-        $user = factory(User::class)->create(['is_admin' => false]);
 
         $this->delete(route('users.destroy', $userToDelete->id))
             ->assertRedirect('login');
+    }
+
+    /** @test */
+    public function employee_can_not_delete_a_user()
+    {
+        $userToDelete = factory(User::class)->create();
+        $user = factory(User::class)->create(['is_admin' => false]);
 
         $this->actingAs($user)
             ->delete(route('users.destroy', $userToDelete->id))
             ->assertStatus(403);
     }
 
-    /**
-     * Admin can delete a user.
-     *
-     * @return void
-     */
-    public function testAdminCanDeleteAUser()
+    /** @test */
+    public function admin_can_delete_a_user()
     {
         $userToDelete = factory(User::class)->create();
         $admin = factory(User::class)->states('admin')->create();

@@ -11,30 +11,28 @@ class DeleteClientTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * Only admin can delete a client.
-     *
-     * @return void
-     */
-    public function testOnlyAdminCanDeleteAUser()
+    /** @test */
+    public function guest_can_not_delete_a_client()
     {
         $client = factory(Client::class)->create();
-        $user = factory(User::class)->create(['is_admin' => false]);
 
         $this->delete(route('clients.destroy', $client->id))
             ->assertRedirect('login');
+    }
+
+    /** @test */
+    public function employee_can_not_delete_a_client()
+    {
+        $client = factory(Client::class)->create();
+        $user = factory(User::class)->create(['is_admin' => false]);
 
         $this->actingAs($user)
             ->delete(route('clients.destroy', $client->id))
             ->assertStatus(403);
     }
 
-    /**
-     * Admin can delete a client.
-     *
-     * @return void
-     */
-    public function testAdminCanDeleteAClient()
+    /** @test */
+    public function admin_can_delete_a_client()
     {
         $client = factory(Client::class)->create();
         $admin = factory(User::class)->states('admin')->create();

@@ -11,12 +11,8 @@ class PositionCountQueryTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * Position count query.
-     *
-     * @return void
-     */
-    public function testPositionCountQuery()
+    /** @test */
+    public function it_can_get_position_count()
     {
         $user = factory(User::class)->create();
 

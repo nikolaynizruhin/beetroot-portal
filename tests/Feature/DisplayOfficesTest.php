@@ -11,23 +11,15 @@ class DisplayOfficesTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * Guest can not see offices.
-     *
-     * @return void
-     */
-    public function testGuestCanNotSeeOffices()
+    /** @test */
+    public function guest_can_not_see_an_offices()
     {
         $this->get(route('offices.index'))
             ->assertRedirect(route('login'));
     }
 
-    /**
-     * User can see offices.
-     *
-     * @return void
-     */
-    public function testUserCanSeeOffices()
+    /** @test */
+    public function logged_in_employee_can_see_an_offices()
     {
         $user = factory(User::class)->create();
 

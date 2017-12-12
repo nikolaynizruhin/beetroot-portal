@@ -12,12 +12,8 @@ class UserTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * User has a client.
-     *
-     * @return void
-     */
-    public function testUserHasAClient()
+    /** @test */
+    public function a_user_has_a_client()
     {
         $user = factory(User::class)->create();
         $client = Client::first();
@@ -26,12 +22,8 @@ class UserTest extends TestCase
         $this->assertEquals($user->client->id, $client->id);
     }
 
-    /**
-     * User has a office.
-     *
-     * @return void
-     */
-    public function testUserHasAnOffice()
+    /** @test */
+    public function a_user_has_an_office()
     {
         $user = factory(User::class)->create();
         $office = Office::first();
@@ -40,24 +32,16 @@ class UserTest extends TestCase
         $this->assertEquals($user->office->id, $office->id);
     }
 
-    /**
-     * User can be an admin.
-     *
-     * @return void
-     */
-    public function testUserCanBeAnAdmin()
+    /** @test */
+    public function a_user_can_be_an_admin()
     {
         $user = factory(User::class)->states('admin')->create();
 
         $this->assertTrue($user->is_admin);
     }
 
-    /**
-     * User can determine avatar.
-     *
-     * @return void
-     */
-    public function testUserCanDetermineAvatar()
+    /** @test */
+    public function a_user_can_determine_an_avatar()
     {
         $user = factory(User::class)->create();
 

@@ -11,30 +11,28 @@ class UpdateUserPasswordTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * Only user can update own password.
-     *
-     * @return void
-     */
-    public function testOnlyUserCanUpdateOwnPassword()
+    /** @test */
+    public function guest_can_not_update_employee_password()
     {
         $owner = factory(User::class)->create();
-        $user = factory(User::class)->create(['is_admin' => false]);
 
         $this->put(route('users.password.update', $owner->id))
             ->assertRedirect('login');
+    }
+
+    /** @test */
+    public function employee_can_not_update_another_employee_password()
+    {
+        $owner = factory(User::class)->create();
+        $user = factory(User::class)->create(['is_admin' => false]);
 
         $this->actingAs($user)
             ->put(route('users.password.update', $owner->id))
             ->assertStatus(403);
     }
 
-    /**
-     * Admin can update user password.
-     *
-     * @return void
-     */
-    public function testAdminCanUpdateUserPassword()
+    /** @test */
+    public function admin_can_update_any_employees_password()
     {
         $owner = factory(User::class)->create();
         $admin = factory(User::class)->states('admin')->create();
@@ -53,12 +51,8 @@ class UpdateUserPasswordTest extends TestCase
         $this->assertTrue(Hash::check('secret-updated', $owner->password));
     }
 
-    /**
-     * User can update own password.
-     *
-     * @return void
-     */
-    public function testUserCanUpdateOwnPassword()
+    /** @test */
+    public function employee_can_update_own_password()
     {
         $owner = factory(User::class)->create(['is_admin' => false]);
 
@@ -76,12 +70,8 @@ class UpdateUserPasswordTest extends TestCase
         $this->assertTrue(Hash::check('secret-updated', $owner->password));
     }
 
-    /**
-     * User password fields are required.
-     *
-     * @return void
-     */
-    public function testUserPasswordFieldsAreRequired()
+    /** @test */
+    public function password_fields_are_required()
     {
         $owner = factory(User::class)->create();
 

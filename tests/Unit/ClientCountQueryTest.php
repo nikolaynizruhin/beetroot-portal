@@ -11,12 +11,8 @@ class ClientCountQueryTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * Client count query.
-     *
-     * @return void
-     */
-    public function testClientCountQuery()
+    /** @test */
+    public function it_can_get_client_count()
     {
         $client = factory(Client::class)->create();
 

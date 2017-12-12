@@ -11,48 +11,48 @@ class UpdateOfficeTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * Only admin can update an office.
-     *
-     * @return void
-     */
-    public function testOnlyAdminCanUpdateAnOffice()
+    /** @test */
+    public function guest_can_not_update_an_office()
     {
         $office = factory(Office::class)->create();
-        $user = factory(User::class)->create(['is_admin' => false]);
 
         $this->put(route('offices.update', $office->id))
             ->assertRedirect('login');
+    }
+
+    /** @test */
+    public function employee_can_not_update_an_office()
+    {
+        $office = factory(Office::class)->create();
+        $user = factory(User::class)->create(['is_admin' => false]);
 
         $this->actingAs($user)
             ->put(route('offices.update', $office->id))
             ->assertStatus(403);
     }
 
-    /**
-     * Only admin can visit edit office page.
-     *
-     * @return void
-     */
-    public function testOnlyAdminCanVisitEditOfficePage()
+    /** @test */
+    public function guest_can_not_visit_update_office_page()
     {
-        $user = factory(User::class)->create(['is_admin' => false]);
         $office = factory(User::class)->create();
 
         $this->get(route('offices.edit', $office->id))
             ->assertRedirect('login');
+    }
+
+    /** @test */
+    public function employee_can_not_visit_update_office_page()
+    {
+        $user = factory(User::class)->create(['is_admin' => false]);
+        $office = factory(User::class)->create();
 
         $this->actingAs($user)
             ->get(route('offices.edit', $office->id))
             ->assertStatus(403);
     }
 
-    /**
-     * Admin can visit edit office page.
-     *
-     * @return void
-     */
-    public function testAdminCanVisitEditOfficePage()
+    /** @test */
+    public function admin_can_visit_update_office_page()
     {
         $admin = factory(User::class)->states('admin')->create();
         $office = factory(Office::class)->create();
@@ -65,12 +65,8 @@ class UpdateOfficeTest extends TestCase
             ->assertSee($office->city);
     }
 
-    /**
-     * Admin can update an office.
-     *
-     * @return void
-     */
-    public function testAdminCanUpdateAnOffice()
+    /** @test */
+    public function admin_can_update_an_office()
     {
         $office = factory(Office::class)->create();
         $admin = factory(User::class)->states('admin')->create();
@@ -84,12 +80,8 @@ class UpdateOfficeTest extends TestCase
         $this->assertDatabaseHas('offices', $attributes);
     }
 
-    /**
-     * Office fields are required.
-     *
-     * @return void
-     */
-    public function testOfficeFieldsAreRequired()
+    /** @test */
+    public function some_of_office_fields_are_required()
     {
         $admin = factory(User::class)->states('admin')->create();
         $office = factory(Office::class)->create();
