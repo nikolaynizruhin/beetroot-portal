@@ -21,11 +21,11 @@ class CreateUserTest extends TestCase
     private $file;
 
     /**
-     * User utility.
+     * User fixture.
      *
      * @var object
      */
-    private $userUtility;
+    private $userFixture;
 
     /**
      * Setup
@@ -37,7 +37,7 @@ class CreateUserTest extends TestCase
         parent::setUp();
 
         $this->file = UploadedFile::fake()->image('avatar.jpg');
-        $this->userUtility = resolve(\Tests\Utilities\User::class);
+        $this->userFixture = resolve(\Tests\Fixtures\UserFixture::class);
     }
 
     /** @test */
@@ -125,11 +125,11 @@ class CreateUserTest extends TestCase
      */
     private function inputAttributes()
     {
-        $this->userUtility->setAttribute('avatar', $this->file);
-        $this->userUtility->setAttribute('password', 'secret');
-        $this->userUtility->setAttribute('password_confirmation', 'secret');
+        $this->userFixture->set('avatar', $this->file);
+        $this->userFixture->set('password', 'secret');
+        $this->userFixture->set('password_confirmation', 'secret');
 
-        return $this->userUtility->getAttributes();
+        return $this->userFixture->attributes();
     }
 
     /**
@@ -139,10 +139,9 @@ class CreateUserTest extends TestCase
      */
     private function resultAttributes()
     {
-        $this->userUtility->setAttribute('avatar', 'avatars/' . $this->file->hashName());
-        $this->userUtility->removeAttribute('password');
-        $this->userUtility->removeAttribute('password_confirmation');
+        $this->userFixture->set('avatar', 'avatars/' . $this->file->hashName());
+        $this->userFixture->remove(['password', 'password_confirmation']);
 
-        return $this->userUtility->getAttributes();
+        return $this->userFixture->attributes();
     }
 }

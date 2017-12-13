@@ -1,10 +1,10 @@
 <?php
 
-namespace Tests\Utilities;
+namespace Tests\Fixtures;
 
-use App\User as UserModel;
+use App\User;
 
-class User
+class UserFixture
 {
     /**
      * The list of attributes.
@@ -20,7 +20,7 @@ class User
      */
     public function __construct()
     {
-        $attributes = factory(UserModel::class)
+        $attributes = factory(User::class)
             ->states('admin')
             ->make()->toArray();
 
@@ -38,7 +38,7 @@ class User
      *
      * @return array
      */
-    public function getAttributes()
+    public function attributes()
     {
         return $this->attributes;
     }
@@ -50,29 +50,18 @@ class User
      * @param  string|object  $value
      * @return void
      */
-    public function setAttribute($key, $value)
+    public function set($key, $value)
     {
         $this->attributes[$key] = $value;
     }
 
     /**
-     * Remove attribute.
-     *
-     * @param  string $key
-     * @return void
-     */
-    public function removeAttribute($key)
-    {
-        unset($this->attributes[$key]);
-    }
-
-    /**
      * Remove attributes.
      *
-     * @param  array $keys
+     * @param  array|string $keys
      * @return void
      */
-    public function removeAttributes($keys)
+    public function remove($keys)
     {
         foreach ($keys as $key) {
             unset($this->attributes[$key]);

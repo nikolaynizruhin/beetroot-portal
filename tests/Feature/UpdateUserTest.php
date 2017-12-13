@@ -21,11 +21,11 @@ class UpdateUserTest extends TestCase
     private $file;
 
     /**
-     * User utility.
+     * User fixture.
      *
      * @var object
      */
-    private $userUtility;
+    private $userFixture;
 
     /**
      * Setup
@@ -37,7 +37,7 @@ class UpdateUserTest extends TestCase
         parent::setUp();
 
         $this->file = UploadedFile::fake()->image('avatar.jpg');
-        $this->userUtility = resolve(\Tests\Utilities\User::class);
+        $this->userFixture = resolve(\Tests\Fixtures\UserFixture::class);
     }
 
     /** @test */
@@ -183,9 +183,9 @@ class UpdateUserTest extends TestCase
      */
     private function inputAttributes()
     {
-        $this->userUtility->setAttribute('avatar', $this->file);
+        $this->userFixture->set('avatar', $this->file);
 
-        return $this->userUtility->getAttributes();
+        return $this->userFixture->attributes();
     }
 
     /**
@@ -195,9 +195,9 @@ class UpdateUserTest extends TestCase
      */
     private function resultAttributesForAdmin()
     {
-        $this->userUtility->setAttribute('avatar', 'avatars/' . $this->file->hashName());
+        $this->userFixture->set('avatar', 'avatars/' . $this->file->hashName());
 
-        return $this->userUtility->getAttributes();
+        return $this->userFixture->attributes();
     }
 
     /**
@@ -207,10 +207,10 @@ class UpdateUserTest extends TestCase
      */
     private function resultAttributesForEmployee()
     {
-        $this->userUtility->removeAttributes([
+        $this->userFixture->remove([
             'name', 'email', 'position', 'birthday', 'is_admin', 'slack', 'avatar', 'client_id', 'office_id'
         ]);
 
-        return $this->userUtility->getAttributes();
+        return $this->userFixture->attributes();
     }
 }
