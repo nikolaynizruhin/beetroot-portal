@@ -1,7 +1,3 @@
-<p align="center">
-  <img src="https://family.beetroot.se/images/logo.svg"/>
-</p>
-
 # Beetroot Family Portal
 
 This is the repository for the [family.beetroot.se](https://family.beetroot.se) portal.
