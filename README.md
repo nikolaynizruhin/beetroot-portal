@@ -1,6 +1,6 @@
-# Beetroot Portal
+# Beetroot Family Portal
 
-### Built with Laravel 5.5 + Vue 2.5
+Internal company portal. Built with Laravel and Vue
 
 ## Getting started
 
