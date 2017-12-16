@@ -18,3 +18,9 @@ php artisan storage:link
 php artisan passport:install
 php -S localhost:5000 -t public
 ```
+
+## Testing
+
+```
+phpunit
+```
