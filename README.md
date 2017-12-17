@@ -7,7 +7,7 @@ This is the repository for the [family.beetroot.se](https://family.beetroot.se) 
 
 1. Clone this repository:
 ```
-git clone https://github.com/nikolaynizruhin/BeetrootApp.git
+git clone https://github.com/nikolaynizruhin/beetroot-portal.git
 ```
 2. Copy .env file and update it with your variables:
 ```
