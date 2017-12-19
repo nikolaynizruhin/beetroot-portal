@@ -109,7 +109,7 @@ class UpdateUserTest extends TestCase
             ->assertSee('Profile')
             ->assertSee('Change Password')
             ->assertDontSee('Delete Account')
-            ->assertSee($user->name);
+            ->assertSee($user->email);
     }
 
     /** @test */
@@ -125,7 +125,7 @@ class UpdateUserTest extends TestCase
             ->assertSee('Profile')
             ->assertSee('Change Password')
             ->assertSee('Delete Account')
-            ->assertSee($userToEdit->name);
+            ->assertSee($userToEdit->email);
     }
 
     /** @test */
