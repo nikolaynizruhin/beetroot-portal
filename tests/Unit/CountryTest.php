@@ -24,12 +24,4 @@ class CountryTest extends TestCase
 
         $this->assertEquals(strpos($countries, 'Afghanistan'), 0);
     }
-
-    /** @test */
-    public function it_can_get_a_random_country()
-    {
-        $country = Country::rand();
-
-        $this->assertTrue(in_array($country, Country::all()));
-    }
 }

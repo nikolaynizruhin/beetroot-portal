@@ -18,7 +18,7 @@ $factory->define(App\Client::class, function (Faker $faker) {
     return [
         'name' => $faker->company,
         'site' => 'https://' . $faker->domainName,
-        'country' => Country::rand(),
+        'country' => $faker->randomElement(Country::all()),
         'description' => $faker->text($maxNbChars = 200),
         'logo' => 'logos/default.png'
     ];

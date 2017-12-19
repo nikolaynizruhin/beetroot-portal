@@ -22,7 +22,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         'name' => $faker->name,
         'email' => $userName . '@beetroot.se',
         'avatar' => 'avatars/default.png',
-        'position' => Position::rand(),
+        'position' => $faker->randomElement(Position::all()),
         'birthday' => $faker->date(),
         'phone' => $faker->e164PhoneNumber,
         'bio' => $faker->text($maxNbChars = 200),

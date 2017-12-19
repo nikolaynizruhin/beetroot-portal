@@ -60,16 +60,4 @@ class Position
     {
         return implode(',', static::$positions);
     }
-
-    /**
-     * Get random position.
-     *
-     * @return string
-     */
-    public static function rand()
-    {
-        $key = array_rand(static::$positions);
-
-        return static::$positions[$key];
-    }
 }

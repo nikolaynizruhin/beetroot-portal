@@ -17,7 +17,7 @@ use App\Http\Utilities\Country;
 $factory->define(App\Office::class, function (Faker $faker) {
     return [
         'city' => $faker->city,
-        'country' => Country::rand(),
+        'country' => $faker->randomElement(Country::all()),
         'address' => $faker->streetAddress,
         'link' => 'Beetroot+Academy,Kiev',
     ];

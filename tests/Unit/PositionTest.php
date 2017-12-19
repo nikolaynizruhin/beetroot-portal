@@ -24,12 +24,4 @@ class PositionTest extends TestCase
 
         $this->assertEquals(strpos($positions, 'Python Developer'), 0);
     }
-
-    /** @test */
-    public function it_can_get_a_random_position()
-    {
-        $position = Position::rand();
-
-        $this->assertTrue(in_array($position, Position::all()));
-    }
 }

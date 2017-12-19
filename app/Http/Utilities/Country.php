@@ -268,16 +268,4 @@ class Country
     {
         return implode(',', static::$countries);
     }
-
-    /**
-     * Get random country.
-     *
-     * @return string
-     */
-    public static function rand()
-    {
-        $key = array_rand(static::$countries);
-
-        return static::$countries[$key];
-    }
 }
