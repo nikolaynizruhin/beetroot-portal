@@ -59,7 +59,6 @@ class Country
         "Colombia",
         "Comoros",
         "Congo",
-        "Congo, the Democratic Republic of the",
         "Cook Islands",
         "Costa Rica",
         "Cote d'Ivoire",
@@ -122,11 +121,11 @@ class Country
         "Kazakhstan",
         "Kenya",
         "Kiribati",
-        "Korea, Democratic People's Republic of",
-        "Korea, Republic of",
+        "Korea North",
+        "Korea South",
         "Kuwait",
         "Kyrgyzstan",
-        "Lao, People's Democratic Republic",
+        "Lao",
         "Latvia",
         "Lebanon",
         "Lesotho",
@@ -136,7 +135,7 @@ class Country
         "Lithuania",
         "Luxembourg",
         "Macao",
-        "Macedonia, The Former Yugoslav Republic of",
+        "Macedonia",
         "Madagascar",
         "Malawi",
         "Malaysia",
@@ -149,8 +148,8 @@ class Country
         "Mauritius",
         "Mayotte",
         "Mexico",
-        "Micronesia, Federated States of",
-        "Moldova, Republic of",
+        "Micronesia",
+        "Moldova",
         "Monaco",
         "Mongolia",
         "Montserrat",
@@ -216,9 +215,9 @@ class Country
         "Sweden",
         "Switzerland",
         "Syrian Arab Republic",
-        "Taiwan, Province of China",
+        "Taiwan",
         "Tajikistan",
-        "Tanzania, United Republic of",
+        "Tanzania",
         "Thailand",
         "Togo",
         "Tokelau",
@@ -268,5 +267,17 @@ class Country
     public static function csv()
     {
         return implode(',', static::$countries);
+    }
+
+    /**
+     * Get random country.
+     *
+     * @return string
+     */
+    public static function rand()
+    {
+        $key = array_rand(static::$countries);
+
+        return static::$countries[$key];
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
+use App\Http\Utilities\Country;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,7 @@ use Faker\Generator as Faker;
 $factory->define(App\Office::class, function (Faker $faker) {
     return [
         'city' => $faker->city,
-        'country' => $faker->country,
+        'country' => Country::rand(),
         'address' => $faker->streetAddress,
         'link' => 'Beetroot+Academy,Kiev',
     ];

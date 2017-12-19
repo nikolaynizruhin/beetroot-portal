@@ -13,7 +13,7 @@ class CountryTest extends TestCase
     {
         $countries = Country::all();
 
-        $this->assertEquals(count($countries), 238);
+        $this->assertEquals(count($countries), 237);
         $this->assertEquals($countries[0], 'Afghanistan');
     }
 
@@ -23,5 +23,13 @@ class CountryTest extends TestCase
         $countries = Country::csv();
 
         $this->assertEquals(strpos($countries, 'Afghanistan'), 0);
+    }
+
+    /** @test */
+    public function it_can_get_a_random_country()
+    {
+        $country = Country::rand();
+
+        $this->assertTrue(in_array($country, Country::all()));
     }
 }
