@@ -62,7 +62,7 @@ class UpdateOfficeTest extends TestCase
             ->assertStatus(200)
             ->assertSee('Update Office')
             ->assertSee('Delete Office')
-            ->assertSee($office->country);
+            ->assertSee($office->link);
     }
 
     /** @test */
