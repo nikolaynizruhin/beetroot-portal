@@ -84,7 +84,7 @@ class UpdateClientTest extends TestCase
             ->assertStatus(200)
             ->assertSee('Update Client')
             ->assertSee('Delete Client')
-            ->assertSee($client->name);
+            ->assertSee($client->site);
     }
 
     /** @test */
