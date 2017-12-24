@@ -23,7 +23,7 @@
                             </strong>
                             &nbsp;
                             <a v-if="authUser.is_admin" :href="`users/${user.id}/edit`">
-                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                                <i class="fas fa-pencil-alt" aria-hidden="true"></i>
                             </a>
                         </p>
                     </div>
@@ -36,24 +36,24 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <p>
-                            <i class="fa fa-handshake-o fa-fw" aria-hidden="true"></i>
+                            <i class="far fa-handshake fa-fw" aria-hidden="true"></i>
                             &nbsp;
                             {{ user.client.name }}
                         </p>
                         <p>
-                            <i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i>
+                            <i class="far fa-envelope fa-fw" aria-hidden="true"></i>
                             &nbsp;
                             {{ user.email }}
                         </p>
                     </div>
                     <div class="col-sm-6">
                         <p>
-                            <i class="fa fa-birthday-cake fa-fw" aria-hidden="true"></i>
+                            <i class="fas fa-birthday-cake fa-fw" aria-hidden="true"></i>
                             &nbsp;
                             {{ user.birthday | date }}
                         </p>
                         <p>
-                            <i class="fa fa-map-marker fa-fw" aria-hidden="true"></i>
+                            <i class="fas fa-map-marker-alt fa-fw" aria-hidden="true"></i>
                             &nbsp;
                             {{ user.office.city }}
                         </p>

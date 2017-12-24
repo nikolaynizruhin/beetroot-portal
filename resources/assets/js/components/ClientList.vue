@@ -15,7 +15,7 @@
                             <strong>{{ client.name }}</strong>
                             &nbsp;
                             <a v-if="user.is_admin" :href="`clients/${client.id}/edit`">
-                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                                <i class="fas fa-pencil-alt" aria-hidden="true"></i>
                             </a>
                         </p>
                     </div>
@@ -24,7 +24,7 @@
                     <div class="col-sm-6">
                         <p>
                             <a target="_blank" :href="client.site">
-                                <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                                <i class="fas fa-globe fa-fw" aria-hidden="true"></i>
                                 &nbsp;
                                 {{ client.site }}
                             </a>
@@ -32,7 +32,7 @@
                     </div>
                     <div class="col-sm-6">
                         <p>
-                            <i class="fa fa-map-marker fa-fw" aria-hidden="true"></i>
+                            <i class="fas fa-map-marker-alt fa-fw" aria-hidden="true"></i>
                             &nbsp;
                             {{ client.country }}
                         </p>

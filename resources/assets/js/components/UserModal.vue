@@ -30,33 +30,33 @@
                         <div class="col-sm-5 col-sm-offset-1">
                             <p>
                                 <a :href="`mailto:${user.email}`">
-                                    <i aria-hidden="true" class="fa fa-envelope-o fa-fw"></i>
+                                    <i aria-hidden="true" class="far fa-envelope fa-fw"></i>
                                     &nbsp;
                                     {{ user.email }}
                                 </a>
                             </p>
                             <p v-if="user.phone">
                                 <a :href="`tel:${user.phone}`">
-                                    <i aria-hidden="true" class="fa fa-phone fa-fw"></i>
+                                    <i aria-hidden="true" class="fas fa-phone fa-fw"></i>
                                     &nbsp;
                                     {{ user.phone }}
                                 </a>
                             </p>
                             <p>
-                                <i aria-hidden="true" class="fa fa-slack fa-fw"></i>
+                                <i aria-hidden="true" class="fab fa-slack-hash fa-fw"></i>
                                 &nbsp;
                                 {{ user.slack }}
                             </p>
                             <p v-if="user.skype">
                                 <a :href="`skype:${user.skype}?userinfo`">
-                                    <i aria-hidden="true" class="fa fa-skype fa-fw"></i>
+                                    <i aria-hidden="true" class="fab fa-skype fa-fw"></i>
                                     &nbsp;
                                     {{ user.skype }}
                                 </a>
                             </p>
                             <p v-if="user.github">
                                 <a :href="`https://github.com/${user.github}`" target="_blank">
-                                    <i aria-hidden="true" class="fa fa-github fa-fw"></i>
+                                    <i aria-hidden="true" class="fab fa-github fa-fw"></i>
                                     &nbsp;
                                     {{ user.github }}
                                 </a>
@@ -64,17 +64,17 @@
                         </div>
                         <div class="col-sm-5">
                             <p>
-                                <i aria-hidden="true" class="fa fa-handshake-o fa-fw"></i>
+                                <i aria-hidden="true" class="far fa-handshake fa-fw"></i>
                                 &nbsp;
                                 {{ user.client.name }}
                             </p>
                             <p>
-                                <i aria-hidden="true" class="fa fa-birthday-cake fa-fw"></i>
+                                <i aria-hidden="true" class="fas fa-birthday-cake fa-fw"></i>
                                 &nbsp;
                                 {{ user.birthday | date }}
                             </p>
                             <p>
-                                <i aria-hidden="true" class="fa fa-map-marker fa-fw"></i>
+                                <i aria-hidden="true" class="fas fa-map-marker-alt fa-fw"></i>
                                 &nbsp;
                                 {{ user.office.city }}
                             </p>

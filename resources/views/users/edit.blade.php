@@ -6,7 +6,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <i class="fa fa-cog fa-lg fa-fw" aria-hidden="true"></i>
+                    <i class="fas fa-cog fa-lg fa-fw" aria-hidden="true"></i>
                     &nbsp;
                     Settings
                 </div>

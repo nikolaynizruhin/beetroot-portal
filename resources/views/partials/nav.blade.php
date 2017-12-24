@@ -94,7 +94,7 @@
                         <ul class="dropdown-menu" role="menu">
                             <li>
                                 <a href="{{ route('users.edit', Auth::id()) }}">
-                                    <i class="fa fa-cog fa-fw" aria-hidden="true"></i>
+                                    <i class="fas fa-cog fa-fw" aria-hidden="true"></i>
                                     &nbsp;
                                     Settings
                                 </a>
@@ -102,7 +102,7 @@
                             <li>
                                 <a href="{{ route('logout') }}"
                                    onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                    <i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>
+                                    <i class="fas fa-sign-out-alt fa-fw" aria-hidden="true"></i>
                                     &nbsp;
                                     Logout
                                 </a>

@@ -6,7 +6,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <i class="fa fa-tachometer fa-lg fa-fw" aria-hidden="true"></i>
+                    <i class="fas fa-tachometer-alt fa-lg fa-fw" aria-hidden="true"></i>
                     &nbsp;
                     Dashboard
                 </div>

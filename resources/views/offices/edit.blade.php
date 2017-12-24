@@ -8,7 +8,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <i class="fa fa-map-marker fa-lg fa-fw" aria-hidden="true"></i>
+                    <i class="fas fa-building fa-lg fa-fw" aria-hidden="true"></i>
                     &nbsp;
                     Update Office
                 </div>
