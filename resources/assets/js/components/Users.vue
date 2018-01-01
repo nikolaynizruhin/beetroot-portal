@@ -12,19 +12,19 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-sm-3">
-                                <select-filter default-value="All Cities"
+                                <select-filter :default-value="defaultOffice"
                                                :field.sync="office"
                                                :list="offices"/>
                             </div>
 
                             <div class="col-sm-3">
-                                <select-filter default-value="All Positions"
+                                <select-filter :default-value="defaultPosition"
                                                :field.sync="position"
                                                :list="positions"/>
                             </div>
 
                             <div class="col-sm-3">
-                                <select-filter default-value="All Clients"
+                                <select-filter :default-value="defaultClient"
                                                :field.sync="client"
                                                :list="clients"/>
                             </div>
@@ -57,11 +57,18 @@
             user: Object
         },
         data() {
+            const defaultClient = 'All Clients';
+            const defaultOffice = 'All Cities';
+            const defaultPosition = 'All Positions';
+
             return {
-                name: '',
-                client: 'All Clients',
-                office: 'All Cities',
-                position: 'All Positions'
+                defaultClient: defaultClient,
+                defaultOffice: defaultOffice,
+                defaultPosition: defaultPosition,
+                client: defaultClient,
+                office: defaultOffice,
+                position: defaultPosition,
+                name: ''
             }
         },
         computed: {
@@ -94,13 +101,13 @@
                 );
             },
             applyClientFilter(user) {
-                return this.client === 'All Clients' ? true : user.client.name === this.client;
+                return this.client === this.defaultClient ? true : user.client.name === this.client;
             },
             applyOfficeFilter(user) {
-                return this.office === 'All Cities' ? true : user.office.city === this.office;
+                return this.office === this.defaultOffice ? true : user.office.city === this.office;
             },
             applyPositionFilter(user) {
-                return this.position === 'All Positions' ? true : user.position === this.position;
+                return this.position === this.defaultPosition ? true : user.position === this.position;
             },
             applyNameFilter(user) {
                 return user.name.toLowerCase().includes(this.name.toLowerCase());

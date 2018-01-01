@@ -89683,11 +89683,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         user: Object
     },
     data: function data() {
+        var defaultClient = 'All Clients';
+        var defaultOffice = 'All Cities';
+        var defaultPosition = 'All Positions';
+
         return {
-            name: '',
-            client: 'All Clients',
-            office: 'All Cities',
-            position: 'All Positions'
+            defaultClient: defaultClient,
+            defaultOffice: defaultOffice,
+            defaultPosition: defaultPosition,
+            client: defaultClient,
+            office: defaultOffice,
+            position: defaultPosition,
+            name: ''
         };
     },
 
@@ -89726,13 +89733,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return this.applyClientFilter(user) && this.applyOfficeFilter(user) && this.applyPositionFilter(user) && this.applyNameFilter(user);
         },
         applyClientFilter: function applyClientFilter(user) {
-            return this.client === 'All Clients' ? true : user.client.name === this.client;
+            return this.client === this.defaultClient ? true : user.client.name === this.client;
         },
         applyOfficeFilter: function applyOfficeFilter(user) {
-            return this.office === 'All Cities' ? true : user.office.city === this.office;
+            return this.office === this.defaultOffice ? true : user.office.city === this.office;
         },
         applyPositionFilter: function applyPositionFilter(user) {
-            return this.position === 'All Positions' ? true : user.position === this.position;
+            return this.position === this.defaultPosition ? true : user.position === this.position;
         },
         applyNameFilter: function applyNameFilter(user) {
             return user.name.toLowerCase().includes(this.name.toLowerCase());
@@ -89775,7 +89782,7 @@ var render = function() {
                   [
                     _c("select-filter", {
                       attrs: {
-                        "default-value": "All Cities",
+                        "default-value": _vm.defaultOffice,
                         field: _vm.office,
                         list: _vm.offices
                       },
@@ -89795,7 +89802,7 @@ var render = function() {
                   [
                     _c("select-filter", {
                       attrs: {
-                        "default-value": "All Positions",
+                        "default-value": _vm.defaultPosition,
                         field: _vm.position,
                         list: _vm.positions
                       },
@@ -89815,7 +89822,7 @@ var render = function() {
                   [
                     _c("select-filter", {
                       attrs: {
-                        "default-value": "All Clients",
+                        "default-value": _vm.defaultClient,
                         field: _vm.client,
                         list: _vm.clients
                       },
