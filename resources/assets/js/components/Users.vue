@@ -72,19 +72,16 @@
                 return this.users.filter(user => this.applyFilters(user));
             },
             clients() {
-                let clients = new Set();
-                this.users.map(user => clients.add(user.client.name));
-                return Array.from(clients);
+                let clients = this.users.map(user => user.client.name);
+                return [...new Set(clients)];
             },
             offices() {
-                let offices = new Set();
-                this.users.map(user => offices.add(user.office.city));
-                return Array.from(offices);
+                let offices = this.users.map(user => user.office.city);
+                return [...new Set(offices)];
             },
             positions() {
-                let positions = new Set();
-                this.users.map(user => positions.add(user.position));
-                return Array.from(positions);
+                let positions = this.users.map(user => user.position);
+                return [...new Set(positions)];
             }
         },
         methods: {

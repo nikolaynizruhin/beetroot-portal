@@ -89624,6 +89624,8 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 //
 //
 //
@@ -89703,25 +89705,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         clients: function clients() {
-            var clients = new Set();
-            this.users.map(function (user) {
-                return clients.add(user.client.name);
+            var clients = this.users.map(function (user) {
+                return user.client.name;
             });
-            return Array.from(clients);
+            return [].concat(_toConsumableArray(new Set(clients)));
         },
         offices: function offices() {
-            var offices = new Set();
-            this.users.map(function (user) {
-                return offices.add(user.office.city);
+            var offices = this.users.map(function (user) {
+                return user.office.city;
             });
-            return Array.from(offices);
+            return [].concat(_toConsumableArray(new Set(offices)));
         },
         positions: function positions() {
-            var positions = new Set();
-            this.users.map(function (user) {
-                return positions.add(user.position);
+            var positions = this.users.map(function (user) {
+                return user.position;
             });
-            return Array.from(positions);
+            return [].concat(_toConsumableArray(new Set(positions)));
         }
     },
     methods: {
