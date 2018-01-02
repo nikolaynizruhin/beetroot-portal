@@ -57,17 +57,13 @@
             user: Object
         },
         data() {
-            const defaultClient = 'All Clients';
-            const defaultOffice = 'All Cities';
-            const defaultPosition = 'All Positions';
-
             return {
-                defaultClient: defaultClient,
-                defaultOffice: defaultOffice,
-                defaultPosition: defaultPosition,
-                client: defaultClient,
-                office: defaultOffice,
-                position: defaultPosition,
+                defaultClient: 'All Clients',
+                defaultOffice: 'All Cities',
+                defaultPosition: 'All Positions',
+                client: 'All Clients',
+                office: 'All Cities',
+                position: 'All Positions',
                 name: ''
             }
         },
