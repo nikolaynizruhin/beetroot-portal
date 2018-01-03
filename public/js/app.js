@@ -89938,6 +89938,8 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 //
 //
 //
@@ -89987,7 +89989,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             name: '',
-            country: 'All Countries'
+            country: 'All Countries',
+            defaultCountry: 'All Countries'
         };
     },
 
@@ -90000,11 +90003,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         countries: function countries() {
-            var countries = new Set();
-            this.clients.map(function (client) {
-                return countries.add(client.country);
+            var countries = this.clients.map(function (client) {
+                return client.country;
             });
-            return Array.from(countries);
+            return [].concat(_toConsumableArray(new Set(countries)));
         }
     },
     methods: {
@@ -90012,7 +90014,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return this.applyCountryFilter(client) && this.applyNameFilter(client);
         },
         applyCountryFilter: function applyCountryFilter(client) {
-            return this.country === 'All Countries' ? true : client.country === this.country;
+            return this.country === this.defaultCountry ? true : client.country === this.country;
         },
         applyNameFilter: function applyNameFilter(client) {
             return client.name.toLowerCase().includes(this.name.toLowerCase());
@@ -90055,7 +90057,7 @@ var render = function() {
                   [
                     _c("select-filter", {
                       attrs: {
-                        "default-value": "All Countries",
+                        "default-value": _vm.defaultCountry,
                         field: _vm.country,
                         list: _vm.countries
                       },
