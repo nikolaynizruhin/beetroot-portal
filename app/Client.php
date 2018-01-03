@@ -24,36 +24,4 @@ class Client extends Model
     {
         return $this->hasMany(User::class);
     }
-
-    /**
-     * Create a client from request.
-     *
-     * @param  \App\Http\Requests\StoreClient  $request
-     * @return \App\Client
-     */
-    public static function createFromRequest(StoreClient $request)
-    {
-        $attributes = request(['name', 'country', 'description', 'site']);
-
-        $attributes['logo'] = Image::fit($request->file('logo')->store('logos'));
-
-        return static::create($attributes);
-    }
-
-    /**
-     * Update a client from request.
-     *
-     * @param  \App\Http\Requests\UpdateClient  $request
-     * @return bool
-     */
-    public function updateFromRequest(UpdateClient $request)
-    {
-        $attributes = request(['name', 'country', 'description', 'site']);
-
-        if ($request->hasFile('logo')) {
-            $attributes['logo'] = Image::fit($request->file('logo')->store('logos'));
-        }
-
-        return $this->update($attributes);
-    }
 }
