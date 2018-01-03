@@ -56,9 +56,8 @@
                 return this.clients.filter(client => this.applyFilters(client));
             },
             countries() {
-                let countries = new Set();
-                this.clients.map(client => countries.add(client.country));
-                return Array.from(countries);
+                let countries = this.clients.map(client => client.country);
+                return [...new Set(countries)];
             }
         },
         methods: {
