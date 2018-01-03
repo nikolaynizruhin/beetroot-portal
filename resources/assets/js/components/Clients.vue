@@ -12,7 +12,7 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-sm-3">
-                                <select-filter default-value="All Countries"
+                                <select-filter :default-value="defaultCountry"
                                                :field.sync="country"
                                                :list="countries"/>
                             </div>
@@ -48,6 +48,7 @@
             return {
                 name: '',
                 country: 'All Countries',
+                defaultCountry: 'All Countries',
             }
         },
         computed: {
@@ -67,7 +68,7 @@
                 );
             },
             applyCountryFilter(client) {
-                return this.country === 'All Countries' ? true : client.country === this.country;
+                return this.country === this.defaultCountry ? true : client.country === this.country;
             },
             applyNameFilter(client) {
                 return client.name.toLowerCase().includes(this.name.toLowerCase());
