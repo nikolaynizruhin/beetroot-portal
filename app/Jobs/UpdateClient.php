@@ -15,10 +15,18 @@ class UpdateClient implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    /** @var \App\Client $client */
+    /**
+     * Client.
+     *
+     * @var \App\Client
+     */
     private $client;
 
-    /** @var array $attributes */
+    /**
+     * Client attributes.
+     *
+     * @var array
+     */
     private $attributes;
 
     /**
