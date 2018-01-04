@@ -15,7 +15,11 @@ class CreateUser implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    /** @var array $attributes */
+    /**
+     * User attributes.
+     *
+     * @var array
+     */
     private $attributes;
 
     /**
