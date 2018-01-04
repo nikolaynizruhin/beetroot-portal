@@ -15,10 +15,18 @@ class UpdateUser implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    /** @var \App\User $user */
+    /**
+     * User.
+     *
+     * @var \App\User
+     */
     private $user;
 
-    /** @var array $attributes */
+    /**
+     * User attributes.
+     *
+     * @var array
+     */
     private $attributes;
 
     /**
