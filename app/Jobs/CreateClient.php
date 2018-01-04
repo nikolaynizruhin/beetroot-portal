@@ -15,7 +15,11 @@ class CreateClient implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    /** @var array $attributes */
+    /**
+     * Client attributes.
+     *
+     * @var array
+     */
     private $attributes;
 
     /**
