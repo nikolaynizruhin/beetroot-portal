@@ -19,6 +19,8 @@ class Client extends Model
 
     /**
      * Get the users for the client.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function users()
     {
