@@ -54,6 +54,8 @@ class User extends Authenticatable
 
     /**
      * Get the client for the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function client()
     {
@@ -62,6 +64,8 @@ class User extends Authenticatable
 
     /**
      * Get the office for the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function office()
     {
