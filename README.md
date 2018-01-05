@@ -1,5 +1,8 @@
 # Beetroot Family Portal
 
+[![Build Status](https://travis-ci.org/nikolaynizruhin/beetroot-portal.svg?branch=master)](https://travis-ci.org/nikolaynizruhin/beetroot-portal)
+[![StyleCI](https://styleci.io/repos/96702020/shield?branch=master)](https://styleci.io/repos/96702020)
+
 This is the repository for the [family.beetroot.se](https://family.beetroot.se) portal.
 
 ## Getting started
