@@ -1,4 +1,7 @@
 language: php
 php:
   - '7.1'
+before_script:
+  - cp .env.example .env
+  - php artisan key:generate
 install: composer install
