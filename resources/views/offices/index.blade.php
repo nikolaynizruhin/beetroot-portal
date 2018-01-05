@@ -21,7 +21,7 @@
                                             height="350"
                                             frameborder="0"
                                             style="border:0"
-                                            src="https://www.google.com/maps/embed/v1/place?key={{ config('map.key') }}&q={{ $office->link }}"
+                                            src="https://www.google.com/maps/embed/v1/place?key={{ config('services.googlemaps.key') }}&q={{ $office->link }}"
                                             allowfullscreen>
                                     </iframe>
                                 </div>
