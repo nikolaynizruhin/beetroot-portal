@@ -14,7 +14,7 @@ class Image
      */
     public static function fit($path)
     {
-        Intervention::make('storage/' . $path)->fit(150)->save();
+        Intervention::make('storage/'.$path)->fit(150)->save();
 
         return $path;
     }

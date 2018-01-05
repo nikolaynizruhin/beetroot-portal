@@ -63,6 +63,7 @@ class ResetPasswordTest extends TestCase
             ResetPassword::class,
             function ($notification, $channels) use (&$token) {
                 $token = $notification->token;
+
                 return true;
             }
         );
@@ -71,7 +72,7 @@ class ResetPasswordTest extends TestCase
             'email' => $user->email,
             'token' => $token,
             'password' => 'new_password',
-            'password_confirmation' => 'new_password'
+            'password_confirmation' => 'new_password',
         ])
             ->assertRedirect(route('dashboard'));
     }

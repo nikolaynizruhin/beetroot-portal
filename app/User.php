@@ -2,13 +2,7 @@
 
 namespace App;
 
-use App\Client;
-use App\Office;
-use App\Utilities\Image;
-use App\Http\Requests\StoreUser;
-use App\Http\Requests\UpdateUser;
 use Laravel\Passport\HasApiTokens;
-use App\Http\Requests\UpdateProfile;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -22,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'is_admin' => 'boolean'
+        'is_admin' => 'boolean',
     ];
 
     /**
@@ -49,7 +43,7 @@ class User extends Authenticatable
     protected $dates = [
         'created_at',
         'updated_at',
-        'birthday'
+        'birthday',
     ];
 
     /**

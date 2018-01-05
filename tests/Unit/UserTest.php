@@ -3,8 +3,8 @@
 namespace Tests\Unit;
 
 use App\User;
-use App\Office;
 use App\Client;
+use App\Office;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 

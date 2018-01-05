@@ -2,10 +2,6 @@
 
 namespace App;
 
-use App\User;
-use App\Utilities\Image;
-use App\Http\Requests\StoreClient;
-use App\Http\Requests\UpdateClient;
 use Illuminate\Database\Eloquent\Model;
 
 class Client extends Model

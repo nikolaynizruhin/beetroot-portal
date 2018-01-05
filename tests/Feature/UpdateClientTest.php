@@ -22,7 +22,7 @@ class UpdateClientTest extends TestCase
     private $file;
 
     /**
-     * Setup
+     * Setup.
      *
      * @return void
      */
@@ -105,7 +105,7 @@ class UpdateClientTest extends TestCase
 
         $this->assertDatabaseHas('clients', $result);
 
-        Storage::disk('public')->assertExists('logos/' . $this->file->hashName());
+        Storage::disk('public')->assertExists('logos/'.$this->file->hashName());
     }
 
     /** @test */
@@ -139,7 +139,7 @@ class UpdateClientTest extends TestCase
      */
     private function resultAttributes($attributes)
     {
-        $attributes['logo'] = 'logos/' . $this->file->hashName();
+        $attributes['logo'] = 'logos/'.$this->file->hashName();
 
         return $attributes;
     }

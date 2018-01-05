@@ -28,9 +28,9 @@ class StoreClient extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'logo' => 'required|image',
-            'country' => 'required|string|max:255|in:' . Country::csv(),
+            'country' => 'required|string|max:255|in:'.Country::csv(),
             'description' => 'required|string|max:255',
-            'site' => 'required|url'
+            'site' => 'required|url',
         ];
     }
 }

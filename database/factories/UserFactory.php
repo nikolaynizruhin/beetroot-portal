@@ -19,7 +19,7 @@ $factory->define(App\User::class, function (Faker $faker) {
 
     return [
         'name' => $faker->name,
-        'email' => $userName . '@beetroot.se',
+        'email' => $userName.'@beetroot.se',
         'avatar' => 'avatars/default.png',
         'position' => $faker->randomElement(Position::all()),
         'birthday' => $faker->date(),
@@ -36,7 +36,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         },
         'office_id' => function () {
             return factory(App\Office::class)->create()->id;
-        }
+        },
     ];
 });
 

@@ -25,11 +25,10 @@ class StoreUser extends FormRequest
      */
     public function rules()
     {
-
         return [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'position' => 'required|string|max:255|in:' . Position::csv(),
+            'position' => 'required|string|max:255|in:'.Position::csv(),
             'birthday' => 'required|date',
             'avatar' => 'required|image',
             'slack' => 'required|string|max:255|unique:users',
@@ -40,7 +39,7 @@ class StoreUser extends FormRequest
             'github' => 'nullable|string|max:255',
             'skype' => 'nullable|string|max:255',
             'bio' => 'nullable|string|max:255',
-            'phone' => 'nullable|string|max:255'
+            'phone' => 'nullable|string|max:255',
         ];
     }
 }

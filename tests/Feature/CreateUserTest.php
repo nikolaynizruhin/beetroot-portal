@@ -28,7 +28,7 @@ class CreateUserTest extends TestCase
     private $userFixture;
 
     /**
-     * Setup
+     * Setup.
      *
      * @return void
      */
@@ -103,7 +103,7 @@ class CreateUserTest extends TestCase
 
         $this->assertDatabaseHas('users', $result);
 
-        Storage::disk('public')->assertExists('avatars/' . $this->file->hashName());
+        Storage::disk('public')->assertExists('avatars/'.$this->file->hashName());
     }
 
     /** @test */
@@ -114,7 +114,7 @@ class CreateUserTest extends TestCase
         $this->actingAs($admin)
             ->post(route('users.store'))
             ->assertSessionHasErrors([
-                'name', 'email', 'position', 'birthday', 'slack', 'client_id', 'office_id', 'password', 'avatar'
+                'name', 'email', 'position', 'birthday', 'slack', 'client_id', 'office_id', 'password', 'avatar',
             ]);
     }
 
@@ -139,7 +139,7 @@ class CreateUserTest extends TestCase
      */
     private function resultAttributes()
     {
-        $this->userFixture->set('avatar', 'avatars/' . $this->file->hashName());
+        $this->userFixture->set('avatar', 'avatars/'.$this->file->hashName());
         $this->userFixture->remove(['password', 'password_confirmation']);
 
         return $this->userFixture->attributes();

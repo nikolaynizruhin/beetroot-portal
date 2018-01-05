@@ -38,7 +38,7 @@ class Position
         'QA Engineer',
         'CEO',
         'CFO',
-        'CMO'
+        'CMO',
     ];
 
     /**

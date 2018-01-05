@@ -4,7 +4,6 @@ namespace Tests\Unit;
 
 use Tests\TestCase;
 use App\Http\Utilities\Country;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CountryTest extends TestCase
 {
