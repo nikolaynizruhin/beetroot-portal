@@ -9,7 +9,6 @@ use App\Policies\UserPolicy;
 use App\Policies\ClientPolicy;
 use App\Policies\OfficePolicy;
 use Laravel\Passport\Passport;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -22,7 +21,7 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         User::class => UserPolicy::class,
         Client::class => ClientPolicy::class,
-        Office::class => OfficePolicy::class
+        Office::class => OfficePolicy::class,
     ];
 
     /**

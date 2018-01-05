@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use App\User;
-use App\Client;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 

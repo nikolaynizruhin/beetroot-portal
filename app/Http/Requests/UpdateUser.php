@@ -29,7 +29,7 @@ class UpdateUser extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'position' => 'required|string|max:255|in:' . Position::csv(),
+            'position' => 'required|string|max:255|in:'.Position::csv(),
             'birthday' => 'required|date',
             'slack' => 'required|string|max:255',
             'client_id' => 'required|numeric|exists:clients,id',
@@ -39,7 +39,7 @@ class UpdateUser extends FormRequest
             'phone' => 'nullable|string|max:255',
             'bio' => 'nullable|string|max:255',
             'skype' => 'nullable|string|max:255',
-            'github' => 'nullable|string|max:255'
+            'github' => 'nullable|string|max:255',
         ];
     }
 }

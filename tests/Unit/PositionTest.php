@@ -4,7 +4,6 @@ namespace Tests\Unit;
 
 use Tests\TestCase;
 use App\Http\Utilities\Position;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class PositionTest extends TestCase
 {

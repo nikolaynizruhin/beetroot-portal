@@ -25,8 +25,8 @@ class UserFixture
             ->make()->toArray();
 
         unset(
-            $attributes['avatar'], 
-            $attributes['password'], 
+            $attributes['avatar'],
+            $attributes['password'],
             $attributes['remember_token']
         );
 

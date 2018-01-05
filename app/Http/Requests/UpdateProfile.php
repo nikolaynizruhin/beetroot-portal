@@ -29,7 +29,7 @@ class UpdateProfile extends FormRequest
             'phone' => 'nullable|string|max:255',
             'bio' => 'nullable|string|max:255',
             'skype' => 'nullable|string|max:255',
-            'github' => 'nullable|string|max:255'
+            'github' => 'nullable|string|max:255',
         ];
     }
 }
