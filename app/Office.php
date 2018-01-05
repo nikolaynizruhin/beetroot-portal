@@ -16,6 +16,8 @@ class Office extends Model
 
     /**
      * Get the users for the office.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function users()
     {
