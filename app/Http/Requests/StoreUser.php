@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\User;
+use App\Utilities\Image;
 use App\Http\Utilities\Position;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -41,5 +42,22 @@ class StoreUser extends FormRequest
             'bio' => 'nullable|string|max:255',
             'phone' => 'nullable|string|max:255',
         ];
+    }
+
+    /**
+     * Get the stored attributes.
+     *
+     * @return array
+     */
+    public function storedAttributes()
+    {
+        $attributes = $this->only(['name', 'email', 'position', 'birthday', 'phone', 'bio', 'slack', 'skype', 'github', 'client_id', 'office_id']);
+
+        $attributes['avatar'] = Image::fit($this->file('avatar')->store('avatars'));
+        $attributes['remember_token'] = str_random(10);
+        $attributes['is_admin'] = (bool) $this->is_admin;
+        $attributes['password'] = bcrypt($this->password);
+
+        return $attributes;
     }
 }

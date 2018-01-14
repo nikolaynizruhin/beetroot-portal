@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Client;
+use App\Utilities\Image;
 use App\Http\Utilities\Country;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -32,5 +33,19 @@ class StoreClient extends FormRequest
             'description' => 'required|string|max:255',
             'site' => 'required|url',
         ];
+    }
+
+    /**
+     * Get the stored attributes.
+     *
+     * @return array
+     */
+    public function storedAttributes()
+    {
+        $attributes = $this->only(['name', 'country', 'description', 'site']);
+
+        $attributes['logo'] = Image::fit($this->file('logo')->store('logos'));
+
+        return $attributes;
     }
 }

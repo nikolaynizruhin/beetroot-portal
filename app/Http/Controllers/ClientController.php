@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Client;
-use App\Jobs\CreateClient;
 use App\Http\Requests\StoreClient;
 use App\Http\Requests\UpdateClient;
-use App\Jobs\UpdateClient as UpdateClientJob;
 
 class ClientController extends Controller
 {
@@ -54,7 +52,7 @@ class ClientController extends Controller
      */
     public function store(StoreClient $request)
     {
-        $this->dispatchNow(new CreateClient($request));
+        Client::create($request->storedAttributes());
 
         return back()->with('status', 'The client was successfully created!');
     }
@@ -83,7 +81,7 @@ class ClientController extends Controller
      */
     public function update(UpdateClient $request, Client $client)
     {
-        $this->dispatchNow(new UpdateClientJob($client, $request));
+        $client->update($request->updatedAttributes());
 
         return back()->with('status', 'The client was successfully updated!');
     }

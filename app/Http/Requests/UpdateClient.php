@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Utilities\Image;
 use App\Http\Utilities\Country;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -33,5 +34,21 @@ class UpdateClient extends FormRequest
             'site' => 'required|url',
             'logo' => 'image',
         ];
+    }
+
+    /**
+     * Get the updated attributes.
+     *
+     * @return array
+     */
+    public function updatedAttributes()
+    {
+        $attributes = $this->only(['name', 'country', 'description', 'site']);
+
+        if ($this->hasFile('logo')) {
+            $attributes['logo'] = Image::fit($this->file('logo')->store('logos'));
+        }
+
+        return $attributes;
     }
 }

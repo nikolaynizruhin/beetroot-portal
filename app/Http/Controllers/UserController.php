@@ -5,10 +5,8 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Client;
 use App\Office;
-use App\Jobs\CreateUser;
 use App\Http\Requests\StoreUser;
 use App\Http\Requests\UpdateUser;
-use App\Jobs\UpdateUser as UpdateUserJob;
 
 class UserController extends Controller
 {
@@ -56,7 +54,7 @@ class UserController extends Controller
      */
     public function store(StoreUser $request)
     {
-        $this->dispatchNow(new CreateUser($request));
+        User::create($request->storedAttributes());
 
         return back()->with('status', 'The employee was successfully created!');
     }
@@ -85,7 +83,7 @@ class UserController extends Controller
      */
     public function update(UpdateUser $request, User $user)
     {
-        $this->dispatchNow(new UpdateUserJob($user, $request));
+        $user->update($request->updatedAttributes());
 
         return back()->with('status', 'The employee was successfully updated!');
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Utilities\Image;
 use App\Http\Utilities\Position;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -41,5 +42,23 @@ class UpdateUser extends FormRequest
             'skype' => 'nullable|string|max:255',
             'github' => 'nullable|string|max:255',
         ];
+    }
+
+    /**
+     * Get the updated attributes.
+     *
+     * @return array
+     */
+    public function updatedAttributes()
+    {
+        $attributes = $this->only(['name', 'email', 'position', 'birthday', 'phone', 'bio', 'slack', 'skype', 'github', 'client_id', 'office_id']);
+
+        $attributes['is_admin'] = (bool) $this->is_admin;
+
+        if ($this->hasFile('avatar')) {
+            $attributes['avatar'] = Image::fit($this->file('avatar')->store('avatars'));
+        }
+
+        return $attributes;
     }
 }
