@@ -37,11 +37,11 @@ class UpdateClient extends FormRequest
     }
 
     /**
-     * Get the updated attributes.
+     * Get attributes.
      *
      * @return array
      */
-    public function updatedAttributes()
+    public function getAttributes()
     {
         $attributes = $this->only(['name', 'country', 'description', 'site']);
 

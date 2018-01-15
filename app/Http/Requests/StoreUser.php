@@ -45,11 +45,11 @@ class StoreUser extends FormRequest
     }
 
     /**
-     * Get the stored attributes.
+     * Get attributes.
      *
      * @return array
      */
-    public function storedAttributes()
+    public function getAttributes()
     {
         $attributes = $this->only(['name', 'email', 'position', 'birthday', 'phone', 'bio', 'slack', 'skype', 'github', 'client_id', 'office_id']);
 

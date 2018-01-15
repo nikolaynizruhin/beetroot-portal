@@ -36,11 +36,11 @@ class StoreClient extends FormRequest
     }
 
     /**
-     * Get the stored attributes.
+     * Get attributes.
      *
      * @return array
      */
-    public function storedAttributes()
+    public function getAttributes()
     {
         $attributes = $this->only(['name', 'country', 'description', 'site']);
 
