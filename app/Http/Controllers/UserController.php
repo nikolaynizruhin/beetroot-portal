@@ -27,7 +27,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::with(['client', 'office'])->get();
+        $users = User::with(['client', 'office'])->paginate(15);
 
         return view('users.index')->with('users', $users);
     }
