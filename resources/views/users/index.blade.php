@@ -14,6 +14,62 @@
 
                     <div class="panel-body">
 
+                        <form method="GET" action="{{ route('users.index') }}">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <select class="form-control" name="office">
+                                            <option value="" selected>All Offices</option>
+                                            <option value="office_one">Option</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <select class="form-control" name="position">
+                                            <option value="" selected>All Positions</option>
+                                            <option value="position_one">Option</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <select class="form-control" name="client">
+                                            <option value="" selected>All Clients</option>
+                                            <option value="client_one">Option</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="name" class="sr-only">Name</label>
+                                        <input type="text"
+                                               class="form-control"
+                                               name="name" 
+                                               id="name"
+                                               placeholder="Name">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-default btn-block">
+                                            <i class="fas fa-times fa-fw"></i>
+                                            &nbsp;
+                                            Clear
+                                        </button>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary btn-block">
+                                            <i class="fas fa-filter fa-fw"></i>
+                                            &nbsp;
+                                            Filter
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
                         <div class="list-group">
                             @foreach ($users as $user)
                                 <div class="row list-group-item">
