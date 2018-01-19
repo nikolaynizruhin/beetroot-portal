@@ -18,25 +18,55 @@
                             <div class="row">
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <select class="form-control" name="office">
+                                        <select class="form-control" name="office_id">
                                             <option value="" selected>All Offices</option>
-                                            <option value="office_one">Option</option>
+                                            @foreach ($offices as $id => $city)
+                                                @if (request('office_id') == $id)
+                                                    <option value="{{ $id }}" selected>
+                                                        {{ $city }}
+                                                    </option>
+                                                @else
+                                                    <option value="{{ $id }}">
+                                                        {{ $city }}
+                                                    </option>
+                                                @endif
+                                            @endforeach
                                         </select>
                                     </div>
 
                                     <div class="form-group">
                                         <select class="form-control" name="position">
                                             <option value="" selected>All Positions</option>
-                                            <option value="position_one">Option</option>
+                                            @foreach ( $positions as $position )
+                                                @if (request('position') == $position)
+                                                    <option value="{{ $position }}" selected>
+                                                        {{ $position }}
+                                                    </option>
+                                                @else
+                                                    <option value="{{ $position }}">
+                                                        {{ $position }}
+                                                    </option>
+                                                @endif
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
 
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <select class="form-control" name="client">
+                                        <select class="form-control" name="client_id">
                                             <option value="" selected>All Clients</option>
-                                            <option value="client_one">Option</option>
+                                            @foreach ($clients as $id => $name)
+                                                @if (request('client_id') == $id)
+                                                    <option value="{{ $id }}" selected>
+                                                        {{ $name }}
+                                                    </option>
+                                                @else
+                                                    <option value="{{ $id }}">
+                                                        {{ $name }}
+                                                    </option>
+                                                @endif
+                                            @endforeach
                                         </select>
                                     </div>
 
@@ -44,7 +74,8 @@
                                         <label for="name" class="sr-only">Name</label>
                                         <input type="text"
                                                class="form-control"
-                                               name="name" 
+                                               name="name"
+                                               value="{{ request('name') }}" 
                                                id="name"
                                                placeholder="Name">
                                     </div>
@@ -52,11 +83,11 @@
 
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-default btn-block">
+                                        <a class="btn btn-default btn-block" href="{{ route('users.index') }}" role="button">
                                             <i class="fas fa-times fa-fw"></i>
                                             &nbsp;
                                             Clear
-                                        </button>
+                                        </a>
                                     </div>
 
                                     <div class="form-group">
@@ -239,7 +270,7 @@
                         </div>
 
                         <div class="text-center">
-                            {{ $users->links() }}
+                            {{ $users->appends($_GET)->links() }}
                         </div>
 
                     </div>
