@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Client;
+use App\Filters\ClientFilters;
 use App\Http\Requests\StoreClient;
 use App\Http\Requests\UpdateClient;
 
@@ -21,11 +22,12 @@ class ClientController extends Controller
     /**
      * Show the application dashboard.
      *
+     * @param  ClientFilters  $filters
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(ClientFilters $filters)
     {
-        $clients = Client::all();
+        $clients = Client::filter($filters)->paginate(15);
 
         return view('clients.index')->with('clients', $clients);
     }

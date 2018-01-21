@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Client;
 use App\Office;
+use App\Filters\UserFilters;
 use App\Http\Requests\StoreUser;
 use App\Http\Requests\UpdateUser;
 
@@ -23,11 +24,12 @@ class UserController extends Controller
     /**
      * Show the user list.
      *
+     * @param  UserFilters  $filters
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(UserFilters $filters)
     {
-        $users = User::with(['client', 'office'])->paginate(15);
+        $users = User::with(['client', 'office'])->filter($filters)->paginate(15);
 
         return view('users.index')->with('users', $users);
     }
