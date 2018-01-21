@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 abstract class Filters
 {
     /**
-     * Request instance. 
+     * Request instance.
      *
      * @var Request
      */
