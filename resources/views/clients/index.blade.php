@@ -20,7 +20,7 @@
 
                         <!-- Client List -->
                         <div class="list-group">
-                            @each('partials.clients.client', $clients, 'client')
+                            @each('partials.clients.client', $clients, 'client', 'partials.clients.empty')
                         </div>
 
                         <!-- Pagination -->

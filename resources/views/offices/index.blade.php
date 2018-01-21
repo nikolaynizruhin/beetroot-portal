@@ -13,7 +13,7 @@
 
                     <!-- Office List -->
                     <div class="panel-body list-group">
-                        @each('partials.offices.office', $offices, 'office')
+                        @each('partials.offices.office', $offices, 'office', 'partials.offices.empty')
                     </div>
 
                     <!-- Pagination -->

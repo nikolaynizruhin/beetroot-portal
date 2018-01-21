@@ -18,7 +18,7 @@
 
                         <!-- User List -->
                         <div class="list-group">
-                            @each('partials.users.user', $users, 'user')
+                            @each('partials.users.user', $users, 'user', 'partials.users.empty')
                         </div>
 
                         <!-- Pagination -->
