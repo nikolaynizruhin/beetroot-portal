@@ -6,7 +6,7 @@
             <div class="form-group">
                 <select class="form-control" name="country">
                     <option value="" selected>All Countries</option>
-                    @foreach ( $countries::all() as $country )
+                    @foreach ( $countries as $country )
                         @if (request('country') == $country)
                             <option value="{{ $country }}" selected>
                                 {{ $country }}

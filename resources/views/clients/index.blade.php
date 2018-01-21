@@ -1,5 +1,3 @@
-@inject('countries', 'App\Http\Utilities\Country')
-
 @extends('layouts.app')
 
 @section('content')

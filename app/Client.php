@@ -35,4 +35,14 @@ class Client extends Model
     {
         return $filters->apply($query);
     }
+
+    /**
+     * Get countries.
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    public static function countries()
+    {
+        return static::pluck('country')->unique();
+    }
 }

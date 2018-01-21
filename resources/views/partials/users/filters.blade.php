@@ -6,7 +6,7 @@
             <div class="form-group">
                 <select class="form-control" name="office">
                     <option value="" selected>All Offices</option>
-                    @foreach ($offices as $id => $city)
+                    @foreach ($offices as $city)
                         @if (request('office') == $city)
                             <option value="{{ $city }}" selected>
                                 {{ $city }}
@@ -45,7 +45,7 @@
             <div class="form-group">
                 <select class="form-control" name="client">
                     <option value="" selected>All Clients</option>
-                    @foreach ($clients as $id => $name)
+                    @foreach ($clients as $name)
                         @if (request('client') == $name)
                             <option value="{{ $name }}" selected>
                                 {{ $name }}

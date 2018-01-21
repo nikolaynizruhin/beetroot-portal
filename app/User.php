@@ -78,4 +78,14 @@ class User extends Authenticatable
     {
         return $filters->apply($query);
     }
+
+    /**
+     * Get positions.
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    public static function positions()
+    {
+        return static::pluck('position')->unique();
+    }
 }

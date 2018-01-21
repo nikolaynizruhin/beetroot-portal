@@ -15,8 +15,18 @@ class ComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer(
-            ['users.index', 'users.create', 'users.edit'],
+            ['users.create', 'users.edit'],
             'App\Http\ViewComposers\UsersComposer'
+        );
+
+        View::composer(
+            'users.index',
+            'App\Http\ViewComposers\UserFiltersComposer'
+        );
+
+        View::composer(
+            'clients.index',
+            'App\Http\ViewComposers\ClientFiltersComposer'
         );
     }
 
