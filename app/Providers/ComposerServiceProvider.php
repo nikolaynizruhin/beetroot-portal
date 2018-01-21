@@ -4,6 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use App\Http\ViewComposers\UsersComposer;
+use App\Http\ViewComposers\UserFiltersComposer;
+use App\Http\ViewComposers\ClientFiltersComposer;
 
 class ComposerServiceProvider extends ServiceProvider
 {
@@ -16,17 +19,17 @@ class ComposerServiceProvider extends ServiceProvider
     {
         View::composer(
             ['users.create', 'users.edit'],
-            'App\Http\ViewComposers\UsersComposer'
+            UsersComposer::class
         );
 
         View::composer(
             'users.index',
-            'App\Http\ViewComposers\UserFiltersComposer'
+            UserFiltersComposer::class
         );
 
         View::composer(
             'clients.index',
-            'App\Http\ViewComposers\ClientFiltersComposer'
+            ClientFiltersComposer::class
         );
     }
 
