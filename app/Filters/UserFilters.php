@@ -2,8 +2,8 @@
 
 namespace App\Filters;
 
-use App\Office;
 use App\Client;
+use App\Office;
 
 class UserFilters extends Filters
 {
