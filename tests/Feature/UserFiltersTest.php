@@ -3,10 +3,9 @@
 namespace Tests\Feature;
 
 use App\User;
-use App\Office;
 use App\Client;
+use App\Office;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UserFiltersTest extends TestCase
@@ -30,12 +29,12 @@ class UserFiltersTest extends TestCase
     {
         $john = factory(User::class)->create([
             'name' => 'John Doe',
-            'position' => 'CEO'
+            'position' => 'CEO',
         ]);
 
         $jane = factory(User::class)->create([
             'name' => 'Jane Doe',
-            'position' => 'CMO'
+            'position' => 'CMO',
         ]);
 
         $this->actingAs($john)
@@ -52,12 +51,12 @@ class UserFiltersTest extends TestCase
 
         $john = factory(User::class)->create([
             'name' => 'John Doe',
-            'office_id' => $london->id
+            'office_id' => $london->id,
         ]);
 
         $jane = factory(User::class)->create([
             'name' => 'Jane Doe',
-            'office_id' => $ny->id
+            'office_id' => $ny->id,
         ]);
 
         $this->actingAs($john)
@@ -74,12 +73,12 @@ class UserFiltersTest extends TestCase
 
         $john = factory(User::class)->create([
             'name' => 'John Doe',
-            'client_id' => $alliance->id
+            'client_id' => $alliance->id,
         ]);
 
         $jane = factory(User::class)->create([
             'name' => 'Jane Doe',
-            'client_id' => $brothers->id
+            'client_id' => $brothers->id,
         ]);
 
         $this->actingAs($john)
