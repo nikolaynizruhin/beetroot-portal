@@ -5,7 +5,6 @@ namespace Tests\Feature;
 use App\User;
 use App\Client;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ClientFiltersTest extends TestCase
@@ -33,12 +32,12 @@ class ClientFiltersTest extends TestCase
 
         $alliance = factory(Client::class)->create([
             'name' => 'Alliance',
-            'country' => 'USA'
+            'country' => 'USA',
         ]);
 
         $brothers = factory(Client::class)->create([
             'name' => 'Brothers',
-            'country' => 'UK'
+            'country' => 'UK',
         ]);
 
         $this->actingAs($user)
