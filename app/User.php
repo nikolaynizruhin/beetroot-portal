@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Filters\UserFilters;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -64,5 +65,27 @@ class User extends Authenticatable
     public function office()
     {
         return $this->belongsTo(Office::class);
+    }
+
+    /**
+     * Apply all relevant user filters.
+     *
+     * @param  Builder  $query
+     * @param  UserFilters  $filters
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeFilter($query, UserFilters $filters)
+    {
+        return $filters->apply($query);
+    }
+
+    /**
+     * Get positions.
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    public static function positions()
+    {
+        return static::pluck('position')->unique();
     }
 }

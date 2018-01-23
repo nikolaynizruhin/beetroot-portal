@@ -15,15 +15,9 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('users', require('./components/Users.vue'));
-Vue.component('clients', require('./components/Clients.vue'));
-Vue.component('select-filter', require('./components/SelectFilter.vue'));
-Vue.component('user-list', require('./components/UserList.vue'));
-Vue.component('client-list', require('./components/ClientList.vue'));
-Vue.component('user-modal', require('./components/UserModal.vue'));
 Vue.component('position-chart', require('./components/PositionChart.vue'));
 Vue.component('client-map', require('./components/ClientMap.vue'));
-Vue.component('number-counter', require('./components/NumberCounter.vue'));
+Vue.component('counter', require('./components/Counter.vue'));
 
 const app = new Vue({
     el: '#app'
