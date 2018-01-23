@@ -20,7 +20,9 @@
                                 <div class="panel panel-default dashboard-panel">
                                     <div class="panel-body">
                                         <p>TOTAL EMPLOYEES</p>
-                                        <number-counter :count="{{ $userCount }}"></number-counter>
+                                        <h2>
+                                            <counter :count="{{ $userCount }}"></counter>
+                                        </h2>
                                     </div>
                                 </div>
                             </a>
@@ -32,7 +34,9 @@
                                 <div class="panel panel-default dashboard-panel">
                                     <div class="panel-body">
                                         <p>TOTAL CLIENTS</p>
-                                        <number-counter :count="{{ $clientCount }}"></number-counter>
+                                        <h2>
+                                            <counter :count="{{ $clientCount }}"></counter>
+                                        </h2>
                                     </div>
                                 </div>
                             </a>
@@ -44,7 +48,9 @@
                                 <div class="panel panel-default dashboard-panel">
                                     <div class="panel-body">
                                         <p>TOTAL OFFICES</p>
-                                        <number-counter :count="{{ $officeCount }}"></number-counter>
+                                        <h2>
+                                            <counter :count="{{ $officeCount }}"></counter>
+                                        </h2>
                                     </div>
                                 </div>
                             </a>

@@ -34519,7 +34519,7 @@ Vue.component('client-list', __webpack_require__(345));
 Vue.component('user-modal', __webpack_require__(348));
 Vue.component('position-chart', __webpack_require__(351));
 Vue.component('client-map', __webpack_require__(354));
-Vue.component('number-counter', __webpack_require__(357));
+Vue.component('counter', __webpack_require__(357));
 
 var app = new Vue({
   el: '#app'
@@ -91425,7 +91425,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/NumberCounter.vue"
+Component.options.__file = "resources/assets/js/components/Counter.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -91434,9 +91434,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-a0157768", Component.options)
+    hotAPI.createRecord("data-v-5a9bd7d6", Component.options)
   } else {
-    hotAPI.reload("data-v-a0157768", Component.options)
+    hotAPI.reload("data-v-5a9bd7d6", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -91490,7 +91490,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("h2", [_vm._v(_vm._s(_vm.number))])
+  return _c("span", [_vm._v(_vm._s(_vm.number))])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -91498,7 +91498,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-a0157768", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-5a9bd7d6", module.exports)
   }
 }
 
