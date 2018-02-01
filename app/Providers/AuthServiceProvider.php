@@ -8,7 +8,6 @@ use App\Office;
 use App\Policies\UserPolicy;
 use App\Policies\ClientPolicy;
 use App\Policies\OfficePolicy;
-use Laravel\Passport\Passport;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -33,6 +32,6 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Passport::routes();
+        //
     }
 }
