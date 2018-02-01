@@ -41,11 +41,7 @@ php artisan key:generate
 ```
 php artisan storage:link
 ```
-9. Install passport:
-```
-php artisan passport:install
-```
-10. Create default employee avatar and client logo:
+9. Create default employee avatar and client logo:
 ```
 storage/public/avatars/default.png
 storage/public/logos/default.png
