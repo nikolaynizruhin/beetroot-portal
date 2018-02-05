@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Utilities\Image;
+use Illuminate\Validation\Rule;
 use App\Http\Utilities\Position;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -29,10 +30,20 @@ class UpdateUser extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('users')->ignore($this->user->id),
+                'max:255',
+            ],
             'position' => 'required|string|max:255|in:'.Position::csv(),
             'birthday' => 'required|date',
-            'slack' => 'required|string|max:255',
+            'slack' => [
+                'required',
+                'string',
+                Rule::unique('users')->ignore($this->user->id),
+                'max:255',
+            ],
             'client_id' => 'required|numeric|exists:clients,id',
             'office_id' => 'required|numeric|exists:offices,id',
             'is_admin' => 'boolean',
