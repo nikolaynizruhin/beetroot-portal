@@ -1,27 +1,15 @@
-<nav class="navbar navbar-default navbar-static-top">
+<nav class="navbar navbar-expand-md navbar-light navbar-laravel">
     <div class="container">
-        <div class="navbar-header">
+        <a class="navbar-brand" href="{{ url('/') }}">
+            {{ config('app.name', 'Laravel') }}
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-            <!-- Collapsed Hamburger -->
-            <button type="button"
-                    class="navbar-toggle collapsed"
-                    data-toggle="collapse"
-                    data-target="#app-navbar-collapse">
-                <span class="sr-only">Toggle Navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-
-            <!-- Branding Image -->
-            <a class="navbar-brand" href="{{ url('/') }}">
-                <img src="{{ asset('images/logo.svg') }}" alt="Beetroot">
-            </a>
-        </div>
-
-        <div class="collapse navbar-collapse" id="app-navbar-collapse">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
-            <ul class="nav navbar-nav">
+            <ul class="navbar-nav mr-auto">
                 @auth
                     <li class="@routeis('dashboard') active @endrouteis">
                         <a href="{{ route('dashboard') }}">
@@ -77,44 +65,41 @@
             </ul>
 
             <!-- Right Side Of Navbar -->
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="navbar-nav ml-auto">
                 <!-- Authentication Links -->
                 @guest
-                    <li><a href="{{ route('login') }}">Login</a></li>
+                    <li><a class="nav-link" href="{{ route('login') }}">Login</a></li>
                 @else
-                    <li class="dropdown">
+                    <li class="nav-item dropdown">
                         <a href="#"
-                           class="dropdown-toggle"
+                           class="nav-link dropdown-toggle"
                            data-toggle="dropdown"
                            role="button"
+                           aria-haspopup="true"
                            aria-expanded="false">
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
 
-                        <ul class="dropdown-menu" role="menu">
-                            <li>
-                                <a href="{{ route('users.edit', Auth::id()) }}">
-                                    <i class="fas fa-cog fa-fw" aria-hidden="true"></i>
-                                    &nbsp;
-                                    Settings
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                    <i class="fas fa-sign-out-alt fa-fw" aria-hidden="true"></i>
-                                    &nbsp;
-                                    Logout
-                                </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('users.edit', Auth::id()) }}">
+                                <i class="fas fa-cog fa-fw" aria-hidden="true"></i>
+                                &nbsp;
+                                Settings
+                            </a>
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                <i class="fas fa-sign-out-alt fa-fw" aria-hidden="true"></i>
+                                &nbsp;
+                                Logout
+                            </a>
 
-                                <form id="logout-form"
-                                      action="{{ route('logout') }}"
-                                      method="POST"
-                                      class="hidden">
-                                    {{ csrf_field() }}
-                                </form>
-                            </li>
-                        </ul>
+                            <form id="logout-form"
+                                    action="{{ route('logout') }}"
+                                    method="POST"
+                                    class="hidden">
+                                {{ csrf_field() }}
+                            </form>
+                        </div>
                     </li>
                 @endguest
             </ul>

@@ -2,16 +2,16 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card card-default">
+                <div class="card-header">
                     <i class="fas fa-tachometer-alt fa-lg fa-fw" aria-hidden="true"></i>
                     &nbsp;
                     Dashboard
                 </div>
 
-                <div class="panel-body">
+                <div class="card-body">
                     <div class="row text-center">
 
                         <!-- Total Employees -->
