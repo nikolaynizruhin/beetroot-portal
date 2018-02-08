@@ -17,8 +17,8 @@
                         <!-- Total Employees -->
                         <div class="col-md-4">
                             <a href="{{ route('users.index') }}" class="dashboard-link">
-                                <div class="panel panel-default dashboard-panel">
-                                    <div class="panel-body">
+                                <div class="card card-default dashboard-panel">
+                                    <div class="card-body">
                                         <p>TOTAL EMPLOYEES</p>
                                         <h2>
                                             <counter :count="{{ $userCount }}"></counter>
@@ -31,8 +31,8 @@
                         <!-- Total Clients -->
                         <div class="col-md-4">
                             <a href="{{ route('clients.index') }}" class="dashboard-link">
-                                <div class="panel panel-default dashboard-panel">
-                                    <div class="panel-body">
+                                <div class="card card-default dashboard-panel">
+                                    <div class="card-body">
                                         <p>TOTAL CLIENTS</p>
                                         <h2>
                                             <counter :count="{{ $clientCount }}"></counter>
@@ -45,8 +45,8 @@
                         <!-- Total Offices -->
                         <div class="col-md-4">
                             <a href="{{ route('offices.index') }}" class="dashboard-link">
-                                <div class="panel panel-default dashboard-panel">
-                                    <div class="panel-body">
+                                <div class="card card-default dashboard-panel">
+                                    <div class="card-body">
                                         <p>TOTAL OFFICES</p>
                                         <h2>
                                             <counter :count="{{ $officeCount }}"></counter>

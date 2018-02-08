@@ -2,17 +2,17 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card card-default">
+                    <div class="card-header">
                         <i class="fas fa-building fa-lg fa-fw" aria-hidden="true"></i>
                         &nbsp;
                         Offices {{ $offices->total() }}
                     </div>
 
                     <!-- Office List -->
-                    <div class="panel-body list-group">
+                    <div class="card-body list-group">
                         @each('partials.offices.office', $offices, 'office', 'partials.offices.empty')
                     </div>
 

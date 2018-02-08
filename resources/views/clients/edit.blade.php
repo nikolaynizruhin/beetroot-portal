@@ -4,16 +4,16 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card card-default">
+                <div class="card-header">
                     <i class="fas fa-users fa-lg fa-fw" aria-hidden="true"></i>
                     &nbsp;
                     Update Client
                 </div>
 
-                <div class="panel-body">
+                <div class="card-body">
 
                     @include('partials.flash')
 
@@ -26,16 +26,15 @@
 
                     <br>
 
-                    <form class="form-horizontal"
-                          method="POST"
+                    <form method="POST"
                           action="{{ route('clients.update', $client->id) }}"
                           enctype="multipart/form-data">
-                        {{ method_field('PUT') }}
-                        {{ csrf_field() }}
+                        @method('PUT')
+                        @csrf
 
                         <!-- Logo -->
-                        <div class="form-group{{ $errors->has('logo') ? ' has-error' : '' }}">
-                            <label for="logo" class="col-md-4 control-label">
+                        <div class="form-group row">
+                            <label for="logo" class="col-md-4 col-form-label text-md-right">
                                 <span data-toggle="tooltip"
                                       data-placement="top"
                                       title="Square image (jpeg, png, bmp, gif, svg)">
@@ -47,7 +46,7 @@
                                 <input id="logo" type="file" name="logo">
 
                                 @if ($errors->has('logo'))
-                                    <span class="help-block">
+                                    <span class="invalid-feedback">
                                         <strong>{{ $errors->first('logo') }}</strong>
                                     </span>
                                 @endif
@@ -55,22 +54,22 @@
                         </div>
 
                         <!-- Name -->
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">
                                 Name <small>*</small>
                             </label>
 
                             <div class="col-md-6">
                                 <input id="name"
                                        type="text"
-                                       class="form-control"
+                                       class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
                                        name="name"
                                        value="{{ old('name', $client->name) }}"
                                        required
                                        @if ($errors->isEmpty()) autofocus @endif>
 
                                 @if ($errors->has('name'))
-                                    <span class="help-block">
+                                    <span class="invalid-feedback">
                                         <strong>{{ $errors->first('name') }}</strong>
                                     </span>
                                 @endif
@@ -78,8 +77,8 @@
                         </div>
 
                         <!-- Site -->
-                        <div class="form-group{{ $errors->has('site') ? ' has-error' : '' }}">
-                            <label for="site" class="col-md-4 control-label">
+                        <div class="form-group row">
+                            <label for="site" class="col-md-4 col-form-label text-md-right">
                                 <span data-toggle="tooltip"
                                       data-placement="top"
                                       title="Full url with schema (e.g., https://example.com)">
@@ -91,13 +90,13 @@
                             <div class="col-md-6">
                                 <input id="site"
                                        type="text"
-                                       class="form-control"
+                                       class="form-control{{ $errors->has('site') ? ' is-invalid' : '' }}"
                                        name="site"
                                        value="{{ old('site', $client->site) }}"
                                        required>
 
                                 @if ($errors->has('site'))
-                                    <span class="help-block">
+                                    <span class="invalid-feedback">
                                         <strong>{{ $errors->first('site') }}</strong>
                                     </span>
                                 @endif
@@ -105,13 +104,13 @@
                         </div>
 
                         <!-- Country -->
-                        <div class="form-group{{ $errors->has('country') ? ' has-error' : '' }}">
-                            <label for="country" class="col-md-4 control-label">
+                        <div class="form-group row">
+                            <label for="country" class="col-md-4 col-form-label text-md-right">
                                 Country <small>*</small>
                             </label>
 
                             <div class="col-md-6">
-                                <select id="country" class="form-control" name="country" required>
+                                <select id="country" class="form-control{{ $errors->has('country') ? ' is-invalid' : '' }}" name="country" required>
                                     @foreach ( $countries::all() as $country )
                                         @if (old('country', $client->country) == $country)
                                             <option value="{{ $country }}" selected>
@@ -126,7 +125,7 @@
                                 </select>
 
                                 @if ($errors->has('country'))
-                                    <span class="help-block">
+                                    <span class="invalid-feedback">
                                         <strong>{{ $errors->first('country') }}</strong>
                                     </span>
                                 @endif
@@ -134,19 +133,19 @@
                         </div>
 
                         <!-- Description -->
-                        <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
-                            <label for="description" class="col-md-4 control-label">
+                        <div class="form-group row">
+                            <label for="description" class="col-md-4 col-form-label text-md-right">
                                 Description <small>*</small>
                             </label>
 
                             <div class="col-md-6">
-                                <textarea class="form-control"
+                                <textarea class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}"
                                           rows="3"
                                           name="description"
                                           required>{{ old('description', $client->description) }}</textarea>
 
                                 @if ($errors->has('description'))
-                                    <span class="help-block">
+                                    <span class="invalid-feedback">
                                         <strong>{{ $errors->first('description') }}</strong>
                                     </span>
                                 @endif
@@ -154,8 +153,8 @@
                         </div>
 
                         <!-- Update Button -->
-                        <div class="form-group">
-                            <div class="col-md-3 col-md-offset-4">
+                        <div class="form-group row mb-0">
+                            <div class="col-md-3 offset-md-4">
                                 <button type="submit" class="btn btn-primary btn-block">
                                     Update
                                 </button>
@@ -168,15 +167,14 @@
                     <hr>
 
                     <form id="delete-form"
-                          class="form-horizontal"
                           method="POST"
                           action="{{ route('clients.destroy', $client->id) }}">
-                        {{ method_field('DELETE') }}
-                        {{ csrf_field() }}
+                        @method('DELETE')
+                        @csrf
 
-                        <div class="form-group">
+                        <div class="form-group row mb-0">
                             <!-- Delete Button -->
-                            <div class="col-md-3 col-md-offset-4">
+                            <div class="col-md-3 offset-md-4">
                                 <button type="submit"
                                         class="btn btn-default btn-block"
                                         onclick="event.preventDefault();
