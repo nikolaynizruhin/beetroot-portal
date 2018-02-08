@@ -6,9 +6,10 @@
         <div class="col-md-8">
             <div class="card card-default">
                 <div class="card-header">Login</div>
+
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
-                        {{ csrf_field() }}
+                        @csrf
 
                         <div class="form-group row">
                             <label for="email" class="col-sm-4 col-form-label text-md-right">Email</label>

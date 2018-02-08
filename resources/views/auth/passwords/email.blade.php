@@ -6,6 +6,7 @@
         <div class="col-md-8">
             <div class="card card-default">
                 <div class="card-header">Reset Password</div>
+
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success">
@@ -14,7 +15,7 @@
                     @endif
 
                     <form method="POST" action="{{ route('password.email') }}">
-                        {{ csrf_field() }}
+                        @csrf
 
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
