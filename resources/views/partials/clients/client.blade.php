@@ -4,7 +4,7 @@
         <!-- Logo -->
         <img src="{{ asset('storage/'.$client->logo) }}"
              alt="Logo"
-             class="img-thumbnail img-circle img-responsive center-block"
+             class="rounded-circle img-thumbnail img-fluid mx-auto d-block"
              width="150"
              height="150">
     </div>

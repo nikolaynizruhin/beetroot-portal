@@ -3,8 +3,8 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card card-default">
+        <div class="col-lg-8">
+            <div class="card">
                 <div class="card-header">
                     <i class="fas fa-tachometer-alt fa-lg fa-fw" aria-hidden="true"></i>
                     &nbsp;
@@ -16,11 +16,11 @@
 
                         <!-- Total Employees -->
                         <div class="col-md-4">
-                            <a href="{{ route('users.index') }}" class="dashboard-link">
-                                <div class="card card-default dashboard-panel">
+                            <a href="{{ route('users.index') }}" class="link-dashboard">
+                                <div class="card card-dashboard mb-2">
                                     <div class="card-body">
-                                        <p>TOTAL EMPLOYEES</p>
-                                        <h2>
+                                        <p class="card-text">TOTAL EMPLOYEES</p>
+                                        <h2 class="card-title">
                                             <counter :count="{{ $userCount }}"></counter>
                                         </h2>
                                     </div>
@@ -30,11 +30,11 @@
 
                         <!-- Total Clients -->
                         <div class="col-md-4">
-                            <a href="{{ route('clients.index') }}" class="dashboard-link">
-                                <div class="card card-default dashboard-panel">
+                            <a href="{{ route('clients.index') }}" class="link-dashboard">
+                                <div class="card card-dashboard mb-2">
                                     <div class="card-body">
-                                        <p>TOTAL CLIENTS</p>
-                                        <h2>
+                                        <p class="card-text">TOTAL CLIENTS</p>
+                                        <h2 class="card-title">
                                             <counter :count="{{ $clientCount }}"></counter>
                                         </h2>
                                     </div>
@@ -44,11 +44,11 @@
 
                         <!-- Total Offices -->
                         <div class="col-md-4">
-                            <a href="{{ route('offices.index') }}" class="dashboard-link">
-                                <div class="card card-default dashboard-panel">
+                            <a href="{{ route('offices.index') }}" class="link-dashboard">
+                                <div class="card card-dashboard mb-2">
                                     <div class="card-body">
-                                        <p>TOTAL OFFICES</p>
-                                        <h2>
+                                        <p class="card-text">TOTAL OFFICES</p>
+                                        <h2 class="card-title">
                                             <counter :count="{{ $officeCount }}"></counter>
                                         </h2>
                                     </div>

@@ -20,7 +20,7 @@
                     <!-- Client Logo -->
                     <img src="{{ asset('storage/' . $client->logo) }}"
                          alt="logo"
-                         class="img-circle img-thumbnail img-responsive center-block"
+                         class="rounded-circle img-thumbnail img-fluid mx-auto d-block"
                          height="150"
                          width="150">
 

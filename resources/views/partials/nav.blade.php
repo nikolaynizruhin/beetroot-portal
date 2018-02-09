@@ -1,8 +1,11 @@
 <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
     <div class="container">
+
+        <!-- Branding Image -->
         <a class="navbar-brand" href="{{ url('/') }}">
-            {{ config('app.name', 'Beetroot') }}
+            <img src="{{ asset('images/logo.svg') }}" height="40" width="112" alt="Beetroot">
         </a>
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -11,32 +14,32 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
                 @auth
-                    <li class="@routeis('dashboard') active @endrouteis">
-                        <a href="{{ route('dashboard') }}">
+                    <li class="nav-item @routeis('dashboard') active @endrouteis">
+                        <a class="nav-link" href="{{ route('dashboard') }}">
                             Dashboard
                             @routeis('dashboard')
                                 <span class="sr-only">(current)</span>
                             @endrouteis
                         </a>
                     </li>
-                    <li class="@routeis('users.index') active @endrouteis">
-                        <a href="{{ route('users.index') }}">
+                    <li class="nav-item @routeis('users.index') active @endrouteis">
+                        <a class="nav-link" href="{{ route('users.index') }}">
                             Employees
                             @routeis('users.index')
                                 <span class="sr-only">(current)</span>
                             @endrouteis
                         </a>
                     </li>
-                    <li class="@routeis('clients.index') active @endrouteis">
-                        <a href="{{ route('clients.index') }}">
+                    <li class="nav-item @routeis('clients.index') active @endrouteis">
+                        <a class="nav-link" href="{{ route('clients.index') }}">
                             Clients
                             @routeis('clients.index')
                                 <span class="sr-only">(current)</span>
                             @endrouteis
                         </a>
                     </li>
-                    <li class="@routeis('offices.index') active @endrouteis">
-                        <a href="{{ route('offices.index') }}">
+                    <li class="nav-item @routeis('offices.index') active @endrouteis">
+                        <a class="nav-link" href="{{ route('offices.index') }}">
                             Offices
                             @routeis('offices.index')
                                 <span class="sr-only">(current)</span>
@@ -44,9 +47,10 @@
                         </a>
                     </li>
                     @admin
-                        <li class="dropdown">
+                        <li class="nav-item dropdown">
                             <a href="#"
-                               class="dropdown-toggle"
+                               id="navbarDropdown"
+                               class="nav-link dropdown-toggle"
                                data-toggle="dropdown"
                                role="button"
                                aria-haspopup="true"
@@ -54,11 +58,11 @@
                                 Admin
                                 <span class="caret"></span>
                             </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{{ route('users.create') }}">Add Employee</a></li>
-                                <li><a href="{{ route('clients.create') }}">Add Client</a></li>
-                                <li><a href="{{ route('offices.create') }}">Add Office</a></li>
-                            </ul>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('users.create') }}">Add Employee</a>
+                                <a class="dropdown-item" href="{{ route('clients.create') }}">Add Client</a>
+                                <a class="dropdown-item" href="{{ route('offices.create') }}">Add Office</a>
+                            </div>
                         </li>
                     @endadmin
                 @endauth

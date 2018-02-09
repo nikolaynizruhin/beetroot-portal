@@ -16,7 +16,7 @@
                 <!-- Avatar -->
                 <img src="{{ asset('storage/'.$user->avatar) }}"
                      alt="Avatar"
-                     class="img-thumbnail img-circle img-responsive center-block"
+                     class="rounded-circle img-thumbnail img-fluid mx-auto d-block"
                      width="150"
                      height="150">
 

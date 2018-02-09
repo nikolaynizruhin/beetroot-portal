@@ -39,7 +39,7 @@
 
             <!-- Clear Button -->
             <div class="form-group">
-                <a class="btn btn-default btn-block" href="{{ route('clients.index') }}" role="button">
+                <a class="btn btn-light btn-block" href="{{ route('clients.index') }}" role="button">
                     <i class="fas fa-times fa-fw"></i>
                     &nbsp;
                     Clear

@@ -9994,12 +9994,6 @@ a.text-dark:focus {
   }
 }
 
-.navbar-laravel {
-  background-color: #fff;
-  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-}
-
 html {
   position: relative;
   min-height: 100%;
@@ -10009,26 +10003,24 @@ html body {
   margin-bottom: 60px;
 }
 
-html body a.navbar-brand {
-  padding: 5px 15px;
+html body .navbar-laravel {
+  background-color: #fff;
+  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
-html body a.navbar-brand img {
-  height: 40px;
-}
-
-html body .dashboard-link {
+html body .link-dashboard {
   color: #636b6f;
 }
 
-html body .dashboard-panel {
+html body .card-dashboard {
   -webkit-transition: -webkit-box-shadow 0.3s;
   transition: -webkit-box-shadow 0.3s;
   transition: box-shadow 0.3s;
   transition: box-shadow 0.3s, -webkit-box-shadow 0.3s;
 }
 
-html body .dashboard-panel:hover {
+html body .card-dashboard:hover {
   -webkit-box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.05);
           box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.05);
 }
@@ -10056,11 +10048,11 @@ html body .footer {
   bottom: 0;
   width: 100%;
   height: 60px;
+  line-height: 60px;
   background-color: #3F3C38;
 }
 
 html body .footer .container .text-muted {
-  margin: 19px 0;
-  color: #C1C0BA;
+  color: #C1C0BA !important;
 }
 
