@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-lg-8">
             <div class="card">
                 <div class="card-header">
                     <i class="fas fa-cog fa-lg fa-fw" aria-hidden="true"></i>
@@ -42,15 +42,16 @@
                             <!-- Is Admin -->
                             <div class="form-group">
                                 <div class="col-md-6 offset-md-4">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"
-                                                   name="is_admin"
-                                                   class="form-check-input{{ $errors->has('is_admin') ? ' is-invalid' : '' }}"
-                                                   value="1"
-                                                   {{ old('is_admin', $user->is_admin) ? 'checked' : '' }}>
+                                    <div class="form-check">
+                                        <input type="checkbox"
+                                                name="is_admin"
+                                                class="form-check-input{{ $errors->has('is_admin') ? ' is-invalid' : '' }}"
+                                                value="1"
+                                                {{ old('is_admin', $user->is_admin) ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="checkbox-admin">
                                             Admin
                                         </label>
+                                        
 
                                         @if ($errors->has('is_admin'))
                                             <span class="invalid-feedback">
@@ -72,7 +73,7 @@
                                 </label>
 
                                 <div class="col-md-6">
-                                    <input id="avatar" type="file" name="avatar" class="form-control-file{{ $errors->has('avatar') ? ' is-invalid' : '' }}">
+                                    <input id="avatar" type="file" name="avatar" class="form-control-file">
 
                                     @if ($errors->has('avatar'))
                                         <span class="invalid-feedback">

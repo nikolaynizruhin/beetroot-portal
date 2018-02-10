@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-lg-8">
             <div class="card">
                 <div class="card-header">
                     <i class="fas fa-id-card fa-lg fa-fw" aria-hidden="true"></i>
@@ -32,12 +32,14 @@
                         <!-- Is Admin -->
                         <div class="form-group row">
                             <div class="col-md-6 offset-md-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox"
-                                               name="is_admin"
-                                               value="1"
-                                               {{ old('is_admin') ? 'checked' : '' }}>
+                                <div class="form-check">
+                                    <input class="form-check-input{{ $errors->has('is_admin') ? ' is-invalid' : '' }}"
+                                           type="checkbox"
+                                           id="checkbox-admin"
+                                           name="is_admin"
+                                           value="1"
+                                           {{ old('is_admin') ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="checkbox-admin">
                                         Admin
                                     </label>
 

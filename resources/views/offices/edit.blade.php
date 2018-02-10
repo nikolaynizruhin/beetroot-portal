@@ -29,7 +29,10 @@
                             </label>
 
                             <div class="col-md-6">
-                                <select id="country" class="form-control{{ $errors->has('country') ? ' has-error' : '' }}" name="country" required>
+                                <select id="country"
+                                        class="form-control{{ $errors->has('country') ? ' has-error' : '' }}"
+                                        name="country"
+                                        required>
                                     @foreach ( $countries::all() as $country )
                                         @if (old('country', $office->country) == $country)
                                             <option value="{{ $country }}" selected>

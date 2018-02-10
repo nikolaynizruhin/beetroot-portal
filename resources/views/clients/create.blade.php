@@ -5,7 +5,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-lg-8">
             <div class="card">
                 <div class="card-header">
                     <i class="fas fa-users fa-lg fa-fw" aria-hidden="true"></i>
@@ -43,7 +43,7 @@
                             </label>
 
                             <div class="col-md-6">
-                                <input id="logo" type="file" name="logo" required>
+                                <input class="form-control-file" id="logo" type="file" name="logo" required>
 
                                 @if ($errors->has('logo'))
                                     <span class="invalid-feedback">
@@ -110,7 +110,10 @@
                             </label>
 
                             <div class="col-md-6">
-                                <select id="country" class="form-control{{ $errors->has('country') ? ' is-invalid' : '' }}" name="country" required>
+                                <select id="country"
+                                        class="form-control{{ $errors->has('country') ? ' is-invalid' : '' }}"
+                                        name="country"
+                                        required>
                                     <option value="">Select a country...</option>
                                     @foreach ( $countries::all() as $country )
                                         @if (old('country') == $country)
