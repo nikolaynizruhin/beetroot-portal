@@ -1,7 +1,7 @@
-<div class="row">
+<div class="row mb-3">
 
     <!-- Office Map -->
-    <div class="col-sm-8">
+    <div class="col-md-8">
         <iframe width="100%"
                 height="350"
                 frameborder="0"
@@ -12,7 +12,7 @@
     </div>
 
     <!-- Office Info -->
-    <div class="col-sm-4">
+    <div class="col-md-4">
         <p>
             <i class="fas fa-map-marker-alt fa-fw" aria-hidden="true"></i>
             &nbsp;

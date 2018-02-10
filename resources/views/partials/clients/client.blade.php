@@ -1,5 +1,5 @@
-<div class="row">
-    <div class="col-sm-4">
+<div class="row mb-3">
+    <div class="col-md-4">
 
         <!-- Logo -->
         <img src="{{ asset('storage/'.$client->logo) }}"
@@ -8,9 +8,9 @@
              width="150"
              height="150">
     </div>
-    <div class="col-sm-8">
+    <div class="col-md-8">
         <div class="row">
-            <div class="col-sm-12">
+            <div class="col-md-12">
 
                 <!-- Name -->
                 <p>
@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-md-6">
 
                 <!-- Site -->
                 <p>
@@ -36,7 +36,7 @@
                     </a>
                 </p>
             </div>
-            <div class="col-sm-6">
+            <div class="col-md-6">
 
                 <!-- Country -->
                 <p>
@@ -47,7 +47,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-12">
+            <div class="col-md-12">
 
                 <!-- Description -->
                 <p><em>{{ $client->description }}</em></p>

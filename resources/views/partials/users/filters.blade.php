@@ -1,6 +1,6 @@
 <form method="GET" action="{{ route('users.index') }}">
-    <div class="row">
-        <div class="col-sm-4">
+    <div class="row mb-3">
+        <div class="col-md-4">
 
             <!-- Office Filter -->
             <div class="form-group">
@@ -39,7 +39,7 @@
             </div>
         </div>
 
-        <div class="col-sm-4">
+        <div class="col-md-4">
 
             <!-- Client Filter -->
             <div class="form-group">
@@ -71,7 +71,7 @@
             </div>
         </div>
 
-        <div class="col-sm-4">
+        <div class="col-md-4">
 
             <!-- Clear Button -->
             <div class="form-group">

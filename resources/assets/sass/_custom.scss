@@ -22,21 +22,7 @@ html {
       box-shadow: 3px 3px 3px rgba(0,0,0,.05);
     }
 
-    .list-group-item {
-      border: none;
-    }
-
-    a.gray-link {
-      color: #636b6f;
-      text-decoration: none;
-    }
-
-    a.gray-link:hover {
-      color: #000;
-      text-decoration: none;
-    }
-
-    label.control-label small {
+    label.col-form-label small {
       color: #BC204B;
     }
 
