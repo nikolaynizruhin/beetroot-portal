@@ -10,6 +10,10 @@ html {
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
     }
 
+    .card-header {
+      color: #fff;
+    }
+
     .link-dashboard {
       color: #636b6f;
     }
@@ -33,10 +37,6 @@ html {
       height: 60px;
       line-height: 60px;
       background-color: #3F3C38;
-
-      .container .text-muted {
-        color: #C1C0BA !important;
-      }
     }
   }
 }

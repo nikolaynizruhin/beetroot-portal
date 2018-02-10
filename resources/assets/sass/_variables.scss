@@ -1,4 +1,8 @@
 
+// Color
+$primary: #BC204B;
+$gray-900: #3d3935;
+
 // Body
 $body-bg: #f4f4f1;
 
@@ -7,16 +11,11 @@ $font-family-sans-serif: "Roboto", sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
 $text-color: #636b6f;
+$text-muted: #C1C0BA;
+$headings-color: #3d3935;
 
-// Navbar
-$navbar-default-bg: #fff;
-
-// Buttons
-$btn-default-color: $text-color;
-
-// Panels
-$panel-default-heading-bg: #BC204B;
-$panel-default-text: #fff;
+// Cards
+$card-cap-bg: $primary;
 
 // Thumbnails
 $thumbnail-bg: #fff;
