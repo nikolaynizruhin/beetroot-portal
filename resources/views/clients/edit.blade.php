@@ -6,7 +6,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card card-default">
+            <div class="card">
                 <div class="card-header">
                     <i class="fas fa-users fa-lg fa-fw" aria-hidden="true"></i>
                     &nbsp;
@@ -153,7 +153,7 @@
                         </div>
 
                         <!-- Update Button -->
-                        <div class="form-group row mb-0">
+                        <div class="form-group row">
                             <div class="col-md-3 offset-md-4">
                                 <button type="submit" class="btn btn-primary btn-block">
                                     Update
@@ -176,7 +176,7 @@
                             <!-- Delete Button -->
                             <div class="col-md-3 offset-md-4">
                                 <button type="submit"
-                                        class="btn btn-default btn-block"
+                                        class="btn btn-light btn-block"
                                         onclick="event.preventDefault();
                                                 if (confirm('Are you sure you want to delete a client? This will remove a client and all associated employees!'))
                                                 document.getElementById('delete-form').submit();">

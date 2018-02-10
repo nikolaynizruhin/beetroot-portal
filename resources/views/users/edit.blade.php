@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card card-default">
+            <div class="card">
                 <div class="card-header">
                     <i class="fas fa-cog fa-lg fa-fw" aria-hidden="true"></i>
                     &nbsp;
@@ -361,8 +361,8 @@
                         </div>
 
                         <!-- Update Button -->
-                        <div class="form-group row mb-0">
-                            <div class="col-md-3 offset-mb-4">
+                        <div class="form-group row">
+                            <div class="col-md-3 offset-md-4">
                                 <button type="submit" class="btn btn-primary btn-block">
                                     Update
                                 </button>
@@ -401,7 +401,7 @@
                         </div>
 
                         <!-- Confirm New Password -->
-                        <div class="form-group">
+                        <div class="form-group row">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">
                                 Confirm New Password <small>*</small>
                             </label>
@@ -416,7 +416,7 @@
                         </div>
 
                         <!-- Update Password Button -->
-                        <div class="form-group row mb-0">
+                        <div class="form-group row">
                             <div class="col-md-3 offset-md-4">
                                 <button type="submit" class="btn btn-primary btn-block">
                                     Update password
@@ -436,10 +436,10 @@
                             @method('DELETE')
                             @csrf
 
-                            <div class="form-group">
+                            <div class="form-group mb-0">
                                 <!-- Delete Button -->
                                 <div class="col-md-3 offset-md-4">
-                                    <button type="submit" class="btn btn-default btn-block"
+                                    <button type="submit" class="btn btn-light btn-block"
                                             onclick="event.preventDefault();
                                                     if (confirm('Are you sure you want to delete an employee?'))
                                                     document.getElementById('delete-form').submit();">

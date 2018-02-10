@@ -1,4 +1,4 @@
-<div class="row list-group-item">
+<div class="row">
 
     <!-- Office Map -->
     <div class="col-sm-8">

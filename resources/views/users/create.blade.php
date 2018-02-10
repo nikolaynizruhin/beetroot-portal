@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card card-default">
+            <div class="card">
                 <div class="card-header">
                     <i class="fas fa-id-card fa-lg fa-fw" aria-hidden="true"></i>
                     &nbsp;
@@ -372,7 +372,7 @@
 
                         <!-- Create Button -->
                         <div class="form-group row mb-0">
-                            <div class="col-md-3 col-md-offset-4">
+                            <div class="col-md-3 offset-md-4">
                                 <button type="submit" class="btn btn-primary btn-block">
                                     Create
                                 </button>

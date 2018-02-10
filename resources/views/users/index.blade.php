@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card card-default">
+                <div class="card">
                     <div class="card-header">
                         <i class="fas fa-id-card fa-lg fa-fw" aria-hidden="true"></i>
                         &nbsp;
@@ -17,12 +17,10 @@
                         @include('partials.users.filters')
 
                         <!-- User List -->
-                        <div class="list-group">
-                            @each('partials.users.user', $users, 'user', 'partials.users.empty')
-                        </div>
+                        @each('partials.users.user', $users, 'user', 'partials.users.empty')
 
                         <!-- Pagination -->
-                        <div class="text-center">
+                        <div class="d-flex justify-content-center">
                             {{ $users->appends($_GET)->links() }}
                         </div>
 
