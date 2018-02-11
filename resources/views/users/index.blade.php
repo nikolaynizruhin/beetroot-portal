@@ -2,27 +2,25 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-header">
                         <i class="fas fa-id-card fa-lg fa-fw" aria-hidden="true"></i>
                         &nbsp;
                         Employees {{ $users->total() }}
                     </div>
 
-                    <div class="panel-body">
+                    <div class="card-body">
 
                         <!-- Filters -->
                         @include('partials.users.filters')
 
                         <!-- User List -->
-                        <div class="list-group">
-                            @each('partials.users.user', $users, 'user', 'partials.users.empty')
-                        </div>
+                        @each('partials.users.user', $users, 'user', 'partials.users.empty')
 
                         <!-- Pagination -->
-                        <div class="text-center">
+                        <div class="d-flex justify-content-center">
                             {{ $users->appends($_GET)->links() }}
                         </div>
 

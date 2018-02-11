@@ -1,7 +1,7 @@
 <footer class="footer">
-    <div class="container">
-        <p class="text-muted text-center">
+    <div class="container text-center">
+        <span class="text-muted">
             © {{ date('Y') }} {{ config('app.name') }}. All Rights Reserved.
-        </p>
+        </span>
     </div>
 </footer>

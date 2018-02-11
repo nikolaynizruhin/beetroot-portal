@@ -1,8 +1,7 @@
 
 window._ = require('lodash');
-
+window.Popper = require('popper.js').default;
 window.moment = require('moment');
-
 window.Chart = require('chart.js');
 
 /**
@@ -14,7 +13,7 @@ window.Chart = require('chart.js');
 try {
     window.$ = window.jQuery = require('jquery');
 
-    require('bootstrap-sass');
+    require('bootstrap');
 
     $(function () {
         $('[data-toggle="tooltip"]').tooltip();
@@ -57,7 +56,7 @@ if (token) {
 
 // window.Echo = new Echo({
 //     broadcaster: 'pusher',
-//     key: 'your-pusher-key',
-//     cluster: 'mt1',
+//     key: process.env.MIX_PUSHER_APP_KEY,
+//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });

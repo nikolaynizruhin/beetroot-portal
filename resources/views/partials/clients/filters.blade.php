@@ -1,6 +1,6 @@
 <form method="GET" action="{{ route('clients.index') }}">
-    <div class="row">
-        <div class="col-sm-3">
+    <div class="row mb-3">
+        <div class="col-md-3">
 
             <!-- Country Filter -->
             <div class="form-group">
@@ -21,7 +21,7 @@
             </div>
         </div>
 
-        <div class="col-sm-3">
+        <div class="col-md-3">
 
             <!-- Name Filter -->
             <div class="form-group">
@@ -35,11 +35,11 @@
             </div>
         </div>
 
-        <div class="col-sm-3">
+        <div class="col-md-3">
 
             <!-- Clear Button -->
             <div class="form-group">
-                <a class="btn btn-default btn-block" href="{{ route('clients.index') }}" role="button">
+                <a class="btn btn-light btn-block" href="{{ route('clients.index') }}" role="button">
                     <i class="fas fa-times fa-fw"></i>
                     &nbsp;
                     Clear
@@ -47,7 +47,7 @@
             </div>
         </div>
 
-        <div class="col-sm-3">
+        <div class="col-md-3">
 
             <!-- Filter Button -->
             <div class="form-group">

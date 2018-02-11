@@ -5,41 +5,28 @@ html {
   body {
     margin-bottom: 60px;
 
-    a.navbar-brand {
-      padding: 5px 15px;
-
-      img {
-        height: 40px;
-      }
+    .navbar-laravel {
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
     }
 
-    .dashboard-link {
+    .card-header {
+      color: #fff;
+    }
+
+    .link-dashboard {
       color: #636b6f;
     }
 
-    .dashboard-panel {
+    .card-dashboard {
       transition: box-shadow 0.3s;
     }
 
-    .dashboard-panel:hover {
+    .card-dashboard:hover {
       box-shadow: 3px 3px 3px rgba(0,0,0,.05);
     }
 
-    .list-group-item {
-      border: none;
-    }
-
-    a.gray-link {
-      color: #636b6f;
-      text-decoration: none;
-    }
-
-    a.gray-link:hover {
-      color: #000;
-      text-decoration: none;
-    }
-
-    label.control-label small {
+    label.col-form-label small {
       color: #BC204B;
     }
 
@@ -48,12 +35,8 @@ html {
       bottom: 0;
       width: 100%;
       height: 60px;
+      line-height: 60px;
       background-color: #3F3C38;
-
-      .container .text-muted {
-        margin: 19px 0;
-        color: #C1C0BA;
-      }
     }
   }
 }

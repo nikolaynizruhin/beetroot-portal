@@ -2,16 +2,16 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header">
                     <i class="fas fa-cog fa-lg fa-fw" aria-hidden="true"></i>
                     &nbsp;
                     Settings
                 </div>
 
-                <div class="panel-body">
+                <div class="card-body">
 
                     @include('partials.flash')
 
@@ -22,38 +22,39 @@
                     <!-- Profile Avatar -->
                     <img src="{{ asset('storage/' . $user->avatar) }}"
                          alt="avatar"
-                         class="img-circle img-thumbnail img-responsive center-block"
+                         class="rounded-circle img-thumbnail img-fluid mx-auto d-block"
                          height="150"
                          width="150">
 
                     <br>
 
-                    <form class="form-horizontal"
-                          method="POST"
+                    <form method="POST"
                           enctype="multipart/form-data"
                           action="{{
                               Auth::user()->is_admin ?
                                   route('users.update', $user->id) :
                                   route('profile.update', $user->id)
                           }}">
-                        {{ method_field('PUT') }}
-                        {{ csrf_field() }}
+                        @method('PUT')
+                        @csrf
 
                         @admin
                             <!-- Is Admin -->
-                            <div class="form-group{{ $errors->has('is_admin') ? ' has-error' : '' }}">
-                                <div class="col-md-6 col-md-offset-4">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"
-                                                   name="is_admin"
-                                                   value="1"
-                                                   {{ old('is_admin', $user->is_admin) ? 'checked' : '' }}>
+                            <div class="form-group">
+                                <div class="col-md-6 offset-md-4">
+                                    <div class="form-check">
+                                        <input type="checkbox"
+                                                name="is_admin"
+                                                class="form-check-input{{ $errors->has('is_admin') ? ' is-invalid' : '' }}"
+                                                value="1"
+                                                {{ old('is_admin', $user->is_admin) ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="checkbox-admin">
                                             Admin
                                         </label>
+                                        
 
                                         @if ($errors->has('is_admin'))
-                                            <span class="help-block">
+                                            <span class="invalid-feedback">
                                                 <strong>{{ $errors->first('is_admin') }}</strong>
                                             </span>
                                         @endif
@@ -62,8 +63,8 @@
                             </div>
 
                             <!-- Avatar -->
-                            <div class="form-group{{ $errors->has('avatar') ? ' has-error' : '' }}">
-                                <label for="avatar" class="col-md-4 control-label">
+                            <div class="form-group row">
+                                <label for="avatar" class="col-md-4 col-form-label text-md-right">
                                     <span data-toggle="tooltip"
                                           data-placement="top"
                                           title="Square image (jpeg, png, bmp, gif, svg)">
@@ -72,10 +73,10 @@
                                 </label>
 
                                 <div class="col-md-6">
-                                    <input id="avatar" type="file" name="avatar">
+                                    <input id="avatar" type="file" name="avatar" class="form-control-file">
 
                                     @if ($errors->has('avatar'))
-                                        <span class="help-block">
+                                        <span class="invalid-feedback">
                                             <strong>{{ $errors->first('avatar') }}</strong>
                                         </span>
                                     @endif
@@ -84,8 +85,8 @@
                         @endadmin
 
                         <!-- Name -->
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">
                                 <span data-toggle="tooltip"
                                       data-placement="top"
                                       title="Full name (e.g., John Doe)">
@@ -97,7 +98,7 @@
                             <div class="col-md-6">
                                 <input id="name"
                                        type="text"
-                                       class="form-control"
+                                       class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
                                        name="name"
                                        value="{{ old('name', $user->name) }}"
                                        required
@@ -105,7 +106,7 @@
                                        @employee disabled @endemployee>
 
                                 @if ($errors->has('name'))
-                                    <span class="help-block">
+                                    <span class="invalid-feedback">
                                         <strong>{{ $errors->first('name') }}</strong>
                                     </span>
                                 @endif
@@ -113,22 +114,22 @@
                         </div>
 
                         <!-- Email -->
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">
                                 Email <small>*</small>
                             </label>
 
                             <div class="col-md-6">
                                 <input id="email"
                                        type="email"
-                                       class="form-control"
+                                       class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
                                        name="email"
                                        value="{{ old('email', $user->email) }}"
                                        required
                                        @employee disabled @endemployee>
 
                                 @if ($errors->has('email'))
-                                    <span class="help-block">
+                                    <span class="invalid-feedback">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
@@ -136,14 +137,14 @@
                         </div>
 
                         <!-- Position -->
-                        <div class="form-group{{ $errors->has('position') ? ' has-error' : '' }}">
-                            <label for="position" class="col-md-4 control-label">
+                        <div class="form-group row">
+                            <label for="position" class="col-md-4 col-form-label text-md-right">
                                 Position <small>*</small>
                             </label>
 
                             <div class="col-md-6">
                                 <select id="position"
-                                        class="form-control"
+                                        class="form-control{{ $errors->has('position') ? ' is-invalid' : '' }}"
                                         name="position"
                                         required
                                         @employee disabled @endemployee>
@@ -161,7 +162,7 @@
                                 </select>
 
                                 @if ($errors->has('position'))
-                                    <span class="help-block">
+                                    <span class="invalid-feedback">
                                         <strong>{{ $errors->first('position') }}</strong>
                                     </span>
                                 @endif
@@ -169,14 +170,14 @@
                         </div>
 
                         <!-- Client -->
-                        <div class="form-group{{ $errors->has('client_id') ? ' has-error' : '' }}">
-                            <label for="client-id" class="col-md-4 control-label">
+                        <div class="form-group row">
+                            <label for="client-id" class="col-md-4 col-form-label text-md-right">
                                 Client <small>*</small>
                             </label>
 
                             <div class="col-md-6">
                                 <select id="client-id"
-                                        class="form-control"
+                                        class="form-control{{ $errors->has('client_id') ? ' is-invalid' : '' }}"
                                         name="client_id"
                                         required
                                         @employee disabled @endemployee>
@@ -194,7 +195,7 @@
                                 </select>
 
                                 @if ($errors->has('client_id'))
-                                    <span class="help-block">
+                                    <span class="invalid-feedback">
                                         <strong>{{ $errors->first('client_id') }}</strong>
                                     </span>
                                 @endif
@@ -202,14 +203,14 @@
                         </div>
 
                         <!-- Office -->
-                        <div class="form-group{{ $errors->has('office_id') ? ' has-error' : '' }}">
-                            <label for="office-id" class="col-md-4 control-label">
+                        <div class="form-group row">
+                            <label for="office-id" class="col-md-4 col-form-label text-md-right">
                                 Office <small>*</small>
                             </label>
 
                             <div class="col-md-6">
                                 <select id="office-id"
-                                        class="form-control"
+                                        class="form-control{{ $errors->has('office_id') ? ' is-invalid' : '' }}"
                                         name="office_id"
                                         required
                                         @employee disabled @endemployee>
@@ -227,7 +228,7 @@
                                 </select>
 
                                 @if ($errors->has('office_id'))
-                                    <span class="help-block">
+                                    <span class="invalid-feedback">
                                         <strong>{{ $errors->first('office_id') }}</strong>
                                     </span>
                                 @endif
@@ -235,22 +236,22 @@
                         </div>
 
                         <!-- Birthday -->
-                        <div class="form-group{{ $errors->has('birthday') ? ' has-error' : '' }}">
-                            <label for="birthday" class="col-md-4 control-label">
+                        <div class="form-group row">
+                            <label for="birthday" class="col-md-4 col-form-label text-md-right">
                                 Birthday <small>*</small>
                             </label>
 
                             <div class="col-md-6">
                                 <input id="birthday"
                                        type="date"
-                                       class="form-control"
+                                       class="form-control{{ $errors->has('birthday') ? ' is-invalid' : '' }}"
                                        name="birthday"
                                        value="{{ old('birthday', $user->birthday->toDateString()) }}"
                                        required
                                        @employee disabled @endemployee>
 
                                 @if ($errors->has('birthday'))
-                                    <span class="help-block">
+                                    <span class="invalid-feedback">
                                         <strong>{{ $errors->first('birthday') }}</strong>
                                     </span>
                                 @endif
@@ -258,18 +259,18 @@
                         </div>
 
                         <!-- Phone -->
-                        <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
-                            <label for="phone" class="col-md-4 control-label">Phone</label>
+                        <div class="form-group row">
+                            <label for="phone" class="col-md-4 col-form-label text-md-right">Phone</label>
 
                             <div class="col-md-6">
                                 <input id="phone"
                                        type="text"
-                                       class="form-control"
+                                       class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}"
                                        name="phone"
                                        value="{{ old('phone', $user->phone) }}">
 
                                 @if ($errors->has('phone'))
-                                    <span class="help-block">
+                                    <span class="invalid-feedback">
                                         <strong>{{ $errors->first('phone') }}</strong>
                                     </span>
                                 @endif
@@ -277,22 +278,22 @@
                         </div>
 
                         <!-- Slack -->
-                        <div class="form-group{{ $errors->has('slack') ? ' has-error' : '' }}">
-                            <label for="slack" class="col-md-4 control-label">
+                        <div class="form-group row">
+                            <label for="slack" class="col-md-4 col-form-label text-md-right">
                                 Slack <small>*</small>
                             </label>
 
                             <div class="col-md-6">
                                 <input id="slack"
                                        type="text"
-                                       class="form-control"
+                                       class="form-control{{ $errors->has('slack') ? ' is-invalid' : '' }}"
                                        name="slack"
                                        value="{{ old('slack', $user->slack) }}"
                                        required
                                        @employee disabled @endemployee>
 
                                 @if ($errors->has('slack'))
-                                    <span class="help-block">
+                                    <span class="invalid-feedback">
                                         <strong>{{ $errors->first('slack') }}</strong>
                                     </span>
                                 @endif
@@ -300,20 +301,20 @@
                         </div>
 
                         <!-- Skype -->
-                        <div class="form-group{{ $errors->has('skype') ? ' has-error' : '' }}">
-                            <label for="skype" class="col-md-4 control-label">
+                        <div class="form-group row">
+                            <label for="skype" class="col-md-4 col-form-label text-md-right">
                                 Skype
                             </label>
 
                             <div class="col-md-6">
                                 <input id="skype"
                                        type="text"
-                                       class="form-control"
+                                       class="form-control{{ $errors->has('skype') ? ' is-invalid' : '' }}"
                                        name="skype"
                                        value="{{ old('skype', $user->skype) }}">
 
                                 @if ($errors->has('skype'))
-                                    <span class="help-block">
+                                    <span class="invalid-feedback">
                                         <strong>{{ $errors->first('skype') }}</strong>
                                     </span>
                                 @endif
@@ -321,8 +322,8 @@
                         </div>
 
                         <!-- Github -->
-                        <div class="form-group{{ $errors->has('github') ? ' has-error' : '' }}">
-                            <label for="github" class="col-md-4 control-label">
+                        <div class="form-group row">
+                            <label for="github" class="col-md-4 col-form-label text-md-right">
                                 <span data-toggle="tooltip"
                                       data-placement="top"
                                       title="Github username">
@@ -333,12 +334,12 @@
                             <div class="col-md-6">
                                 <input id="github"
                                        type="text"
-                                       class="form-control"
+                                       class="form-control{{ $errors->has('github') ? ' is-invalid' : '' }}"
                                        name="github"
                                        value="{{ old('github', $user->github) }}">
 
                                 @if ($errors->has('github'))
-                                    <span class="help-block">
+                                    <span class="invalid-feedback">
                                         <strong>{{ $errors->first('github') }}</strong>
                                     </span>
                                 @endif
@@ -346,14 +347,14 @@
                         </div>
 
                         <!-- Bio -->
-                        <div class="form-group{{ $errors->has('bio') ? ' has-error' : '' }}">
-                            <label for="bio" class="col-md-4 control-label">Bio</label>
+                        <div class="form-group row">
+                            <label for="bio" class="col-md-4 col-form-label text-md-right">Bio</label>
 
                             <div class="col-md-6">
-                                <textarea class="form-control" rows="3" name="bio">{{ old('bio', $user->bio) }}</textarea>
+                                <textarea class="form-control{{ $errors->has('bio') ? ' is-invalid' : '' }}" rows="3" name="bio">{{ old('bio', $user->bio) }}</textarea>
 
                                 @if ($errors->has('bio'))
-                                    <span class="help-block">
+                                    <span class="invalid-feedback">
                                         <strong>{{ $errors->first('bio') }}</strong>
                                     </span>
                                 @endif
@@ -361,8 +362,8 @@
                         </div>
 
                         <!-- Update Button -->
-                        <div class="form-group">
-                            <div class="col-md-3 col-md-offset-4">
+                        <div class="form-group row">
+                            <div class="col-md-3 offset-md-4">
                                 <button type="submit" class="btn btn-primary btn-block">
                                     Update
                                 </button>
@@ -374,27 +375,26 @@
                     <h4>Change Password</h4>
                     <hr>
 
-                    <form class="form-horizontal"
-                          method="POST"
+                    <form method="POST"
                           action="{{ route('users.password.update', $user->id) }}">
-                        {{ method_field('PUT') }}
-                        {{ csrf_field() }}
+                        @method('PUT')
+                        @csrf
 
                         <!-- New Password -->
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">
                                 New Password <small>*</small>
                             </label>
 
                             <div class="col-md-6">
                                 <input id="password"
                                        type="password"
-                                       class="form-control"
+                                       class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
                                        name="password"
                                        required>
 
                                 @if ($errors->has('password'))
-                                    <span class="help-block">
+                                    <span class="invalid-feedback">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                                 @endif
@@ -402,8 +402,8 @@
                         </div>
 
                         <!-- Confirm New Password -->
-                        <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">
+                        <div class="form-group row">
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">
                                 Confirm New Password <small>*</small>
                             </label>
 
@@ -417,8 +417,8 @@
                         </div>
 
                         <!-- Update Password Button -->
-                        <div class="form-group">
-                            <div class="col-md-3 col-md-offset-4">
+                        <div class="form-group row">
+                            <div class="col-md-3 offset-md-4">
                                 <button type="submit" class="btn btn-primary btn-block">
                                     Update password
                                 </button>
@@ -432,16 +432,15 @@
                         <hr>
 
                         <form id="delete-form"
-                              class="form-horizontal"
                               method="POST"
                               action="{{ route('users.destroy', $user->id) }}">
-                            {{ method_field('DELETE') }}
-                            {{ csrf_field() }}
+                            @method('DELETE')
+                            @csrf
 
-                            <div class="form-group">
+                            <div class="form-group mb-0">
                                 <!-- Delete Button -->
-                                <div class="col-md-3 col-md-offset-4">
-                                    <button type="submit" class="btn btn-default btn-block"
+                                <div class="col-md-3 offset-md-4">
+                                    <button type="submit" class="btn btn-light btn-block"
                                             onclick="event.preventDefault();
                                                     if (confirm('Are you sure you want to delete an employee?'))
                                                     document.getElementById('delete-form').submit();">

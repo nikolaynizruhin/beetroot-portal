@@ -1,22 +1,22 @@
-<div class="row list-group-item">
+<div class="row mb-3">
 
     @include('partials.users.modal')
 
-    <div class="col-sm-4">
+    <div class="col-md-4">
 
         <!-- Avatar -->
         <a href="#" data-toggle="modal" data-target="#userModal{{ $user->id }}">
             <img src="{{ asset('storage/'.$user->avatar) }}"
                  alt="Avatar"
-                 class="img-thumbnail img-circle img-responsive center-block"
+                 class="rounded-circle img-thumbnail img-fluid mx-auto d-block"
                  width="150"
                  height="150">
         </a>
     </div>
 
-    <div class="col-sm-8">
+    <div class="col-md-8">
         <div class="row">
-            <div class="col-sm-12">
+            <div class="col-md-12">
 
                 <!-- Name -->
                 <p>
@@ -35,14 +35,14 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-12">
+            <div class="col-md-12">
 
                 <!-- Position -->
                 <p><em>{{ $user->position }}</em></p>
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-md-6">
 
                 <!-- Client -->
                 <p>
@@ -58,7 +58,7 @@
                     {{ $user->email }}
                 </p>
             </div>
-            <div class="col-sm-6">
+            <div class="col-md-6">
 
                 <!-- Birthday -->
                 <p>

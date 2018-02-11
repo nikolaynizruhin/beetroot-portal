@@ -2,23 +2,24 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-header">
                         <i class="fas fa-building fa-lg fa-fw" aria-hidden="true"></i>
                         &nbsp;
                         Offices {{ $offices->total() }}
                     </div>
 
-                    <!-- Office List -->
-                    <div class="panel-body list-group">
-                        @each('partials.offices.office', $offices, 'office', 'partials.offices.empty')
-                    </div>
+                    <div class="card-body">
 
-                    <!-- Pagination -->
-                    <div class="text-center">
-                        {{ $offices->links() }}
+                        <!-- Office List -->
+                        @each('partials.offices.office', $offices, 'office', 'partials.offices.empty')
+
+                        <!-- Pagination -->
+                        <div class="d-flex justify-content-center">
+                            {{ $offices->links() }}
+                        </div>
                     </div>
 
                 </div>
