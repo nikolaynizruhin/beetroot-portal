@@ -351,7 +351,11 @@
                             <label for="bio" class="col-md-4 col-form-label text-md-right">Bio</label>
 
                             <div class="col-md-6">
-                                <textarea class="form-control{{ $errors->has('bio') ? ' is-invalid' : '' }}" rows="3" name="bio">{{ old('bio', $user->bio) }}</textarea>
+                                <textarea class="form-control{{ $errors->has('bio') ? ' is-invalid' : '' }}"
+                                          rows="3"
+                                          name="bio">
+                                    {{ old('bio', $user->bio) }}
+                                </textarea>
 
                                 @if ($errors->has('bio'))
                                     <span class="invalid-feedback">
