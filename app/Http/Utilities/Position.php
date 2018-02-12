@@ -30,6 +30,7 @@ class Position
         'Project Manager',
         'Project Coordinator',
         'Business Development Manager',
+        'Local Manager',
         'Office Manager',
         'Account Manager',
         'Financial Manager',
