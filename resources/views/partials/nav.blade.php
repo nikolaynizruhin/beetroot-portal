@@ -101,7 +101,7 @@
                                     action="{{ route('logout') }}"
                                     method="POST"
                                     class="hidden">
-                                {{ csrf_field() }}
+                                @csrf
                             </form>
                         </div>
                     </li>
