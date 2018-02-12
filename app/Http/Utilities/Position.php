@@ -28,6 +28,7 @@ class Position
         'Business Analyst',
         'Data Scientist / Data Analyst',
         'Project Manager',
+        'Project Coordinator',
         'Business Development Manager',
         'Office Manager',
         'Account Manager',
