@@ -35,7 +35,7 @@
                     <br>
 
                     <div class="row">
-                        <div class="col-sm-5 col-sm-offset-1">
+                        <div class="col">
 
                             <!-- Email -->
                             <p>
@@ -86,7 +86,7 @@
                                 </p>
                             @endif
                         </div>
-                        <div class="col-sm-5">
+                        <div class="col">
 
                             <!-- Client -->
                             <p>
