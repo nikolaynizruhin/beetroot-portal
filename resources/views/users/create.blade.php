@@ -131,7 +131,10 @@
                             </label>
 
                             <div class="col-md-6">
-                                <select id="position" class="form-control{{ $errors->has('position') ? ' is-invalid' : '' }}" name="position" required>
+                                <select id="position" 
+                                        class="form-control{{ $errors->has('position') ? ' is-invalid' : '' }}"
+                                        name="position"
+                                        required>
                                     <option value="">Select a position...</option>
                                     @foreach ( $positions as $position )
                                         @if (old('position') == $position)
@@ -161,7 +164,10 @@
                             </label>
 
                             <div class="col-md-6">
-                                <select id="client-id" class="form-control{{ $errors->has('client_id') ? ' is-invalid' : '' }}" name="client_id" required>
+                                <select id="client-id"
+                                        class="form-control{{ $errors->has('client_id') ? ' is-invalid' : '' }}"
+                                        name="client_id"
+                                        required>
                                     <option value="">Select a client...</option>
                                     @foreach ($clients as $id => $name)
                                         @if (old('client_id') == $id)
@@ -191,7 +197,10 @@
                             </label>
 
                             <div class="col-md-6">
-                                <select id="office-id" class="form-control{{ $errors->has('office_id') ? ' is-invalid' : '' }}" name="office_id" required>
+                                <select id="office-id"
+                                        class="form-control{{ $errors->has('office_id') ? ' is-invalid' : '' }}"
+                                        name="office_id"
+                                        required>
                                     <option value="">Select an office...</option>
                                     @foreach ($offices as $id => $city)
                                         @if (old('office_id') == $id)
@@ -326,7 +335,11 @@
                             <label for="bio" class="col-md-4 col-form-label text-md-right">Bio</label>
 
                             <div class="col-md-6">
-                                <textarea class="form-control{{ $errors->has('bio') ? ' is-invalid' : '' }}" rows="3" name="bio">{{ old('bio') }}</textarea>
+                                <textarea class="form-control{{ $errors->has('bio') ? ' is-invalid' : '' }}"
+                                          rows="3"
+                                          name="bio">
+                                    {{ old('bio') }}
+                                </textarea>
 
                                 @if ($errors->has('bio'))
                                     <span class="invalid-feedback">
