@@ -12,7 +12,7 @@ class PositionTest extends TestCase
     {
         $positions = Position::all();
 
-        $this->assertEquals(count($positions), 29);
+        $this->assertEquals(count($positions), 34);
         $this->assertEquals($positions[0], 'Python Developer');
     }
 
