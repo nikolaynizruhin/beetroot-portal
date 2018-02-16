@@ -2,11 +2,14 @@
 
 namespace App;
 
+use App\Filters\Filterable;
 use App\Filters\ClientFilters;
 use Illuminate\Database\Eloquent\Model;
 
 class Client extends Model
 {
+    use Filterable;
+
     /**
      * The attributes that aren't mass assignable.
      *
@@ -22,18 +25,6 @@ class Client extends Model
     public function users()
     {
         return $this->hasMany(User::class);
-    }
-
-    /**
-     * Apply all relevant client filters.
-     *
-     * @param  Builder  $query
-     * @param  ClientFilters  $filters
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeFilter($query, ClientFilters $filters)
-    {
-        return $filters->apply($query);
     }
 
     /**

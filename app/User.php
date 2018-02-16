@@ -2,13 +2,14 @@
 
 namespace App;
 
+use App\Filters\Filterable;
 use App\Filters\UserFilters;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, Filterable;
 
     /**
      * The attributes that should be cast to native types.
@@ -64,18 +65,6 @@ class User extends Authenticatable
     public function office()
     {
         return $this->belongsTo(Office::class);
-    }
-
-    /**
-     * Apply all relevant user filters.
-     *
-     * @param  Builder  $query
-     * @param  UserFilters  $filters
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeFilter($query, UserFilters $filters)
-    {
-        return $filters->apply($query);
     }
 
     /**
