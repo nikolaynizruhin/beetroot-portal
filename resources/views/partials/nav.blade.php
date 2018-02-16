@@ -87,26 +87,36 @@
                            role="button"
                            aria-haspopup="true"
                            aria-expanded="false">
-                            {{ Auth::user()->name }} <span class="caret"></span>
+                            <img src="{{ asset('storage/'.Auth::user()->avatar) }}"
+                                 class="rounded-circle"
+                                 height="35"
+                                 width="35"
+                                 alt="Avatar">
+                            <span class="caret"></span>
                         </a>
 
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <h6 class="dropdown-header">
+                                {{ Auth::user()->name }}
+                            </h6>
+                            <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ route('users.edit', Auth::id()) }}">
                                 <i class="fas fa-cog fa-fw" aria-hidden="true"></i>
                                 &nbsp;
                                 Settings
                             </a>
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                                onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                            <a class="dropdown-item"
+                               href="{{ route('logout') }}"
+                               onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                 <i class="fas fa-sign-out-alt fa-fw" aria-hidden="true"></i>
                                 &nbsp;
                                 Logout
                             </a>
 
                             <form id="logout-form"
-                                    action="{{ route('logout') }}"
-                                    method="POST"
-                                    class="hidden">
+                                  action="{{ route('logout') }}"
+                                  method="POST"
+                                  class="hidden">
                                 @csrf
                             </form>
                         </div>
