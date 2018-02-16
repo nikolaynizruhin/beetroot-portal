@@ -3,7 +3,6 @@
 namespace App;
 
 use App\Filters\Filterable;
-use App\Filters\ClientFilters;
 use Illuminate\Database\Eloquent\Model;
 
 class Client extends Model
