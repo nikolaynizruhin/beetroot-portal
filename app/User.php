@@ -3,7 +3,6 @@
 namespace App;
 
 use App\Filters\Filterable;
-use App\Filters\UserFilters;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
