@@ -172,7 +172,13 @@ class UpdateUserTest extends TestCase
         $this->actingAs($admin)
             ->put(route('users.update', $admin->id))
             ->assertSessionHasErrors([
-                'name', 'email', 'position', 'birthday', 'slack', 'client_id', 'office_id',
+                'name',
+                'email',
+                'position',
+                'birthday',
+                'slack',
+                'client_id',
+                'office_id',
             ]);
     }
 
@@ -208,7 +214,15 @@ class UpdateUserTest extends TestCase
     private function resultAttributesForEmployee()
     {
         $this->userFixture->remove([
-            'name', 'email', 'position', 'birthday', 'is_admin', 'slack', 'avatar', 'client_id', 'office_id',
+            'name',
+            'email',
+            'position',
+            'birthday',
+            'is_admin',
+            'slack',
+            'avatar',
+            'client_id',
+            'office_id',
         ]);
 
         return $this->userFixture->attributes();

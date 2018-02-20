@@ -39,7 +39,7 @@ class UserFiltersComposer
     {
         $this->clients = Client::pluck('name');
         $this->offices = Office::pluck('city');
-        $this->positions = User::positions();
+        $this->positions = User::pluck('position')->unique();
     }
 
     /**

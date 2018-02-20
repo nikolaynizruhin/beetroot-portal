@@ -62,7 +62,19 @@ class UpdateUser extends FormRequest
      */
     public function getAttributes()
     {
-        $attributes = $this->only(['name', 'email', 'position', 'birthday', 'phone', 'bio', 'slack', 'skype', 'github', 'client_id', 'office_id']);
+        $attributes = $this->only([
+            'name',
+            'email',
+            'position',
+            'birthday',
+            'phone',
+            'bio',
+            'slack',
+            'skype',
+            'github',
+            'client_id',
+            'office_id'
+        ]);
 
         $attributes['is_admin'] = (bool) $this->is_admin;
 

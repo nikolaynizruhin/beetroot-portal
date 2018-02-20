@@ -51,7 +51,19 @@ class StoreUser extends FormRequest
      */
     public function getAttributes()
     {
-        $attributes = $this->only(['name', 'email', 'position', 'birthday', 'phone', 'bio', 'slack', 'skype', 'github', 'client_id', 'office_id']);
+        $attributes = $this->only([
+            'name',
+            'email',
+            'position',
+            'birthday',
+            'phone',
+            'bio',
+            'slack',
+            'skype',
+            'github',
+            'client_id',
+            'office_id'
+        ]);
 
         $attributes['avatar'] = Image::fit($this->file('avatar')->store('avatars'));
         $attributes['remember_token'] = str_random(10);

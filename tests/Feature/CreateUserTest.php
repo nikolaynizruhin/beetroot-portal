@@ -114,7 +114,15 @@ class CreateUserTest extends TestCase
         $this->actingAs($admin)
             ->post(route('users.store'))
             ->assertSessionHasErrors([
-                'name', 'email', 'position', 'birthday', 'slack', 'client_id', 'office_id', 'password', 'avatar',
+                'name',
+                'email',
+                'position',
+                'birthday',
+                'slack',
+                'client_id',
+                'office_id',
+                'password',
+                'avatar',
             ]);
     }
 

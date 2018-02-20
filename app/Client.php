@@ -25,14 +25,4 @@ class Client extends Model
     {
         return $this->hasMany(User::class);
     }
-
-    /**
-     * Get countries.
-     *
-     * @return \Illuminate\Support\Collection
-     */
-    public static function countries()
-    {
-        return static::pluck('country')->unique();
-    }
 }

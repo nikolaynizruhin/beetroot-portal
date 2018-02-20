@@ -22,7 +22,8 @@ class UserFixture
     {
         $attributes = factory(User::class)
             ->states('admin')
-            ->make()->toArray();
+            ->make()
+            ->toArray();
 
         unset(
             $attributes['avatar'],
