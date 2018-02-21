@@ -73,7 +73,7 @@ class UpdateUser extends FormRequest
             'skype',
             'github',
             'client_id',
-            'office_id'
+            'office_id',
         ]);
 
         $attributes['is_admin'] = (bool) $this->is_admin;

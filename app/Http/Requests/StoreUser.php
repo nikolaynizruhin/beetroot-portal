@@ -62,7 +62,7 @@ class StoreUser extends FormRequest
             'skype',
             'github',
             'client_id',
-            'office_id'
+            'office_id',
         ]);
 
         $attributes['avatar'] = Image::fit($this->file('avatar')->store('avatars'));
