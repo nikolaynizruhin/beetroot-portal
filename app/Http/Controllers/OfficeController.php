@@ -24,7 +24,7 @@ class OfficeController extends Controller
      */
     public function index()
     {
-        $offices = Office::paginate(10);
+        $offices = Office::with('users')->paginate(10);
 
         return view('offices.index')->with('offices', $offices);
     }
