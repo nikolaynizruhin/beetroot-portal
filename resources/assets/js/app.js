@@ -15,8 +15,9 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('position-chart', require('./components/PositionChart.vue'));
-Vue.component('client-map', require('./components/ClientMap.vue'));
+Vue.component('positions-chart', require('./components/PositionsChart.vue'));
+Vue.component('clients-map', require('./components/ClientsMap.vue'));
+Vue.component('offices-map', require('./components/OfficesMap.vue'));
 Vue.component('counter', require('./components/Counter.vue'));
 
 const app = new Vue({

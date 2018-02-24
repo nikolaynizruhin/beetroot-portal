@@ -63,7 +63,7 @@
                     <hr>
                     <div class="row">
                         <div class="col-md-12">
-                            <position-chart :positions="{{ $positions }}"></position-chart>
+                            <positions-chart :positions="{{ $positions }}"></positions-chart>
                         </div>
                     </div>
 
@@ -71,7 +71,13 @@
                     <hr>
                     <h3 class="text-center">CLIENTS</h3>
                     <hr>
-                    <client-map :clients="{{ $clients }}" :api-key="'{{ config('services.googlemaps.key') }}'"></client-map>
+                    <clients-map :clients="{{ $clients }}" :api-key="'{{ config('services.googlemaps.key') }}'"></clients-map>
+
+                    <!-- Offices -->
+                    <hr>
+                    <h3 class="text-center">OFFICES</h3>
+                    <hr>
+                    <offices-map :offices="{{ $offices }}" :api-key="'{{ config('services.googlemaps.key') }}'"></offices-map>
 
                 </div>
             </div>

@@ -29,7 +29,8 @@ class DashboardTest extends TestCase
             ->get(route('dashboard'))
             ->assertSee('Dashboard')
             ->assertSee('POSITIONS')
-            ->assertSee('CLIENTS');
+            ->assertSee('CLIENTS')
+            ->assertSee('OFFICES');
     }
 
     /** @test */
