@@ -52,6 +52,14 @@
                             @endrouteis
                         </a>
                     </li>
+                    <li class="nav-item @routeis('birthdays.index') active @endrouteis">
+                        <a class="nav-link" href="{{ route('birthdays.index') }}">
+                            Birthdays
+                            @routeis('birthdays.index')
+                                <span class="sr-only">(current)</span>
+                            @endrouteis
+                        </a>
+                    </li>
                     @admin
                         <li class="nav-item dropdown">
                             <a href="#"

@@ -7,6 +7,7 @@ use Illuminate\Support\ServiceProvider;
 use App\Http\ViewComposers\UsersComposer;
 use App\Http\ViewComposers\UserFiltersComposer;
 use App\Http\ViewComposers\ClientFiltersComposer;
+use App\Http\ViewComposers\BirthdayFiltersComposer;
 
 class ComposerServiceProvider extends ServiceProvider
 {
@@ -30,6 +31,11 @@ class ComposerServiceProvider extends ServiceProvider
         View::composer(
             'clients.index',
             ClientFiltersComposer::class
+        );
+
+        View::composer(
+            'birthdays.index',
+            BirthdayFiltersComposer::class
         );
     }
 

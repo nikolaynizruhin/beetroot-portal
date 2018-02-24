@@ -20,6 +20,7 @@ Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 Route::resource('users', 'UserController', ['except' => ['show']]);
 Route::resource('clients', 'ClientController', ['except' => ['show']]);
 Route::resource('offices', 'OfficeController', ['except' => ['show']]);
+Route::resource('birthdays', 'BirthdayController', ['only' => ['index']]);
 
 Route::put('profile/{user}', 'ProfileController@update')->name('profile.update');
 Route::put('users/{user}/password', 'UserPasswordController@update')->name('users.password.update');

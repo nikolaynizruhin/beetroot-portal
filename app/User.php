@@ -65,4 +65,25 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Office::class);
     }
+
+    /**
+     * Scope a query to order users by birthday.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeOrderByBirthday($query)
+    {
+        return $query->orderByRaw('month(birthday), day(birthday)');
+    }
+
+    /**
+     * Get the user's month of birth.
+     *
+     * @return string
+     */
+    public function getMonthOfBirthAttribute()
+    {
+        return $this->birthday->format('F');
+    }
 }
