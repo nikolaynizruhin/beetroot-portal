@@ -30,7 +30,7 @@ class DashboardController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(
-        ClientCountQuery $clients, 
+        ClientCountQuery $clients,
         PositionCountQuery $positions,
         OfficeEmployeeCountQuery $offices
     ) {
