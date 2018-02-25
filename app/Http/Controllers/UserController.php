@@ -29,7 +29,10 @@ class UserController extends Controller
      */
     public function index(UserFilters $filters)
     {
-        $users = User::with(['client', 'office'])->filter($filters)->paginate(15);
+        $users = User::with(['client', 'office'])
+            ->orderBy('name', 'asc')
+            ->filter($filters)
+            ->paginate(15);
 
         return view('users.index')->with('users', $users);
     }
