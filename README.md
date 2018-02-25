@@ -25,23 +25,19 @@ composer install
 npm install
 npm run dev
 ```
-5. Migrate database:
+5. Migrate database (--seed optional):
 ```
-php artisan migrate
+php artisan migrate --seed
 ```
-6. Seed database with fake data (optional):
-```
-php artisan db:seed
-```
-7. Generate app key:
+6. Generate app key:
 ```
 php artisan key:generate
 ```
-8. Create a symbolic link from `public/storage` to `storage/app/public`:
+7. Create a symbolic link from `public/storage` to `storage/app/public`:
 ```
 php artisan storage:link
 ```
-9. Create default employee avatar and client logo:
+8. Create default employee avatar and client logo:
 ```
 storage/public/avatars/default.png
 storage/public/logos/default.png
