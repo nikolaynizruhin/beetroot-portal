@@ -37,8 +37,8 @@ class UsersComposer
      */
     public function __construct()
     {
-        $this->clients = Client::pluck('name', 'id');
-        $this->offices = Office::pluck('city', 'id');
+        $this->clients = Client::pluck('name', 'id')->sort();
+        $this->offices = Office::pluck('city', 'id')->sort();
         $this->positions = Position::all();
     }
 

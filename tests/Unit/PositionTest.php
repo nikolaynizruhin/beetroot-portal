@@ -13,7 +13,7 @@ class PositionTest extends TestCase
         $positions = Position::all();
 
         $this->assertEquals(count($positions), 49);
-        $this->assertEquals($positions[0], 'Python Developer');
+        $this->assertEquals($positions[0], 'Account Manager');
     }
 
     /** @test */
@@ -21,6 +21,6 @@ class PositionTest extends TestCase
     {
         $positions = Position::csv();
 
-        $this->assertEquals(strpos($positions, 'Python Developer'), 0);
+        $this->assertEquals(strpos($positions, 'Account Manager'), 0);
     }
 }
