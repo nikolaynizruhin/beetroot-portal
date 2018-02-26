@@ -32,7 +32,7 @@
         <p>
             <i class="fas fa-users fa-fw" aria-hidden="true"></i>
             &nbsp;
-            {{ $office->users->count() }}
+            {{ $office->users_count }}
         </p>
     </div>
 </div>
