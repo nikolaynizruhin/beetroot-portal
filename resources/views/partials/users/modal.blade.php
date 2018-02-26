@@ -99,7 +99,7 @@
                             <p>
                                 <i aria-hidden="true" class="fas fa-birthday-cake fa-fw"></i>
                                 &nbsp;
-                                {{ $user->birthday->format('d-m-Y') }}
+                                {{ $user->birthday->format('d F Y') }}
                             </p>
 
                             <!-- Office -->

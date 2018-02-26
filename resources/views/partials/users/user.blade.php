@@ -64,7 +64,7 @@
                 <p>
                     <i class="fas fa-birthday-cake fa-fw" aria-hidden="true"></i>
                     &nbsp;
-                    {{ $user->birthday->format('d-m-Y') }}
+                    {{ $user->birthday->format('d F Y') }}
                 </p>
 
                 <!-- City -->
