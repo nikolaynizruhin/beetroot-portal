@@ -10029,6 +10029,11 @@ html body .card-dashboard:hover {
           box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.05);
 }
 
+html body a[data-toggle="modal"]:focus,
+html body button.close[data-dismiss="modal"]:focus {
+  outline: none;
+}
+
 html body label.col-form-label small {
   color: #BC204B;
 }
