@@ -2,12 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
-use App\Client;
-use App\Office;
-use App\Queries\ClientCountQuery;
-use App\Queries\PositionCountQuery;
-use App\Queries\OfficeEmployeeCountQuery;
+use App\Http\Responses\Dashboard;
 
 class DashboardController extends Controller
 {
@@ -24,23 +19,10 @@ class DashboardController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @param  \App\Queries\ClientCountQuery  $clients
-     * @param  \App\Queries\PositionCountQuery  $positions
-     * @param  \App\Queries\OfficeEmployeeCountQuery  $offices
-     * @return \Illuminate\Http\Response
+     * @return \App\Http\Responses\Dashboard;
      */
-    public function index(
-        ClientCountQuery $clients,
-        PositionCountQuery $positions,
-        OfficeEmployeeCountQuery $offices
-    ) {
-        return view('dashboard')->with([
-            'userCount' => User::count(),
-            'clientCount' => Client::count(),
-            'officeCount' => Office::count(),
-            'positions' => $positions(),
-            'clients' => $clients(),
-            'offices' => $offices(),
-        ]);
+    public function index()
+    {
+        return new Dashboard();
     }
 }
