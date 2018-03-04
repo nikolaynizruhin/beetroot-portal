@@ -3,8 +3,8 @@
 namespace App\Http\Responses;
 
 use App\User;
-use App\Office;
 use App\Client;
+use App\Office;
 use App\Queries\ClientCountQuery;
 use App\Queries\PositionCountQuery;
 use App\Queries\OfficeEmployeeCountQuery;
@@ -15,7 +15,7 @@ class Dashboard implements Responsable
     /**
      * Get user count.
      *
-     * @return integer
+     * @return int
      */
     public function userCount()
     {
@@ -25,7 +25,7 @@ class Dashboard implements Responsable
     /**
      * Get client count.
      *
-     * @return integer
+     * @return int
      */
     public function clientCount()
     {
@@ -35,7 +35,7 @@ class Dashboard implements Responsable
     /**
      * Get office count.
      *
-     * @return integer
+     * @return int
      */
     public function officeCount()
     {
