@@ -36,11 +36,11 @@ class StoreClient extends FormRequest
     }
 
     /**
-     * Get attributes.
+     * Prepare attributes.
      *
      * @return array
      */
-    public function getAttributes()
+    public function prepareAttributes()
     {
         $attributes = $this->only(['name', 'country', 'description', 'site']);
 

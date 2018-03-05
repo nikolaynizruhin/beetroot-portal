@@ -56,7 +56,7 @@ class ClientController extends Controller
      */
     public function store(StoreClient $request)
     {
-        Client::create($request->getAttributes());
+        Client::create($request->prepareAttributes());
 
         return back()->with('status', 'The client was successfully created!');
     }
@@ -85,7 +85,7 @@ class ClientController extends Controller
      */
     public function update(UpdateClient $request, Client $client)
     {
-        $client->update($request->getAttributes());
+        $client->update($request->prepareAttributes());
 
         return back()->with('status', 'The client was successfully updated!');
     }

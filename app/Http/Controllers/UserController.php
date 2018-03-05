@@ -59,7 +59,7 @@ class UserController extends Controller
      */
     public function store(StoreUser $request)
     {
-        User::create($request->getAttributes());
+        User::create($request->prepareAttributes());
 
         return back()->with('status', 'The employee was successfully created!');
     }
@@ -88,7 +88,7 @@ class UserController extends Controller
      */
     public function update(UpdateUser $request, User $user)
     {
-        $user->update($request->getAttributes());
+        $user->update($request->prepareAttributes());
 
         return back()->with('status', 'The employee was successfully updated!');
     }
