@@ -49,7 +49,7 @@ class Dashboard implements Responsable
      */
     public function positions()
     {
-        return (new PositionCountQuery)();
+        return resolve(PositionCountQuery::class)();
     }
 
     /**
@@ -59,7 +59,7 @@ class Dashboard implements Responsable
      */
     public function clients()
     {
-        return (new ClientCountQuery)();
+        return resolve(ClientCountQuery::class)();
     }
 
     /**
@@ -69,7 +69,7 @@ class Dashboard implements Responsable
      */
     public function offices()
     {
-        return (new OfficeEmployeeCountQuery)();
+        return resolve(OfficeEmployeeCountQuery::class)();
     }
 
     /**
