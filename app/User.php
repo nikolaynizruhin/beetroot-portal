@@ -69,7 +69,7 @@ class User extends Authenticatable
     /**
      * Scope a query to order users by birthday.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeOrderByBirthday($query)
