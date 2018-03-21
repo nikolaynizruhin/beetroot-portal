@@ -1,6 +1,31 @@
 <form method="GET" action="{{ route('users.index') }}">
     <div class="row mb-3">
-        <div class="col-md-4">
+        <div class="col-md-3">
+
+            <div class="form-group">
+                <input type="text" readonly class="form-control-plaintext" value="Sort By:">
+            </div>
+
+            <!-- Sorting -->
+            <div class="form-group">
+                <select class="form-control" name="sort">
+                    @foreach ($sortableAttributes as $attribute => $name)
+                        @if (request('sort') == $attribute)
+                            <option value="{{ $attribute }}" selected>
+                                {{ $name }}
+                            </option>
+                        @else
+                            <option value="{{ $attribute }}">
+                                {{ $name }}
+                            </option>
+                        @endif
+                    @endforeach
+                </select>
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
 
             <!-- Office Filter -->
             <div class="form-group">
@@ -39,7 +64,7 @@
             </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-3">
 
             <!-- Client Filter -->
             <div class="form-group">
@@ -67,11 +92,11 @@
                        name="name"
                        value="{{ request('name') }}" 
                        id="name"
-                       placeholder="Name">
+                       placeholder="Enter name">
             </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-3">
 
             <!-- Clear Button -->
             <div class="form-group">

@@ -78,6 +78,19 @@ class User extends Authenticatable
     }
 
     /**
+     * Scope a query to order users by default.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeOrderByDefault($query)
+    {
+        return $query->getQuery()->orders
+            ? $query
+            : $query->orderBy('name', 'asc');
+    }
+
+    /**
      * Get the user's month of birth.
      *
      * @return string

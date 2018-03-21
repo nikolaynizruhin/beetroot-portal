@@ -30,8 +30,8 @@ class UserController extends Controller
     public function index(UserFilters $filters)
     {
         $users = User::with(['client', 'office'])
-            ->orderBy('name', 'asc')
             ->filter($filters)
+            ->orderByDefault()
             ->paginate(15);
 
         return view('users.index')->with('users', $users);

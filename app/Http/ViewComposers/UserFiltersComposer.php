@@ -6,6 +6,7 @@ use App\User;
 use App\Client;
 use App\Office;
 use Illuminate\View\View;
+use App\Http\Utilities\UserSortableAttribute;
 
 class UserFiltersComposer
 {
@@ -31,6 +32,13 @@ class UserFiltersComposer
     protected $positions;
 
     /**
+     * The sortable attributes.
+     *
+     * @var array
+     */
+    protected $sortableAttributes;
+
+    /**
      * Create a new users composer.
      *
      * @return void
@@ -40,6 +48,7 @@ class UserFiltersComposer
         $this->clients = Client::pluck('name')->sort();
         $this->offices = Office::pluck('city')->sort();
         $this->positions = User::pluck('position')->unique()->sort();
+        $this->sortableAttributes = UserSortableAttribute::all();
     }
 
     /**
@@ -54,6 +63,7 @@ class UserFiltersComposer
             'clients' => $this->clients,
             'offices' => $this->offices,
             'positions' => $this->positions,
+            'sortableAttributes' => $this->sortableAttributes,
         ]);
     }
 }
