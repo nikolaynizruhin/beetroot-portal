@@ -92,11 +92,11 @@ class UserFiltersTest extends TestCase
     {
         $john = factory(User::class)->create([
             'name' => 'John Doe',
-            'created_at' => '2018-01-01'
+            'created_at' => '2018-01-01',
         ]);
         $jane = factory(User::class)->create([
             'name' => 'Jane Doe',
-            'created_at' => '2018-01-02'
+            'created_at' => '2018-01-02',
         ]);
 
         $this->actingAs($john)
@@ -109,11 +109,11 @@ class UserFiltersTest extends TestCase
     {
         $john = factory(User::class)->create([
             'name' => 'John Doe',
-            'created_at' => '2018-01-01'
+            'created_at' => '2018-01-01',
         ]);
         $jane = factory(User::class)->create([
             'name' => 'Jane Doe',
-            'created_at' => '2018-01-02'
+            'created_at' => '2018-01-02',
         ]);
 
         $this->actingAs($john)
