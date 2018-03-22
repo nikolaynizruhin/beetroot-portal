@@ -86,4 +86,49 @@ class UserFiltersTest extends TestCase
             ->assertSee($john->name)
             ->assertDontSee($jane->name);
     }
+
+    /** @test */
+    public function a_user_can_sort_employees_by_newcomers()
+    {
+        $john = factory(User::class)->create([
+            'name' => 'John Doe',
+            'created_at' => '2018-01-01'
+        ]);
+        $jane = factory(User::class)->create([
+            'name' => 'Jane Doe',
+            'created_at' => '2018-01-02'
+        ]);
+
+        $this->actingAs($john)
+            ->get(route('users.index', ['sort' => 'created_at,desc']))
+            ->assertSeeInOrder([$jane->name, $john->name]);
+    }
+
+    /** @test */
+    public function a_user_can_sort_employees_by_elders()
+    {
+        $john = factory(User::class)->create([
+            'name' => 'John Doe',
+            'created_at' => '2018-01-01'
+        ]);
+        $jane = factory(User::class)->create([
+            'name' => 'Jane Doe',
+            'created_at' => '2018-01-02'
+        ]);
+
+        $this->actingAs($john)
+            ->get(route('users.index', ['sort' => 'created_at,asc']))
+            ->assertSeeInOrder([$john->name, $jane->name]);
+    }
+
+    /** @test */
+    public function a_user_can_view_employees_with_default_sort()
+    {
+        $john = factory(User::class)->create(['name' => 'John Doe']);
+        $jane = factory(User::class)->create(['name' => 'Jane Doe']);
+
+        $this->actingAs($john)
+            ->get(route('users.index'))
+            ->assertSeeInOrder([$jane->name, $john->name]);
+    }
 }
