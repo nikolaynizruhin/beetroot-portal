@@ -32,14 +32,4 @@ class StoreOffice extends FormRequest
             'link' => 'required|string|max:255',
         ];
     }
-
-    /**
-     * Get the validated data.
-     *
-     * @return array
-     */
-    public function validatedData()
-    {
-        return $this->only(['city', 'country', 'address', 'link']);
-    }
 }

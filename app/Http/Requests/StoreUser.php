@@ -45,28 +45,15 @@ class StoreUser extends FormRequest
     }
 
     /**
-     * Prepare attributes.
+     * Get the prepared data from the request.
      *
      * @return array
      */
-    public function prepareAttributes()
+    public function prepared()
     {
-        $attributes = $this->only([
-            'name',
-            'email',
-            'position',
-            'birthday',
-            'phone',
-            'bio',
-            'slack',
-            'skype',
-            'github',
-            'client_id',
-            'office_id',
-        ]);
+        $attributes = $this->validated();
 
         $attributes['avatar'] = Image::fit($this->file('avatar')->store('avatars'));
-        $attributes['remember_token'] = str_random(10);
         $attributes['is_admin'] = (bool) $this->is_admin;
         $attributes['password'] = bcrypt($this->password);
 

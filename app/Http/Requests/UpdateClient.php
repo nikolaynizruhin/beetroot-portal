@@ -37,13 +37,13 @@ class UpdateClient extends FormRequest
     }
 
     /**
-     * Prepare attributes.
+     * Get the prepared data from the request.
      *
      * @return array
      */
-    public function prepareAttributes()
+    public function prepared()
     {
-        $attributes = $this->only(['name', 'country', 'description', 'site']);
+        $attributes = $this->validated();
 
         if ($this->hasFile('logo')) {
             $attributes['logo'] = Image::fit($this->file('logo')->store('logos'));

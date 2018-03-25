@@ -26,7 +26,7 @@ class ProfileController extends Controller
      */
     public function update(UpdateProfile $request, User $user)
     {
-        $user->update(request(['phone', 'bio', 'skype', 'github']));
+        $user->update($request->validated());
 
         return back()->with('status', 'The employee was successfully updated!');
     }

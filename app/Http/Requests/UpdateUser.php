@@ -56,25 +56,13 @@ class UpdateUser extends FormRequest
     }
 
     /**
-     * Prepare attributes.
+     * Get the prepared data from the request.
      *
      * @return array
      */
-    public function prepareAttributes()
+    public function prepared()
     {
-        $attributes = $this->only([
-            'name',
-            'email',
-            'position',
-            'birthday',
-            'phone',
-            'bio',
-            'slack',
-            'skype',
-            'github',
-            'client_id',
-            'office_id',
-        ]);
+        $attributes = $this->validated();
 
         $attributes['is_admin'] = (bool) $this->is_admin;
 
