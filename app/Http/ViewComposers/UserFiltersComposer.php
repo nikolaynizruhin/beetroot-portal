@@ -6,7 +6,6 @@ use App\User;
 use App\Client;
 use App\Office;
 use Illuminate\View\View;
-use App\Http\Utilities\UserSortableAttribute;
 
 class UserFiltersComposer
 {
