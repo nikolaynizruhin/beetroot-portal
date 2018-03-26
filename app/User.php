@@ -11,6 +11,17 @@ class User extends Authenticatable
     use Notifiable, Filterable;
 
     /**
+     * The list of sortable attributes.
+     *
+     * @var array
+     */
+    public static $sortable = [
+        'name,asc' => 'Name',
+        'created_at,desc' => 'Newcomers',
+        'created_at,asc' => 'Elders',
+    ];
+
+    /**
      * The attributes that should be cast to native types.
      *
      * @var array

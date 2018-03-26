@@ -9,13 +9,13 @@
             <!-- Sorting -->
             <div class="form-group">
                 <select class="form-control" name="sort">
-                    @foreach ($sortableAttributes as $attribute => $name)
-                        @if (request('sort') == $attribute)
-                            <option value="{{ $attribute }}" selected>
+                    @foreach ($sortable as $field => $name)
+                        @if (request('sort') == $field)
+                            <option value="{{ $field }}" selected>
                                 {{ $name }}
                             </option>
                         @else
-                            <option value="{{ $attribute }}">
+                            <option value="{{ $field }}">
                                 {{ $name }}
                             </option>
                         @endif
