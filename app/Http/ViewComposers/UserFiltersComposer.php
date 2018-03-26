@@ -48,7 +48,7 @@ class UserFiltersComposer
         $this->clients = Client::pluck('name')->sort();
         $this->offices = Office::pluck('city')->sort();
         $this->positions = User::pluck('position')->unique()->sort();
-        $this->sortable = User::$sortable;
+        $this->sortable = User::sortable();
     }
 
     /**

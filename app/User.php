@@ -15,7 +15,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    public static $sortable = [
+    protected static $sortable = [
         'name,asc' => 'Name',
         'created_at,desc' => 'Newcomers',
         'created_at,asc' => 'Elders',
@@ -109,5 +109,15 @@ class User extends Authenticatable
     public function getMonthOfBirthAttribute()
     {
         return $this->birthday->format('F');
+    }
+
+    /**
+     * Get list of sortable attributes.
+     *
+     * @return array
+     */
+    public static function sortable()
+    {
+        return static::$sortable;
     }
 }
