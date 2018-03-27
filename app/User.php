@@ -11,14 +11,14 @@ class User extends Authenticatable
     use Notifiable, Filterable;
 
     /**
-     * The list of sortable attributes.
+     * The list of sorts.
      *
      * @var array
      */
-    protected static $sortable = [
-        'name,asc' => 'Name',
-        'created_at,desc' => 'Newcomers',
-        'created_at,asc' => 'Elders',
+    protected static $sorts = [
+        'name' => 'Name',
+        '-created_at' => 'Newcomers',
+        'created_at' => 'Elders',
     ];
 
     /**
@@ -94,11 +94,11 @@ class User extends Authenticatable
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeOrderByDefault($query)
+    public function scopeDefaultOrder($query, $field, $order)
     {
         return $query->getQuery()->orders
             ? $query
-            : $query->orderBy('name', 'asc');
+            : $query->orderBy($field, $order);
     }
 
     /**
@@ -112,12 +112,12 @@ class User extends Authenticatable
     }
 
     /**
-     * Get list of sortable attributes.
+     * Get list of sorts.
      *
      * @return array
      */
-    public static function sortable()
+    public static function sorts()
     {
-        return static::$sortable;
+        return static::$sorts;
     }
 }

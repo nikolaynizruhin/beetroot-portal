@@ -63,15 +63,17 @@ class UserFilters extends Filters
     }
 
     /**
-     * Sort the query by a given user attribute.
+     * Sort the query by a given user field.
      *
-     * @param  string  $attribute
+     * @param  string  $field
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    protected function sort($attribute)
+    protected function sort($field)
     {
-        [$attribute, $order] = explode(',', $attribute);
+        $order = $field[0] === '-' ? 'desc' : 'asc';
 
-        return $this->builder->orderBy($attribute, $order);
+        $field = ltrim($field, '-');
+
+        return $this->builder->orderBy($field, $order);
     }
 }

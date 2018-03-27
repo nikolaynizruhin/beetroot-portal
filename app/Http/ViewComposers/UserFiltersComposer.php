@@ -31,11 +31,11 @@ class UserFiltersComposer
     protected $positions;
 
     /**
-     * The sortable attributes.
+     * The sorts.
      *
      * @var array
      */
-    protected $sortable;
+    protected $sorts;
 
     /**
      * Create a new users composer.
@@ -47,7 +47,7 @@ class UserFiltersComposer
         $this->clients = Client::pluck('name')->sort();
         $this->offices = Office::pluck('city')->sort();
         $this->positions = User::pluck('position')->unique()->sort();
-        $this->sortable = User::sortable();
+        $this->sorts = User::sorts();
     }
 
     /**
@@ -62,7 +62,7 @@ class UserFiltersComposer
             'clients' => $this->clients,
             'offices' => $this->offices,
             'positions' => $this->positions,
-            'sortable' => $this->sortable,
+            'sorts' => $this->sorts,
         ]);
     }
 }
