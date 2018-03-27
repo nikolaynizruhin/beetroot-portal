@@ -100,7 +100,7 @@ class UserFiltersTest extends TestCase
         ]);
 
         $this->actingAs($john)
-            ->get(route('users.index', ['sort' => 'created_at,desc']))
+            ->get(route('users.index', ['sort' => '-created_at']))
             ->assertSeeInOrder([$jane->name, $john->name]);
     }
 
@@ -117,7 +117,7 @@ class UserFiltersTest extends TestCase
         ]);
 
         $this->actingAs($john)
-            ->get(route('users.index', ['sort' => 'created_at,asc']))
+            ->get(route('users.index', ['sort' => 'created_at']))
             ->assertSeeInOrder([$john->name, $jane->name]);
     }
 
