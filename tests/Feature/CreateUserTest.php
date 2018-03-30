@@ -13,33 +13,6 @@ class CreateUserTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * Avatar file.
-     *
-     * @var object
-     */
-    private $file;
-
-    /**
-     * User fixture.
-     *
-     * @var object
-     */
-    private $userFixture;
-
-    /**
-     * Setup.
-     *
-     * @return void
-     */
-    protected function setUp()
-    {
-        parent::setUp();
-
-        $this->file = UploadedFile::fake()->image('avatar.jpg');
-        $this->userFixture = resolve(\Tests\Fixtures\UserFixture::class);
-    }
-
     /** @test */
     public function guest_can_not_create_a_user()
     {
@@ -89,13 +62,18 @@ class CreateUserTest extends TestCase
     public function admin_can_create_a_user()
     {
         $admin = factory(User::class)->states('admin')->create();
+        $user = factory(User::class)->states('admin')->make()
+            ->makeHidden(['avatar'])
+            ->toArray();
+
+        $file = UploadedFile::fake()->image('avatar.jpg');
 
         Storage::fake('public');
 
         Image::shouldReceive('make->fit->save')->once();
 
-        $input = $this->inputAttributes();
-        $result = $this->resultAttributes();
+        $input = $this->input($user, $file);
+        $result = $this->result($user, $file);
 
         $this->actingAs($admin)
             ->post(route('users.store'), $input)
@@ -103,7 +81,7 @@ class CreateUserTest extends TestCase
 
         $this->assertDatabaseHas('users', $result);
 
-        Storage::disk('public')->assertExists('avatars/'.$this->file->hashName());
+        Storage::disk('public')->assertExists('avatars/'.$file->hashName());
     }
 
     /** @test */
@@ -129,27 +107,32 @@ class CreateUserTest extends TestCase
     /**
      * Get input attributes.
      *
+     * @param  array  $user
+     * @param  object  $file
      * @return array
      */
-    private function inputAttributes()
+    protected function input($user, $file)
     {
-        $this->userFixture->set('avatar', $this->file);
-        $this->userFixture->set('password', 'secret');
-        $this->userFixture->set('password_confirmation', 'secret');
+        $user['avatar'] = $file;
+        $user['password'] = 'secret';
+        $user['password_confirmation'] = 'secret';
 
-        return $this->userFixture->attributes();
+        return $user;
     }
 
     /**
      * Get result attributes.
      *
+     * @param  array  $user
+     * @param  object  $file
      * @return array
      */
-    private function resultAttributes()
+    protected function result($user, $file)
     {
-        $this->userFixture->set('avatar', 'avatars/'.$this->file->hashName());
-        $this->userFixture->remove(['password', 'password_confirmation']);
+        $user['avatar'] = 'avatars/'.$file->hashName();
 
-        return $this->userFixture->attributes();
+        unset($user['password'], $user['password_confirmation']);
+
+        return $user;
     }
 }

@@ -23,9 +23,9 @@ class UpdateUserTest extends TestCase
     /**
      * User fixture.
      *
-     * @var object
+     * @var array
      */
-    private $userFixture;
+    private $user;
 
     /**
      * Setup.
@@ -37,7 +37,9 @@ class UpdateUserTest extends TestCase
         parent::setUp();
 
         $this->file = UploadedFile::fake()->image('avatar.jpg');
-        $this->userFixture = resolve(\Tests\Fixtures\UserFixture::class);
+        $this->user = factory(User::class)->states('admin')->make()
+            ->makeHidden(['avatar'])
+            ->toArray();
     }
 
     /** @test */
@@ -137,8 +139,8 @@ class UpdateUserTest extends TestCase
         Storage::fake('public');
         Image::shouldReceive('make->fit->save')->once();
 
-        $input = $this->inputAttributes();
-        $result = $this->resultAttributesForAdmin();
+        $input = $this->input();
+        $result = $this->resultForAdmin();
 
         $this->actingAs($admin)
             ->put(route('users.update', $owner->id), $input)
@@ -154,8 +156,8 @@ class UpdateUserTest extends TestCase
     {
         $owner = factory(User::class)->create(['is_admin' => false]);
 
-        $input = $this->inputAttributes();
-        $result = $this->resultAttributesForEmployee();
+        $input = $this->input();
+        $result = $this->resultForEmployee();
 
         $this->actingAs($owner)
             ->put(route('profile.update', $owner->id), $input)
@@ -187,11 +189,11 @@ class UpdateUserTest extends TestCase
      *
      * @return array
      */
-    private function inputAttributes()
+    protected function input()
     {
-        $this->userFixture->set('avatar', $this->file);
+        $this->user['avatar'] = $this->file;
 
-        return $this->userFixture->attributes();
+        return $this->user;
     }
 
     /**
@@ -199,11 +201,11 @@ class UpdateUserTest extends TestCase
      *
      * @return array
      */
-    private function resultAttributesForAdmin()
+    protected function resultForAdmin()
     {
-        $this->userFixture->set('avatar', 'avatars/'.$this->file->hashName());
+        $this->user['avatar'] = 'avatars/'.$this->file->hashName();
 
-        return $this->userFixture->attributes();
+        return $this->user;
     }
 
     /**
@@ -211,20 +213,10 @@ class UpdateUserTest extends TestCase
      *
      * @return array
      */
-    private function resultAttributesForEmployee()
+    protected function resultForEmployee()
     {
-        $this->userFixture->remove([
-            'name',
-            'email',
-            'position',
-            'birthday',
-            'is_admin',
-            'slack',
-            'avatar',
-            'client_id',
-            'office_id',
-        ]);
-
-        return $this->userFixture->attributes();
+        return collect($this->user)
+            ->only(['phone', 'skype', 'github', 'bio'])
+            ->all();
     }
 }
