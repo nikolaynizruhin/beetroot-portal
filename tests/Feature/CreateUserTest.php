@@ -114,8 +114,7 @@ class CreateUserTest extends TestCase
     protected function input($user, $file)
     {
         $user['avatar'] = $file;
-        $user['password'] = 'secret';
-        $user['password_confirmation'] = 'secret';
+        $user['password'] = $user['password_confirmation'] = 'secret';
 
         return $user;
     }
