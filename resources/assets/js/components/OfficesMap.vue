@@ -16,7 +16,7 @@
         mounted() {
             this.init();
 
-            let offices = this.data;
+            const offices = this.data;
 
             google.charts.load('current', {
                 'packages': ['geochart'],
@@ -26,15 +26,15 @@
             google.charts.setOnLoadCallback(drawMarkersMap);
 
             function drawMarkersMap() {
-                var data = google.visualization.arrayToDataTable(offices);
+                const data = google.visualization.arrayToDataTable(offices);
 
-                var options = {
+                const options = {
                     region: 'UA',
                     displayMode: 'markers',
                     colorAxis: { colors: ['#f1b828'] }
                 };
 
-                var chart = new google.visualization.GeoChart(document.getElementById('markers'));
+                const chart = new google.visualization.GeoChart(document.getElementById('markers'));
                 chart.draw(data, options);
             };
         },

@@ -16,7 +16,7 @@
         mounted() {
             this.init();
 
-            let clients = this.data;
+            const clients = this.data;
 
             google.charts.load('current', {
                 'packages': ['geochart'],
