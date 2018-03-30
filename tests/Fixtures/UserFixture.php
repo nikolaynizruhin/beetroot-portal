@@ -20,18 +20,11 @@ class UserFixture
      */
     public function __construct()
     {
-        $attributes = factory(User::class)
+        $this->attributes = factory(User::class)
             ->states('admin')
             ->make()
+            ->makeHidden(['avatar'])
             ->toArray();
-
-        unset(
-            $attributes['avatar'],
-            $attributes['password'],
-            $attributes['remember_token']
-        );
-
-        $this->attributes = $attributes;
     }
 
     /**
