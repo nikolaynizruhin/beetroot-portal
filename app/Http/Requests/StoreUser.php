@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\User;
 use App\Utilities\Image;
+use Illuminate\Validation\Rule;
 use App\Http\Utilities\Position;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -29,7 +30,12 @@ class StoreUser extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'position' => 'required|string|max:255|in:'.Position::csv(),
+            'position' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::in(Position::all()),
+            ],
             'birthday' => 'required|date',
             'avatar' => 'required|image',
             'slack' => 'required|string|max:255|unique:users',

@@ -15,12 +15,4 @@ class PositionTest extends TestCase
         $this->assertEquals(count($positions), 49);
         $this->assertEquals($positions[0], 'Account Manager');
     }
-
-    /** @test */
-    public function it_can_get_a_csv_of_positions()
-    {
-        $positions = Position::csv();
-
-        $this->assertEquals(strpos($positions, 'Account Manager'), 0);
-    }
 }

@@ -70,14 +70,4 @@ class Position
     {
         return static::$positions;
     }
-
-    /**
-     * Get positions csv.
-     *
-     * @return array
-     */
-    public static function csv()
-    {
-        return implode(',', static::$positions);
-    }
 }

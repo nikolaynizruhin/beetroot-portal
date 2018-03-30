@@ -36,7 +36,12 @@ class UpdateUser extends FormRequest
                 Rule::unique('users')->ignore($this->user->id),
                 'max:255',
             ],
-            'position' => 'required|string|max:255|in:'.Position::csv(),
+            'position' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::in(Position::all()),
+            ],
             'birthday' => 'required|date',
             'slack' => [
                 'required',

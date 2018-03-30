@@ -258,14 +258,4 @@ class Country
     {
         return static::$countries;
     }
-
-    /**
-     * Get countries csv.
-     *
-     * @return array
-     */
-    public static function csv()
-    {
-        return implode(',', static::$countries);
-    }
 }

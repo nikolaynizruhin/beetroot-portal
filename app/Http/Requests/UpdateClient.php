@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Utilities\Image;
 use App\Http\Utilities\Country;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateClient extends FormRequest
@@ -29,7 +30,12 @@ class UpdateClient extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'country' => 'required|string|max:255|in:'.Country::csv(),
+            'country' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::in(Country::all()),
+            ],
             'description' => 'required|string|max:255',
             'site' => 'required|url',
             'logo' => 'image',

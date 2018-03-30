@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use App\Client;
 use App\Utilities\Image;
 use App\Http\Utilities\Country;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreClient extends FormRequest
@@ -29,7 +30,12 @@ class StoreClient extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'logo' => 'required|image',
-            'country' => 'required|string|max:255|in:'.Country::csv(),
+            'country' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::in(Country::all()),
+            ],
             'description' => 'required|string|max:255',
             'site' => 'required|url',
         ];
