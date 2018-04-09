@@ -90,9 +90,11 @@
 
                             <!-- Client -->
                             <p>
-                                <i aria-hidden="true" class="far fa-handshake fa-fw"></i>
-                                &nbsp;
-                                {{ $user->client->name }}
+                                <a href="{{ route('clients.index', ['name' => $user->client->name]) }}">
+                                    <i aria-hidden="true" class="far fa-handshake fa-fw"></i>
+                                    &nbsp;
+                                    {{ $user->client->name }}
+                                </a>
                             </p>
 
                             <!-- Birthday -->

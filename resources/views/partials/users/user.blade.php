@@ -46,16 +46,20 @@
 
                 <!-- Client -->
                 <p>
-                    <i class="far fa-handshake fa-fw" aria-hidden="true"></i>
-                    &nbsp;
-                    {{ $user->client->name }}
+                    <a href="{{ route('clients.index', ['name' => $user->client->name]) }}">
+                        <i class="far fa-handshake fa-fw" aria-hidden="true"></i>
+                        &nbsp;
+                        {{ $user->client->name }}
+                    </a>
                 </p>
 
                 <!-- Email -->
                 <p>
-                    <i class="far fa-envelope fa-fw" aria-hidden="true"></i>
-                    &nbsp;
-                    {{ $user->email }}
+                    <a href="mailto:{{ $user->email }}">
+                        <i class="far fa-envelope fa-fw" aria-hidden="true"></i>
+                        &nbsp;
+                        {{ $user->email }}
+                    </a>
                 </p>
             </div>
             <div class="col-md-6">
