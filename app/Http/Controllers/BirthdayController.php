@@ -25,7 +25,8 @@ class BirthdayController extends Controller
      */
     public function index(BirthdayFilters $filters)
     {
-        $months = User::orderByBirthday()
+        $months = User::with(['client', 'office'])
+            ->orderByBirthday()
             ->filter($filters)
             ->get()
             ->groupBy('month_of_birth');
