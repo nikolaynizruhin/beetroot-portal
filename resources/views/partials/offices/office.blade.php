@@ -30,9 +30,11 @@
             {{ $office->address }}
         </p>
         <p>
-            <i class="fas fa-users fa-fw" aria-hidden="true"></i>
-            &nbsp;
-            {{ $office->users_count }}
+            <a href="{{ route('users.index', ['office' => $office->city]) }}">
+                <i class="fas fa-users fa-fw" aria-hidden="true"></i>
+                &nbsp;
+                {{ $office->users_count }}
+            </a>
         </p>
     </div>
 </div>

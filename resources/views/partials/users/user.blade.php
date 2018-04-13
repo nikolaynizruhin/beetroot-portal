@@ -38,7 +38,11 @@
             <div class="col-md-12">
 
                 <!-- Position -->
-                <p><em>{{ $user->position }}</em></p>
+                <p>
+                    <a href="{{ route('users.index', ['position' => $user->position]) }}">
+                        <em>{{ $user->position }}</em>
+                    </a>
+                </p>
             </div>
         </div>
         <div class="row">

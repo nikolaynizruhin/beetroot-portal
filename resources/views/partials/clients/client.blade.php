@@ -40,9 +40,11 @@
 
                 <!-- Country -->
                 <p>
-                    <i class="fas fa-map-marker-alt fa-fw" aria-hidden="true"></i>
-                    &nbsp;
-                    {{ $client->country }}
+                    <a href="{{ route('clients.index', ['country' => $client->country]) }}">
+                        <i class="fas fa-map-marker-alt fa-fw" aria-hidden="true"></i>
+                        &nbsp;
+                        {{ $client->country }}
+                    </a>
                 </p>
             </div>
         </div>
