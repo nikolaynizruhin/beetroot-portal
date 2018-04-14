@@ -1,10 +1,12 @@
 @forelse ($months as $month => $users)
     <div class="row mb-3">
         <div class="col">
-            <h3 class="text-right">
-                {{ $month }}
-                <i class="far fa-calendar-alt"></i>
-            </h3>
+            <a href="#{{ $month }}">
+                <h3 id="{{ $month }}" class="text-right">
+                    {{ $month }}
+                    <i class="far fa-calendar-alt"></i>
+                </h3>
+            </a>
 
             <hr>
 

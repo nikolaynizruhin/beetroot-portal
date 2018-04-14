@@ -70,16 +70,20 @@
 
                 <!-- Birthday -->
                 <p>
-                    <i class="fas fa-birthday-cake fa-fw" aria-hidden="true"></i>
-                    &nbsp;
-                    {{ $user->birthday->format('d F Y') }}
+                    <a href="{{ route('birthdays.index').'#'.$user->birthday->format('F') }}">
+                        <i class="fas fa-birthday-cake fa-fw" aria-hidden="true"></i>
+                        &nbsp;
+                        {{ $user->birthday->format('d F Y') }}
+                    </a>
                 </p>
 
                 <!-- City -->
                 <p>
-                    <i class="fas fa-map-marker-alt fa-fw" aria-hidden="true"></i>
-                    &nbsp;
-                    {{ $user->office->city }}
+                    <a href="{{ route('users.index', ['office' => $user->office->city]) }}">
+                        <i class="fas fa-map-marker-alt fa-fw" aria-hidden="true"></i>
+                        &nbsp;
+                        {{ $user->office->city }}
+                    </a>
                 </p>
             </div>
         </div>
