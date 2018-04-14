@@ -27,10 +27,10 @@
                     <br>
 
                     <!-- Name -->
-                    <h3 class="text-center">{{ $user->name }}</h3>
+                    <h4 class="text-center">{{ $user->name }}</h4>
 
                     <!-- Position -->
-                    <h4 class="text-center"><em>{{ $user->position }}</em></h4>
+                    <h6 class="text-center"><em>{{ $user->position }}</em></h6>
 
                     <br>
 
@@ -39,7 +39,7 @@
 
                             <!-- Email -->
                             <p>
-                                <a href="mailto:{{ $user->email }}">
+                                <a class="link-unstyled" href="mailto:{{ $user->email }}">
                                     <i aria-hidden="true" class="far fa-envelope fa-fw"></i>
                                     &nbsp;
                                     {{ $user->email }}
@@ -49,7 +49,7 @@
                             <!-- Phone -->
                             @if ($user->phone)
                                 <p>
-                                    <a href="tel:{{ $user->phone }}">
+                                    <a class="link-unstyled" href="tel:{{ $user->phone }}">
                                         <i aria-hidden="true" class="fas fa-phone fa-fw"></i>
                                         &nbsp;
                                         {{ $user->phone }}
@@ -67,7 +67,7 @@
                             <!-- Skype -->
                             @if ($user->skype)
                                 <p>
-                                    <a href="skype:{{ $user->skype }}?userinfo">
+                                    <a class="link-unstyled" href="skype:{{ $user->skype }}?userinfo">
                                         <i aria-hidden="true" class="fab fa-skype fa-fw"></i>
                                         &nbsp;
                                         {{ $user->skype }}
@@ -78,7 +78,7 @@
                             <!-- Github -->
                             @if ($user->github)
                                 <p>
-                                    <a href="https://github.com/{{ $user->github }}" target="_blank">
+                                    <a class="link-unstyled" href="https://github.com/{{ $user->github }}" target="_blank">
                                         <i aria-hidden="true" class="fab fa-github fa-fw"></i>
                                         &nbsp;
                                         {{ $user->github }}
@@ -90,11 +90,9 @@
 
                             <!-- Client -->
                             <p>
-                                <a href="{{ route('clients.index', ['name' => $user->client->name]) }}">
-                                    <i aria-hidden="true" class="far fa-handshake fa-fw"></i>
-                                    &nbsp;
-                                    {{ $user->client->name }}
-                                </a>
+                                <i aria-hidden="true" class="far fa-handshake fa-fw"></i>
+                                &nbsp;
+                                {{ $user->client->name }}
                             </p>
 
                             <!-- Birthday -->

@@ -58,15 +58,22 @@
                 max-width: 90%;
             }
         </style>
+
+        <!-- Scripts -->
+        <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
     </head>
     <body>
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ route('dashboard') }}">Dashboard</a>
+                        <a href="{{ route('dashboard') }}">
+                            <i class="fas fa-tachometer-alt fa-fw"></i> Dashboard
+                        </a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('login') }}">
+                            <i class="fas fa-sign-in-alt fa-fw"></i> Login
+                        </a>
                     @endauth
                 </div>
             @endif

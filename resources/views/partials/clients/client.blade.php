@@ -17,7 +17,7 @@
                     <strong>{{ $client->name }}</strong>
                     &nbsp;
                     @admin
-                        <a href="{{ route('clients.edit', $client->id) }}">
+                        <a class="link-unstyled" href="{{ route('clients.edit', $client->id) }}">
                             <i class="fas fa-pencil-alt" aria-hidden="true"></i>
                         </a>
                     @endadmin
@@ -29,7 +29,7 @@
 
                 <!-- Site -->
                 <p>
-                    <a target="_blank" href="{{ $client->site }}">
+                    <a class="link-unstyled" target="_blank" href="{{ $client->site }}">
                         <i class="fas fa-globe fa-fw" aria-hidden="true"></i>
                         &nbsp;
                         {{ $client->site }}
@@ -40,7 +40,7 @@
 
                 <!-- Country -->
                 <p>
-                    <a href="{{ route('clients.index', ['country' => $client->country]) }}">
+                    <a class="link-unstyled" href="{{ route('clients.index', ['country' => $client->country]) }}">
                         <i class="fas fa-map-marker-alt fa-fw" aria-hidden="true"></i>
                         &nbsp;
                         {{ $client->country }}

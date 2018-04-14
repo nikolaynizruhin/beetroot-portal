@@ -16,7 +16,7 @@
 
                         <!-- Total Employees -->
                         <div class="col-md-4">
-                            <a href="{{ route('users.index') }}" class="link-dashboard">
+                            <a href="{{ route('users.index') }}" class="link-unstyled">
                                 <div class="card card-dashboard mb-2">
                                     <div class="card-body">
                                         <p class="card-text">TOTAL EMPLOYEES</p>
@@ -30,7 +30,7 @@
 
                         <!-- Total Clients -->
                         <div class="col-md-4">
-                            <a href="{{ route('clients.index') }}" class="link-dashboard">
+                            <a href="{{ route('clients.index') }}" class="link-unstyled">
                                 <div class="card card-dashboard mb-2">
                                     <div class="card-body">
                                         <p class="card-text">TOTAL CLIENTS</p>
@@ -44,7 +44,7 @@
 
                         <!-- Total Offices -->
                         <div class="col-md-4">
-                            <a href="{{ route('offices.index') }}" class="link-dashboard">
+                            <a href="{{ route('offices.index') }}" class="link-unstyled">
                                 <div class="card card-dashboard mb-2">
                                     <div class="card-body">
                                         <p class="card-text">TOTAL OFFICES</p>

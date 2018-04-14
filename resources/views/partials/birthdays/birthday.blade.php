@@ -15,7 +15,7 @@
             <h5 class="mt-0">{{ $user->birthday->format('j F') }}</h5>
 
             <!-- Name -->
-            <a href="#" data-toggle="modal" data-target="#userModal{{ $user->id }}">
+            <a class="link-unstyled" href="#" data-toggle="modal" data-target="#userModal{{ $user->id }}">
                 {{ $user->name }}
             </a>
         </div>
