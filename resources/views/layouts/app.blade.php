@@ -11,14 +11,16 @@
 
     <title>Beetroot Family Portal</title>
 
+    <!-- Scripts -->
+    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" defer></script>
+    <script src="https://www.gstatic.com/charts/loader.js" defer></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/ico" href="{{ asset('favicon.ico') }}"/>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
-    <!-- Scripts -->
-    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 </head>
 <body>
     <div id="app">
@@ -30,9 +32,5 @@
 
         @include('partials.footer')
     </div>
-
-    <!-- Scripts -->
-    <script src="https://www.gstatic.com/charts/loader.js"></script>
-    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
