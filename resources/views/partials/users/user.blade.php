@@ -27,7 +27,7 @@
                     </strong>
                     &nbsp;
                     @admin
-                        <a class="link-unstyled" href="{{ route('users.edit', $user->id) }}">
+                        <a href="{{ route('users.edit', $user->id) }}">
                             <i class="fas fa-pencil-alt" aria-hidden="true"></i>
                         </a>
                     @endadmin
