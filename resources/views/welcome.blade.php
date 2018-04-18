@@ -8,7 +8,7 @@
         <title>Beetroot Family Portal</title>
 
         <!-- Favicon -->
-        <link rel="shortcut icon" type="image/ico" href="favicon.ico"/>
+        <link rel="shortcut icon" type="image/ico" href="{{ asset('favicon.ico') }}"/>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Roboto:100,600" rel="stylesheet" type="text/css">
@@ -60,7 +60,7 @@
         </style>
 
         <!-- Scripts -->
-        <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+        <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js"></script>
     </head>
     <body>
         <div class="flex-center position-ref full-height">
