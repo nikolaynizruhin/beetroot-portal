@@ -71,7 +71,7 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        $this->authorize('delete', $client);
+        $this->authorize('edit', $client);
 
         return view('clients.edit')->with('client', $client);
     }

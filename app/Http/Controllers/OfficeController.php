@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Office;
 use App\Http\Requests\StoreOffice;
+use App\Http\Requests\UpdateOffice;
 
 class OfficeController extends Controller
 {
@@ -76,11 +77,11 @@ class OfficeController extends Controller
     /**
      * Update the specified office in storage.
      *
-     * @param  \App\Http\Requests\StoreOffice  $request
+     * @param  \App\Http\Requests\UpdateOffice  $request
      * @param  \App\Office  $office
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreOffice $request, Office $office)
+    public function update(UpdateOffice $request, Office $office)
     {
         $office->update($request->validated());
 
