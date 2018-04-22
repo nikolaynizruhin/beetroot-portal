@@ -32,8 +32,8 @@
                           enctype="multipart/form-data"
                           action="{{
                               Auth::user()->is_admin ?
-                                  route('users.update', $user->id) :
-                                  route('profile.update', $user->id)
+                                  route('users.update', $user) :
+                                  route('profile.update', $user)
                           }}">
                         @method('PUT')
                         @csrf
@@ -435,7 +435,7 @@
 
                         <form id="delete-form"
                               method="POST"
-                              action="{{ route('users.destroy', $user->id) }}">
+                              action="{{ route('users.destroy', $user) }}">
                             @method('DELETE')
                             @csrf
 

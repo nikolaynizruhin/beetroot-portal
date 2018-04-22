@@ -27,7 +27,7 @@
                     <br>
 
                     <form method="POST"
-                          action="{{ route('clients.update', $client->id) }}"
+                          action="{{ route('clients.update', $client) }}"
                           enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
@@ -171,7 +171,7 @@
 
                     <form id="delete-form"
                           method="POST"
-                          action="{{ route('clients.destroy', $client->id) }}">
+                          action="{{ route('clients.destroy', $client) }}">
                         @method('DELETE')
                         @csrf
 

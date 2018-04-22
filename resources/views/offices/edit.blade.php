@@ -18,7 +18,7 @@
                     @include('partials.flash')
 
                     <form method="POST"
-                          action="{{ route('offices.update', $office->id) }}">
+                          action="{{ route('offices.update', $office) }}">
                         @method('PUT')
                         @csrf
 
@@ -143,7 +143,7 @@
 
                     <form id="delete-form"
                           method="POST"
-                          action="{{ route('offices.destroy', $office->id) }}">
+                          action="{{ route('offices.destroy', $office) }}">
                         @method('DELETE')
                         @csrf
 
