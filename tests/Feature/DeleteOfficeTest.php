@@ -16,7 +16,7 @@ class DeleteOfficeTest extends TestCase
     {
         $office = factory(Office::class)->create();
 
-        $this->delete(route('offices.destroy', $office->id))
+        $this->delete(route('offices.destroy', $office))
             ->assertRedirect('login');
     }
 
@@ -27,7 +27,7 @@ class DeleteOfficeTest extends TestCase
         $user = factory(User::class)->create(['is_admin' => false]);
 
         $this->actingAs($user)
-            ->delete(route('offices.destroy', $office->id))
+            ->delete(route('offices.destroy', $office))
             ->assertStatus(403);
     }
 
@@ -38,7 +38,7 @@ class DeleteOfficeTest extends TestCase
         $admin = factory(User::class)->states('admin')->create();
 
         $this->actingAs($admin)
-            ->delete(route('offices.destroy', $office->id))
+            ->delete(route('offices.destroy', $office))
             ->assertSessionHas('status', 'The office was successfully deleted!');
     }
 }

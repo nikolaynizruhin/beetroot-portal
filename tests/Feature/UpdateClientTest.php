@@ -38,7 +38,7 @@ class UpdateClientTest extends TestCase
     {
         $client = factory(Client::class)->create();
 
-        $this->put(route('clients.update', $client->id))
+        $this->put(route('clients.update', $client))
             ->assertRedirect('login');
     }
 
@@ -49,7 +49,7 @@ class UpdateClientTest extends TestCase
         $user = factory(User::class)->create(['is_admin' => false]);
 
         $this->actingAs($user)
-            ->put(route('clients.update', $client->id))
+            ->put(route('clients.update', $client))
             ->assertStatus(403);
     }
 
@@ -58,7 +58,7 @@ class UpdateClientTest extends TestCase
     {
         $client = factory(Client::class)->create();
 
-        $this->get(route('clients.edit', $client->id))
+        $this->get(route('clients.edit', $client))
             ->assertRedirect('login');
     }
 
@@ -69,7 +69,7 @@ class UpdateClientTest extends TestCase
         $client = factory(Client::class)->create();
 
         $this->actingAs($user)
-            ->get(route('clients.edit', $client->id))
+            ->get(route('clients.edit', $client))
             ->assertStatus(403);
     }
 
@@ -80,7 +80,7 @@ class UpdateClientTest extends TestCase
         $client = factory(Client::class)->create();
 
         $this->actingAs($admin)
-            ->get(route('clients.edit', $client->id))
+            ->get(route('clients.edit', $client))
             ->assertStatus(200)
             ->assertSee('Update Client')
             ->assertSee('Delete Client')
@@ -100,7 +100,7 @@ class UpdateClientTest extends TestCase
         $result = $this->resultAttributes($input);
 
         $this->actingAs($admin)
-            ->put(route('clients.update', $client->id), $input)
+            ->put(route('clients.update', $client), $input)
             ->assertSessionHas('status', 'The client was successfully updated!');
 
         $this->assertDatabaseHas('clients', $result);
@@ -115,7 +115,7 @@ class UpdateClientTest extends TestCase
         $client = factory(Client::class)->create();
 
         $this->actingAs($admin)
-            ->put(route('clients.update', $client->id))
+            ->put(route('clients.update', $client))
             ->assertSessionHasErrors(['name', 'country', 'description', 'site']);
     }
 

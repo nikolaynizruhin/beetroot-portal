@@ -16,7 +16,7 @@ class UpdateUserPasswordTest extends TestCase
     {
         $owner = factory(User::class)->create();
 
-        $this->put(route('users.password.update', $owner->id))
+        $this->put(route('users.password.update', $owner))
             ->assertRedirect('login');
     }
 
@@ -27,7 +27,7 @@ class UpdateUserPasswordTest extends TestCase
         $user = factory(User::class)->create(['is_admin' => false]);
 
         $this->actingAs($user)
-            ->put(route('users.password.update', $owner->id))
+            ->put(route('users.password.update', $owner))
             ->assertStatus(403);
     }
 
@@ -43,7 +43,7 @@ class UpdateUserPasswordTest extends TestCase
         ];
 
         $this->actingAs($admin)
-            ->put(route('users.password.update', $owner->id), $attributes)
+            ->put(route('users.password.update', $owner), $attributes)
             ->assertSessionHas('status', 'The employee password was successfully updated!');
 
         $owner = $owner->fresh();
@@ -62,7 +62,7 @@ class UpdateUserPasswordTest extends TestCase
         ];
 
         $this->actingAs($owner)
-            ->put(route('users.password.update', $owner->id), $attributes)
+            ->put(route('users.password.update', $owner), $attributes)
             ->assertSessionHas('status', 'The employee password was successfully updated!');
 
         $owner = $owner->fresh();
@@ -76,7 +76,7 @@ class UpdateUserPasswordTest extends TestCase
         $owner = factory(User::class)->create();
 
         $this->actingAs($owner)
-            ->put(route('users.password.update', $owner->id))
+            ->put(route('users.password.update', $owner))
             ->assertSessionHasErrors(['password']);
     }
 }

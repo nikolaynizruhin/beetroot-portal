@@ -15,7 +15,7 @@ class DeleteUserTest extends TestCase
     {
         $userToDelete = factory(User::class)->create();
 
-        $this->delete(route('users.destroy', $userToDelete->id))
+        $this->delete(route('users.destroy', $userToDelete))
             ->assertRedirect('login');
     }
 
@@ -26,7 +26,7 @@ class DeleteUserTest extends TestCase
         $user = factory(User::class)->create(['is_admin' => false]);
 
         $this->actingAs($user)
-            ->delete(route('users.destroy', $userToDelete->id))
+            ->delete(route('users.destroy', $userToDelete))
             ->assertStatus(403);
     }
 
@@ -37,7 +37,7 @@ class DeleteUserTest extends TestCase
         $admin = factory(User::class)->states('admin')->create();
 
         $this->actingAs($admin)
-            ->delete(route('users.destroy', $userToDelete->id))
+            ->delete(route('users.destroy', $userToDelete))
             ->assertSessionHas('status', 'The employee was successfully deleted!');
     }
 }

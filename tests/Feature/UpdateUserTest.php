@@ -47,10 +47,10 @@ class UpdateUserTest extends TestCase
     {
         $owner = factory(User::class)->create(['is_admin' => false]);
 
-        $this->put(route('profile.update', $owner->id))
+        $this->put(route('profile.update', $owner))
             ->assertRedirect('login');
 
-        $this->put(route('users.update', $owner->id))
+        $this->put(route('users.update', $owner))
             ->assertRedirect('login');
     }
 
@@ -61,11 +61,11 @@ class UpdateUserTest extends TestCase
         $user = factory(User::class)->create(['is_admin' => false]);
 
         $this->actingAs($user)
-            ->put(route('profile.update', $owner->id))
+            ->put(route('profile.update', $owner))
             ->assertStatus(403);
 
         $this->actingAs($user)
-            ->put(route('users.update', $owner->id))
+            ->put(route('users.update', $owner))
             ->assertStatus(403);
     }
 
@@ -75,7 +75,7 @@ class UpdateUserTest extends TestCase
         $owner = factory(User::class)->create(['is_admin' => false]);
 
         $this->actingAs($owner)
-            ->put(route('users.update', $owner->id))
+            ->put(route('users.update', $owner))
             ->assertStatus(403);
     }
 
@@ -84,7 +84,7 @@ class UpdateUserTest extends TestCase
     {
         $userToEdit = factory(User::class)->create(['is_admin' => false]);
 
-        $this->get(route('users.edit', $userToEdit->id))
+        $this->get(route('users.edit', $userToEdit))
             ->assertRedirect('login');
     }
 
@@ -95,7 +95,7 @@ class UpdateUserTest extends TestCase
         $userToEdit = factory(User::class)->create(['is_admin' => false]);
 
         $this->actingAs($user)
-            ->get(route('users.edit', $userToEdit->id))
+            ->get(route('users.edit', $userToEdit))
             ->assertStatus(403);
     }
 
@@ -105,7 +105,7 @@ class UpdateUserTest extends TestCase
         $user = factory(User::class)->create(['is_admin' => false]);
 
         $this->actingAs($user)
-            ->get(route('users.edit', $user->id))
+            ->get(route('users.edit', $user))
             ->assertStatus(200)
             ->assertSee('Settings')
             ->assertSee('Profile')
@@ -121,7 +121,7 @@ class UpdateUserTest extends TestCase
         $userToEdit = factory(User::class)->create(['is_admin' => false]);
 
         $this->actingAs($admin)
-            ->get(route('users.edit', $userToEdit->id))
+            ->get(route('users.edit', $userToEdit))
             ->assertStatus(200)
             ->assertSee('Settings')
             ->assertSee('Profile')
@@ -143,7 +143,7 @@ class UpdateUserTest extends TestCase
         $result = $this->resultForAdmin();
 
         $this->actingAs($admin)
-            ->put(route('users.update', $owner->id), $input)
+            ->put(route('users.update', $owner), $input)
             ->assertSessionHas('status', 'The employee was successfully updated!');
 
         $this->assertDatabaseHas('users', $result);
@@ -160,7 +160,7 @@ class UpdateUserTest extends TestCase
         $result = $this->resultForEmployee();
 
         $this->actingAs($owner)
-            ->put(route('profile.update', $owner->id), $input)
+            ->put(route('profile.update', $owner), $input)
             ->assertSessionHas('status', 'The employee was successfully updated!');
 
         $this->assertDatabaseHas('users', $result);
@@ -172,7 +172,7 @@ class UpdateUserTest extends TestCase
         $admin = factory(User::class)->states('admin')->create();
 
         $this->actingAs($admin)
-            ->put(route('users.update', $admin->id))
+            ->put(route('users.update', $admin))
             ->assertSessionHasErrors([
                 'name',
                 'email',

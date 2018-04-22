@@ -16,7 +16,7 @@ class UpdateOfficeTest extends TestCase
     {
         $office = factory(Office::class)->create();
 
-        $this->put(route('offices.update', $office->id))
+        $this->put(route('offices.update', $office))
             ->assertRedirect('login');
     }
 
@@ -27,7 +27,7 @@ class UpdateOfficeTest extends TestCase
         $user = factory(User::class)->create(['is_admin' => false]);
 
         $this->actingAs($user)
-            ->put(route('offices.update', $office->id))
+            ->put(route('offices.update', $office))
             ->assertStatus(403);
     }
 
@@ -36,7 +36,7 @@ class UpdateOfficeTest extends TestCase
     {
         $office = factory(User::class)->create();
 
-        $this->get(route('offices.edit', $office->id))
+        $this->get(route('offices.edit', $office))
             ->assertRedirect('login');
     }
 
@@ -47,7 +47,7 @@ class UpdateOfficeTest extends TestCase
         $office = factory(User::class)->create();
 
         $this->actingAs($user)
-            ->get(route('offices.edit', $office->id))
+            ->get(route('offices.edit', $office))
             ->assertStatus(403);
     }
 
@@ -58,7 +58,7 @@ class UpdateOfficeTest extends TestCase
         $office = factory(Office::class)->create();
 
         $this->actingAs($admin)
-            ->get(route('offices.edit', $office->id))
+            ->get(route('offices.edit', $office))
             ->assertStatus(200)
             ->assertSee('Update Office')
             ->assertSee('Delete Office')
@@ -74,7 +74,7 @@ class UpdateOfficeTest extends TestCase
         $attributes = factory(Office::class)->make()->toArray();
 
         $this->actingAs($admin)
-            ->put(route('offices.update', $office->id), $attributes)
+            ->put(route('offices.update', $office), $attributes)
             ->assertSessionHas('status', 'The office was successfully updated!');
 
         $this->assertDatabaseHas('offices', $attributes);
@@ -87,7 +87,7 @@ class UpdateOfficeTest extends TestCase
         $office = factory(Office::class)->create();
 
         $this->actingAs($admin)
-            ->put(route('offices.update', $office->id))
+            ->put(route('offices.update', $office))
             ->assertSessionHasErrors(['city', 'country', 'address']);
     }
 }

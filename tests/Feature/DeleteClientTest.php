@@ -16,7 +16,7 @@ class DeleteClientTest extends TestCase
     {
         $client = factory(Client::class)->create();
 
-        $this->delete(route('clients.destroy', $client->id))
+        $this->delete(route('clients.destroy', $client))
             ->assertRedirect('login');
     }
 
@@ -27,7 +27,7 @@ class DeleteClientTest extends TestCase
         $user = factory(User::class)->create(['is_admin' => false]);
 
         $this->actingAs($user)
-            ->delete(route('clients.destroy', $client->id))
+            ->delete(route('clients.destroy', $client))
             ->assertStatus(403);
     }
 
@@ -38,7 +38,7 @@ class DeleteClientTest extends TestCase
         $admin = factory(User::class)->states('admin')->create();
 
         $this->actingAs($admin)
-            ->delete(route('clients.destroy', $client->id))
+            ->delete(route('clients.destroy', $client))
             ->assertSessionHas('status', 'The client was successfully deleted!');
     }
 }

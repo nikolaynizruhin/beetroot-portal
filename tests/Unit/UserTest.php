@@ -51,4 +51,12 @@ class UserTest extends TestCase
 
         $this->assertEquals('avatars/me.jpg', $user->avatar);
     }
+
+    /** @test */
+    public function a_user_has_a_month_of_birth_attribute()
+    {
+        $user = factory(User::class)->create(['birthday' => '2000-01-01']);
+
+        $this->assertEquals($user->month_of_birth, 'January');
+    }
 }
