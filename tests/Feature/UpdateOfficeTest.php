@@ -44,7 +44,7 @@ class UpdateOfficeTest extends TestCase
     public function employee_can_not_visit_update_office_page()
     {
         $user = factory(User::class)->create(['is_admin' => false]);
-        $office = factory(User::class)->create();
+        $office = factory(Office::class)->create();
 
         $this->actingAs($user)
             ->get(route('offices.edit', $office))
