@@ -3728,7 +3728,7 @@
 
     addUnitAlias('date', 'D');
 
-    // PRIOROITY
+    // PRIORITY
     addUnitPriority('date', 9);
 
     // PARSING
@@ -4525,7 +4525,7 @@
     // Side effect imports
 
 
-    hooks.version = '2.22.0';
+    hooks.version = '2.22.1';
 
     setHookCallback(createLocal);
 
@@ -17282,28 +17282,28 @@ Popper.Defaults = Defaults;
             LLLL : 'dddd, D MMMM YYYY г., H:mm'
         },
         calendar : {
-            sameDay: '[Сегодня в] LT',
-            nextDay: '[Завтра в] LT',
-            lastDay: '[Вчера в] LT',
+            sameDay: '[Сегодня, в] LT',
+            nextDay: '[Завтра, в] LT',
+            lastDay: '[Вчера, в] LT',
             nextWeek: function (now) {
                 if (now.week() !== this.week()) {
                     switch (this.day()) {
                         case 0:
-                            return '[В следующее] dddd [в] LT';
+                            return '[В следующее] dddd, [в] LT';
                         case 1:
                         case 2:
                         case 4:
-                            return '[В следующий] dddd [в] LT';
+                            return '[В следующий] dddd, [в] LT';
                         case 3:
                         case 5:
                         case 6:
-                            return '[В следующую] dddd [в] LT';
+                            return '[В следующую] dddd, [в] LT';
                     }
                 } else {
                     if (this.day() === 2) {
-                        return '[Во] dddd [в] LT';
+                        return '[Во] dddd, [в] LT';
                     } else {
-                        return '[В] dddd [в] LT';
+                        return '[В] dddd, [в] LT';
                     }
                 }
             },
@@ -17311,21 +17311,21 @@ Popper.Defaults = Defaults;
                 if (now.week() !== this.week()) {
                     switch (this.day()) {
                         case 0:
-                            return '[В прошлое] dddd [в] LT';
+                            return '[В прошлое] dddd, [в] LT';
                         case 1:
                         case 2:
                         case 4:
-                            return '[В прошлый] dddd [в] LT';
+                            return '[В прошлый] dddd, [в] LT';
                         case 3:
                         case 5:
                         case 6:
-                            return '[В прошлую] dddd [в] LT';
+                            return '[В прошлую] dddd, [в] LT';
                     }
                 } else {
                     if (this.day() === 2) {
-                        return '[Во] dddd [в] LT';
+                        return '[Во] dddd, [в] LT';
                     } else {
-                        return '[В] dddd [в] LT';
+                        return '[В] dddd, [в] LT';
                     }
                 }
             },
@@ -32795,7 +32795,7 @@ if (token) {
   var undefined;
 
   /** Used as the semantic version number. */
-  var VERSION = '4.17.5';
+  var VERSION = '4.17.10';
 
   /** Used as the size to enable large array optimizations. */
   var LARGE_ARRAY_SIZE = 200;
@@ -33219,6 +33219,14 @@ if (token) {
   /** Used to access faster Node.js helpers. */
   var nodeUtil = (function() {
     try {
+      // Use `util.types` for Node.js 10+.
+      var types = freeModule && freeModule.require && freeModule.require('util').types;
+
+      if (types) {
+        return types;
+      }
+
+      // Legacy `process.binding('util')` for Node.js < 10.
       return freeProcess && freeProcess.binding && freeProcess.binding('util');
     } catch (e) {}
   }());
@@ -78274,15 +78282,18 @@ module.exports = Vue;
 /* 220 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {var apply = Function.prototype.apply;
+/* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
+            (typeof self !== "undefined" && self) ||
+            window;
+var apply = Function.prototype.apply;
 
 // DOM APIs, for completeness
 
 exports.setTimeout = function() {
-  return new Timeout(apply.call(setTimeout, window, arguments), clearTimeout);
+  return new Timeout(apply.call(setTimeout, scope, arguments), clearTimeout);
 };
 exports.setInterval = function() {
-  return new Timeout(apply.call(setInterval, window, arguments), clearInterval);
+  return new Timeout(apply.call(setInterval, scope, arguments), clearInterval);
 };
 exports.clearTimeout =
 exports.clearInterval = function(timeout) {
@@ -78297,7 +78308,7 @@ function Timeout(id, clearFn) {
 }
 Timeout.prototype.unref = Timeout.prototype.ref = function() {};
 Timeout.prototype.close = function() {
-  this._clearFn.call(window, this._id);
+  this._clearFn.call(scope, this._id);
 };
 
 // Does not start the time, just sets up the members needed.
@@ -78325,7 +78336,7 @@ exports._unrefActive = exports.active = function(item) {
 
 // setimmediate attaches itself to the global object
 __webpack_require__(221);
-// On some exotic environments, it's not clear which object `setimmeidate` was
+// On some exotic environments, it's not clear which object `setimmediate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
 exports.setImmediate = (typeof self !== "undefined" && self.setImmediate) ||
