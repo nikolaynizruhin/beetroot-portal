@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -14,5 +15,16 @@ class DisplayBirthdaysTest extends TestCase
     {
         $this->get(route('birthdays.index'))
             ->assertRedirect(route('login'));
+    }
+
+    /** @test */
+    public function logged_in_employee_can_see_a_birthdays()
+    {
+        $user = factory(User::class)->create();
+
+        $this->actingAs($user)
+            ->get(route('birthdays.index'))
+            ->assertSee('Birthdays')
+            ->assertStatus(200);
     }
 }
