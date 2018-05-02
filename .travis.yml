@@ -17,5 +17,5 @@ before_script:
   - php artisan key:generate
 
 env:
-  - DB_USERNAME=root
-  - DB_PASSWORD=
+  - DB_USERNAME=root DB_PASSWORD=
+  - DB_USERNAME=root DB_PASSWORD=
