@@ -95,9 +95,9 @@ class User extends Authenticatable
      *
      * @return int
      */
-    public function getMonthOfBirthAttribute()
+    public function getMonthDayOfBirthAttribute()
     {
-        return $this->birthday->month;
+        return $this->birthday->format('nj');
     }
 
     /**
