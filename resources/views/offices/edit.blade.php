@@ -33,7 +33,7 @@
                                         class="form-control{{ $errors->has('country') ? ' has-error' : '' }}"
                                         name="country"
                                         required>
-                                    @foreach ( $countries::all() as $country )
+                                    @foreach ($countries::all() as $country)
                                         @if (old('country', $office->country) == $country)
                                             <option value="{{ $country }}" selected>
                                                 {{ $country }}
