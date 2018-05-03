@@ -78,17 +78,6 @@ class User extends Authenticatable
     }
 
     /**
-     * Scope a query to order users by birthday.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeOrderByBirthday($query)
-    {
-        return $query->orderByRaw('month(birthday), day(birthday)');
-    }
-
-    /**
      * Scope a query to order users by default.
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
@@ -102,11 +91,21 @@ class User extends Authenticatable
     }
 
     /**
-     * Get the user's month of birth.
+     * Get the month of the user birth.
+     *
+     * @return int
+     */
+    public function getMonthOfBirthAttribute()
+    {
+        return $this->birthday->month;
+    }
+
+    /**
+     * Get the name of the month of the user birth.
      *
      * @return string
      */
-    public function getMonthOfBirthAttribute()
+    public function getNameOfMonthOfBirthAttribute()
     {
         return $this->birthday->format('F');
     }

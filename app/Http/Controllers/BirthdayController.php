@@ -26,10 +26,10 @@ class BirthdayController extends Controller
     public function index(BirthdayFilters $filters)
     {
         $months = User::with(['client', 'office'])
-            ->orderByBirthday()
             ->filter($filters)
             ->get()
-            ->groupBy('month_of_birth');
+            ->sortBy('month_of_birth')
+            ->groupBy('name_of_month_of_birth');
 
         return view('birthdays.index')->with('months', $months);
     }
