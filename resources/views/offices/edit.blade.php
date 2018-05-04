@@ -30,7 +30,7 @@
 
                             <div class="col-md-6">
                                 <select id="country"
-                                        class="form-control{{ $errors->has('country') ? ' has-error' : '' }}"
+                                        class="form-control{{ $errors->has('country') ? ' is-invalid' : '' }}"
                                         name="country"
                                         required>
                                     @foreach ($countries::all() as $country)
@@ -63,7 +63,7 @@
                             <div class="col-md-6">
                                 <input id="city"
                                        type="text"
-                                       class="form-control{{ $errors->has('city') ? ' has-error' : '' }}"
+                                       class="form-control{{ $errors->has('city') ? ' is-invalid' : '' }}"
                                        name="city"
                                        value="{{ old('city', $office->city) }}"
                                        required
@@ -86,7 +86,7 @@
                             <div class="col-md-6">
                                 <input id="address"
                                        type="text"
-                                       class="form-control{{ $errors->has('address') ? ' has-error' : '' }}"
+                                       class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}"
                                        name="address"
                                        value="{{ old('address', $office->address) }}"
                                        required
@@ -114,7 +114,7 @@
                             <div class="col-md-6">
                                 <input id="link"
                                        type="text"
-                                       class="form-control{{ $errors->has('link') ? ' has-error' : '' }}"
+                                       class="form-control{{ $errors->has('link') ? ' is-invalid' : '' }}"
                                        name="link"
                                        value="{{ old('link', $office->link) }}"
                                        required>
