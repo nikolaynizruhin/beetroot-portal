@@ -9,10 +9,29 @@ class DirectivesTest extends TestCase
     /** @test */
     public function it_compile_host_directive()
     {
-        $blade = '@host(https://www.example.com/en/)';
-        $expected = "<?php echo str_replace('www.', '', parse_url(https://www.example.com/en/, PHP_URL_HOST)); ?>";
-        $compiled = app('blade.compiler')->compileString($blade);
+        $blade = "@host('https://www.example.com/en/')";
 
-        $this->assertEquals($expected, $compiled);
+        $code = app('blade.compiler')->compileString($blade);
+
+        $this->assertEquals('example.com', $this->output($code));
+    }
+
+    /**
+     * Get output of code.
+     *
+     * @param string $code
+     * @return string
+     */
+    protected function output($code)
+    {
+        ob_start();
+
+        eval('?>'.$code);
+
+        $out = ob_get_contents();
+
+        ob_end_clean();
+
+        return $out;
     }
 }
