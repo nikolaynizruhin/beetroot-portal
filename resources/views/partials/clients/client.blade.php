@@ -25,18 +25,18 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
 
                 <!-- Site -->
                 <p>
                     <a class="link-unstyled" target="_blank" href="{{ $client->site }}">
                         <i class="fas fa-globe fa-fw" aria-hidden="true"></i>
                         &nbsp;
-                        {{ $client->site }}
+                        @host($client->site)
                     </a>
                 </p>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
 
                 <!-- Country -->
                 <p>
@@ -44,6 +44,17 @@
                         <i class="fas fa-map-marker-alt fa-fw" aria-hidden="true"></i>
                         &nbsp;
                         {{ $client->country }}
+                    </a>
+                </p>
+            </div>
+            <div class="col-md-4">
+
+                <!-- Employees -->
+                <p>
+                    <a class="link-unstyled" href="{{ route('users.index', ['client' => $client->name]) }}">
+                        <i class="fas fa-users fa-fw" aria-hidden="true"></i>
+                        &nbsp;
+                        {{ $client->users_count }}
                     </a>
                 </p>
             </div>

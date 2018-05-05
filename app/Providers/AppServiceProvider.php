@@ -15,6 +15,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Blade::directive('host', function ($url) {
+            return "<?php echo str_replace('www.', '', parse_url($url, PHP_URL_HOST)); ?>";
+        });
+
         Blade::if('admin', function () {
             return auth()->user()->is_admin;
         });
