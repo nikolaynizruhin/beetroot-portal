@@ -5,7 +5,11 @@
     <div class="row justify-content-center">
         <div class="col-lg-8">
             <div class="card card-default">
-                <div class="card-header">Login</div>
+                <div class="card-header">
+                    <i class="fas fa-sign-in-alt fa-lg fa-fw" aria-hidden="true"></i>
+                    &nbsp;
+                    Login
+                </div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">

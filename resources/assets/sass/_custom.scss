@@ -14,12 +14,16 @@ html {
       color: #fff;
     }
 
-    .link-unstyled {
+    .link-unstyled, .link-terms {
       color: inherit;
     }
 
     .link-unstyled:hover {
       color: #3d3935;
+    }
+
+    .link-terms:hover {
+      color: #fff;
     }
 
     .card-dashboard {

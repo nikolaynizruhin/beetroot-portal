@@ -12,6 +12,7 @@
 */
 
 Route::view('/', 'welcome');
+Route::view('/terms', 'terms')->name('terms');
 
 Auth::routes();
 
