@@ -292,6 +292,10 @@
                         <br>
                         This privacy statement has been prepared based on provisions of multiple legislations, including Art. 13/14 of Regulation (EU) 2016/679 (General Data Protection Regulation). This privacy policy relates solely to this Application, if not stated otherwise within this document.
                     </p>
+
+                    <hr>
+
+                    <p class="small">Latest update: May 20, 2018</p>
                 </div>
             </div>
         </div>
