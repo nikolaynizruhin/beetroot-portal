@@ -245,6 +245,33 @@
                             </div>
                         </div>
 
+                        <!-- First Day -->
+                        <div class="form-group row">
+                            <label for="created_at" class="col-md-4 col-form-label text-md-right">
+                                <span data-toggle="tooltip"
+                                      data-placement="top"
+                                      title="First day at Beetroot">
+                                    First Day
+                                    <small>*</small>
+                                </span>
+                            </label>
+
+                            <div class="col-md-6">
+                                <input id="created_at"
+                                       type="date"
+                                       class="form-control{{ $errors->has('created_at') ? ' is-invalid' : '' }}"
+                                       name="created_at"
+                                       value="{{ old('created_at', now()->toDateString()) }}"
+                                       required>
+
+                                @if ($errors->has('created_at'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('created_at') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <!-- Phone -->
                         <div class="form-group row">
                             <label for="phone" class="col-md-4 col-form-label text-md-right">Phone</label>

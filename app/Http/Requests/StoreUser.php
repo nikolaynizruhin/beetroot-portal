@@ -37,6 +37,7 @@ class StoreUser extends FormRequest
                 Rule::in(Position::all()),
             ],
             'birthday' => 'required|date',
+            'created_at' => 'required|date',
             'avatar' => 'required|image',
             'slack' => 'required|string|max:255|unique:users',
             'client_id' => 'required|numeric|exists:clients,id',

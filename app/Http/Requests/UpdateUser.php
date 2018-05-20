@@ -43,6 +43,7 @@ class UpdateUser extends FormRequest
                 Rule::in(Position::all()),
             ],
             'birthday' => 'required|date',
+            'created_at' => 'required|date',
             'slack' => [
                 'required',
                 'string',

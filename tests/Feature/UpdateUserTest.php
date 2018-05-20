@@ -178,6 +178,7 @@ class UpdateUserTest extends TestCase
                 'email',
                 'position',
                 'birthday',
+                'created_at',
                 'slack',
                 'client_id',
                 'office_id',
