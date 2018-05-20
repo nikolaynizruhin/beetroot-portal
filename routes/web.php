@@ -12,7 +12,7 @@
 */
 
 Route::view('/', 'welcome');
-Route::view('/terms', 'terms')->name('terms');
+Route::view('/privacy', 'privacy')->name('privacy');
 
 Auth::routes();
 

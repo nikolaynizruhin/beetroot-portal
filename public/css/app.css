@@ -10430,17 +10430,12 @@ html body .card-header {
   color: #fff;
 }
 
-html body .link-unstyled,
-html body .link-terms {
+html body .link-unstyled {
   color: inherit;
 }
 
 html body .link-unstyled:hover {
   color: #3d3935;
-}
-
-html body .link-terms:hover {
-  color: #fff;
 }
 
 html body .card-dashboard {
