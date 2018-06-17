@@ -39,7 +39,7 @@ class UpdateClientTest extends TestCase
         $client = factory(Client::class)->create();
 
         $this->put(route('clients.update', $client))
-            ->assertRedirect('login');
+            ->assertRedirect(route('login'));
     }
 
     /** @test */
@@ -59,7 +59,7 @@ class UpdateClientTest extends TestCase
         $client = factory(Client::class)->create();
 
         $this->get(route('clients.edit', $client))
-            ->assertRedirect('login');
+            ->assertRedirect(route('login'));
     }
 
     /** @test */
@@ -81,10 +81,8 @@ class UpdateClientTest extends TestCase
 
         $this->actingAs($admin)
             ->get(route('clients.edit', $client))
-            ->assertStatus(200)
-            ->assertSee('Update Client')
-            ->assertSee('Delete Client')
-            ->assertSee($client->site);
+            ->assertSuccessful()
+            ->assertViewIs('clients.edit');
     }
 
     /** @test */

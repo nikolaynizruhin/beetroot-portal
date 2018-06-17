@@ -15,7 +15,7 @@ class CreateOfficeTest extends TestCase
     public function guest_can_not_create_an_office()
     {
         $this->post(route('offices.store'))
-            ->assertRedirect('login');
+            ->assertRedirect(route('login'));
     }
 
     /** @test */
@@ -32,7 +32,7 @@ class CreateOfficeTest extends TestCase
     public function guest_can_not_visit_create_office_page()
     {
         $this->get(route('offices.create'))
-            ->assertRedirect('login');
+            ->assertRedirect(route('login'));
     }
 
     /** @test */
@@ -52,8 +52,8 @@ class CreateOfficeTest extends TestCase
 
         $this->actingAs($user)
             ->get(route('offices.create'))
-            ->assertStatus(200)
-            ->assertSee('Add Office');
+            ->assertSuccessful()
+            ->assertViewIs('offices.create');
     }
 
     /** @test */

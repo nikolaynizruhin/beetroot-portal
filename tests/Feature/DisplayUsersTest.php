@@ -24,7 +24,7 @@ class DisplayUsersTest extends TestCase
 
         $this->actingAs($user)
             ->get(route('users.index'))
-            ->assertSee('Employees')
-            ->assertStatus(200);
+            ->assertSuccessful()
+            ->assertViewIs('users.index');
     }
 }

@@ -17,7 +17,7 @@ class UpdateOfficeTest extends TestCase
         $office = factory(Office::class)->create();
 
         $this->put(route('offices.update', $office))
-            ->assertRedirect('login');
+            ->assertRedirect(route('login'));
     }
 
     /** @test */
@@ -37,7 +37,7 @@ class UpdateOfficeTest extends TestCase
         $office = factory(User::class)->create();
 
         $this->get(route('offices.edit', $office))
-            ->assertRedirect('login');
+            ->assertRedirect(route('login'));
     }
 
     /** @test */
@@ -59,10 +59,8 @@ class UpdateOfficeTest extends TestCase
 
         $this->actingAs($admin)
             ->get(route('offices.edit', $office))
-            ->assertStatus(200)
-            ->assertSee('Update Office')
-            ->assertSee('Delete Office')
-            ->assertSee($office->link);
+            ->assertSuccessful()
+            ->assertViewIs('offices.edit');
     }
 
     /** @test */

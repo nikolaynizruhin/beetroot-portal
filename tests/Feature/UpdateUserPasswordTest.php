@@ -17,7 +17,7 @@ class UpdateUserPasswordTest extends TestCase
         $owner = factory(User::class)->create();
 
         $this->put(route('users.password.update', $owner))
-            ->assertRedirect('login');
+            ->assertRedirect(route('login'));
     }
 
     /** @test */
@@ -77,6 +77,6 @@ class UpdateUserPasswordTest extends TestCase
 
         $this->actingAs($owner)
             ->put(route('users.password.update', $owner))
-            ->assertSessionHasErrors(['password']);
+            ->assertSessionHasErrors('password');
     }
 }

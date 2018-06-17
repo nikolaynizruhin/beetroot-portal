@@ -17,7 +17,7 @@ class DeleteOfficeTest extends TestCase
         $office = factory(Office::class)->create();
 
         $this->delete(route('offices.destroy', $office))
-            ->assertRedirect('login');
+            ->assertRedirect(route('login'));
     }
 
     /** @test */

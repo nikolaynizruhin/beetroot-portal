@@ -24,7 +24,7 @@ class DisplayClientsTest extends TestCase
 
         $this->actingAs($user)
             ->get(route('clients.index'))
-            ->assertSee('Clients')
-            ->assertStatus(200);
+            ->assertSuccessful()
+            ->assertViewIs('clients.index');
     }
 }

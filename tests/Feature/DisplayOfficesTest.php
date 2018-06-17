@@ -24,7 +24,7 @@ class DisplayOfficesTest extends TestCase
 
         $this->actingAs($user)
             ->get(route('offices.index'))
-            ->assertSee('Offices')
-            ->assertStatus(200);
+            ->assertSuccessful()
+            ->assertViewIs('offices.index');
     }
 }

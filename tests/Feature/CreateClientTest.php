@@ -37,7 +37,7 @@ class CreateClientTest extends TestCase
     public function guest_can_not_create_a_client()
     {
         $this->post(route('clients.store'))
-            ->assertRedirect('login');
+            ->assertRedirect(route('login'));
     }
 
     /** @test */
@@ -54,7 +54,7 @@ class CreateClientTest extends TestCase
     public function guest_can_not_visit_create_client_page()
     {
         $this->get(route('clients.create'))
-            ->assertRedirect('login');
+            ->assertRedirect(route('login'));
     }
 
     /** @test */
@@ -75,7 +75,7 @@ class CreateClientTest extends TestCase
         $this->actingAs($user)
             ->get(route('clients.create'))
             ->assertStatus(200)
-            ->assertSee('Add Client');
+            ->assertViewIs('clients.create');
     }
 
     /** @test */

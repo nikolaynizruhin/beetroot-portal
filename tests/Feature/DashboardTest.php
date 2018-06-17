@@ -17,7 +17,7 @@ class DashboardTest extends TestCase
 
         $this->actingAs($user)
             ->get(route('login'))
-            ->assertRedirect('dashboard');
+            ->assertRedirect(route('dashboard'));
     }
 
     /** @test */
@@ -27,16 +27,13 @@ class DashboardTest extends TestCase
 
         $this->actingAs($user)
             ->get(route('dashboard'))
-            ->assertSee('Dashboard')
-            ->assertSee('POSITIONS')
-            ->assertSee('CLIENTS')
-            ->assertSee('OFFICES');
+            ->assertViewIs('dashboard');
     }
 
     /** @test */
     public function guest_can_not_visit_dashboard_page()
     {
         $this->get(route('dashboard'))
-            ->assertRedirect('login');
+            ->assertRedirect(route('login'));
     }
 }

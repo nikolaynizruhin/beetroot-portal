@@ -16,7 +16,7 @@ class DeleteUserTest extends TestCase
         $userToDelete = factory(User::class)->create();
 
         $this->delete(route('users.destroy', $userToDelete))
-            ->assertRedirect('login');
+            ->assertRedirect(route('login'));
     }
 
     /** @test */

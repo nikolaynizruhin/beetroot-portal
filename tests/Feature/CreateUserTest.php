@@ -17,7 +17,7 @@ class CreateUserTest extends TestCase
     public function guest_can_not_create_a_user()
     {
         $this->post(route('users.store'))
-            ->assertRedirect('login');
+            ->assertRedirect(route('login'));
     }
 
     /** @test */
@@ -34,7 +34,7 @@ class CreateUserTest extends TestCase
     public function guest_can_not_visit_create_user_page()
     {
         $this->get(route('users.create'))
-            ->assertRedirect('login');
+            ->assertRedirect(route('login'));
     }
 
     /** @test */
@@ -54,8 +54,8 @@ class CreateUserTest extends TestCase
 
         $this->actingAs($user)
             ->get(route('users.create'))
-            ->assertStatus(200)
-            ->assertSee('Add Employee');
+            ->assertSuccessful()
+            ->assertViewIs('users.create');
     }
 
     /** @test */

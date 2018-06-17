@@ -17,7 +17,7 @@ class DeleteClientTest extends TestCase
         $client = factory(Client::class)->create();
 
         $this->delete(route('clients.destroy', $client))
-            ->assertRedirect('login');
+            ->assertRedirect(route('login'));
     }
 
     /** @test */

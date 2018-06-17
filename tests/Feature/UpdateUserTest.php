@@ -48,10 +48,10 @@ class UpdateUserTest extends TestCase
         $owner = factory(User::class)->create(['is_admin' => false]);
 
         $this->put(route('profile.update', $owner))
-            ->assertRedirect('login');
+            ->assertRedirect(route('login'));
 
         $this->put(route('users.update', $owner))
-            ->assertRedirect('login');
+            ->assertRedirect(route('login'));
     }
 
     /** @test */
@@ -85,7 +85,7 @@ class UpdateUserTest extends TestCase
         $userToEdit = factory(User::class)->create(['is_admin' => false]);
 
         $this->get(route('users.edit', $userToEdit))
-            ->assertRedirect('login');
+            ->assertRedirect(route('login'));
     }
 
     /** @test */
@@ -106,12 +106,9 @@ class UpdateUserTest extends TestCase
 
         $this->actingAs($user)
             ->get(route('users.edit', $user))
-            ->assertStatus(200)
-            ->assertSee('Settings')
-            ->assertSee('Profile')
-            ->assertSee('Change Password')
-            ->assertDontSee('Delete Account')
-            ->assertSee($user->email);
+            ->assertSuccessful()
+            ->assertViewIs('users.edit')
+            ->assertDontSee('Delete Account');
     }
 
     /** @test */
@@ -122,12 +119,8 @@ class UpdateUserTest extends TestCase
 
         $this->actingAs($admin)
             ->get(route('users.edit', $userToEdit))
-            ->assertStatus(200)
-            ->assertSee('Settings')
-            ->assertSee('Profile')
-            ->assertSee('Change Password')
-            ->assertSee('Delete Account')
-            ->assertSee($userToEdit->email);
+            ->assertSuccessful()
+            ->assertViewIs('users.edit');
     }
 
     /** @test */

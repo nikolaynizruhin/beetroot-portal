@@ -24,7 +24,7 @@ class DisplayBirthdaysTest extends TestCase
 
         $this->actingAs($user)
             ->get(route('birthdays.index'))
-            ->assertSee('Birthdays')
-            ->assertStatus(200);
+            ->assertSuccessful()
+            ->assertViewIs('birthdays.index');
     }
 }
