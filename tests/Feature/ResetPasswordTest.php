@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\User;
 use Tests\TestCase;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Auth\Notifications\ResetPassword;
@@ -78,5 +79,61 @@ class ResetPasswordTest extends TestCase
             'password' => 'new_password',
             'password_confirmation' => 'new_password',
         ])->assertRedirect(route('dashboard'));
+    }
+
+    /** @test */
+    public function employee_can_not_reset_password_with_invalid_token()
+    {
+        $user = factory(User::class)->create();
+        $token = 'invalid-token';
+
+        $this->from(route('password.reset', $token))->post(url('/password/reset'), [
+            'token' => $token,
+            'email' => $user->email,
+            'password' => 'new-password',
+            'password_confirmation' => 'new-password',
+        ])->assertRedirect(route('password.reset', $token));
+
+        $this->assertEquals($user->email, $user->fresh()->email);
+        $this->assertTrue(Hash::check('secret', $user->fresh()->password));
+        $this->assertGuest();
+    }
+
+    /** @test */
+    public function employee_can_not_reset_password_without_providing_a_new_password()
+    {
+        $user = factory(User::class)->create();
+        $token = Password::broker()->createToken($user);
+
+        $this->from(route('password.reset', $token))->post(url('/password/reset'), [
+            'token' => $token,
+            'email' => $user->email,
+            'password' => '',
+            'password_confirmation' => '',
+        ])->assertRedirect(route('password.reset', $token))
+            ->assertSessionHasErrors('password');
+
+        $this->assertEquals($user->email, $user->fresh()->email);
+        $this->assertTrue(Hash::check('secret', $user->fresh()->password));
+        $this->assertGuest();
+    }
+
+    /** @test */
+    public function employee_can_not_reset_password_without_proving_an_email()
+    {
+        $user = factory(User::class)->create();
+        $token = Password::broker()->createToken($user);
+
+        $response = $this->from(route('password.reset', $token))->post(url('/password/reset'), [
+            'token' => $token,
+            'email' => '',
+            'password' => 'new-awesome-password',
+            'password_confirmation' => 'new-awesome-password',
+        ])->assertRedirect(route('password.reset', $token))
+            ->assertSessionHasErrors('email');
+
+        $this->assertEquals($user->email, $user->fresh()->email);
+        $this->assertTrue(Hash::check('secret', $user->fresh()->password));
+        $this->assertGuest();
     }
 }
