@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\User;
 use Tests\TestCase;
+use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -23,11 +24,14 @@ class ResetPasswordTest extends TestCase
     /** @test */
     public function guest_can_visit_reset_password_page_with_token()
     {
-        $this->get(url('password/reset/token'))
-            ->assertStatus(200)
-            ->assertSee('E-Mail Address')
-            ->assertSee('Password')
-            ->assertSee('Confirm Password');
+        $user = factory(User::class)->create();
+        
+        $token = Password::broker()->createToken($user);
+        
+        $this->get(route('password.reset', $token))
+            ->assertSuccessful()
+            ->assertViewIs('auth.passwords.reset')
+            ->assertViewHas('token', $token);
     }
 
     /** @test */
@@ -44,7 +48,7 @@ class ResetPasswordTest extends TestCase
     public function only_existing_employee_can_reset_password()
     {
         $this->post(route('password.email'), ['email' => 'not_existing@example.com'])
-            ->assertSessionHasErrors(['email']);
+            ->assertSessionHasErrors('email');
     }
 
     /** @test */
@@ -73,7 +77,6 @@ class ResetPasswordTest extends TestCase
             'token' => $token,
             'password' => 'new_password',
             'password_confirmation' => 'new_password',
-        ])
-            ->assertRedirect(route('dashboard'));
+        ])->assertRedirect(route('dashboard'));
     }
 }
