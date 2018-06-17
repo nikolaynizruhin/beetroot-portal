@@ -25,9 +25,9 @@ class ResetPasswordTest extends TestCase
     public function guest_can_visit_reset_password_page_with_token()
     {
         $user = factory(User::class)->create();
-        
+
         $token = Password::broker()->createToken($user);
-        
+
         $this->get(route('password.reset', $token))
             ->assertSuccessful()
             ->assertViewIs('auth.passwords.reset')
