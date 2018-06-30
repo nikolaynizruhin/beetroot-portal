@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AcceptController extends Controller
 {
@@ -38,7 +39,7 @@ class AcceptController extends Controller
     {
         $request->validate(['privacy' => 'accepted']);
 
-        $request->user()->update(['accepted_at' => now()]);
+        Auth::user()->update(['accepted_at' => now()]);
 
         return redirect(route('dashboard'));
     }
