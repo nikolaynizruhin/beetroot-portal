@@ -31,7 +31,6 @@ class DeleteOfficeTest extends TestCase
             ->assertRedirect(route('accept.create'));
     }
 
-
     /** @test */
     public function employee_can_not_delete_an_office()
     {

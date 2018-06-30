@@ -46,7 +46,7 @@ class ClientFiltersTest extends TestCase
             ->assertDontSee($brothers->name);
     }
 
-        /** @test */
+    /** @test */
     public function guest_can_not_filter_clients()
     {
         $this->get(route('clients.index', ['country' => 'USA']))
