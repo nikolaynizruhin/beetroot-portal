@@ -44,9 +44,9 @@
                                     </label>
 
                                     @if ($errors->has('is_admin'))
-                                        <span class="invalid-feedback">
-                                            <strong>{{ $errors->first('is_admin') }}</strong>
-                                        </span>
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('is_admin') }}
+                                        </div>
                                     @endif
                                 </div>
                             </div>
@@ -67,9 +67,9 @@
                                 <input class="form-control-file" id="avatar" type="file" name="avatar" required>
 
                                 @if ($errors->has('avatar'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('avatar') }}</strong>
-                                    </span>
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('avatar') }}
+                                    </div>
                                 @endif
                             </div>
                         </div>
@@ -95,9 +95,9 @@
                                        @if ($errors->isEmpty()) autofocus @endif>
 
                                 @if ($errors->has('name'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('name') }}
+                                    </div>
                                 @endif
                             </div>
                         </div>
@@ -117,9 +117,9 @@
                                        required>
 
                                 @if ($errors->has('email'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('email') }}
+                                    </div>
                                 @endif
                             </div>
                         </div>
@@ -150,9 +150,9 @@
                                 </select>
 
                                 @if ($errors->has('position'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('position') }}</strong>
-                                    </span>
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('position') }}
+                                    </div>
                                 @endif
                             </div>
                         </div>
@@ -183,9 +183,9 @@
                                 </select>
 
                                 @if ($errors->has('client_id'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('client_id') }}</strong>
-                                    </span>
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('client_id') }}
+                                    </div>
                                 @endif
                             </div>
                         </div>
@@ -216,9 +216,9 @@
                                 </select>
 
                                 @if ($errors->has('office_id'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('office_id') }}</strong>
-                                    </span>
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('office_id') }}
+                                    </div>
                                 @endif
                             </div>
                         </div>
@@ -238,9 +238,9 @@
                                        required>
 
                                 @if ($errors->has('birthday'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('birthday') }}</strong>
-                                    </span>
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('birthday') }}
+                                    </div>
                                 @endif
                             </div>
                         </div>
@@ -265,9 +265,9 @@
                                        required>
 
                                 @if ($errors->has('created_at'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('created_at') }}</strong>
-                                    </span>
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('created_at') }}
+                                    </div>
                                 @endif
                             </div>
                         </div>
@@ -284,9 +284,9 @@
                                        value="{{ old('phone') }}">
 
                                 @if ($errors->has('phone'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('phone') }}</strong>
-                                    </span>
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('phone') }}
+                                    </div>
                                 @endif
                             </div>
                         </div>
@@ -306,9 +306,9 @@
                                        required>
 
                                 @if ($errors->has('slack'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('slack') }}</strong>
-                                    </span>
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('slack') }}
+                                    </div>
                                 @endif
                             </div>
                         </div>
@@ -325,9 +325,9 @@
                                        value="{{ old('skype') }}">
 
                                 @if ($errors->has('skype'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('skype') }}</strong>
-                                    </span>
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('skype') }}
+                                    </div>
                                 @endif
                             </div>
                         </div>
@@ -350,9 +350,9 @@
                                        value="{{ old('github') }}">
 
                                 @if ($errors->has('github'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('github') }}</strong>
-                                    </span>
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('github') }}
+                                    </div>
                                 @endif
                             </div>
                         </div>
@@ -367,9 +367,9 @@
                                           name="bio">{{ old('bio') }}</textarea>
 
                                 @if ($errors->has('bio'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('bio') }}</strong>
-                                    </span>
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('bio') }}
+                                    </div>
                                 @endif
                             </div>
                         </div>
@@ -388,9 +388,9 @@
                                        required>
 
                                 @if ($errors->has('password'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('password') }}
+                                    </div>
                                 @endif
                             </div>
                         </div>

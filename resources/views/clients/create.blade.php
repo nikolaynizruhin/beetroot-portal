@@ -46,9 +46,9 @@
                                 <input class="form-control-file" id="logo" type="file" name="logo" required>
 
                                 @if ($errors->has('logo'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('logo') }}</strong>
-                                    </span>
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('logo') }}
+                                    </div>
                                 @endif
                             </div>
                         </div>
@@ -69,9 +69,9 @@
                                        @if ($errors->isEmpty()) autofocus @endif>
 
                                 @if ($errors->has('name'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('name') }}
+                                    </div>
                                 @endif
                             </div>
                         </div>
@@ -96,9 +96,9 @@
                                        required>
 
                                 @if ($errors->has('site'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('site') }}</strong>
-                                    </span>
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('site') }}
+                                    </div>
                                 @endif
                             </div>
                         </div>
@@ -129,9 +129,9 @@
                                 </select>
 
                                 @if ($errors->has('country'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('country') }}</strong>
-                                    </span>
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('country') }}
+                                    </div>
                                 @endif
                             </div>
                         </div>
@@ -149,9 +149,9 @@
                                           required>{{ old('description') }}</textarea>
 
                                 @if ($errors->has('description'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('description') }}</strong>
-                                    </span>
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('description') }}
+                                    </div>
                                 @endif
                             </div>
                         </div>

@@ -46,9 +46,9 @@
                                 </select>
 
                                 @if ($errors->has('country'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('country') }}</strong>
-                                    </span>
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('country') }}
+                                    </div>
                                 @endif
                             </div>
                         </div>
@@ -68,9 +68,9 @@
                                        required>
 
                                 @if ($errors->has('city'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('city') }}</strong>
-                                    </span>
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('city') }}
+                                    </div>
                                 @endif
                             </div>
                         </div>
@@ -90,9 +90,9 @@
                                        required>
 
                                 @if ($errors->has('address'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('address') }}</strong>
-                                    </span>
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('address') }}
+                                    </div>
                                 @endif
                             </div>
                         </div>
@@ -117,9 +117,9 @@
                                        required>
 
                                 @if ($errors->has('link'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('link') }}</strong>
-                                    </span>
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('link') }}
+                                    </div>
                                 @endif
                             </div>
                         </div>

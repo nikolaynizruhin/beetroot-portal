@@ -30,9 +30,9 @@
                                         </label>
 
                                         @if ($errors->has('privacy'))
-                                            <span class="invalid-feedback">
-                                                <strong>{{ $errors->first('privacy') }}</strong>
-                                            </span>
+                                            <div class="invalid-feedback">
+                                                {{ $errors->first('privacy') }}
+                                            </div>
                                         @endif
                                     </div>
                                 </div>
