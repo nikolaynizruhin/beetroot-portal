@@ -12,6 +12,7 @@ class Position
     protected static $positions = [
         'Account Manager',
         'Administrative Coordinator',
+        'Annotator',
         'Business Analyst',
         'Business Development Manager',
         'C Developer',
