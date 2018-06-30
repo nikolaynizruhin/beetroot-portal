@@ -60,14 +60,6 @@
                             @endrouteis
                         </a>
                     </li>
-                    <li class="nav-item @routeis('privacy') active @endrouteis">
-                        <a class="nav-link" href="{{ route('privacy') }}">
-                            Privacy Policy
-                            @routeis('privacy')
-                                <span class="sr-only">(current)</span>
-                            @endrouteis
-                        </a>
-                    </li>
                     @admin
                         <li class="nav-item dropdown">
                             <a href="#"

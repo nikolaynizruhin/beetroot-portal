@@ -45,4 +45,21 @@ class ClientFiltersTest extends TestCase
             ->assertSee($alliance->name)
             ->assertDontSee($brothers->name);
     }
+
+        /** @test */
+    public function guest_can_not_filter_clients()
+    {
+        $this->get(route('clients.index', ['country' => 'USA']))
+            ->assertRedirect(route('login'));
+    }
+
+    /** @test */
+    public function employee_that_not_accept_privacy_can_not_filter_clients()
+    {
+        $user = factory(User::class)->states('unacceptable')->create();
+
+        $this->actingAs($user)
+            ->get(route('clients.index', ['country' => 'USA']))
+            ->assertRedirect(route('accept.create'));
+    }
 }

@@ -21,10 +21,21 @@ class UpdateOfficeTest extends TestCase
     }
 
     /** @test */
+    public function employee_that_not_accept_privacy_can_not_update_office()
+    {
+        $user = factory(User::class)->states('unacceptable')->create();
+        $office = factory(Office::class)->create();
+
+        $this->actingAs($user)
+            ->put(route('offices.update', $office))
+            ->assertRedirect(route('accept.create'));
+    }
+
+    /** @test */
     public function employee_can_not_update_an_office()
     {
         $office = factory(Office::class)->create();
-        $user = factory(User::class)->create(['is_admin' => false]);
+        $user = factory(User::class)->states('employee')->create();
 
         $this->actingAs($user)
             ->put(route('offices.update', $office))
@@ -43,7 +54,7 @@ class UpdateOfficeTest extends TestCase
     /** @test */
     public function employee_can_not_visit_update_office_page()
     {
-        $user = factory(User::class)->create(['is_admin' => false]);
+        $user = factory(User::class)->states('employee')->create();
         $office = factory(Office::class)->create();
 
         $this->actingAs($user)

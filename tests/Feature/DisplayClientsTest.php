@@ -18,6 +18,16 @@ class DisplayClientsTest extends TestCase
     }
 
     /** @test */
+    public function employee_that_not_accept_privacy_can_not_see_clients()
+    {
+        $user = factory(User::class)->states('unacceptable')->create();
+
+        $this->actingAs($user)
+            ->get(route('clients.index'))
+            ->assertRedirect(route('accept.create'));
+    }
+
+    /** @test */
     public function logged_in_employee_can_see_a_clients()
     {
         $user = factory(User::class)->create();

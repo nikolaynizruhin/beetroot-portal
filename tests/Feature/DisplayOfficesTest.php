@@ -18,6 +18,16 @@ class DisplayOfficesTest extends TestCase
     }
 
     /** @test */
+    public function employee_that_not_accept_privacy_can_not_see_offices()
+    {
+        $user = factory(User::class)->states('unacceptable')->create();
+
+        $this->actingAs($user)
+            ->get(route('offices.index'))
+            ->assertRedirect(route('accept.create'));
+    }
+
+    /** @test */
     public function logged_in_employee_can_see_an_offices()
     {
         $user = factory(User::class)->create();

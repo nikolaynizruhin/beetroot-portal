@@ -32,4 +32,21 @@ class BirthdayFiltersTest extends TestCase
             ->assertSee($john->name)
             ->assertDontSee($jane->name);
     }
+
+    /** @test */
+    public function guest_can_not_filter_birthdays_by_office()
+    {
+        $this->get(route('birthdays.index', ['office' => 'London']))
+            ->assertRedirect(route('login'));
+    }
+
+    /** @test */
+    public function employee_that_not_accept_privacy_can_not_filter_birthdays_by_office()
+    {
+        $user = factory(User::class)->states('unacceptable')->create();
+
+        $this->actingAs($user)
+            ->get(route('birthdays.index', ['office' => 'London']))
+            ->assertRedirect(route('accept.create'));
+    }
 }

@@ -23,6 +23,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         'avatar' => 'avatars/default.png',
         'position' => $faker->randomElement(Position::all()),
         'birthday' => $faker->date(),
+        'accepted_at' => $faker->date(),
         'created_at' => $faker->date(),
         'phone' => $faker->e164PhoneNumber,
         'bio' => $faker->text($maxNbChars = 200),
@@ -43,4 +44,12 @@ $factory->define(App\User::class, function (Faker $faker) {
 
 $factory->state(App\User::class, 'admin', [
     'is_admin' => true,
+]);
+
+$factory->state(App\User::class, 'employee', [
+    'is_admin' => false,
+]);
+
+$factory->state(App\User::class, 'unacceptable', [
+    'accepted_at' => null,
 ]);

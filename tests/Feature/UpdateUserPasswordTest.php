@@ -21,10 +21,20 @@ class UpdateUserPasswordTest extends TestCase
     }
 
     /** @test */
+    public function employee_that_not_accept_privacy_can_not_update_password()
+    {
+        $user = factory(User::class)->states('unacceptable')->create();
+
+        $this->actingAs($user)
+            ->put(route('users.update', $user))
+            ->assertRedirect(route('accept.create'));
+    }
+
+    /** @test */
     public function employee_can_not_update_another_employee_password()
     {
         $owner = factory(User::class)->create();
-        $user = factory(User::class)->create(['is_admin' => false]);
+        $user = factory(User::class)->states('employee')->create();
 
         $this->actingAs($user)
             ->put(route('users.password.update', $owner))
@@ -54,7 +64,7 @@ class UpdateUserPasswordTest extends TestCase
     /** @test */
     public function employee_can_update_own_password()
     {
-        $owner = factory(User::class)->create(['is_admin' => false]);
+        $owner = factory(User::class)->states('employee')->create();
 
         $attributes = [
             'password' => 'secret-updated',

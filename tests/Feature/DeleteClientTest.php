@@ -21,10 +21,21 @@ class DeleteClientTest extends TestCase
     }
 
     /** @test */
+    public function employee_that_not_accept_privacy_can_not_delete_a_client()
+    {
+        $user = factory(User::class)->states('unacceptable')->create();
+        $client = factory(Client::class)->create();
+
+        $this->actingAs($user)
+            ->delete(route('clients.destroy', $client))
+            ->assertRedirect(route('accept.create'));
+    }
+
+    /** @test */
     public function employee_can_not_delete_a_client()
     {
         $client = factory(Client::class)->create();
-        $user = factory(User::class)->create(['is_admin' => false]);
+        $user = factory(User::class)->states('employee')->create();
 
         $this->actingAs($user)
             ->delete(route('clients.destroy', $client))

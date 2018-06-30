@@ -19,6 +19,16 @@ class CreateOfficeTest extends TestCase
     }
 
     /** @test */
+    public function employee_that_not_accept_privacy_can_not_create_an_office()
+    {
+        $user = factory(User::class)->states('unacceptable')->create();
+
+        $this->actingAs($user)
+            ->post(route('offices.store'))
+            ->assertRedirect(route('accept.create'));
+    }
+
+    /** @test */
     public function employee_can_not_create_an_office()
     {
         $user = factory(User::class)->create(['is_admin' => false]);
@@ -38,7 +48,7 @@ class CreateOfficeTest extends TestCase
     /** @test */
     public function employee_can_not_visit_create_office_page()
     {
-        $user = factory(User::class)->create(['is_admin' => false]);
+        $user = factory(User::class)->states('employee')->create();
 
         $this->actingAs($user)
             ->get(route('offices.create'))

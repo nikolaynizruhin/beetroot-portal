@@ -21,6 +21,16 @@ class DashboardTest extends TestCase
     }
 
     /** @test */
+    public function employee_that_not_accept_privacy_can_not_see_dashboard()
+    {
+        $user = factory(User::class)->states('unacceptable')->create();
+
+        $this->actingAs($user)
+            ->get(route('dashboard'))
+            ->assertRedirect(route('accept.create'));
+    }
+
+    /** @test */
     public function a_user_can_visit_dashboard_page()
     {
         $user = factory(User::class)->create();

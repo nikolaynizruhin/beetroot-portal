@@ -43,10 +43,21 @@ class UpdateClientTest extends TestCase
     }
 
     /** @test */
+    public function employee_that_not_accept_privacy_can_not_update_client()
+    {
+        $user = factory(User::class)->states('unacceptable')->create();
+        $client = factory(Client::class)->create();
+
+        $this->actingAs($user)
+            ->put(route('clients.update', $client))
+            ->assertRedirect(route('accept.create'));
+    }
+
+    /** @test */
     public function employee_can_not_update_a_client()
     {
         $client = factory(Client::class)->create();
-        $user = factory(User::class)->create(['is_admin' => false]);
+        $user = factory(User::class)->states('employee')->create();
 
         $this->actingAs($user)
             ->put(route('clients.update', $client))
@@ -65,7 +76,7 @@ class UpdateClientTest extends TestCase
     /** @test */
     public function employee_can_not_visit_update_client_page()
     {
-        $user = factory(User::class)->create(['is_admin' => false]);
+        $user = factory(User::class)->states('employee')->create();
         $client = factory(Client::class)->create();
 
         $this->actingAs($user)

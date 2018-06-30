@@ -131,4 +131,21 @@ class UserFiltersTest extends TestCase
             ->get(route('users.index'))
             ->assertSeeInOrder([$jane->name, $john->name]);
     }
+
+    /** @test */
+    public function guest_can_not_filter_users()
+    {
+        $this->get(route('users.index', ['office' => 'London']))
+            ->assertRedirect(route('login'));
+    }
+
+    /** @test */
+    public function employee_that_not_accept_privacy_can_not_filter_users()
+    {
+        $user = factory(User::class)->states('unacceptable')->create();
+
+        $this->actingAs($user)
+            ->get(route('users.index', ['office' => 'London']))
+            ->assertRedirect(route('accept.create'));
+    }
 }

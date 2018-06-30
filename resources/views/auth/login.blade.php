@@ -45,15 +45,16 @@
 
                         <div class="form-group row">
                             <div class="col-md-6 offset-md-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" value="0" {{ old('remember') ? 'checked' : '' }}> <small>Remember Me</small>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="remember" name="remember" {{ old('remember') ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="remember">
+                                        <small>Remember Me</small>
                                     </label>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
                                     Login
@@ -62,14 +63,6 @@
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
                                     <small>Forgot Your Password?</small>
                                 </a>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6 offset-md-4">
-                                <p class="small mb-0">
-                                    By clicking Login, you agree to our <a href="{{ route('privacy') }}">Privacy Policy</a>.
-                                </p>
                             </div>
                         </div>
                     </form>

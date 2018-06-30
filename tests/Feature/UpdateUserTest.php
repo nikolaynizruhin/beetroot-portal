@@ -38,14 +38,14 @@ class UpdateUserTest extends TestCase
 
         $this->file = UploadedFile::fake()->image('avatar.jpg');
         $this->user = factory(User::class)->states('admin')->make()
-            ->makeHidden(['avatar'])
+            ->makeHidden(['avatar', 'accepted_at'])
             ->toArray();
     }
 
     /** @test */
     public function guest_can_not_update_employee_profile()
     {
-        $owner = factory(User::class)->create(['is_admin' => false]);
+        $owner = factory(User::class)->states('employee')->create();
 
         $this->put(route('profile.update', $owner))
             ->assertRedirect(route('login'));
@@ -55,10 +55,20 @@ class UpdateUserTest extends TestCase
     }
 
     /** @test */
+    public function employee_that_not_accept_privacy_can_not_update_user()
+    {
+        $user = factory(User::class)->states('unacceptable')->create();
+
+        $this->actingAs($user)
+            ->put(route('users.update', $user))
+            ->assertRedirect(route('accept.create'));
+    }
+
+    /** @test */
     public function employee_can_not_update_another_employee_profile()
     {
-        $owner = factory(User::class)->create(['is_admin' => false]);
-        $user = factory(User::class)->create(['is_admin' => false]);
+        $owner = factory(User::class)->states('employee')->create();
+        $user = factory(User::class)->states('employee')->create();
 
         $this->actingAs($user)
             ->put(route('profile.update', $owner))
@@ -72,7 +82,7 @@ class UpdateUserTest extends TestCase
     /** @test */
     public function employee_can_not_update_own_protected_fields()
     {
-        $owner = factory(User::class)->create(['is_admin' => false]);
+        $owner = factory(User::class)->states('employee')->create();
 
         $this->actingAs($owner)
             ->put(route('users.update', $owner))
@@ -82,7 +92,7 @@ class UpdateUserTest extends TestCase
     /** @test */
     public function guest_can_not_visit_employee_settings_page()
     {
-        $userToEdit = factory(User::class)->create(['is_admin' => false]);
+        $userToEdit = factory(User::class)->states('employee')->create();
 
         $this->get(route('users.edit', $userToEdit))
             ->assertRedirect(route('login'));
@@ -91,8 +101,8 @@ class UpdateUserTest extends TestCase
     /** @test */
     public function employee_can_not_visit_another_employee_settings_page()
     {
-        $user = factory(User::class)->create(['is_admin' => false]);
-        $userToEdit = factory(User::class)->create(['is_admin' => false]);
+        $user = factory(User::class)->states('employee')->create();
+        $userToEdit = factory(User::class)->states('employee')->create();
 
         $this->actingAs($user)
             ->get(route('users.edit', $userToEdit))
@@ -102,7 +112,7 @@ class UpdateUserTest extends TestCase
     /** @test */
     public function employee_can_visit_own_settings_page()
     {
-        $user = factory(User::class)->create(['is_admin' => false]);
+        $user = factory(User::class)->states('employee')->create();
 
         $this->actingAs($user)
             ->get(route('users.edit', $user))
@@ -115,7 +125,7 @@ class UpdateUserTest extends TestCase
     public function admin_can_visit_any_employee_settings_page()
     {
         $admin = factory(User::class)->states('admin')->create();
-        $userToEdit = factory(User::class)->create(['is_admin' => false]);
+        $userToEdit = factory(User::class)->states('employee')->create();
 
         $this->actingAs($admin)
             ->get(route('users.edit', $userToEdit))
@@ -147,7 +157,7 @@ class UpdateUserTest extends TestCase
     /** @test */
     public function employee_can_update_own_profile()
     {
-        $owner = factory(User::class)->create(['is_admin' => false]);
+        $owner = factory(User::class)->states('employee')->create();
 
         $input = $this->input();
         $result = $this->resultForEmployee();

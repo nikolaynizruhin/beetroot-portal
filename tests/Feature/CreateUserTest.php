@@ -21,9 +21,19 @@ class CreateUserTest extends TestCase
     }
 
     /** @test */
+    public function employee_that_not_accept_privacy_can_not_create_a_user()
+    {
+        $user = factory(User::class)->states('unacceptable')->create();
+
+        $this->actingAs($user)
+            ->post(route('users.store'))
+            ->assertRedirect(route('accept.create'));
+    }
+
+    /** @test */
     public function employee_can_not_create_a_user()
     {
-        $user = factory(User::class)->create(['is_admin' => false]);
+        $user = factory(User::class)->states('employee')->create();
 
         $this->actingAs($user)
             ->post(route('users.store'))
@@ -40,7 +50,7 @@ class CreateUserTest extends TestCase
     /** @test */
     public function employee_can_not_visit_create_user_page()
     {
-        $user = factory(User::class)->create(['is_admin' => false]);
+        $user = factory(User::class)->states('employee')->create();
 
         $this->actingAs($user)
             ->get(route('users.create'))
@@ -63,7 +73,7 @@ class CreateUserTest extends TestCase
     {
         $admin = factory(User::class)->states('admin')->create();
         $user = factory(User::class)->states('admin')->make()
-            ->makeHidden(['avatar'])
+            ->makeHidden(['avatar', 'accepted_at'])
             ->toArray();
 
         $file = UploadedFile::fake()->image('avatar.jpg');

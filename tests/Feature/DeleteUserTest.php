@@ -20,10 +20,21 @@ class DeleteUserTest extends TestCase
     }
 
     /** @test */
+    public function employee_that_not_accept_privacy_can_not_delete_a_user()
+    {
+        $user = factory(User::class)->states('unacceptable')->create();
+        $userToDelete = factory(User::class)->create();
+
+        $this->actingAs($user)
+            ->delete(route('users.destroy', $userToDelete))
+            ->assertRedirect(route('accept.create'));
+    }
+
+    /** @test */
     public function employee_can_not_delete_a_user()
     {
         $userToDelete = factory(User::class)->create();
-        $user = factory(User::class)->create(['is_admin' => false]);
+        $user = factory(User::class)->states('employee')->create();
 
         $this->actingAs($user)
             ->delete(route('users.destroy', $userToDelete))
