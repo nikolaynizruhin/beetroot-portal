@@ -67,4 +67,12 @@ class UserTest extends TestCase
 
         $this->assertEquals($user->name_of_month_of_birth, 'January');
     }
+
+    /** @test */
+    public function it_can_fetch_employees_by_position()
+    {
+        $user = factory(User::class)->create();
+
+        $this->assertTrue(User::ofPosition($user->position)->get()->contains($user));
+    }
 }

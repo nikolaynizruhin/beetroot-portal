@@ -25,7 +25,8 @@ class OfficeController extends Controller
      */
     public function index()
     {
-        $offices = Office::withCount('users')
+        $offices = Office::with('users')
+            ->withCount('users')
             ->orderBy('users_count', 'desc')
             ->paginate(10);
 

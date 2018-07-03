@@ -33,8 +33,29 @@
             <a class="link-unstyled" href="{{ route('users.index', ['office' => $office->city]) }}">
                 <i class="fas fa-users fa-fw" aria-hidden="true"></i>
                 &nbsp;
+                Employees
                 {{ $office->users_count }}
             </a>
         </p>
+        @if ($office->countOf('Office Manager'))
+            <p>
+                <a class="link-unstyled" href="{{ route('users.index', ['office' => $office->city, 'position' => 'Office Manager']) }}">
+                    <i class="fas fa-user-tie fa-fw" aria-hidden="true"></i>
+                    &nbsp;
+                    Office Managers
+                    {{ $office->countOf('Office Manager') }}
+                </a>
+            </p>
+        @endif
+        @if ($office->countOf('Local Management'))
+            <p>
+                <a class="link-unstyled" href="{{ route('users.index', ['office' => $office->city, 'position' => 'Local Management']) }}">
+                    <i class="fas fa-street-view fa-fw" aria-hidden="true"></i>
+                    &nbsp;
+                    Local Managers
+                    {{ $office->countOf('Local Management') }}
+                </a>
+            </p>
+        @endif
     </div>
 </div>

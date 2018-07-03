@@ -12,7 +12,7 @@
     <title>Beetroot Family Portal</title>
 
     <!-- Scripts -->
-    <script src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" defer></script>
+    <script src="https://use.fontawesome.com/releases/v5.1.0/js/all.js" defer></script>
     <script src="https://www.gstatic.com/charts/loader.js" defer></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
 

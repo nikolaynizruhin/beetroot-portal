@@ -91,6 +91,18 @@ class User extends Authenticatable
     }
 
     /**
+     * Scope a query to only include users of a given position.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  string  $position
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeOfPosition($query, $position)
+    {
+        return $query->where('position', $position);
+    }
+
+    /**
      * Get the month of the user birth.
      *
      * @return int

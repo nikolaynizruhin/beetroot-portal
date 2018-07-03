@@ -22,4 +22,14 @@ class Office extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    /**
+     * Get the count of users by position for the office.
+     *
+     * @return integer
+     */
+    public function countOf($position)
+    {
+        return $this->users()->ofPosition($position)->count();
+    }
 }
