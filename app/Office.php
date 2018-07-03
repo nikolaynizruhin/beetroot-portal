@@ -26,7 +26,7 @@ class Office extends Model
     /**
      * Get the count of users by position for the office.
      *
-     * @return integer
+     * @return int
      */
     public function countOf($position)
     {
