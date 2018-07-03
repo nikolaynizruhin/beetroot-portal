@@ -10,7 +10,6 @@ class Position
      * @var array
      */
     protected static $positions = [
-        'Account Manager',
         'Administration',
         'Annotator',
         'Business Analyst',
