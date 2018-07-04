@@ -11,6 +11,13 @@ class User extends Authenticatable
     use Notifiable, Filterable;
 
     /**
+     * Constant representing a default user avatar.
+     *
+     * @var string
+     */
+    const DEFAULT_AVATAR = 'avatars/default.png';
+
+    /**
      * The list of sorts.
      *
      * @var array

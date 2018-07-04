@@ -174,6 +174,6 @@ class CreateUserTest extends TestCase
      */
     protected function avatar($file)
     {
-        return $file ? 'avatars/'.$file->hashName() : 'avatars/default.png';
+        return $file ? 'avatars/'.$file->hashName() : User::DEFAULT_AVATAR;
     }
 }

@@ -76,6 +76,6 @@ class StoreUser extends FormRequest
     {
         return $this->hasFile('avatar')
             ? Image::fit($this->file('avatar')->store('avatars'))
-            : 'avatars/default.png';
+            : User::DEFAULT_AVATAR;
     }
 }
