@@ -38,7 +38,7 @@ class StoreUser extends FormRequest
             ],
             'birthday' => 'required|date',
             'created_at' => 'required|date',
-            'avatar' => 'required|image',
+            'avatar' => 'image',
             'slack' => 'required|string|max:255|unique:users',
             'client_id' => 'required|numeric|exists:clients,id',
             'office_id' => 'required|numeric|exists:offices,id',
@@ -60,10 +60,22 @@ class StoreUser extends FormRequest
     {
         $attributes = $this->validated();
 
-        $attributes['avatar'] = Image::fit($this->file('avatar')->store('avatars'));
+        $attributes['avatar'] = $this->avatar();
         $attributes['is_admin'] = (bool) $this->is_admin;
         $attributes['password'] = bcrypt($this->password);
 
         return $attributes;
+    }
+
+    /**
+     * Get avatar path.
+     *
+     * @return string
+     */
+    protected function avatar()
+    {
+        return $this->hasFile('avatar')
+            ? Image::fit($this->file('avatar')->store('avatars'))
+            : 'avatars/default.png';
     }
 }

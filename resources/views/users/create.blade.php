@@ -59,12 +59,11 @@
                                       data-placement="top"
                                       title="Square image (jpeg, png, bmp, gif, svg)">
                                     Avatar
-                                    <small>*</small>
                                 </span>
                             </label>
 
                             <div class="col-md-6">
-                                <input class="form-control-file" id="avatar" type="file" name="avatar" required>
+                                <input class="form-control-file" id="avatar" type="file" name="avatar">
 
                                 @if ($errors->has('avatar'))
                                     <div class="invalid-feedback">

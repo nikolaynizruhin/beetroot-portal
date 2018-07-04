@@ -95,6 +95,24 @@ class CreateUserTest extends TestCase
     }
 
     /** @test */
+    public function admin_can_create_a_user_without_avatar()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $user = factory(User::class)->states('admin')->make()
+            ->makeHidden(['avatar', 'accepted_at'])
+            ->toArray();
+
+        $input = $this->input($user);
+        $result = $this->result($user);
+
+        $this->actingAs($admin)
+            ->post(route('users.store'), $input)
+            ->assertSessionHas('status', 'The employee was successfully created!');
+
+        $this->assertDatabaseHas('users', $result);
+    }
+
+    /** @test */
     public function some_of_user_fields_are_required()
     {
         $admin = factory(User::class)->states('admin')->create();
@@ -111,7 +129,6 @@ class CreateUserTest extends TestCase
                 'client_id',
                 'office_id',
                 'password',
-                'avatar',
             ]);
     }
 
@@ -119,12 +136,15 @@ class CreateUserTest extends TestCase
      * Get input attributes.
      *
      * @param  array  $user
-     * @param  object  $file
+     * @param  object|null  $file
      * @return array
      */
-    protected function input($user, $file)
+    protected function input($user, $file = null)
     {
-        $user['avatar'] = $file;
+        if ($file) {
+            $user['avatar'] = $file;
+        }
+
         $user['password'] = $user['password_confirmation'] = 'secret';
 
         return $user;
@@ -134,15 +154,26 @@ class CreateUserTest extends TestCase
      * Get result attributes.
      *
      * @param  array  $user
-     * @param  object  $file
+     * @param  object|null  $file
      * @return array
      */
-    protected function result($user, $file)
+    protected function result($user, $file = null)
     {
-        $user['avatar'] = 'avatars/'.$file->hashName();
+        $user['avatar'] = $this->avatar($file);
 
         unset($user['password'], $user['password_confirmation']);
 
         return $user;
+    }
+
+    /**
+     * Get avatar path.
+     *
+     * @param  object|null  $file
+     * @return string
+     */
+    protected function avatar($file)
+    {
+        return $file ? 'avatars/'.$file->hashName() : 'avatars/default.png';
     }
 }
