@@ -14,25 +14,6 @@ class CreateClientTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * Logo file.
-     *
-     * @var object
-     */
-    private $file;
-
-    /**
-     * Setup.
-     *
-     * @return void
-     */
-    protected function setUp()
-    {
-        parent::setUp();
-
-        $this->file = UploadedFile::fake()->image('logo.jpg');
-    }
-
     /** @test */
     public function guest_can_not_create_a_client()
     {
@@ -92,12 +73,15 @@ class CreateClientTest extends TestCase
     public function admin_can_create_a_client()
     {
         $admin = factory(User::class)->states('admin')->create();
+        $client = factory(Client::class)->make()->toArray();
+
+        $file = UploadedFile::fake()->image('logo.jpg');
 
         Storage::fake('public');
         Image::shouldReceive('make->fit->save')->once();
 
-        $input = $this->inputAttributes();
-        $result = $this->resultAttributes($input);
+        $input = $this->input($client, $file);
+        $result = $this->result($client, $file);
 
         $this->actingAs($admin)
             ->post(route('clients.store'), $input)
@@ -105,7 +89,25 @@ class CreateClientTest extends TestCase
 
         $this->assertDatabaseHas('clients', $result);
 
-        Storage::disk('public')->assertExists('logos/'.$this->file->hashName());
+        Storage::disk('public')->assertExists('logos/'.$file->hashName());
+    }
+
+    /** @test */
+    public function admin_can_create_a_client_without_logo()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $client = factory(Client::class)->make()
+            ->makeHidden('logo')
+            ->toArray();
+
+        $input = $this->input($client);
+        $result = $this->result($client);
+
+        $this->actingAs($admin)
+            ->post(route('clients.store'), $input)
+            ->assertSessionHas('status', 'The client was successfully created!');
+
+        $this->assertDatabaseHas('clients', $result);
     }
 
     /** @test */
@@ -116,32 +118,37 @@ class CreateClientTest extends TestCase
         $this->actingAs($admin)
             ->post(route('clients.store'))
             ->assertSessionHasErrors([
-                'name', 'logo', 'country', 'description', 'site',
+                'name', 'country', 'description', 'site',
             ]);
     }
 
     /**
      * Get input attributes.
      *
+     * @param  array  $client
+     * @param  object|null  $file
      * @return array
      */
-    private function inputAttributes()
+    private function input($client, $file = null)
     {
-        $attributes = factory(Client::class)->make(['logo' => $this->file])->toArray();
+        if ($file) {
+            $client['logo'] = $file;
+        }
 
-        return $attributes;
+        return $client;
     }
 
     /**
      * Get result attributes.
      *
-     * @param  array $attributes
+     * @param  array  $client
+     * @param  object|null  $file
      * @return array
      */
-    private function resultAttributes($attributes)
+    private function result($client, $file = null)
     {
-        $attributes['logo'] = 'logos/'.$this->file->hashName();
+        $client['logo'] = $file ? 'logos/'.$file->hashName() : Client::DEFAULT_LOGO;
 
-        return $attributes;
+        return $client;
     }
 }

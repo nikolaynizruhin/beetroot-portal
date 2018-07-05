@@ -10,6 +10,13 @@ class Client extends Model
     use Filterable;
 
     /**
+     * Constant representing a default client logo.
+     *
+     * @var string
+     */
+    const DEFAULT_LOGO = 'logos/default.png';
+
+    /**
      * The attributes that aren't mass assignable.
      *
      * @var array

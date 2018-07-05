@@ -29,7 +29,7 @@ class StoreClient extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'logo' => 'required|image',
+            'logo' => 'image',
             'country' => [
                 'required',
                 'string',
@@ -50,8 +50,20 @@ class StoreClient extends FormRequest
     {
         $attributes = $this->validated();
 
-        $attributes['logo'] = Image::fit($this->file('logo')->store('logos'));
+        $attributes['logo'] = $this->logo();
 
         return $attributes;
+    }
+
+    /**
+     * Get logo path.
+     *
+     * @return string
+     */
+    protected function logo()
+    {
+        return $this->hasFile('logo')
+            ? Image::fit($this->file('logo')->store('logos'))
+            : Client::DEFAULT_LOGO;
     }
 }
