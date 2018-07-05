@@ -31,7 +31,7 @@
                 const options = {
                     region: 'UA',
                     displayMode: 'markers',
-                    colorAxis: { colors: ['#f1b828'] }
+                    colorAxis: { colors: ['#EDB700'] }
                 };
 
                 const chart = new google.visualization.GeoChart(document.getElementById('markers'));

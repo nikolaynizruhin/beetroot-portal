@@ -78609,7 +78609,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             labels: [],
             data: [],
-            backgroundColor: ['#BC204B', '#7C8483', '#71A2B6', '#60B2E5', '#53F4FF']
+            backgroundColor: ['#A51140', '#E06287', '#E3E3DD', '#EDB700', '#7D6378']
         };
     },
     mounted: function mounted() {
@@ -78874,7 +78874,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var options = {
                 region: 'UA',
                 displayMode: 'markers',
-                colorAxis: { colors: ['#f1b828'] }
+                colorAxis: { colors: ['#EDB700'] }
             };
 
             var chart = new google.visualization.GeoChart(document.getElementById('markers'));
