@@ -3,7 +3,7 @@
 
         <!-- Branding Image -->
         <a class="navbar-brand" href="{{ url('/') }}">
-            <img src="{{ asset('images/logo.svg') }}" height="40" width="112" alt="Beetroot">
+            <img src="{{ asset('images/logo.svg') }}" height="50" width="140" alt="Beetroot">
         </a>
 
         <button class="navbar-toggler"

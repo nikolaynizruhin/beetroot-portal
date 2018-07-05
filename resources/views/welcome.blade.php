@@ -53,10 +53,6 @@
                 text-decoration: none;
                 text-transform: uppercase;
             }
-
-            img {
-                max-width: 90%;
-            }
         </style>
 
         <!-- Scripts -->

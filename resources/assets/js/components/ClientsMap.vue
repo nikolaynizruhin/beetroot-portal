@@ -29,7 +29,7 @@
                 const data = google.visualization.arrayToDataTable(clients);
 
                 const options = {
-                    colorAxis: { colors: ['#BC204B'] },
+                    colorAxis: { colors: ['#A51140'] },
                 };
 
                 const chart = new google.visualization.GeoChart(document.getElementById('regions'));

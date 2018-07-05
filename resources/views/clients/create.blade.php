@@ -38,12 +38,11 @@
                                       data-placement="top"
                                       title="Square image (jpeg, png, bmp, gif, svg)">
                                     Logo
-                                    <small>*</small>
                                 </span>
                             </label>
 
                             <div class="col-md-6">
-                                <input class="form-control-file" id="logo" type="file" name="logo" required>
+                                <input class="form-control-file" id="logo" type="file" name="logo">
 
                                 @if ($errors->has('logo'))
                                     <div class="invalid-feedback">

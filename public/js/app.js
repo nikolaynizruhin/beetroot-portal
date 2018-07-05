@@ -78748,7 +78748,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var data = google.visualization.arrayToDataTable(clients);
 
             var options = {
-                colorAxis: { colors: ['#BC204B'] }
+                colorAxis: { colors: ['#A51140'] }
             };
 
             var chart = new google.visualization.GeoChart(document.getElementById('regions'));
