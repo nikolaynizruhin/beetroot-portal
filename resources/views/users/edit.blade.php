@@ -308,7 +308,7 @@
                         <!-- Slack -->
                         <div class="form-group row">
                             <label for="slack" class="col-md-4 col-form-label text-md-right">
-                                Slack <small>*</small>
+                                Slack
                             </label>
 
                             <div class="col-md-6">
@@ -316,9 +316,7 @@
                                        type="text"
                                        class="form-control{{ $errors->has('slack') ? ' is-invalid' : '' }}"
                                        name="slack"
-                                       value="{{ old('slack', $user->slack) }}"
-                                       required
-                                       @employee disabled @endemployee>
+                                       value="{{ old('slack', $user->slack) }}">
 
                                 @if ($errors->has('slack'))
                                     <div class="invalid-feedback">

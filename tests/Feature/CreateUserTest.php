@@ -125,7 +125,6 @@ class CreateUserTest extends TestCase
                 'position',
                 'birthday',
                 'created_at',
-                'slack',
                 'client_id',
                 'office_id',
                 'password',

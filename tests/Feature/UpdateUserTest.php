@@ -182,7 +182,6 @@ class UpdateUserTest extends TestCase
                 'position',
                 'birthday',
                 'created_at',
-                'slack',
                 'client_id',
                 'office_id',
             ]);
@@ -220,7 +219,7 @@ class UpdateUserTest extends TestCase
     protected function resultForEmployee()
     {
         return collect($this->user)
-            ->only(['phone', 'skype', 'github', 'bio'])
+            ->only(['slack', 'phone', 'skype', 'github', 'bio'])
             ->all();
     }
 }

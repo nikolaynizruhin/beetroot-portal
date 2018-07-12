@@ -26,6 +26,7 @@ class UpdateProfile extends FormRequest
     public function rules()
     {
         return [
+            'slack' => 'nullable|string|max:255',
             'phone' => 'nullable|string|max:255',
             'bio' => 'nullable|string|max:255',
             'skype' => 'nullable|string|max:255',
