@@ -8,7 +8,7 @@
                 <div class="card-header">
                     <i class="fas fa-id-card fa-lg fa-fw" aria-hidden="true"></i>
                     &nbsp;
-                    Add Employee
+                    Add Beetroot
                 </div>
 
                 <div class="card-body">
@@ -192,7 +192,7 @@
                         <!-- Office -->
                         <div class="form-group row">
                             <label for="office-id" class="col-md-4 col-form-label text-md-right">
-                                Office <small>*</small>
+                                Location <small>*</small>
                             </label>
 
                             <div class="col-md-6">
@@ -200,7 +200,7 @@
                                         class="form-control{{ $errors->has('office_id') ? ' is-invalid' : '' }}"
                                         name="office_id"
                                         required>
-                                    <option value="">Select an office...</option>
+                                    <option value="">Select a location...</option>
                                     @foreach ($offices as $id => $city)
                                         @if (old('office_id') == $id)
                                             <option value="{{ $id }}" selected>

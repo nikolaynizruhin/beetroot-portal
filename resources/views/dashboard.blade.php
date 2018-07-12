@@ -19,7 +19,7 @@
                             <a href="{{ route('users.index') }}" class="link-unstyled">
                                 <div class="card card-dashboard mb-2">
                                     <div class="card-body">
-                                        <p class="card-text">TOTAL EMPLOYEES</p>
+                                        <p class="card-text">TOTAL BEETROOTS</p>
                                         <h2 class="card-title">
                                             <counter :count="{{ $userCount }}"></counter>
                                         </h2>
@@ -47,7 +47,7 @@
                             <a href="{{ route('offices.index') }}" class="link-unstyled">
                                 <div class="card card-dashboard mb-2">
                                     <div class="card-body">
-                                        <p class="card-text">TOTAL OFFICES</p>
+                                        <p class="card-text">TOTAL LOCATIONS</p>
                                         <h2 class="card-title">
                                             <counter :count="{{ $officeCount }}"></counter>
                                         </h2>
@@ -75,7 +75,7 @@
 
                     <!-- Offices -->
                     <hr>
-                    <h3 class="text-center">OFFICES</h3>
+                    <h3 class="text-center">LOCATIONS</h3>
                     <hr>
                     <offices-map :offices="{{ $offices }}" :api-key="'{{ config('services.googlemaps.key') }}'"></offices-map>
 

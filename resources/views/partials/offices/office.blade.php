@@ -33,7 +33,7 @@
             <a class="link-unstyled" href="{{ route('users.index', ['office' => $office->city]) }}">
                 <i class="fas fa-users fa-fw" aria-hidden="true"></i>
                 &nbsp;
-                Employees
+                Beetroots
                 {{ $office->users_count }}
             </a>
         </p>

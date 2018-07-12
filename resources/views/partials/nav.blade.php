@@ -30,7 +30,7 @@
                     </li>
                     <li class="nav-item @routeis('users.index') active @endrouteis">
                         <a class="nav-link" href="{{ route('users.index') }}">
-                            Employees
+                            Beetroots
                             @routeis('users.index')
                                 <span class="sr-only">(current)</span>
                             @endrouteis
@@ -46,7 +46,7 @@
                     </li>
                     <li class="nav-item @routeis('offices.index') active @endrouteis">
                         <a class="nav-link" href="{{ route('offices.index') }}">
-                            Offices
+                            Locations
                             @routeis('offices.index')
                                 <span class="sr-only">(current)</span>
                             @endrouteis
@@ -73,9 +73,9 @@
                                 <span class="caret"></span>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('users.create') }}">Add Employee</a>
+                                <a class="dropdown-item" href="{{ route('users.create') }}">Add Beetroot</a>
                                 <a class="dropdown-item" href="{{ route('clients.create') }}">Add Client</a>
-                                <a class="dropdown-item" href="{{ route('offices.create') }}">Add Office</a>
+                                <a class="dropdown-item" href="{{ route('offices.create') }}">Add Location</a>
                             </div>
                         </li>
                     @endadmin

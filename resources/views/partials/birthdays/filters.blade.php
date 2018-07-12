@@ -5,7 +5,7 @@
             <!-- Office Filter -->
             <div class="form-group">
                 <select class="form-control" name="office">
-                    <option value="" selected>All Offices</option>
+                    <option value="" selected>All Locations</option>
                     @foreach ($offices as $city)
                         @if (request('office') == $city)
                             <option value="{{ $city }}" selected>

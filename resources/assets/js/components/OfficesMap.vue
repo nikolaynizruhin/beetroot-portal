@@ -10,7 +10,7 @@
         },
         data() {
             return {
-                data: [['City', 'Employees']],
+                data: [['City', 'Beetroots']],
             }
         },
         mounted() {

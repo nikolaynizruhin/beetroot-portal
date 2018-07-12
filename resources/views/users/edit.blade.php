@@ -205,7 +205,7 @@
                         <!-- Office -->
                         <div class="form-group row">
                             <label for="office-id" class="col-md-4 col-form-label text-md-right">
-                                Office <small>*</small>
+                                Location <small>*</small>
                             </label>
 
                             <div class="col-md-6">

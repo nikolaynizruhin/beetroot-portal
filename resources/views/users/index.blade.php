@@ -8,7 +8,7 @@
                     <div class="card-header">
                         <i class="fas fa-id-card fa-lg fa-fw" aria-hidden="true"></i>
                         &nbsp;
-                        Employees {{ $users->total() }}
+                        Beetroots {{ $users->total() }}
                     </div>
 
                     <div class="card-body">

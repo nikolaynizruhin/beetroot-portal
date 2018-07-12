@@ -8,7 +8,7 @@
                     <div class="card-header">
                         <i class="fas fa-building fa-lg fa-fw" aria-hidden="true"></i>
                         &nbsp;
-                        Offices {{ $offices->total() }}
+                        Locations {{ $offices->total() }}
                     </div>
 
                     <div class="card-body">

@@ -10,7 +10,7 @@
                 <div class="card-header">
                     <i class="fas fa-building fa-lg fa-fw" aria-hidden="true"></i>
                     &nbsp;
-                    Update Office
+                    Update Location
                 </div>
 
                 <div class="card-body">
@@ -138,7 +138,7 @@
                     </form>
 
                     <!-- Delete Office -->
-                    <h4>Delete Office</h4>
+                    <h4>Delete Location</h4>
                     <hr>
 
                     <form id="delete-form"

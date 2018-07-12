@@ -10,7 +10,7 @@
                 <div class="card-header">
                     <i class="fas fa-building fa-lg fa-fw" aria-hidden="true"></i>
                     &nbsp;
-                    Add Office
+                    Add Location
                 </div>
 
                 <div class="card-body">
