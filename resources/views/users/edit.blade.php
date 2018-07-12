@@ -326,6 +326,48 @@
                             </div>
                         </div>
 
+                        <!-- Facebook -->
+                        <div class="form-group row">
+                            <label for="facebook" class="col-md-4 col-form-label text-md-right">
+                                Facebook
+                            </label>
+
+                            <div class="col-md-6">
+                                <input id="facebook"
+                                       type="text"
+                                       class="form-control{{ $errors->has('facebook') ? ' is-invalid' : '' }}"
+                                       name="facebook"
+                                       value="{{ old('facebook', $user->facebook) }}">
+
+                                @if ($errors->has('facebook'))
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('facebook') }}
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+
+                        <!-- Instagram -->
+                        <div class="form-group row">
+                            <label for="instagram" class="col-md-4 col-form-label text-md-right">
+                                Instagram
+                            </label>
+
+                            <div class="col-md-6">
+                                <input id="instagram"
+                                       type="text"
+                                       class="form-control{{ $errors->has('instagram') ? ' is-invalid' : '' }}"
+                                       name="instagram"
+                                       value="{{ old('instagram', $user->instagram) }}">
+
+                                @if ($errors->has('instagram'))
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('instagram') }}
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+
                         <!-- Skype -->
                         <div class="form-group row">
                             <label for="skype" class="col-md-4 col-form-label text-md-right">

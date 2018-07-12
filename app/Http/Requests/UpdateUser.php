@@ -49,6 +49,8 @@ class UpdateUser extends FormRequest
             'client_id' => 'required|numeric|exists:clients,id',
             'office_id' => 'required|numeric|exists:offices,id',
             'slack' => 'nullable|string|max:255',
+            'facebook' => 'nullable|string|max:255',
+            'instagram' => 'nullable|string|max:255',
             'phone' => 'nullable|string|max:255',
             'bio' => 'nullable|string|max:255',
             'skype' => 'nullable|string|max:255',

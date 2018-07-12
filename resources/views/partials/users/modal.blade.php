@@ -58,11 +58,35 @@
                             @endif
 
                             <!-- Slack -->
-                            <p>
-                                <i aria-hidden="true" class="fab fa-slack-hash fa-fw"></i>
-                                &nbsp;
-                                {{ $user->slack }}
-                            </p>
+                            @if ($user->slack)
+                                <p>
+                                    <i aria-hidden="true" class="fab fa-slack-hash fa-fw"></i>
+                                    &nbsp;
+                                    {{ $user->slack }}
+                                </p>
+                            @endif
+
+                            <!-- Facebook -->
+                            @if ($user->facebook)
+                                <p>
+                                    <a class="link-unstyled" href="https://facebook.com/{{ $user->facebook }}" target="_blank">
+                                        <i aria-hidden="true" class="fab fa-facebook fa-fw"></i>
+                                        &nbsp;
+                                        {{ $user->facebook }}
+                                    </a>
+                                </p>
+                            @endif
+
+                            <!-- Instagram -->
+                            @if ($user->instagram)
+                                <p>
+                                    <a class="link-unstyled" href="https://instagram.com/{{ $user->instagram }}" target="_blank">
+                                        <i aria-hidden="true" class="fab fa-instagram fa-fw"></i>
+                                        &nbsp;
+                                        {{ $user->instagram }}
+                                    </a>
+                                </p>
+                            @endif
 
                             <!-- Skype -->
                             @if ($user->skype)

@@ -44,6 +44,8 @@ class StoreUser extends FormRequest
             'office_id' => 'required|numeric|exists:offices,id',
             'password' => 'required|string|min:6|confirmed',
             'slack' => 'nullable|string|max:255',
+            'facebook' => 'nullable|string|max:255',
+            'instagram' => 'nullable|string|max:255',
             'github' => 'nullable|string|max:255',
             'skype' => 'nullable|string|max:255',
             'bio' => 'nullable|string|max:255',

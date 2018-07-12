@@ -219,7 +219,7 @@ class UpdateUserTest extends TestCase
     protected function resultForEmployee()
     {
         return collect($this->user)
-            ->only(['slack', 'phone', 'skype', 'github', 'bio'])
+            ->only(['facebook','instagram','slack','phone','skype','github','bio'])
             ->all();
     }
 }
