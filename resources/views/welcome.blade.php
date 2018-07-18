@@ -11,13 +11,13 @@
         <link rel="shortcut icon" type="image/ico" href="{{ asset('favicon.ico') }}"/>
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Roboto:100,600" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,600" rel="stylesheet" type="text/css">
 
         <!-- Styles -->
         <style>
             html, body {
                 background-color: #fff;
-                color: #636b6f;
+                color: #A51140;
                 font-family: 'Roboto', sans-serif;
                 font-weight: 100;
                 height: 100vh;
@@ -44,6 +44,22 @@
                 top: 18px;
             }
 
+            .content {
+                text-align: center;
+                max-width: 1024px;
+                padding: 0 15px;
+            }
+
+            .title {
+                font-size: 84px;
+                font-weight: 500;
+            }
+
+            .subtitle {
+                font-size: 34px;
+                font-weight: 300;
+            }
+
             .links > a {
                 color: #636b6f;
                 padding: 0 25px;
@@ -53,12 +69,38 @@
                 text-decoration: none;
                 text-transform: uppercase;
             }
+
+            .m-b-md {
+                margin-bottom: 30px;
+            }
+
+            .background-image {
+                background-image: url("{{ asset('images/welcome.svg') }}");
+                height: 100%; 
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+
+            @media (max-width: 768px) {
+                .title {
+                    font-size: 40px;
+                }
+
+                .subtitle {
+                    font-size: 20px;
+                }
+
+                .content {
+                    max-width: 90%;
+                }
+            }
         </style>
 
         <!-- Scripts -->
         <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
     </head>
-    <body>
+    <body class="background-image">
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
@@ -74,7 +116,18 @@
                 </div>
             @endif
 
-            <img src="{{ asset('images/logo.svg') }}" alt="Beetroot" width="500">
+            <div class="content">
+                <div class="title m-b-md">
+                    Look who's here!
+                </div>
+
+                <div class="subtitle">
+                    You're about to dive into a Beetroot family portal,
+                    where all the information about your fellow beets,
+                    their clients and offices is stored.
+                    Does it sound exciting? Then let's roll!
+                </div>
+            </div>
         </div>
     </body>
 </html>
