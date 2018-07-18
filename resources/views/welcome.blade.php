@@ -56,7 +56,7 @@
         </style>
 
         <!-- Scripts -->
-        <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js"></script>
+        <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
     </head>
     <body>
         <div class="flex-center position-ref full-height">
