@@ -98,7 +98,7 @@
         </style>
 
         <!-- Scripts -->
-        <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+        <script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
     </head>
     <body class="background-image">
         <div class="flex-center position-ref full-height">
