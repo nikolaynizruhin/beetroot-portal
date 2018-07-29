@@ -34,44 +34,29 @@
                 justify-content: center;
             }
 
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
             .content {
                 text-align: center;
-                max-width: 1024px;
+                max-width: 768px;
                 padding: 0 15px;
             }
 
             .title {
-                font-size: 84px;
+                font-size: 60px;
                 font-weight: 500;
             }
 
             .subtitle {
-                font-size: 34px;
+                font-size: 30px;
                 font-weight: 300;
             }
 
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
+            a {
+                color: #A51140;
+                font-size: 24px;
             }
 
             .m-b-md {
-                margin-bottom: 30px;
+                margin-bottom: 20px;
             }
 
             .background-image {
@@ -84,15 +69,19 @@
 
             @media (max-width: 768px) {
                 .title {
-                    font-size: 40px;
+                    font-size: 36px;
                 }
 
                 .subtitle {
-                    font-size: 20px;
+                    font-size: 24px;
                 }
 
                 .content {
                     max-width: 90%;
+                }
+
+                a {
+                    font-size: 20px;
                 }
             }
         </style>
@@ -101,20 +90,7 @@
         <script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
     </head>
     <body class="background-image">
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ route('dashboard') }}">
-                            <i class="fas fa-tachometer-alt fa-fw"></i> Dashboard
-                        </a>
-                    @else
-                        <a href="{{ route('login') }}">
-                            <i class="fas fa-sign-in-alt fa-fw"></i> Login
-                        </a>
-                    @endauth
-                </div>
-            @endif
+        <div class="flex-center full-height">
 
             <div class="content">
                 <div class="title m-b-md">
@@ -122,10 +98,16 @@
                 </div>
 
                 <div class="subtitle">
-                    You're about to dive into a Beetroot family portal,
-                    where all the information about your fellow beets,
-                    their clients and offices is stored.
-                    Does it sound exciting? Then let's roll!
+                    <p>
+                        You're about to dive into a Beetroot family portal,
+                        where all the information about your fellow beets,
+                        their clients and offices is stored.
+                        Does it sound exciting? Then let's roll!
+                    </p>
+
+                    <a href="@auth {{ route('dashboard') }} @else {{ @route('login') }} @endauth">
+                        Go to portal
+                    </a>
                 </div>
             </div>
         </div>
