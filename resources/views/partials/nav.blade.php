@@ -60,25 +60,28 @@
                             @endrouteis
                         </a>
                     </li>
-                    @admin
-                        <li class="nav-item dropdown">
-                            <a href="#"
-                               id="navbarDropdown"
-                               class="nav-link dropdown-toggle"
-                               data-toggle="dropdown"
-                               role="button"
-                               aria-haspopup="true"
-                               aria-expanded="false">
-                                Admin
-                                <span class="caret"></span>
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li class="nav-item dropdown">
+                        <a href="#"
+                           id="navbarDropdown"
+                           class="nav-link dropdown-toggle"
+                           data-toggle="dropdown"
+                           role="button"
+                           aria-haspopup="true"
+                           aria-expanded="false">
+                            More
+                            <span class="caret"></span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('info') }}">Info</a>
+                            <a class="dropdown-item" href="{{ route('privacy') }}">Privacy Policy</a>
+                            @admin
+                                <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('users.create') }}">Add Beetroot</a>
                                 <a class="dropdown-item" href="{{ route('clients.create') }}">Add Client</a>
                                 <a class="dropdown-item" href="{{ route('offices.create') }}">Add Location</a>
-                            </div>
-                        </li>
-                    @endadmin
+                            @endadmin
+                        </div>
+                    </li>
                 @endauth
             </ul>
 
