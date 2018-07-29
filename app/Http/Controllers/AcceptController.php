@@ -41,6 +41,6 @@ class AcceptController extends Controller
 
         Auth::user()->update(['accepted_at' => now()]);
 
-        return redirect(route('dashboard'));
+        return redirect(route('info'));
     }
 }

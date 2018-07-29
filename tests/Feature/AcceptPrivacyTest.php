@@ -49,7 +49,7 @@ class AcceptPrivacyTest extends TestCase
             ->post(route('accept.store'), [
                 'privacy' => 'on',
             ])
-            ->assertRedirect(route('dashboard'));
+            ->assertRedirect(route('info'));
 
         $this->assertNotNull($user->accepted_at);
     }
