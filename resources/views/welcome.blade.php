@@ -101,7 +101,7 @@
                     <p>
                         You're about to dive into a Beetroot family portal,
                         where all the information about your fellow beets,
-                        their clients and offices is stored.
+                        teams and offices is stored.
                         Does it sound exciting?
                     </p>
 

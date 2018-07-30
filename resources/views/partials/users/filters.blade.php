@@ -69,7 +69,7 @@
             <!-- Client Filter -->
             <div class="form-group">
                 <select class="form-control" name="client">
-                    <option value="" selected>All Clients</option>
+                    <option value="" selected>All Teams</option>
                     @foreach ($clients as $name)
                         @if (request('client') == $name)
                             <option value="{{ $name }}" selected>

@@ -78746,7 +78746,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     data: function data() {
         return {
-            data: [['Country', 'Clients']]
+            data: [['Country', 'Teams']]
         };
     },
     mounted: function mounted() {

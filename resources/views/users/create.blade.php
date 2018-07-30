@@ -159,7 +159,7 @@
                         <!-- Client -->
                         <div class="form-group row">
                             <label for="client-id" class="col-md-4 col-form-label text-md-right">
-                                Client <small>*</small>
+                                Team <small>*</small>
                             </label>
 
                             <div class="col-md-6">
@@ -167,7 +167,7 @@
                                         class="form-control{{ $errors->has('client_id') ? ' is-invalid' : '' }}"
                                         name="client_id"
                                         required>
-                                    <option value="">Select a client...</option>
+                                    <option value="">Select a team...</option>
                                     @foreach ($clients as $id => $name)
                                         @if (old('client_id') == $id)
                                             <option value="{{ $id }}" selected>

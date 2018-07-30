@@ -33,7 +33,7 @@
                             <a href="{{ route('clients.index') }}" class="link-unstyled">
                                 <div class="card card-dashboard mb-2">
                                     <div class="card-body">
-                                        <p class="card-text">TOTAL CLIENTS</p>
+                                        <p class="card-text">TOTAL TEAMS</p>
                                         <h2 class="card-title">
                                             <counter :count="{{ $clientCount }}"></counter>
                                         </h2>
@@ -69,7 +69,7 @@
 
                     <!-- Clients -->
                     <hr>
-                    <h3 class="text-center">CLIENTS</h3>
+                    <h3 class="text-center">TEAMS</h3>
                     <hr>
                     <clients-map :clients="{{ $clients }}" :api-key="'{{ config('services.googlemaps.key') }}'"></clients-map>
 

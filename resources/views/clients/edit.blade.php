@@ -10,7 +10,7 @@
                 <div class="card-header">
                     <i class="fas fa-users fa-lg fa-fw" aria-hidden="true"></i>
                     &nbsp;
-                    Update Client
+                    Update Team
                 </div>
 
                 <div class="card-body">

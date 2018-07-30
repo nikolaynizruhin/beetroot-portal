@@ -10,7 +10,7 @@
         },
         data() {
             return {
-                data: [['Country', 'Clients']],
+                data: [['Country', 'Teams']],
             }
         },
         mounted() {

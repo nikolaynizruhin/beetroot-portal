@@ -38,7 +38,7 @@
                     </li>
                     <li class="nav-item @routeis('clients.index') active @endrouteis">
                         <a class="nav-link" href="{{ route('clients.index') }}">
-                            Clients
+                            Teams
                             @routeis('clients.index')
                                 <span class="sr-only">(current)</span>
                             @endrouteis
@@ -77,7 +77,7 @@
                             @admin
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('users.create') }}">Add Beetroot</a>
-                                <a class="dropdown-item" href="{{ route('clients.create') }}">Add Client</a>
+                                <a class="dropdown-item" href="{{ route('clients.create') }}">Add Team</a>
                                 <a class="dropdown-item" href="{{ route('offices.create') }}">Add Location</a>
                             @endadmin
                         </div>
