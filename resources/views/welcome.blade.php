@@ -102,11 +102,11 @@
                         You're about to dive into a Beetroot family portal,
                         where all the information about your fellow beets,
                         their clients and offices is stored.
-                        Does it sound exciting? Then let's roll!
+                        Does it sound exciting?
                     </p>
 
                     <a href="@auth {{ route('dashboard') }} @else {{ @route('login') }} @endauth">
-                        Go to portal
+                        Let's roll!
                     </a>
                 </div>
             </div>
