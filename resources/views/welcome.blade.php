@@ -60,7 +60,7 @@
             }
 
             .background-image {
-                background-image: url("{{ asset('images/welcome.svg') }}");
+                background-image: url("{{ asset('images/welcome.svg', true) }}");
                 height: 100%;
                 background-position: center;
                 background-repeat: no-repeat;
