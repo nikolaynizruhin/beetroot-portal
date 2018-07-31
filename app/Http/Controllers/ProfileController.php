@@ -28,6 +28,6 @@ class ProfileController extends Controller
     {
         $user->update($request->validated());
 
-        return back()->with('status', 'The employee was successfully updated!');
+        return back()->with('status', 'The beetroot was successfully updated!');
     }
 }
