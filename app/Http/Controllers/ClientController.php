@@ -59,7 +59,7 @@ class ClientController extends Controller
     {
         Client::create($request->prepared());
 
-        return back()->with('status', 'The client was successfully created!');
+        return back()->with('status', 'The team was successfully created!');
     }
 
     /**
@@ -88,7 +88,7 @@ class ClientController extends Controller
     {
         $client->update($request->prepared());
 
-        return back()->with('status', 'The client was successfully updated!');
+        return back()->with('status', 'The team was successfully updated!');
     }
 
     /**
@@ -105,6 +105,6 @@ class ClientController extends Controller
 
         $client->delete();
 
-        return redirect()->route('clients.create')->with('status', 'The client was successfully deleted!');
+        return redirect()->route('clients.create')->with('status', 'The team was successfully deleted!');
     }
 }

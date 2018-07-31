@@ -61,7 +61,7 @@ class UserController extends Controller
     {
         User::create($request->prepared());
 
-        return back()->with('status', 'The employee was successfully created!');
+        return back()->with('status', 'The beetroot was successfully created!');
     }
 
     /**
@@ -90,7 +90,7 @@ class UserController extends Controller
     {
         $user->update($request->prepared());
 
-        return back()->with('status', 'The employee was successfully updated!');
+        return back()->with('status', 'The beetroot was successfully updated!');
     }
 
     /**
@@ -107,6 +107,6 @@ class UserController extends Controller
 
         $user->delete();
 
-        return redirect()->route('users.create')->with('status', 'The employee was successfully deleted!');
+        return redirect()->route('users.create')->with('status', 'The beetroot was successfully deleted!');
     }
 }

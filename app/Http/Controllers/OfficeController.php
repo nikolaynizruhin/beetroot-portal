@@ -57,7 +57,7 @@ class OfficeController extends Controller
     {
         Office::create($request->validated());
 
-        return back()->with('status', 'The office was successfully created!');
+        return back()->with('status', 'The location was successfully created!');
     }
 
     /**
@@ -86,7 +86,7 @@ class OfficeController extends Controller
     {
         $office->update($request->validated());
 
-        return back()->with('status', 'The office was successfully updated!');
+        return back()->with('status', 'The location was successfully updated!');
     }
 
     /**
@@ -103,6 +103,6 @@ class OfficeController extends Controller
 
         $office->delete();
 
-        return redirect()->route('offices.create')->with('status', 'The office was successfully deleted!');
+        return redirect()->route('offices.create')->with('status', 'The location was successfully deleted!');
     }
 }
