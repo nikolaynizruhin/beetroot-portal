@@ -49,6 +49,6 @@ class DeleteUserTest extends TestCase
 
         $this->actingAs($admin)
             ->delete(route('users.destroy', $userToDelete))
-            ->assertSessionHas('status', 'The employee was successfully deleted!');
+            ->assertSessionHas('status', 'The beetroot was successfully deleted!');
     }
 }

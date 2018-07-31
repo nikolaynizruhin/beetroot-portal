@@ -50,6 +50,6 @@ class DeleteOfficeTest extends TestCase
 
         $this->actingAs($admin)
             ->delete(route('offices.destroy', $office))
-            ->assertSessionHas('status', 'The office was successfully deleted!');
+            ->assertSessionHas('status', 'The location was successfully deleted!');
     }
 }

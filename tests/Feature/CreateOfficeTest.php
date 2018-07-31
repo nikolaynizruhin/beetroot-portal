@@ -75,7 +75,7 @@ class CreateOfficeTest extends TestCase
 
         $this->actingAs($admin)
             ->post(route('offices.store'), $attributes)
-            ->assertSessionHas('status', 'The office was successfully created!');
+            ->assertSessionHas('status', 'The location was successfully created!');
 
         $this->assertDatabaseHas('offices', $attributes);
     }

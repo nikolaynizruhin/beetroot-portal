@@ -87,7 +87,7 @@ class CreateUserTest extends TestCase
 
         $this->actingAs($admin)
             ->post(route('users.store'), $input)
-            ->assertSessionHas('status', 'The employee was successfully created!');
+            ->assertSessionHas('status', 'The beetroot was successfully created!');
 
         $this->assertDatabaseHas('users', $result);
 
@@ -107,7 +107,7 @@ class CreateUserTest extends TestCase
 
         $this->actingAs($admin)
             ->post(route('users.store'), $input)
-            ->assertSessionHas('status', 'The employee was successfully created!');
+            ->assertSessionHas('status', 'The beetroot was successfully created!');
 
         $this->assertDatabaseHas('users', $result);
     }

@@ -110,7 +110,7 @@ class UpdateClientTest extends TestCase
 
         $this->actingAs($admin)
             ->put(route('clients.update', $client), $input)
-            ->assertSessionHas('status', 'The client was successfully updated!');
+            ->assertSessionHas('status', 'The team was successfully updated!');
 
         $this->assertDatabaseHas('clients', $result);
 

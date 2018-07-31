@@ -147,7 +147,7 @@ class UpdateUserTest extends TestCase
 
         $this->actingAs($admin)
             ->put(route('users.update', $owner), $input)
-            ->assertSessionHas('status', 'The employee was successfully updated!');
+            ->assertSessionHas('status', 'The beetroot was successfully updated!');
 
         $this->assertDatabaseHas('users', $result);
 
@@ -164,7 +164,7 @@ class UpdateUserTest extends TestCase
 
         $this->actingAs($owner)
             ->put(route('profile.update', $owner), $input)
-            ->assertSessionHas('status', 'The employee was successfully updated!');
+            ->assertSessionHas('status', 'The beetroot was successfully updated!');
 
         $this->assertDatabaseHas('users', $result);
     }

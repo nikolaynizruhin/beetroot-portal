@@ -84,7 +84,7 @@ class UpdateOfficeTest extends TestCase
 
         $this->actingAs($admin)
             ->put(route('offices.update', $office), $attributes)
-            ->assertSessionHas('status', 'The office was successfully updated!');
+            ->assertSessionHas('status', 'The location was successfully updated!');
 
         $this->assertDatabaseHas('offices', $attributes);
     }

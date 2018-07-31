@@ -85,7 +85,7 @@ class CreateClientTest extends TestCase
 
         $this->actingAs($admin)
             ->post(route('clients.store'), $input)
-            ->assertSessionHas('status', 'The client was successfully created!');
+            ->assertSessionHas('status', 'The team was successfully created!');
 
         $this->assertDatabaseHas('clients', $result);
 
@@ -105,7 +105,7 @@ class CreateClientTest extends TestCase
 
         $this->actingAs($admin)
             ->post(route('clients.store'), $input)
-            ->assertSessionHas('status', 'The client was successfully created!');
+            ->assertSessionHas('status', 'The team was successfully created!');
 
         $this->assertDatabaseHas('clients', $result);
     }
