@@ -34,6 +34,24 @@ class BirthdayFiltersTest extends TestCase
     }
 
     /** @test */
+    public function it_sorts_birthdays_by_month_and_day()
+    {
+        $john = factory(User::class)->create([
+            'name' => 'John Doe',
+            'birthday' => '2015-12-01',
+        ]);
+
+        $jane = factory(User::class)->create([
+            'name' => 'Jane Doe',
+            'birthday' => '2015-01-12',
+        ]);
+
+        $this->actingAs($john)
+            ->get(route('birthdays.index'))
+            ->assertSeeInOrder([$jane->name, $john->name]);
+    }
+
+    /** @test */
     public function guest_can_not_filter_birthdays_by_office()
     {
         $this->get(route('birthdays.index', ['office' => 'London']))

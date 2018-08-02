@@ -57,7 +57,7 @@ class UserTest extends TestCase
     {
         $user = factory(User::class)->create(['birthday' => '2000-01-01']);
 
-        $this->assertEquals($user->month_day_of_birth, 11);
+        $this->assertEquals($user->month_day_of_birth, '0101');
     }
 
     /** @test */
