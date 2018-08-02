@@ -37,26 +37,22 @@
             .content {
                 text-align: center;
                 max-width: 768px;
-                padding: 0 15px;
+                padding: 0 20px;
             }
 
             .title {
-                font-size: 60px;
+                font-size: 56px;
                 font-weight: 500;
             }
 
             .subtitle {
-                font-size: 30px;
+                font-size: 26px;
                 font-weight: 300;
             }
 
             a {
                 color: #A51140;
                 font-size: 24px;
-            }
-
-            .m-b-md {
-                margin-bottom: 20px;
             }
 
             .background-image {
@@ -69,15 +65,11 @@
 
             @media (max-width: 768px) {
                 .title {
-                    font-size: 36px;
+                    font-size: 32px;
                 }
 
                 .subtitle {
                     font-size: 24px;
-                }
-
-                .content {
-                    max-width: 90%;
                 }
 
                 a {
@@ -93,7 +85,7 @@
         <div class="flex-center full-height">
 
             <div class="content">
-                <div class="title m-b-md">
+                <div class="title">
                     Look who's here!
                 </div>
 
