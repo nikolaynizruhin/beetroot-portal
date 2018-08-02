@@ -51,6 +51,7 @@ class Position
         'Ruby/Rails Developer',
         'Sales Manager',
         'Scala Developer',
+        'Site Builder',
         'Swift Developer',
         'SysAdmin',
         'Unity Developer',
