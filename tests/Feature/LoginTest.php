@@ -61,11 +61,7 @@ class LoginTest extends TestCase
             'password' => 'secret',
             'remember' => 'on',
         ])->assertRedirect(route('dashboard'))
-            ->assertCookie(Auth::guard()->getRecallerName(), vsprintf('%s|%s|%s', [
-                $user->id,
-                $user->getRememberToken(),
-                $user->password,
-            ]));
+            ->assertCookieNotExpired(Auth::guard()->getRecallerName());
 
         $this->assertAuthenticatedAs($user);
     }

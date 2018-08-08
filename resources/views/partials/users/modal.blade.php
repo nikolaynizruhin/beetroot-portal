@@ -126,12 +126,20 @@
                                 {{ $user->birthday->format('d F Y') }}
                             </p>
 
+                            <!-- First day at Beetroot -->
+                            <p>
+                                <i aria-hidden="true" class="fas fa-briefcase fa-fw"></i>
+                                &nbsp;
+                                {{ $user->created_at->format('d F Y') }}
+                            </p>
+
                             <!-- Office -->
                             <p>
                                 <i aria-hidden="true" class="fas fa-map-marker-alt fa-fw"></i>
                                 &nbsp;
                                 {{ $user->office->city }}
                             </p>
+
                         </div>
                     </div>
 
