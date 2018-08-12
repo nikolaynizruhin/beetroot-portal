@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\User;
 use App\Utilities\Image;
 use Illuminate\Validation\Rule;
 use App\Http\Utilities\Position;
@@ -41,6 +42,10 @@ class UpdateUser extends FormRequest
                 'string',
                 'max:255',
                 Rule::in(Position::all()),
+            ],
+            'gender' => [
+                'required',
+                Rule::in([User::MALE, User::FEMALE]),
             ],
             'birthday' => 'required|date',
             'created_at' => 'required|date',

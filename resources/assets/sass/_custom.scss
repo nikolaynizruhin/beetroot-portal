@@ -35,7 +35,8 @@ html {
       outline: none;
     }
 
-    label.col-form-label small {
+    label.col-form-label small,
+    legend.col-form-label small {
       color: #A51140;
     }
 

@@ -73,6 +73,46 @@
                             </div>
                         </div>
 
+                        <!-- Gender -->
+                        <fieldset class="form-group">
+                            <div class="row">
+                                <legend class="col-form-label col-md-4 text-md-right pt-0">
+                                    Gender <small>*</small>
+                                </legend>
+                                <div class="col-md-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input{{ $errors->has('gender') ? ' is-invalid' : '' }}"
+                                               type="radio"
+                                               name="gender"
+                                               id="gender-male"
+                                               value="male"
+                                               checked
+                                               required>
+                                        <label class="form-check-label" for="gender-male">
+                                            Male
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input{{ $errors->has('gender') ? ' is-invalid' : '' }}"
+                                               type="radio"
+                                               name="gender"
+                                               id="gender-female"
+                                               value="female"
+                                               required>
+                                        <label class="form-check-label" for="gender-female">
+                                            Female
+                                        </label>
+
+                                        @if ($errors->has('gender'))
+                                            <div class="invalid-feedback">
+                                                {{ $errors->first('gender') }}
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+
                         <!-- Name -->
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">

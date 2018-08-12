@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 use Faker\Generator as Faker;
 use App\Http\Utilities\Position;
 
@@ -14,11 +15,12 @@ use App\Http\Utilities\Position;
 |
 */
 
-$factory->define(App\User::class, function (Faker $faker) {
+$factory->define(User::class, function (Faker $faker) {
     $userName = $faker->unique()->userName;
 
     return [
         'name' => $faker->name,
+        'gender' => $faker->randomElement([User::MALE, User::FEMALE]),
         'email' => $userName.'@beetroot.se',
         'avatar' => 'avatars/default.png',
         'position' => $faker->randomElement(Position::all()),

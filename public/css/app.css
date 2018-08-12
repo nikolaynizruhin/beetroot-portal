@@ -10515,7 +10515,8 @@ html body button.close[data-dismiss="modal"]:focus {
   outline: none;
 }
 
-html body label.col-form-label small {
+html body label.col-form-label small,
+html body legend.col-form-label small {
   color: #A51140;
 }
 

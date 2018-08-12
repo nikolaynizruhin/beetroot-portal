@@ -36,6 +36,10 @@ class StoreUser extends FormRequest
                 'max:255',
                 Rule::in(Position::all()),
             ],
+            'gender' => [
+                'required',
+                Rule::in([User::MALE, User::FEMALE]),
+            ],
             'birthday' => 'required|date',
             'created_at' => 'required|date',
             'avatar' => 'image',

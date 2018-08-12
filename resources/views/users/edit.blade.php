@@ -82,6 +82,47 @@
                                     @endif
                                 </div>
                             </div>
+
+                            <!-- Gender -->
+                            <fieldset class="form-group">
+                                <div class="row">
+                                    <legend class="col-form-label col-md-4 text-md-right pt-0">
+                                        Gender <small>*</small>
+                                    </legend>
+                                    <div class="col-md-6">
+                                        <div class="form-check">
+                                            <input class="form-check-input{{ $errors->has('gender') ? ' is-invalid' : '' }}"
+                                                   type="radio"
+                                                   name="gender"
+                                                   id="gender-male"
+                                                   value="male"
+                                                   {{ old('gender', $user->gender) === 'male' ? 'checked' : '' }}
+                                                   required>
+                                            <label class="form-check-label" for="gender-male">
+                                                Male
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input{{ $errors->has('gender') ? ' is-invalid' : '' }}"
+                                                   type="radio"
+                                                   name="gender"
+                                                   id="gender-female"
+                                                   value="female"
+                                                   {{ old('gender', $user->gender) === 'female' ? 'checked' : '' }}
+                                                   required>
+                                            <label class="form-check-label" for="gender-female">
+                                                Female
+                                            </label>
+
+                                            @if ($errors->has('gender'))
+                                                <div class="invalid-feedback">
+                                                    {{ $errors->first('gender') }}
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
                         @endadmin
 
                         <!-- Name -->

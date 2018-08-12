@@ -18,6 +18,20 @@ class User extends Authenticatable
     const DEFAULT_AVATAR = 'avatars/default.png';
 
     /**
+     * Constant representing a male.
+     *
+     * @var string
+     */
+    const MALE = 'male';
+
+    /**
+     * Constant representing a female.
+     *
+     * @var string
+     */
+    const FEMALE = 'female';
+
+    /**
      * The list of sorts.
      *
      * @var array

@@ -121,6 +121,7 @@ class CreateUserTest extends TestCase
             ->post(route('users.store'))
             ->assertSessionHasErrors([
                 'name',
+                'gender',
                 'email',
                 'position',
                 'birthday',
