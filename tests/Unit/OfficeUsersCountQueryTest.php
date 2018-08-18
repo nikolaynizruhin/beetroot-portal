@@ -5,7 +5,6 @@ namespace Tests\Unit;
 use App\User;
 use Tests\TestCase;
 use App\Queries\OfficeUsersCountQuery;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class OfficeUsersCountQueryTest extends TestCase

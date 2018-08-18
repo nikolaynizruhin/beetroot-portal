@@ -8,8 +8,8 @@ use App\Office;
 use App\Queries\ClientCountQuery;
 use App\Queries\GenderCountQuery;
 use App\Queries\PositionCountQuery;
-use App\Queries\UserCountPerYearQuery;
 use App\Queries\OfficeUsersCountQuery;
+use App\Queries\UserCountPerYearQuery;
 use Illuminate\Contracts\Support\Responsable;
 
 class Dashboard implements Responsable
