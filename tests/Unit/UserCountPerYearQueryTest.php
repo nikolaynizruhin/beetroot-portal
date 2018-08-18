@@ -5,7 +5,6 @@ namespace Tests\Unit;
 use App\User;
 use Tests\TestCase;
 use App\Queries\UserCountPerYearQuery;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UserCountPerYearQueryTest extends TestCase
@@ -20,7 +19,7 @@ class UserCountPerYearQueryTest extends TestCase
         $collection = resolve(UserCountPerYearQuery::class)();
 
         $this->assertEquals($collection->all(), [
-            $user->year_of_created => 1
+            $user->year_of_created => 1,
         ]);
     }
 }
