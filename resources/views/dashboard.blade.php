@@ -57,9 +57,29 @@
                         </div>
                     </div>
 
+                    <!-- Grow -->
+                    <hr>
+                    <h3 class="text-center">GROW</h3>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <grow-chart :users-per-year="{{ $usersPerYear }}"></grow-chart>
+                        </div>
+                    </div>
+
+                    <!-- Gender -->
+                    <hr>
+                    <h3 class="text-center">GENDER</h3>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <gender-chart :genders="{{ $genders }}"></gender-chart>
+                        </div>
+                    </div>
+
                     <!-- Top Positions -->
                     <hr>
-                    <h3 class="text-center">TOP 5 POSITIONS</h3>
+                    <h3 class="text-center">TOP POSITIONS</h3>
                     <hr>
                     <div class="row">
                         <div class="col-md-12">

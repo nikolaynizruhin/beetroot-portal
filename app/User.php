@@ -144,6 +144,16 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the year of created at.
+     *
+     * @return string
+     */
+    public function getYearOfCreatedAttribute()
+    {
+        return $this->created_at->format('Y');
+    }
+
+    /**
      * Get list of sorts.
      *
      * @return array

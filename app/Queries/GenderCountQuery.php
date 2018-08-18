@@ -4,7 +4,7 @@ namespace App\Queries;
 
 use Illuminate\Support\Facades\DB;
 
-class OfficeEmployeeCountQuery
+class GenderCountQuery
 {
     /**
      * Call an object as a function.
@@ -13,10 +13,10 @@ class OfficeEmployeeCountQuery
      */
     public function __invoke()
     {
-        return DB::table('offices')
-            ->select('offices.city', DB::raw('COUNT(*) as employee_count'))
-            ->join('users', 'offices.id', '=', 'users.office_id')
-            ->groupBy('users.office_id')
+        return DB::table('users')
+            ->select('gender', DB::raw('COUNT(*) as count'))
+            ->groupBy('gender')
+            ->orderBy('count', 'desc')
             ->get();
     }
 }

@@ -41,7 +41,7 @@
         methods: {
             init() {
                 this.offices.forEach((office) => {
-                    this.data.push([office.city, office.employee_count]);
+                    this.data.push([office.city, office.users_count]);
                 });
             }
         }

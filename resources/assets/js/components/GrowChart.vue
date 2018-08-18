@@ -5,32 +5,30 @@
 <script>
     export default {
         props: {
-            positions: Array
+            usersPerYear: Object
         },
         data() {
             return {
+                label: 'Beetroots',
                 labels: [],
                 data: [],
-                backgroundColor: [
-                    '#A51140',
-                    '#E06287',
-                    '#E3E3DD',
-                    '#EDB700',
-                    '#7D6378',
-                    '#3D3935',
-                ],
+                borderColor: '#A51140',
+                pointBackgroundColor: '#FFF',
             }
         },
         mounted() {
             this.init();
 
             new Chart(this.$el, {
-                type: 'bar',
+                type: 'line',
                 data: {
                     labels: this.labels,
                     datasets: [{
+                        label: this.label,
                         data: this.data,
-                        backgroundColor: this.backgroundColor,
+                        borderColor: this.borderColor,
+                        pointBackgroundColor: this.pointBackgroundColor,
+                        fill: false
                     }],
                 },
                 options: {
@@ -54,10 +52,10 @@
         },
         methods: {
             init() {
-                this.positions.forEach(position => {
-                    this.labels.push(position.title.replace(' Developer', ''));
-                    this.data.push(position.count);
-                });
+                for (const year in this.usersPerYear) {
+                    this.labels.push(year);
+                    this.data.push(this.usersPerYear[year]);
+                }
             }
         }
     }

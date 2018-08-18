@@ -4,7 +4,7 @@ namespace App\Queries;
 
 use Illuminate\Support\Facades\DB;
 
-class PositionCountQuery
+class OfficeUsersCountQuery
 {
     /**
      * Call an object as a function.
@@ -13,11 +13,10 @@ class PositionCountQuery
      */
     public function __invoke()
     {
-        return DB::table('users')
-            ->select('position as title', DB::raw('COUNT(*) as count'))
-            ->groupBy('position')
-            ->orderBy('count', 'desc')
-            ->limit(6)
+        return DB::table('offices')
+            ->select('offices.city', DB::raw('COUNT(*) as users_count'))
+            ->join('users', 'offices.id', '=', 'users.office_id')
+            ->groupBy('users.office_id')
             ->get();
     }
 }

@@ -6,8 +6,10 @@ use App\User;
 use App\Client;
 use App\Office;
 use App\Queries\ClientCountQuery;
+use App\Queries\GenderCountQuery;
 use App\Queries\PositionCountQuery;
-use App\Queries\OfficeEmployeeCountQuery;
+use App\Queries\UserCountPerYearQuery;
+use App\Queries\OfficeUsersCountQuery;
 use Illuminate\Contracts\Support\Responsable;
 
 class Dashboard implements Responsable
@@ -43,6 +45,26 @@ class Dashboard implements Responsable
     }
 
     /**
+     * Get employee per year collection.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function usersPerYear()
+    {
+        return resolve(UserCountPerYearQuery::class)();
+    }
+
+    /**
+     * Get gender count collection.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function genders()
+    {
+        return resolve(GenderCountQuery::class)();
+    }
+
+    /**
      * Get position count collection.
      *
      * @return \Illuminate\Database\Eloquent\Collection
@@ -69,7 +91,7 @@ class Dashboard implements Responsable
      */
     public function offices()
     {
-        return resolve(OfficeEmployeeCountQuery::class)();
+        return resolve(OfficeUsersCountQuery::class)();
     }
 
     /**
@@ -87,6 +109,8 @@ class Dashboard implements Responsable
             'positions' => $this->positions(),
             'clients' => $this->clients(),
             'offices' => $this->offices(),
+            'genders' => $this->genders(),
+            'usersPerYear' => $this->usersPerYear(),
         ]);
     }
 }

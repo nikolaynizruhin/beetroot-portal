@@ -16,8 +16,10 @@ window.Vue = require('vue');
  */
 
 Vue.component('positions-chart', require('./components/PositionsChart.vue'));
+Vue.component('gender-chart', require('./components/GenderChart.vue'));
 Vue.component('clients-map', require('./components/ClientsMap.vue'));
 Vue.component('offices-map', require('./components/OfficesMap.vue'));
+Vue.component('grow-chart', require('./components/GrowChart.vue'));
 Vue.component('counter', require('./components/Counter.vue'));
 
 const app = new Vue({
