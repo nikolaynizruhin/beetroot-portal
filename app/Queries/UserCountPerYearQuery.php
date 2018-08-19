@@ -15,9 +15,6 @@ class UserCountPerYearQuery
     {
         return User::all()
             ->groupBy('year_of_created')
-            ->sortBy(function ($users, $year) {
-                return $year;
-            })
             ->map(function ($users, $year) {
                 return User::whereYear('created_at', '<=', $year)->count();
             });
