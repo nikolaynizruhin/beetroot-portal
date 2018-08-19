@@ -11,13 +11,13 @@ class PositionCountQuery
      *
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function __invoke()
+    public function __invoke($limit = 6)
     {
         return DB::table('users')
             ->select('position as title', DB::raw('COUNT(*) as count'))
             ->groupBy('position')
             ->orderBy('count', 'desc')
-            ->limit(6)
+            ->limit($limit)
             ->get();
     }
 }
