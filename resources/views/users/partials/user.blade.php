@@ -1,6 +1,6 @@
 <div class="row mb-3">
 
-    @include('partials.users.modal')
+    @include('users.partials.modal')
 
     <div class="col-md-4">
 

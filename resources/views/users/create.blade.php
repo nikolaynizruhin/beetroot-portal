@@ -13,7 +13,7 @@
 
                 <div class="card-body">
 
-                    @include('partials.flash')
+                    @include('layouts.partials.flash')
 
                     <!-- Profile Avatar -->
                     <img src="{{ asset('storage/avatars/default.png') }}"

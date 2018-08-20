@@ -24,13 +24,13 @@
 </head>
 <body>
     <div id="app">
-        @include('partials.nav')
+        @include('layouts.partials.nav')
 
         <main class="py-4">
             @yield('content')
         </main>
 
-        @include('partials.footer')
+        @include('layouts.partials.footer')
     </div>
 </body>
 </html>

@@ -14,10 +14,10 @@
                     <div class="card-body">
 
                         <!-- Filters -->
-                        @include('partials.clients.filters')
+                        @include('clients.partials.filters')
 
                         <!-- Client List -->
-                        @each('partials.clients.client', $clients, 'client', 'partials.clients.empty')
+                        @each('clients.partials.client', $clients, 'client', 'clients.partials.empty')
 
                         <!-- Pagination -->
                         <div class="d-flex justify-content-center">

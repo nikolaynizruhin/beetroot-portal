@@ -14,10 +14,10 @@
                     <div class="card-body">
 
                         <!-- Filters -->
-                        @include('partials.birthdays.filters')
+                        @include('birthdays.partials.filters')
 
                         <!-- Birthday List -->
-                        @include('partials.birthdays.list')
+                        @include('birthdays.partials.list')
 
                     </div>
                 </div>

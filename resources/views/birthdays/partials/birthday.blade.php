@@ -1,6 +1,6 @@
 <div class="col-md-4">
 
-    @include('partials.users.modal')
+    @include('users.partials.modal')
 
     <div class="media my-1">
 

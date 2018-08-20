@@ -14,7 +14,7 @@
                     <div class="card-body">
 
                         <!-- Office List -->
-                        @each('partials.offices.office', $offices, 'office', 'partials.offices.empty')
+                        @each('offices.partials.office', $offices, 'office', 'offices.partials.empty')
 
                         <!-- Pagination -->
                         <div class="d-flex justify-content-center">

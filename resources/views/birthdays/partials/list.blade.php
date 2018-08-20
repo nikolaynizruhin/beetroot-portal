@@ -12,7 +12,7 @@
 
             @foreach ($users->chunk(3) as $chunk)
                 <div class="row">
-                    @each('partials.birthdays.birthday', $chunk, 'user')
+                    @each('birthdays.partials.birthday', $chunk, 'user')
                 </div>
             @endforeach
 

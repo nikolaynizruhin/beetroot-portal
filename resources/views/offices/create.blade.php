@@ -15,7 +15,7 @@
 
                 <div class="card-body">
 
-                    @include('partials.flash')
+                    @include('layouts.partials.flash')
 
                     <form method="POST" action="{{ route('offices.store') }}">
                         @csrf

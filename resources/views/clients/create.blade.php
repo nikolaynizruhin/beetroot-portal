@@ -15,7 +15,7 @@
 
                 <div class="card-body">
 
-                    @include('partials.flash')
+                    @include('layouts.partials.flash')
 
                     <!-- Client Logo -->
                     <img src="{{ asset('storage/logos/default.png') }}"
