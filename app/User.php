@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Scopes\NameScope;
 use App\Filters\Filterable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -99,19 +100,6 @@ class User extends Authenticatable
     }
 
     /**
-     * Scope a query to order users by default.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeDefaultOrder($query, $field, $order)
-    {
-        return $query->getQuery()->orders
-            ? $query
-            : $query->orderBy($field, $order);
-    }
-
-    /**
      * Scope a query to only include users of a given position.
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
@@ -161,5 +149,17 @@ class User extends Authenticatable
     public static function sorts()
     {
         return static::$sorts;
+    }
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope(new NameScope);
     }
 }

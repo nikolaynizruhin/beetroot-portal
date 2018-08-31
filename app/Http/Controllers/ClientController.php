@@ -29,7 +29,6 @@ class ClientController extends Controller
     {
         $clients = Client::withCount('users')
             ->filter($filters)
-            ->orderBy('name', 'asc')
             ->paginate(15);
 
         return view('clients.index')->with('clients', $clients);

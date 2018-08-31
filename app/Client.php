@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Scopes\NameScope;
 use App\Filters\Filterable;
 use Illuminate\Database\Eloquent\Model;
 
@@ -31,5 +32,17 @@ class Client extends Model
     public function users()
     {
         return $this->hasMany(User::class);
+    }
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope(new NameScope);
     }
 }
