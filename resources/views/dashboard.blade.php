@@ -59,7 +59,7 @@
 
                     <!-- Grow -->
                     <hr>
-                    <h3 class="text-center">GROW</h3>
+                    <h3 class="text-center">HOW DID BEETROOT GROW?</h3>
                     <hr>
                     <div class="row">
                         <div class="col-md-12">
