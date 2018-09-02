@@ -51,5 +51,7 @@ class DeleteClientTest extends TestCase
         $this->actingAs($admin)
             ->delete(route('clients.destroy', $client))
             ->assertSessionHas('status', 'The team was successfully deleted!');
+
+        $this->assertDatabaseMissing('users', $client->toArray());
     }
 }
