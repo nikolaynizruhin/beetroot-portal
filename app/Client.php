@@ -5,6 +5,7 @@ namespace App;
 use App\Scopes\NameScope;
 use App\Filters\Filterable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Client extends Model
 {
@@ -44,5 +45,11 @@ class Client extends Model
         parent::boot();
 
         static::addGlobalScope(new NameScope);
+
+        static::deleting(function ($client) {
+            if ($client->logo !== self::DEFAULT_LOGO) {
+                Storage::delete($client->logo);
+            }
+        });
     }
 }

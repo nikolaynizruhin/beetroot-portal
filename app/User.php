@@ -4,6 +4,7 @@ namespace App;
 
 use App\Scopes\NameScope;
 use App\Filters\Filterable;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -161,5 +162,11 @@ class User extends Authenticatable
         parent::boot();
 
         static::addGlobalScope(new NameScope);
+
+        static::deleting(function ($user) {
+            if ($user->avatar !== self::DEFAULT_AVATAR) {
+                Storage::delete($user->avatar);
+            }
+        });
     }
 }

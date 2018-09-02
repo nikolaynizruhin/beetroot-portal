@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\User;
 use Tests\TestCase;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class DeleteUserTest extends TestCase
@@ -52,5 +53,20 @@ class DeleteUserTest extends TestCase
             ->assertSessionHas('status', 'The beetroot was successfully deleted!');
 
         $this->assertDatabaseMissing('users', $userToDelete->toArray());
+    }
+
+    /** @test */
+    public function avatar_should_be_deleted_along_with_user()
+    {
+        Storage::fake('public');
+
+        $userToDelete = factory(User::class)->create();
+        $admin = factory(User::class)->states('admin')->create();
+
+        $this->actingAs($admin)
+            ->delete(route('users.destroy', $userToDelete))
+            ->assertSessionHas('status', 'The beetroot was successfully deleted!');
+
+        Storage::disk('public')->assertMissing($userToDelete->avatar);
     }
 }

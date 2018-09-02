@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\User;
 use App\Client;
 use Tests\TestCase;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class DeleteClientTest extends TestCase
@@ -53,5 +54,20 @@ class DeleteClientTest extends TestCase
             ->assertSessionHas('status', 'The team was successfully deleted!');
 
         $this->assertDatabaseMissing('users', $client->toArray());
+    }
+
+    /** @test */
+    public function logo_should_be_deleted_along_with_client()
+    {
+        Storage::fake('public');
+
+        $client = factory(Client::class)->create();
+        $admin = factory(User::class)->states('admin')->create();
+
+        $this->actingAs($admin)
+            ->delete(route('clients.destroy', $client))
+            ->assertSessionHas('status', 'The team was successfully deleted!');
+
+        Storage::disk('public')->assertMissing($client->logo);
     }
 }
