@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\User;
 use Tests\TestCase;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -60,7 +61,11 @@ class DeleteUserTest extends TestCase
     {
         Storage::fake('public');
 
-        $userToDelete = factory(User::class)->create();
+        $avatar = UploadedFile::fake()
+            ->image('avatar.jpg')
+            ->store('avatars');
+
+        $userToDelete = factory(User::class)->create(['avatar' => $avatar]);
         $admin = factory(User::class)->states('admin')->create();
 
         $this->actingAs($admin)

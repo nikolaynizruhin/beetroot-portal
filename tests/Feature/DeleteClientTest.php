@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\User;
 use App\Client;
 use Tests\TestCase;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -61,7 +62,11 @@ class DeleteClientTest extends TestCase
     {
         Storage::fake('public');
 
-        $client = factory(Client::class)->create();
+        $logo = UploadedFile::fake()
+            ->image('logo.jpg')
+            ->store('logos');
+
+        $client = factory(Client::class)->create(['logo' => $logo]);
         $admin = factory(User::class)->states('admin')->create();
 
         $this->actingAs($admin)
