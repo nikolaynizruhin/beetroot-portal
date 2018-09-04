@@ -12,7 +12,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class ClearAvatarsTest extends TestCase
 {
     use RefreshDatabase;
-    
+
     /** @test */
     public function it_can_clear_unused_avatars()
     {
