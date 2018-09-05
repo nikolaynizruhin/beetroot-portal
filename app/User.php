@@ -4,11 +4,9 @@ namespace App;
 
 use App\Scopes\NameScope;
 use App\Filters\Filterable;
-use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
 
 class User extends Authenticatable
 {
