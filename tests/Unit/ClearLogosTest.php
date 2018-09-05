@@ -28,11 +28,10 @@ class ClearLogosTest extends TestCase
 
         factory(Client::class)->create(['logo' => $used]);
 
-        Artisan::call('logo:clear');
+        $this->artisan('logo:clear')
+            ->assertExitCode(0);
 
         Storage::disk('public')->assertMissing($unused);
         Storage::disk('public')->assertExists($used);
-
-        $this->assertEquals(Artisan::output(), "(1) Unused logos was removed successfully!\n");
     }
 }

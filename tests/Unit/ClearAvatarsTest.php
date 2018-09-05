@@ -28,11 +28,10 @@ class ClearAvatarsTest extends TestCase
 
         factory(User::class)->create(['avatar' => $used]);
 
-        Artisan::call('avatar:clear');
+        $this->artisan('avatar:clear')
+            ->assertExitCode(0);
 
         Storage::disk('public')->assertMissing($unused);
         Storage::disk('public')->assertExists($used);
-
-        $this->assertEquals(Artisan::output(), "(1) Unused avatars was removed successfully!\n");
     }
 }
