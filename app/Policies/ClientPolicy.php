@@ -11,20 +11,6 @@ class ClientPolicy
     use HandlesAuthorization;
 
     /**
-     * Determine whether the admin user have all the permissions.
-     *
-     * @param  \App\User  $user
-     * @param  $ability
-     * @return mixed
-     */
-    public function before($user, $ability)
-    {
-        if ($user->is_admin) {
-            return true;
-        }
-    }
-
-    /**
      * Determine whether the user can create clients.
      *
      * @param  \App\User  $user

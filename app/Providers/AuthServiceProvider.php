@@ -8,6 +8,7 @@ use App\Office;
 use App\Policies\UserPolicy;
 use App\Policies\ClientPolicy;
 use App\Policies\OfficePolicy;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -32,6 +33,10 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::before(function ($user, $ability) {
+            if ($user->is_admin) {
+                return true;
+            }
+        });
     }
 }
