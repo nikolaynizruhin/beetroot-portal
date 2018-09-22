@@ -13,7 +13,7 @@ class OfficeTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function an_office_has_many_users()
+    public function it_has_many_users()
     {
         $office = factory(Office::class)->create();
         $user = factory(User::class)->create(['office_id' => $office->id]);

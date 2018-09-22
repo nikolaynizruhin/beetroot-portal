@@ -1,34 +1,34 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Console;
 
-use App\User;
+use App\Client;
 use Tests\TestCase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class ClearAvatarsTest extends TestCase
+class ClearLogosTest extends TestCase
 {
     use RefreshDatabase;
 
     /** @test */
-    public function it_can_clear_unused_avatars()
+    public function it_can_clear_unused_logos()
     {
         Storage::fake('public');
 
         $unused = UploadedFile::fake()
             ->image('unused.jpg')
-            ->store('avatars');
+            ->store('logos');
 
         $used = UploadedFile::fake()
             ->image('used.jpg')
-            ->store('avatars');
+            ->store('logos');
 
-        factory(User::class)->create(['avatar' => $used]);
+        factory(Client::class)->create(['logo' => $used]);
 
-        $this->artisan('avatar:clear')
-            ->expectsOutput('(1) Unused avatars was removed successfully!')
+        $this->artisan('logo:clear')
+            ->expectsOutput('(1) Unused logos was removed successfully!')
             ->assertExitCode(0);
 
         Storage::disk('public')->assertMissing($unused);

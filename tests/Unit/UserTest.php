@@ -13,7 +13,7 @@ class UserTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function a_user_has_a_client()
+    public function it_has_a_client()
     {
         $user = factory(User::class)->create();
         $client = Client::first();
@@ -23,7 +23,7 @@ class UserTest extends TestCase
     }
 
     /** @test */
-    public function a_user_has_an_office()
+    public function it_has_an_office()
     {
         $user = factory(User::class)->create();
         $office = Office::first();
@@ -33,7 +33,7 @@ class UserTest extends TestCase
     }
 
     /** @test */
-    public function a_user_can_be_an_admin()
+    public function it_can_be_an_admin()
     {
         $user = factory(User::class)->states('admin')->create();
 
@@ -41,7 +41,7 @@ class UserTest extends TestCase
     }
 
     /** @test */
-    public function a_user_can_determine_an_avatar()
+    public function it_can_determine_an_avatar()
     {
         $user = factory(User::class)->create();
 
@@ -53,7 +53,7 @@ class UserTest extends TestCase
     }
 
     /** @test */
-    public function a_user_has_a_month_day_of_birth_attribute()
+    public function it_has_a_month_day_of_birth_attribute()
     {
         $user = factory(User::class)->create(['birthday' => '2000-01-01']);
 
@@ -61,7 +61,7 @@ class UserTest extends TestCase
     }
 
     /** @test */
-    public function a_user_has_a_name_of_the_month_of_birth_attribute()
+    public function it_has_a_name_of_the_month_of_birth_attribute()
     {
         $user = factory(User::class)->create(['birthday' => '2000-01-01']);
 

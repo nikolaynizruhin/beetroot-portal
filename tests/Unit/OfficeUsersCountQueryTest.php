@@ -12,7 +12,7 @@ class OfficeUsersCountQueryTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function it_can_get_office_users_count()
+    public function it_can_get_office_user_count()
     {
         $user = factory(User::class)->create();
 

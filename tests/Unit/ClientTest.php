@@ -13,7 +13,7 @@ class ClientTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function a_client_has_many_users()
+    public function it_has_many_users()
     {
         $client = factory(Client::class)->create();
         $user = factory(User::class)->create(['client_id' => $client->id]);
@@ -23,7 +23,7 @@ class ClientTest extends TestCase
     }
 
     /** @test */
-    public function a_client_can_determine_a_logo()
+    public function it_can_determine_a_logo()
     {
         $client = factory(Client::class)->create();
 
