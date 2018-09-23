@@ -58,7 +58,9 @@ class UserController extends Controller
      */
     public function store(StoreUser $request)
     {
-        User::create($request->prepared());
+        $user = User::create($request->prepared());
+
+        $user->sendWelcomeNotification($request->password);
 
         return back()->with('status', 'The beetroot was successfully created!');
     }

@@ -4,9 +4,11 @@ namespace Tests\Feature;
 
 use App\User;
 use Tests\TestCase;
+use App\Notifications\WelcomeNotification;
 use Illuminate\Http\UploadedFile;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CreateUserTest extends TestCase
@@ -107,6 +109,29 @@ class CreateUserTest extends TestCase
     }
 
     /** @test */
+    public function it_should_send_welcome_email_when_user_created()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $user = factory(User::class)->states('admin')->make()
+            ->makeHidden(['avatar', 'accepted_at'])
+            ->toArray();
+
+        Notification::fake();
+
+        $this->actingAs($admin)
+            ->post(route('users.store'), $input = $this->input($user))
+            ->assertSessionHas('status', 'The beetroot was successfully created!');
+
+        Notification::assertSentTo(
+            User::whereEmail($input['email'])->first(),
+            WelcomeNotification::class,
+            function ($notification, $channels) use ($input) {
+                return $notification->password === $input['password'];
+            }
+        );
+    }
+
+    /** @test */
     public function some_of_user_fields_are_required()
     {
         $admin = factory(User::class)->states('admin')->create();
@@ -153,23 +178,10 @@ class CreateUserTest extends TestCase
      */
     protected function result($user, $file = null)
     {
-        $user['avatar'] = $this->avatar($file);
+        $user['avatar'] = $file ? 'avatars/'.$file->hashName() : User::DEFAULT_AVATAR;
 
         unset($user['password'], $user['password_confirmation']);
 
         return $user;
-    }
-
-    /**
-     * Get avatar path.
-     *
-     * @param  object|null  $file
-     * @return string
-     */
-    protected function avatar($file)
-    {
-        return $file
-            ? 'avatars/'.$file->hashName()
-            : User::DEFAULT_AVATAR;
     }
 }

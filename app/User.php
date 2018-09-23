@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Notifications\WelcomeNotification;
 use App\Scopes\NameScope;
 use App\Filters\Filterable;
 use Illuminate\Support\Facades\Storage;
@@ -150,6 +151,17 @@ class User extends Authenticatable
     public static function sorts()
     {
         return static::$sorts;
+    }
+
+    /**
+     * Send the welcome notification.
+     *
+     * @param  string  $password
+     * @return void
+     */
+    public function sendWelcomeNotification($password)
+    {
+        $this->notify(new WelcomeNotification($password));
     }
 
     /**
