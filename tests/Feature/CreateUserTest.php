@@ -4,10 +4,10 @@ namespace Tests\Feature;
 
 use App\User;
 use Tests\TestCase;
-use App\Notifications\WelcomeNotification;
 use Illuminate\Http\UploadedFile;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
+use App\Notifications\WelcomeNotification;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 

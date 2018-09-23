@@ -2,11 +2,11 @@
 
 namespace App;
 
-use App\Notifications\WelcomeNotification;
 use App\Scopes\NameScope;
 use App\Filters\Filterable;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
+use App\Notifications\WelcomeNotification;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
