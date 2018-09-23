@@ -24,16 +24,6 @@ class ClearAvatars extends Command
     protected $description = 'Remove unused avatars';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * Execute the console command.
      *
      * @return mixed
@@ -58,10 +48,7 @@ class ClearAvatars extends Command
      */
     protected function getUsedAvatars()
     {
-        $used = DB::table('users')
-            ->select('avatar')
-            ->get()
-            ->pluck('avatar');
+        $used = User::pluck('avatar');
 
         if (! $used->contains(User::DEFAULT_AVATAR)) {
             $used->push(User::DEFAULT_AVATAR);

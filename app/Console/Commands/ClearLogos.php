@@ -24,16 +24,6 @@ class ClearLogos extends Command
     protected $description = 'Remove unused logos';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * Execute the console command.
      *
      * @return mixed
@@ -58,10 +48,7 @@ class ClearLogos extends Command
      */
     protected function getUsedLogos()
     {
-        $used = DB::table('clients')
-            ->select('logo')
-            ->get()
-            ->pluck('logo');
+        $used = Client::pluck('logo');
 
         if (! $used->contains(Client::DEFAULT_LOGO)) {
             $used->push(Client::DEFAULT_LOGO);
