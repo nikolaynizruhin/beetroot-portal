@@ -82,14 +82,11 @@ class CreateUserTest extends TestCase
 
         Image::shouldReceive('make->fit->save')->once();
 
-        $input = $this->input($user, $file);
-        $result = $this->result($user, $file);
-
         $this->actingAs($admin)
-            ->post(route('users.store'), $input)
+            ->post(route('users.store'), $this->input($user, $file))
             ->assertSessionHas('status', 'The beetroot was successfully created!');
 
-        $this->assertDatabaseHas('users', $result);
+        $this->assertDatabaseHas('users', $this->result($user, $file));
 
         Storage::disk('public')->assertExists('avatars/'.$file->hashName());
     }
@@ -102,14 +99,11 @@ class CreateUserTest extends TestCase
             ->makeHidden(['avatar', 'accepted_at'])
             ->toArray();
 
-        $input = $this->input($user);
-        $result = $this->result($user);
-
         $this->actingAs($admin)
-            ->post(route('users.store'), $input)
+            ->post(route('users.store'), $this->input($user))
             ->assertSessionHas('status', 'The beetroot was successfully created!');
 
-        $this->assertDatabaseHas('users', $result);
+        $this->assertDatabaseHas('users', $this->result($user));
     }
 
     /** @test */
@@ -174,6 +168,8 @@ class CreateUserTest extends TestCase
      */
     protected function avatar($file)
     {
-        return $file ? 'avatars/'.$file->hashName() : User::DEFAULT_AVATAR;
+        return $file
+            ? 'avatars/'.$file->hashName()
+            : User::DEFAULT_AVATAR;
     }
 }

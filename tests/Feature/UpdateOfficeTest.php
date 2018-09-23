@@ -80,13 +80,13 @@ class UpdateOfficeTest extends TestCase
         $office = factory(Office::class)->create();
         $admin = factory(User::class)->states('admin')->create();
 
-        $attributes = factory(Office::class)->make()->toArray();
+        $updatedOffice = factory(Office::class)->make()->toArray();
 
         $this->actingAs($admin)
-            ->put(route('offices.update', $office), $attributes)
+            ->put(route('offices.update', $office), $updatedOffice)
             ->assertSessionHas('status', 'The location was successfully updated!');
 
-        $this->assertDatabaseHas('offices', $attributes);
+        $this->assertDatabaseHas('offices', $updatedOffice);
     }
 
     /** @test */

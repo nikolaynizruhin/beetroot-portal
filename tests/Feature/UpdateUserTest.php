@@ -43,14 +43,20 @@ class UpdateUserTest extends TestCase
     }
 
     /** @test */
+    public function guest_can_not_update_employee()
+    {
+        $owner = factory(User::class)->states('employee')->create();
+
+        $this->put(route('users.update', $owner))
+            ->assertRedirect(route('login'));
+    }
+
+    /** @test */
     public function guest_can_not_update_employee_profile()
     {
         $owner = factory(User::class)->states('employee')->create();
 
         $this->put(route('profile.update', $owner))
-            ->assertRedirect(route('login'));
-
-        $this->put(route('users.update', $owner))
             ->assertRedirect(route('login'));
     }
 
@@ -65,6 +71,17 @@ class UpdateUserTest extends TestCase
     }
 
     /** @test */
+    public function employee_can_not_update_another_employee()
+    {
+        $owner = factory(User::class)->states('employee')->create();
+        $user = factory(User::class)->states('employee')->create();
+
+        $this->actingAs($user)
+            ->put(route('users.update', $owner))
+            ->assertStatus(403);
+    }
+
+    /** @test */
     public function employee_can_not_update_another_employee_profile()
     {
         $owner = factory(User::class)->states('employee')->create();
@@ -72,10 +89,6 @@ class UpdateUserTest extends TestCase
 
         $this->actingAs($user)
             ->put(route('profile.update', $owner))
-            ->assertStatus(403);
-
-        $this->actingAs($user)
-            ->put(route('users.update', $owner))
             ->assertStatus(403);
     }
 
@@ -142,14 +155,11 @@ class UpdateUserTest extends TestCase
         Storage::fake('public');
         Image::shouldReceive('make->fit->save')->once();
 
-        $input = $this->input();
-        $result = $this->resultForAdmin();
-
         $this->actingAs($admin)
-            ->put(route('users.update', $owner), $input)
+            ->put(route('users.update', $owner), $this->input())
             ->assertSessionHas('status', 'The beetroot was successfully updated!');
 
-        $this->assertDatabaseHas('users', $result);
+        $this->assertDatabaseHas('users', $this->resultForAdmin());
 
         Storage::disk('public')->assertExists('avatars/'.$this->file->hashName());
     }
@@ -159,14 +169,11 @@ class UpdateUserTest extends TestCase
     {
         $owner = factory(User::class)->states('employee')->create();
 
-        $input = $this->input();
-        $result = $this->resultForEmployee();
-
         $this->actingAs($owner)
-            ->put(route('profile.update', $owner), $input)
+            ->put(route('profile.update', $owner), $this->input())
             ->assertSessionHas('status', 'The beetroot was successfully updated!');
 
-        $this->assertDatabaseHas('users', $result);
+        $this->assertDatabaseHas('users', $this->resultForEmployee());
     }
 
     /** @test */

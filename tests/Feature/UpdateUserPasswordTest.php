@@ -47,18 +47,13 @@ class UpdateUserPasswordTest extends TestCase
         $owner = factory(User::class)->create();
         $admin = factory(User::class)->states('admin')->create();
 
-        $attributes = [
-            'password' => 'secret-updated',
-            'password_confirmation' => 'secret-updated',
-        ];
-
         $this->actingAs($admin)
-            ->put(route('users.password.update', $owner), $attributes)
-            ->assertSessionHas('status', 'The beetroot password was successfully updated!');
+            ->put(route('users.password.update', $owner), [
+                'password' => 'secret-updated',
+                'password_confirmation' => 'secret-updated',
+            ])->assertSessionHas('status', 'The beetroot password was successfully updated!');
 
-        $owner = $owner->fresh();
-
-        $this->assertTrue(Hash::check('secret-updated', $owner->password));
+        $this->assertTrue(Hash::check('secret-updated', $owner->fresh()->password));
     }
 
     /** @test */
@@ -66,18 +61,13 @@ class UpdateUserPasswordTest extends TestCase
     {
         $owner = factory(User::class)->states('employee')->create();
 
-        $attributes = [
-            'password' => 'secret-updated',
-            'password_confirmation' => 'secret-updated',
-        ];
-
         $this->actingAs($owner)
-            ->put(route('users.password.update', $owner), $attributes)
-            ->assertSessionHas('status', 'The beetroot password was successfully updated!');
+            ->put(route('users.password.update', $owner), [
+                'password' => 'secret-updated',
+                'password_confirmation' => 'secret-updated',
+            ])->assertSessionHas('status', 'The beetroot password was successfully updated!');
 
-        $owner = $owner->fresh();
-
-        $this->assertTrue(Hash::check('secret-updated', $owner->password));
+        $this->assertTrue(Hash::check('secret-updated', $owner->fresh()->password));
     }
 
     /** @test */

@@ -46,9 +46,7 @@ class AcceptPrivacyTest extends TestCase
         $user = factory(User::class)->states('unacceptable')->create();
 
         $this->actingAs($user)
-            ->post(route('accept.store'), [
-                'privacy' => 'on',
-            ])
+            ->post(route('accept.store'), ['privacy' => 'on'])
             ->assertRedirect(route('info'));
 
         $this->assertNotNull($user->accepted_at);

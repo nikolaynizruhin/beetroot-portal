@@ -105,14 +105,11 @@ class UpdateClientTest extends TestCase
         Storage::fake('public');
         Image::shouldReceive('make->fit->save')->once();
 
-        $input = $this->inputAttributes();
-        $result = $this->resultAttributes($input);
-
         $this->actingAs($admin)
-            ->put(route('clients.update', $client), $input)
+            ->put(route('clients.update', $client), $input = $this->input())
             ->assertSessionHas('status', 'The team was successfully updated!');
 
-        $this->assertDatabaseHas('clients', $result);
+        $this->assertDatabaseHas('clients', $this->result($input));
 
         Storage::disk('public')->assertExists('logos/'.$this->file->hashName());
     }
@@ -129,27 +126,27 @@ class UpdateClientTest extends TestCase
     }
 
     /**
-     * Get input attributes.
+     * Get input client attributes.
      *
      * @return array
      */
-    private function inputAttributes()
+    private function input()
     {
-        $attributes = factory(Client::class)->make(['logo' => $this->file])->toArray();
+        $client = factory(Client::class)->make(['logo' => $this->file])->toArray();
 
-        return $attributes;
+        return $client;
     }
 
     /**
-     * Get result attributes.
+     * Get result client attributes.
      *
-     * @param  array  $attributes
+     * @param  array  $client
      * @return array
      */
-    private function resultAttributes($attributes)
+    private function result($client)
     {
-        $attributes['logo'] = 'logos/'.$this->file->hashName();
+        $client['logo'] = 'logos/'.$this->file->hashName();
 
-        return $attributes;
+        return $client;
     }
 }

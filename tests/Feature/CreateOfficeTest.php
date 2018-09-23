@@ -70,14 +70,13 @@ class CreateOfficeTest extends TestCase
     public function admin_can_create_an_office()
     {
         $admin = factory(User::class)->states('admin')->create();
-
-        $attributes = factory(Office::class)->make()->toArray();
+        $office = factory(Office::class)->make()->toArray();
 
         $this->actingAs($admin)
-            ->post(route('offices.store'), $attributes)
+            ->post(route('offices.store'), $office)
             ->assertSessionHas('status', 'The location was successfully created!');
 
-        $this->assertDatabaseHas('offices', $attributes);
+        $this->assertDatabaseHas('offices', $office);
     }
 
     /** @test */

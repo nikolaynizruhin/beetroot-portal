@@ -80,14 +80,11 @@ class CreateClientTest extends TestCase
         Storage::fake('public');
         Image::shouldReceive('make->fit->save')->once();
 
-        $input = $this->input($client, $file);
-        $result = $this->result($client, $file);
-
         $this->actingAs($admin)
-            ->post(route('clients.store'), $input)
+            ->post(route('clients.store'), $this->input($client, $file))
             ->assertSessionHas('status', 'The team was successfully created!');
 
-        $this->assertDatabaseHas('clients', $result);
+        $this->assertDatabaseHas('clients', $this->result($client, $file));
 
         Storage::disk('public')->assertExists('logos/'.$file->hashName());
     }
@@ -100,14 +97,11 @@ class CreateClientTest extends TestCase
             ->makeHidden('logo')
             ->toArray();
 
-        $input = $this->input($client);
-        $result = $this->result($client);
-
         $this->actingAs($admin)
-            ->post(route('clients.store'), $input)
+            ->post(route('clients.store'), $this->input($client))
             ->assertSessionHas('status', 'The team was successfully created!');
 
-        $this->assertDatabaseHas('clients', $result);
+        $this->assertDatabaseHas('clients', $this->result($client));
     }
 
     /** @test */
@@ -147,7 +141,9 @@ class CreateClientTest extends TestCase
      */
     private function result($client, $file = null)
     {
-        $client['logo'] = $file ? 'logos/'.$file->hashName() : Client::DEFAULT_LOGO;
+        $client['logo'] = $file
+            ? 'logos/'.$file->hashName()
+            : Client::DEFAULT_LOGO;
 
         return $client;
     }
