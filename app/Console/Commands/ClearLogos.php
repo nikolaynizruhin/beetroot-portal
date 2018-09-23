@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use App\Client;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class ClearLogos extends Command
