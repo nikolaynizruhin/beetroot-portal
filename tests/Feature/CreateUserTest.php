@@ -82,6 +82,8 @@ class CreateUserTest extends TestCase
 
         Storage::fake('public');
 
+        Notification::fake();
+
         Image::shouldReceive('make->fit->save')->once();
 
         $this->actingAs($admin)
@@ -100,6 +102,8 @@ class CreateUserTest extends TestCase
         $user = factory(User::class)->states('admin')->make()
             ->makeHidden(['avatar', 'accepted_at'])
             ->toArray();
+
+        Notification::fake();
 
         $this->actingAs($admin)
             ->post(route('users.store'), $this->input($user))
