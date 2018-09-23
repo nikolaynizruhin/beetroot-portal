@@ -13,35 +13,6 @@ class UpdateUserTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * Avatar file.
-     *
-     * @var object
-     */
-    private $file;
-
-    /**
-     * User fixture.
-     *
-     * @var array
-     */
-    private $user;
-
-    /**
-     * Setup.
-     *
-     * @return void
-     */
-    protected function setUp()
-    {
-        parent::setUp();
-
-        $this->file = UploadedFile::fake()->image('avatar.jpg');
-        $this->user = factory(User::class)->states('admin')->make()
-            ->makeHidden(['avatar', 'accepted_at'])
-            ->toArray();
-    }
-
     /** @test */
     public function guest_can_not_update_employee()
     {
@@ -151,29 +122,39 @@ class UpdateUserTest extends TestCase
     {
         $owner = factory(User::class)->create();
         $admin = factory(User::class)->states('admin')->create();
+        $user = factory(User::class)->states('admin')->make()
+            ->makeHidden(['avatar', 'accepted_at'])
+            ->toArray();
+
+        $file = UploadedFile::fake()->image('avatar.jpg');
 
         Storage::fake('public');
         Image::shouldReceive('make->fit->save')->once();
 
         $this->actingAs($admin)
-            ->put(route('users.update', $owner), $this->input())
+            ->put(route('users.update', $owner), $this->input($user, $file))
             ->assertSessionHas('status', 'The beetroot was successfully updated!');
 
-        $this->assertDatabaseHas('users', $this->resultForAdmin());
+        $this->assertDatabaseHas('users', $this->resultForAdmin($user, $file));
 
-        Storage::disk('public')->assertExists('avatars/'.$this->file->hashName());
+        Storage::disk('public')->assertExists('avatars/'.$file->hashName());
     }
 
     /** @test */
     public function employee_can_update_own_profile()
     {
         $owner = factory(User::class)->states('employee')->create();
+        $user = factory(User::class)->states('admin')->make()
+            ->makeHidden(['avatar', 'accepted_at'])
+            ->toArray();
+
+        $file = UploadedFile::fake()->image('avatar.jpg');
 
         $this->actingAs($owner)
-            ->put(route('profile.update', $owner), $this->input())
+            ->put(route('profile.update', $owner), $this->input($user, $file))
             ->assertSessionHas('status', 'The beetroot was successfully updated!');
 
-        $this->assertDatabaseHas('users', $this->resultForEmployee());
+        $this->assertDatabaseHas('users', $this->resultForEmployee($user));
     }
 
     /** @test */
@@ -198,35 +179,40 @@ class UpdateUserTest extends TestCase
     /**
      * Get input attributes for admin.
      *
+     * @param  array  $user
+     * @param  \Illuminate\Http\Testing\File  $file
      * @return array
      */
-    protected function input()
+    protected function input($user, $file)
     {
-        $this->user['avatar'] = $this->file;
+        $user['avatar'] = $file;
 
-        return $this->user;
+        return $user;
     }
 
     /**
      * Get result attributes for admin.
      *
+     * @param  array  $user
+     * @param  \Illuminate\Http\Testing\File  $file
      * @return array
      */
-    protected function resultForAdmin()
+    protected function resultForAdmin($user, $file)
     {
-        $this->user['avatar'] = 'avatars/'.$this->file->hashName();
+        $user['avatar'] = 'avatars/'.$file->hashName();
 
-        return $this->user;
+        return $user;
     }
 
     /**
      * Get result attributes for employee.
      *
+     * @param  array  $user
      * @return array
      */
-    protected function resultForEmployee()
+    protected function resultForEmployee($user)
     {
-        return collect($this->user)
+        return collect($user)
             ->only(['facebook', 'instagram', 'slack', 'phone', 'skype', 'github', 'bio'])
             ->all();
     }
