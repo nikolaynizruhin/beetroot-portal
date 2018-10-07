@@ -53,11 +53,11 @@ class UserTest extends TestCase
     }
 
     /** @test */
-    public function it_has_a_month_day_of_birth_attribute()
+    public function it_has_a_month_and_day_of_birth_attribute()
     {
         $user = factory(User::class)->create(['birthday' => '2000-01-01']);
 
-        $this->assertEquals($user->month_day_of_birth, '0101');
+        $this->assertEquals($user->month_and_day_of_birth, '0101');
     }
 
     /** @test */
@@ -65,7 +65,7 @@ class UserTest extends TestCase
     {
         $user = factory(User::class)->create(['birthday' => '2000-01-01']);
 
-        $this->assertEquals($user->name_of_month_of_birth, 'January');
+        $this->assertEquals($user->month_name_of_birth, 'January');
     }
 
     /** @test */

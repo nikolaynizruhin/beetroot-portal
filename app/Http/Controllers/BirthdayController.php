@@ -28,8 +28,8 @@ class BirthdayController extends Controller
         $months = User::with(['client', 'office'])
             ->filter($filters)
             ->get()
-            ->sortBy('month_day_of_birth')
-            ->groupBy('name_of_month_of_birth');
+            ->sortBy('month_and_day_of_birth')
+            ->groupBy('month_name_of_birth');
 
         return view('birthdays.index')->with('months', $months);
     }

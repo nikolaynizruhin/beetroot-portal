@@ -118,7 +118,7 @@ class User extends Authenticatable
      *
      * @return int
      */
-    public function getMonthDayOfBirthAttribute()
+    public function getMonthAndDayOfBirthAttribute()
     {
         return $this->birthday->format('md');
     }
@@ -128,7 +128,7 @@ class User extends Authenticatable
      *
      * @return string
      */
-    public function getNameOfMonthOfBirthAttribute()
+    public function getMonthNameOfBirthAttribute()
     {
         return $this->birthday->format('F');
     }
