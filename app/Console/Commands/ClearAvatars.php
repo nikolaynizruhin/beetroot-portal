@@ -35,7 +35,7 @@ class ClearAvatars extends Command
 
         $unused = collect($all)->diff($used)->values();
 
-        Storage::delete($unused->all());
+        Storage::delete($unused);
 
         $this->info('('.$unused->count().') Unused avatars was removed successfully!');
     }
@@ -47,12 +47,12 @@ class ClearAvatars extends Command
      */
     protected function getUsedAvatars()
     {
-        $used = User::pluck('avatar');
+        $avatars = User::pluck('avatar');
 
-        if (! $used->contains(User::DEFAULT_AVATAR)) {
-            $used->push(User::DEFAULT_AVATAR);
+        if (! $avatars->contains(User::DEFAULT_AVATAR)) {
+            $avatars->push(User::DEFAULT_AVATAR);
         }
 
-        return $used;
+        return $avatars;
     }
 }

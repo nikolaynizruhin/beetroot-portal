@@ -35,7 +35,7 @@ class ClearLogos extends Command
 
         $unused = collect($all)->diff($used)->values();
 
-        Storage::delete($unused->all());
+        Storage::delete($unused);
 
         $this->info('('.$unused->count().') Unused logos was removed successfully!');
     }
@@ -47,12 +47,12 @@ class ClearLogos extends Command
      */
     protected function getUsedLogos()
     {
-        $used = Client::pluck('logo');
+        $logos = Client::pluck('logo');
 
-        if (! $used->contains(Client::DEFAULT_LOGO)) {
-            $used->push(Client::DEFAULT_LOGO);
+        if (! $logos->contains(Client::DEFAULT_LOGO)) {
+            $logos->push(Client::DEFAULT_LOGO);
         }
 
-        return $used;
+        return $logos;
     }
 }
