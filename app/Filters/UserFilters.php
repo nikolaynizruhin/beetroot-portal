@@ -70,10 +70,10 @@ class UserFilters extends Filters
      */
     protected function sort($field)
     {
-        $order = $field[0] === '-' ? 'desc' : 'asc';
+        $direction = $field[0] === '-' ? 'desc' : 'asc';
 
         $field = ltrim($field, '-');
 
-        return $this->builder->orderBy($field, $order);
+        return $this->builder->orderBy($field, $direction);
     }
 }
