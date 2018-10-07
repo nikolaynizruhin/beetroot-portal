@@ -3,9 +3,9 @@
 namespace App\Http\Requests;
 
 use App\User;
-use App\Utilities\Image;
 use Illuminate\Validation\Rule;
 use App\Http\Utilities\Position;
+use Intervention\Image\Facades\Image;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateUser extends FormRequest
@@ -75,9 +75,23 @@ class UpdateUser extends FormRequest
         $attributes['is_admin'] = (bool) $this->is_admin;
 
         if ($this->hasFile('avatar')) {
-            $attributes['avatar'] = Image::fit($this->file('avatar')->store('avatars'));
+            $attributes['avatar'] = $this->avatar();
         }
 
         return $attributes;
+    }
+
+    /**
+     * Get avatar path.
+     *
+     * @return string
+     */
+    protected function avatar()
+    {
+        $path = $this->file('avatar')->store('avatars');
+
+        Image::make('storage/'.$path)->fit(150)->save();
+
+        return $path;
     }
 }

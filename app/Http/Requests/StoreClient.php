@@ -3,9 +3,9 @@
 namespace App\Http\Requests;
 
 use App\Client;
-use App\Utilities\Image;
 use App\Http\Utilities\Country;
 use Illuminate\Validation\Rule;
+use Intervention\Image\Facades\Image;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreClient extends FormRequest
@@ -62,8 +62,14 @@ class StoreClient extends FormRequest
      */
     protected function logo()
     {
-        return $this->hasFile('logo')
-            ? Image::fit($this->file('logo')->store('logos'))
-            : Client::DEFAULT_LOGO;
+        if ($this->hasFile('logo')) {
+            $path = $this->file('logo')->store('logos');
+
+            Image::make('storage/'.$path)->fit(150)->save();
+
+            return $path;
+        }
+
+        return Client::DEFAULT_LOGO;
     }
 }
