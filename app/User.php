@@ -165,7 +165,7 @@ class User extends Authenticatable
         try {
             $this->notify(new WelcomeNotification($password));
         } catch (Exception $e) {
-            logger('Unable to send welcome notification');
+            logger('Unable to send welcome notification: '.$e->getMessage());
         }
     }
 
