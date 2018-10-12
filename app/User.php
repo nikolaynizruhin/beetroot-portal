@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Exception;
 use App\Scopes\NameScope;
 use App\Filters\Filterable;
 use Illuminate\Support\Facades\Storage;
@@ -161,7 +162,11 @@ class User extends Authenticatable
      */
     public function sendWelcomeNotification($password)
     {
-        $this->notify(new WelcomeNotification($password));
+        try {
+            $this->notify(new WelcomeNotification($password));
+        } catch(Exception $e) {
+            logger('Unable to send welcome notification');
+        }
     }
 
     /**
