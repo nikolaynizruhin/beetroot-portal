@@ -165,6 +165,16 @@ class User extends Authenticatable
     }
 
     /**
+     * Accept privacy.
+     *
+     * @return void
+     */
+    public function accept()
+    {
+        $this->update(['accepted_at' => now()]);
+    }
+
+    /**
      * The "booting" method of the model.
      *
      * @return void

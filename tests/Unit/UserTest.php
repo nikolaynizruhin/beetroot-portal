@@ -75,4 +75,14 @@ class UserTest extends TestCase
 
         $this->assertTrue(User::ofPosition($user->position)->get()->contains($user));
     }
+
+    /** @test */
+    public function it_can_accept_privacy_policy()
+    {
+        $user = factory(User::class)->create(['accepted_at' => null]);
+
+        $user->accept();
+
+        $this->assertNotNull($user->accepted_at);
+    }
 }

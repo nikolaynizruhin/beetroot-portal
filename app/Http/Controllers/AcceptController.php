@@ -30,7 +30,7 @@ class AcceptController extends Controller
     }
 
     /**
-     * Store a newly created accept in storage.
+     * Accept privacy policy.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -39,7 +39,7 @@ class AcceptController extends Controller
     {
         $request->validate(['privacy' => 'accepted']);
 
-        Auth::user()->update(['accepted_at' => now()]);
+        Auth::user()->accept();
 
         return redirect(route('info'));
     }
