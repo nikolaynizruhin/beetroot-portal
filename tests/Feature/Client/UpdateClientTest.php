@@ -1,7 +1,8 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Client;
 
+use App\Tag;
 use App\User;
 use App\Client;
 use Tests\TestCase;
@@ -13,25 +14,6 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class UpdateClientTest extends TestCase
 {
     use RefreshDatabase;
-
-    /**
-     * Logo file.
-     *
-     * @var object
-     */
-    private $file;
-
-    /**
-     * Setup.
-     *
-     * @return void
-     */
-    protected function setUp()
-    {
-        parent::setUp();
-
-        $this->file = UploadedFile::fake()->image('logo.jpg');
-    }
 
     /** @test */
     public function guest_can_not_update_a_client()
@@ -102,16 +84,39 @@ class UpdateClientTest extends TestCase
         $client = factory(Client::class)->create();
         $admin = factory(User::class)->states('admin')->create();
 
+        $file = UploadedFile::fake()->image('logo.jpg');
+
+        $updatedClient = factory(Client::class)->make(['logo' => $file])->toArray();
+
         Storage::fake('public');
         Image::shouldReceive('make->fit->save')->once();
 
         $this->actingAs($admin)
-            ->put(route('clients.update', $client), $input = $this->input())
+            ->put(route('clients.update', $client), $updatedClient)
             ->assertSessionHas('status', 'The team was successfully updated!');
 
-        $this->assertDatabaseHas('clients', $this->result($input));
+        $updatedClient['logo'] = 'logos/'.$file->hashName();
 
-        Storage::disk('public')->assertExists('logos/'.$this->file->hashName());
+        $this->assertDatabaseHas('clients', $updatedClient);
+
+        Storage::disk('public')->assertExists('logos/'.$file->hashName());
+    }
+
+    /** @test */
+    public function admin_can_update_a_client_tags()
+    {
+        $client = factory(Client::class)->create();
+        $tag = factory(Tag::class)->create();
+        $admin = factory(User::class)->states('admin')->create();
+
+        $updatedClient = factory(Client::class)->make()->makeHidden('logo')->toArray();
+        $updatedClient['tags'] = [$tag->id];
+
+        $this->actingAs($admin)
+            ->put(route('clients.update', $client), $updatedClient)
+            ->assertSessionHas('status', 'The team was successfully updated!');
+
+        $this->assertCount(1, $tag->clients);
     }
 
     /** @test */
@@ -123,30 +128,5 @@ class UpdateClientTest extends TestCase
         $this->actingAs($admin)
             ->put(route('clients.update', $client))
             ->assertSessionHasErrors(['name', 'country', 'description', 'site']);
-    }
-
-    /**
-     * Get input client attributes.
-     *
-     * @return array
-     */
-    private function input()
-    {
-        $client = factory(Client::class)->make(['logo' => $this->file])->toArray();
-
-        return $client;
-    }
-
-    /**
-     * Get result client attributes.
-     *
-     * @param  array  $client
-     * @return array
-     */
-    private function result($client)
-    {
-        $client['logo'] = 'logos/'.$this->file->hashName();
-
-        return $client;
     }
 }

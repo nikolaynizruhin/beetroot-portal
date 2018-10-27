@@ -1,7 +1,8 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\User;
 
+use App\Tag;
 use App\User;
 use Tests\TestCase;
 use Illuminate\Http\UploadedFile;
@@ -133,6 +134,27 @@ class CreateUserTest extends TestCase
                 return $notification->password === $input['password'];
             }
         );
+    }
+
+    /** @test */
+    public function admin_can_create_a_user_with_tags()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $tag = factory(Tag::class)->create();
+        $user = factory(User::class)->states('admin')->make()
+            ->makeHidden(['avatar', 'accepted_at'])
+            ->toArray();
+
+        $input = $this->input($user);
+        $input['tags'] = [$tag->id];
+
+        Notification::fake();
+
+        $this->actingAs($admin)
+            ->post(route('users.store'), $input)
+            ->assertSessionHas('status', 'The beetroot was successfully created!');
+
+        $this->assertCount(1, $tag->users);
     }
 
     /** @test */

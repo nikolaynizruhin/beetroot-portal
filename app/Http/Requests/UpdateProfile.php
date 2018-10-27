@@ -33,6 +33,31 @@ class UpdateProfile extends FormRequest
             'bio' => 'nullable|string|max:255',
             'skype' => 'nullable|string|max:255',
             'github' => 'nullable|string|max:255',
+            'tags' => 'nullable|array',
         ];
+    }
+
+    /**
+     * Get the prepared data from the request.
+     *
+     * @return array
+     */
+    public function prepared()
+    {
+        $attributes = $this->validated();
+
+        unset($attributes['tags']);
+
+        return $attributes;
+    }
+
+    /**
+     * Get tags.
+     *
+     * @return array
+     */
+    public function tags()
+    {
+        return $this->tags ?: [];
     }
 }

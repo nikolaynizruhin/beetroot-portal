@@ -37,6 +37,7 @@ class UpdateClient extends FormRequest
                 Rule::in(Country::all()),
             ],
             'description' => 'required|string|max:255',
+            'tags' => 'nullable|array',
             'site' => 'required|url',
             'logo' => 'image',
         ];
@@ -51,11 +52,23 @@ class UpdateClient extends FormRequest
     {
         $attributes = $this->validated();
 
+        unset($attributes['tags']);
+
         if ($this->hasFile('logo')) {
             $attributes['logo'] = $this->logo();
         }
 
         return $attributes;
+    }
+
+    /**
+     * Get tags.
+     *
+     * @return array
+     */
+    public function tags()
+    {
+        return $this->tags ?: [];
     }
 
     /**

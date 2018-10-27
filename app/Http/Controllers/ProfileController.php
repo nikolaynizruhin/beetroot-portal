@@ -26,7 +26,9 @@ class ProfileController extends Controller
      */
     public function update(UpdateProfile $request, User $user)
     {
-        $user->update($request->validated());
+        $user->update($request->prepared());
+
+        $user->tags()->sync($request->tags());
 
         return back()->with('status', 'The beetroot was successfully updated!');
     }

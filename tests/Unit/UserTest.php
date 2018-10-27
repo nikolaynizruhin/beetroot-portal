@@ -2,10 +2,12 @@
 
 namespace Tests\Unit;
 
+use App\Tag;
 use App\User;
 use App\Client;
 use App\Office;
 use Tests\TestCase;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UserTest extends TestCase
@@ -84,5 +86,17 @@ class UserTest extends TestCase
         $user->accept();
 
         $this->assertNotNull($user->accepted_at);
+    }
+
+    /** @test */
+    public function it_can_has_many_tags()
+    {
+        $user = factory(User::class)->create();
+        $tag = factory(Tag::class)->create();
+
+        $user->tags()->attach($tag);
+
+        $this->assertTrue($user->tags->contains($tag));
+        $this->assertInstanceOf(Collection::class, $user->tags);
     }
 }

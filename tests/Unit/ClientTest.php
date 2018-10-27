@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Tag;
 use App\User;
 use App\Client;
 use Tests\TestCase;
@@ -32,5 +33,17 @@ class ClientTest extends TestCase
         $client->logo = 'logos/new.jpg';
 
         $this->assertEquals('logos/new.jpg', $client->logo);
+    }
+
+    /** @test */
+    public function it_can_has_many_tags()
+    {
+        $client = factory(Client::class)->create();
+        $tag = factory(Tag::class)->create();
+
+        $client->tags()->attach($tag);
+
+        $this->assertTrue($client->tags->contains($tag));
+        $this->assertInstanceOf(Collection::class, $client->tags);
     }
 }

@@ -1,40 +1,40 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\User;
 
 use App\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class DisplayClientsTest extends TestCase
+class DisplayUsersTest extends TestCase
 {
     use RefreshDatabase;
 
     /** @test */
-    public function guest_can_not_see_a_clients()
+    public function guest_can_not_see_an_employees()
     {
-        $this->get(route('clients.index'))
+        $this->get(route('users.index'))
             ->assertRedirect(route('login'));
     }
 
     /** @test */
-    public function employee_that_not_accept_privacy_can_not_see_clients()
+    public function employee_that_not_accept_privacy_can_not_see_users()
     {
         $user = factory(User::class)->states('unacceptable')->create();
 
         $this->actingAs($user)
-            ->get(route('clients.index'))
+            ->get(route('users.index'))
             ->assertRedirect(route('accept.create'));
     }
 
     /** @test */
-    public function logged_in_employee_can_see_a_clients()
+    public function logged_in_employee_can_see_an_employees()
     {
         $user = factory(User::class)->create();
 
         $this->actingAs($user)
-            ->get(route('clients.index'))
+            ->get(route('users.index'))
             ->assertSuccessful()
-            ->assertViewIs('clients.index');
+            ->assertViewIs('users.index');
     }
 }

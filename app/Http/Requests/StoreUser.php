@@ -54,6 +54,7 @@ class StoreUser extends FormRequest
             'skype' => 'nullable|string|max:255',
             'bio' => 'nullable|string|max:255',
             'phone' => 'nullable|string|max:255',
+            'tags' => 'nullable|array',
         ];
     }
 
@@ -66,11 +67,23 @@ class StoreUser extends FormRequest
     {
         $attributes = $this->validated();
 
+        unset($attributes['tags']);
+
         $attributes['avatar'] = $this->avatar();
         $attributes['is_admin'] = (bool) $this->is_admin;
         $attributes['password'] = bcrypt($this->password);
 
         return $attributes;
+    }
+
+    /**
+     * Get tags.
+     *
+     * @return array
+     */
+    public function tags()
+    {
+        return $this->tags ?: [];
     }
 
     /**

@@ -58,8 +58,11 @@ class UserController extends Controller
      */
     public function store(StoreUser $request)
     {
-        User::create($request->prepared())
-            ->sendWelcomeNotification($request->password);
+        $user = User::create($request->prepared());
+
+        $user->tags()->sync($request->tags());
+
+        $user->sendWelcomeNotification($request->password);
 
         return back()->with('status', 'The beetroot was successfully created!');
     }
@@ -89,6 +92,8 @@ class UserController extends Controller
     public function update(UpdateUser $request, User $user)
     {
         $user->update($request->prepared());
+
+        $user->tags()->sync($request->tags());
 
         return back()->with('status', 'The beetroot was successfully updated!');
     }

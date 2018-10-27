@@ -11,7 +11,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable, Filterable;
+    use Notifiable, Filterable, Taggable;
 
     /**
      * Constant representing a default user avatar.

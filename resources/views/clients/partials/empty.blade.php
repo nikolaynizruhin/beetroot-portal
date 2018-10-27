@@ -1,1 +1,1 @@
-<p>No clients</p>
+<p>No Teams</p>

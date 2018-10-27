@@ -60,6 +60,7 @@ class UpdateUser extends FormRequest
             'bio' => 'nullable|string|max:255',
             'skype' => 'nullable|string|max:255',
             'github' => 'nullable|string|max:255',
+            'tags' => 'nullable|array',
         ];
     }
 
@@ -72,6 +73,8 @@ class UpdateUser extends FormRequest
     {
         $attributes = $this->validated();
 
+        unset($attributes['tags']);
+
         $attributes['is_admin'] = (bool) $this->is_admin;
 
         if ($this->hasFile('avatar')) {
@@ -79,6 +82,16 @@ class UpdateUser extends FormRequest
         }
 
         return $attributes;
+    }
+
+    /**
+     * Get tags.
+     *
+     * @return array
+     */
+    public function tags()
+    {
+        return $this->tags ?: [];
     }
 
     /**

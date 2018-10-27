@@ -56,7 +56,9 @@ class ClientController extends Controller
      */
     public function store(StoreClient $request)
     {
-        Client::create($request->prepared());
+        $client = Client::create($request->prepared());
+
+        $client->tags()->sync($request->tags());
 
         return back()->with('status', 'The team was successfully created!');
     }
@@ -86,6 +88,8 @@ class ClientController extends Controller
     public function update(UpdateClient $request, Client $client)
     {
         $client->update($request->prepared());
+
+        $client->tags()->sync($request->tags());
 
         return back()->with('status', 'The team was successfully updated!');
     }

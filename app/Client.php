@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 
 class Client extends Model
 {
-    use Filterable;
+    use Filterable, Taggable;
 
     /**
      * Constant representing a default client logo.

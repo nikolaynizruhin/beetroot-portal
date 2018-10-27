@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Office;
 
 use App\User;
 use App\Office;
@@ -31,7 +31,7 @@ class CreateOfficeTest extends TestCase
     /** @test */
     public function employee_can_not_create_an_office()
     {
-        $user = factory(User::class)->create(['is_admin' => false]);
+        $user = factory(User::class)->states('employee')->create();
 
         $this->actingAs($user)
             ->post(route('offices.store'))

@@ -311,6 +311,38 @@
                             </div>
                         </div>
 
+                        <!-- Skills -->
+                        <div class="form-group row">
+                            <label for="tags" class="col-md-4 col-form-label text-md-right">
+                                Skills
+                            </label>
+
+                            <div class="col-md-6">
+                                <select id="tags"
+                                        class="form-control{{ $errors->has('tags') ? ' is-invalid' : '' }}"
+                                        name="tags[]"
+                                        multiple="multiple">
+                                    @foreach ($tags as $tag)
+                                        @if (collect(old('tags'))->contains($tag->id))
+                                            <option value="{{ $tag->id }}" selected>
+                                                {{ $tag->name }}
+                                            </option>
+                                        @else
+                                            <option value="{{ $tag->id }}">
+                                                {{ $tag->name }}
+                                            </option>
+                                        @endif
+                                    @endforeach
+                                </select>
+
+                                @if ($errors->has('tags'))
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('tags') }}
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+
                         <!-- Phone -->
                         <div class="form-group row">
                             <label for="phone" class="col-md-4 col-form-label text-md-right">Phone</label>

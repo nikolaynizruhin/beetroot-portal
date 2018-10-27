@@ -1,1 +1,1 @@
-<p>No offices</p>
+<p>No Locations</p>

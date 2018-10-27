@@ -114,7 +114,7 @@
                                         name="country"
                                         required>
                                     <option value="">Select a country...</option>
-                                    @foreach ( $countries::all() as $country )
+                                    @foreach ($countries::all() as $country)
                                         @if (old('country') == $country)
                                             <option value="{{ $country }}" selected>
                                                 {{ $country }}
@@ -130,6 +130,38 @@
                                 @if ($errors->has('country'))
                                     <div class="invalid-feedback">
                                         {{ $errors->first('country') }}
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+
+                        <!-- Technologies -->
+                        <div class="form-group row">
+                            <label for="tags" class="col-md-4 col-form-label text-md-right">
+                                Technologies
+                            </label>
+
+                            <div class="col-md-6">
+                                <select id="tags"
+                                        class="form-control{{ $errors->has('tags') ? ' is-invalid' : '' }}"
+                                        name="tags[]"
+                                        multiple="multiple">
+                                    @foreach ($tags as $tag)
+                                        @if (collect(old('tags'))->contains($tag->id))
+                                            <option value="{{ $tag->id }}" selected>
+                                                {{ $tag->name }}
+                                            </option>
+                                        @else
+                                            <option value="{{ $tag->id }}">
+                                                {{ $tag->name }}
+                                            </option>
+                                        @endif
+                                    @endforeach
+                                </select>
+
+                                @if ($errors->has('tags'))
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('tags') }}
                                     </div>
                                 @endif
                             </div>

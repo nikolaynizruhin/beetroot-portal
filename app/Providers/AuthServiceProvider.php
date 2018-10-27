@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Policies\TagPolicy;
+use App\Tag;
 use App\User;
 use App\Client;
 use App\Office;
@@ -22,6 +24,7 @@ class AuthServiceProvider extends ServiceProvider
         User::class => UserPolicy::class,
         Client::class => ClientPolicy::class,
         Office::class => OfficePolicy::class,
+        Tag::class => TagPolicy::class,
     ];
 
     /**

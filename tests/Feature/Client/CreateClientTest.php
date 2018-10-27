@@ -1,7 +1,8 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Client;
 
+use App\Tag;
 use App\User;
 use App\Client;
 use Tests\TestCase;
@@ -77,14 +78,18 @@ class CreateClientTest extends TestCase
 
         $file = UploadedFile::fake()->image('logo.jpg');
 
+        $client['logo'] = $file;
+
         Storage::fake('public');
         Image::shouldReceive('make->fit->save')->once();
 
         $this->actingAs($admin)
-            ->post(route('clients.store'), $this->input($client, $file))
+            ->post(route('clients.store'), $client)
             ->assertSessionHas('status', 'The team was successfully created!');
 
-        $this->assertDatabaseHas('clients', $this->result($client, $file));
+        $client['logo'] = 'logos/'.$file->hashName();
+
+        $this->assertDatabaseHas('clients', $client);
 
         Storage::disk('public')->assertExists('logos/'.$file->hashName());
     }
@@ -98,10 +103,30 @@ class CreateClientTest extends TestCase
             ->toArray();
 
         $this->actingAs($admin)
-            ->post(route('clients.store'), $this->input($client))
+            ->post(route('clients.store'), $client)
             ->assertSessionHas('status', 'The team was successfully created!');
 
-        $this->assertDatabaseHas('clients', $this->result($client));
+        $client['logo'] = Client::DEFAULT_LOGO;
+
+        $this->assertDatabaseHas('clients', $client);
+    }
+
+    /** @test */
+    public function admin_can_create_a_client_with_tags()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $tag = factory(Tag::class)->create();
+        $client = factory(Client::class)->make()
+            ->makeHidden('logo')
+            ->toArray();
+
+        $client['tags'] = [$tag->id];
+
+        $this->actingAs($admin)
+            ->post(route('clients.store'), $client)
+            ->assertSessionHas('status', 'The team was successfully created!');
+
+        $this->assertCount(1, $tag->clients);
     }
 
     /** @test */
@@ -114,37 +139,5 @@ class CreateClientTest extends TestCase
             ->assertSessionHasErrors([
                 'name', 'country', 'description', 'site',
             ]);
-    }
-
-    /**
-     * Get input attributes.
-     *
-     * @param  array  $client
-     * @param  object|null  $file
-     * @return array
-     */
-    private function input($client, $file = null)
-    {
-        if ($file) {
-            $client['logo'] = $file;
-        }
-
-        return $client;
-    }
-
-    /**
-     * Get result attributes.
-     *
-     * @param  array  $client
-     * @param  object|null  $file
-     * @return array
-     */
-    private function result($client, $file = null)
-    {
-        $client['logo'] = $file
-            ? 'logos/'.$file->hashName()
-            : Client::DEFAULT_LOGO;
-
-        return $client;
     }
 }

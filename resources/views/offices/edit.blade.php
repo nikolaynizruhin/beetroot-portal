@@ -17,8 +17,7 @@
 
                     @include('layouts.partials.flash')
 
-                    <form method="POST"
-                          action="{{ route('offices.update', $office) }}">
+                    <form method="POST" action="{{ route('offices.update', $office) }}">
                         @method('PUT')
                         @csrf
 

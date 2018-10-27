@@ -1,7 +1,8 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\User;
 
+use App\Tag;
 use App\User;
 use Tests\TestCase;
 use Illuminate\Http\UploadedFile;
@@ -128,14 +129,18 @@ class UpdateUserTest extends TestCase
 
         $file = UploadedFile::fake()->image('avatar.jpg');
 
+        $user['avatar'] = $file;
+
         Storage::fake('public');
         Image::shouldReceive('make->fit->save')->once();
 
         $this->actingAs($admin)
-            ->put(route('users.update', $owner), $this->input($user, $file))
+            ->put(route('users.update', $owner), $user)
             ->assertSessionHas('status', 'The beetroot was successfully updated!');
 
-        $this->assertDatabaseHas('users', $this->resultForAdmin($user, $file));
+        $user['avatar'] = 'avatars/'.$file->hashName();
+
+        $this->assertDatabaseHas('users', $user);
 
         Storage::disk('public')->assertExists('avatars/'.$file->hashName());
     }
@@ -150,11 +155,33 @@ class UpdateUserTest extends TestCase
 
         $file = UploadedFile::fake()->image('avatar.jpg');
 
+        $user['avatar'] = $file;
+
         $this->actingAs($owner)
-            ->put(route('profile.update', $owner), $this->input($user, $file))
+            ->put(route('profile.update', $owner), $user)
             ->assertSessionHas('status', 'The beetroot was successfully updated!');
 
-        $this->assertDatabaseHas('users', $this->resultForEmployee($user));
+        $user = collect($user)->only(['facebook', 'instagram', 'slack', 'phone', 'skype', 'github', 'bio'])->all();
+
+        $this->assertDatabaseHas('users', $user);
+    }
+
+    /** @test */
+    public function employee_can_update_tags()
+    {
+        $owner = factory(User::class)->states('employee')->create();
+        $tag = factory(Tag::class)->create();
+        $user = factory(User::class)->states('admin')->make()
+            ->makeHidden(['avatar', 'accepted_at'])
+            ->toArray();
+
+        $user['tags'] = [$tag->id];
+
+        $this->actingAs($owner)
+            ->put(route('profile.update', $owner), $user)
+            ->assertSessionHas('status', 'The beetroot was successfully updated!');
+
+        $this->assertCount(1, $tag->users);
     }
 
     /** @test */
@@ -174,46 +201,5 @@ class UpdateUserTest extends TestCase
                 'client_id',
                 'office_id',
             ]);
-    }
-
-    /**
-     * Get input attributes for admin.
-     *
-     * @param  array  $user
-     * @param  \Illuminate\Http\Testing\File  $file
-     * @return array
-     */
-    protected function input($user, $file)
-    {
-        $user['avatar'] = $file;
-
-        return $user;
-    }
-
-    /**
-     * Get result attributes for admin.
-     *
-     * @param  array  $user
-     * @param  \Illuminate\Http\Testing\File  $file
-     * @return array
-     */
-    protected function resultForAdmin($user, $file)
-    {
-        $user['avatar'] = 'avatars/'.$file->hashName();
-
-        return $user;
-    }
-
-    /**
-     * Get result attributes for employee.
-     *
-     * @param  array  $user
-     * @return array
-     */
-    protected function resultForEmployee($user)
-    {
-        return collect($user)
-            ->only(['facebook', 'instagram', 'slack', 'phone', 'skype', 'github', 'bio'])
-            ->all();
     }
 }

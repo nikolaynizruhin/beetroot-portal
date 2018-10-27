@@ -1,6 +1,5 @@
 
 window._ = require('lodash');
-window.Popper = require('popper.js').default;
 window.moment = require('moment');
 window.Chart = require('chart.js');
 
@@ -11,6 +10,7 @@ window.Chart = require('chart.js');
  */
 
 try {
+    window.Popper = require('popper.js').default;
     window.$ = window.jQuery = require('jquery');
 
     require('bootstrap');

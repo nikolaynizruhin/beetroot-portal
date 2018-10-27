@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Office;
 
 use App\User;
 use App\Office;
@@ -45,7 +45,7 @@ class UpdateOfficeTest extends TestCase
     /** @test */
     public function guest_can_not_visit_update_office_page()
     {
-        $office = factory(User::class)->create();
+        $office = factory(Office::class)->create();
 
         $this->get(route('offices.edit', $office))
             ->assertRedirect(route('login'));

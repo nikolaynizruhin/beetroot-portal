@@ -2,6 +2,7 @@
 
 namespace App\Http\ViewComposers;
 
+use App\Tag;
 use App\Client;
 use App\Office;
 use Illuminate\View\View;
@@ -31,6 +32,13 @@ class UsersComposer
     protected $positions;
 
     /**
+     * The tags.
+     *
+     * @var array
+     */
+    protected $tags;
+
+    /**
      * Create a new users composer.
      *
      * @return void
@@ -40,6 +48,7 @@ class UsersComposer
         $this->clients = Client::pluck('name', 'id')->sort();
         $this->offices = Office::pluck('city', 'id')->sort();
         $this->positions = Position::all();
+        $this->tags = Tag::all();
     }
 
     /**
@@ -54,6 +63,7 @@ class UsersComposer
             'clients' => $this->clients,
             'offices' => $this->offices,
             'positions' => $this->positions,
+            'tags' => $this->tags,
         ]);
     }
 }
