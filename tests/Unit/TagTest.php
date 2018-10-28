@@ -2,9 +2,9 @@
 
 namespace Tests\Unit;
 
-use App\Client;
 use App\Tag;
 use App\User;
+use App\Client;
 use Tests\TestCase;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Testing\RefreshDatabase;

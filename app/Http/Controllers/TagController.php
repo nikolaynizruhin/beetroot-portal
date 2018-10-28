@@ -50,7 +50,6 @@ class TagController extends Controller
      *
      * @param  \App\Http\Requests\StoreTag  $request
      * @return \Illuminate\Http\Response
-     *
      */
     public function store(StoreTag $request)
     {
