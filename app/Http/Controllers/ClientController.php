@@ -27,7 +27,8 @@ class ClientController extends Controller
      */
     public function index(ClientFilters $filters)
     {
-        $clients = Client::withCount('users')
+        $clients = Client::with('tags')
+            ->withCount(['users', 'tags'])
             ->filter($filters)
             ->paginate(15);
 

@@ -76,7 +76,7 @@ class UserFiltersTest extends TestCase
         $john->tags()->attach($tag);
 
         $this->actingAs($john)
-            ->get(route('users.index', ['tag' => $tag->id]))
+            ->get(route('users.index', ['tag' => $tag->name]))
             ->assertSee($john->name)
             ->assertDontSee($jane->name);
     }

@@ -32,6 +32,17 @@
                     <!-- Position -->
                     <h6 class="text-center"><em>{{ $user->position }}</em></h6>
 
+                    <!-- Skills -->
+                    @if ($user->tags_count)
+                        <h6 class="text-center">
+                            @foreach ($user->tags as $tag)
+                                <span class="badge badge-pill badge-light">
+                                    {{ $tag->name }}
+                                </span>
+                            @endforeach
+                        </h6>
+                    @endif
+
                     <br>
 
                     <div class="row">

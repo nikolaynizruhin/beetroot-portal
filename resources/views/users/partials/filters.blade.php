@@ -19,21 +19,15 @@
                 </select>
             </div>
 
+            <!-- Name Filter -->
             <div class="form-group">
-                <select class="form-control" name="tag">
-                    <option value="" selected>All Skills</option>
-                    @foreach ($tags as $tag)
-                        @if (request('tag') == $tag->name)
-                            <option value="{{ $tag->name }}" selected>
-                                {{ $tag->name }}
-                            </option>
-                        @else
-                            <option value="{{ $tag->name }}">
-                                {{ $tag->name }}
-                            </option>
-                        @endif
-                    @endforeach
-                </select>
+                <label for="name" class="sr-only">Name</label>
+                <input type="text"
+                       class="form-control"
+                       name="name"
+                       value="{{ request('name') }}"
+                       id="name"
+                       placeholder="Enter name">
             </div>
 
         </div>
@@ -97,16 +91,24 @@
                 </select>
             </div>
 
-            <!-- Name Filter -->
+            <!-- Skill Filter -->
             <div class="form-group">
-                <label for="name" class="sr-only">Name</label>
-                <input type="text"
-                       class="form-control"
-                       name="name"
-                       value="{{ request('name') }}" 
-                       id="name"
-                       placeholder="Enter name">
+                <select class="form-control" name="tag">
+                    <option value="" selected>All Skills</option>
+                    @foreach ($tags as $tag)
+                        @if (request('tag') == $tag->name)
+                            <option value="{{ $tag->name }}" selected>
+                                {{ $tag->name }}
+                            </option>
+                        @else
+                            <option value="{{ $tag->name }}">
+                                {{ $tag->name }}
+                            </option>
+                        @endif
+                    @endforeach
+                </select>
             </div>
+
         </div>
 
         <div class="col-md-3">

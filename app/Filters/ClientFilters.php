@@ -9,7 +9,7 @@ class ClientFilters extends Filters
      *
      * @var array
      */
-    protected $filters = ['name', 'country'];
+    protected $filters = ['name', 'country', 'tag', 'sort'];
 
     /**
      * Filter the query by a given name.
@@ -31,5 +31,33 @@ class ClientFilters extends Filters
     protected function country($country)
     {
         return $this->builder->where('country', $country);
+    }
+
+    /**
+     * Filter the query by a given tag name.
+     *
+     * @param  string  $name
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    protected function tag($name)
+    {
+        return $this->builder->whereHas('tags', function ($query) use ($name) {
+            $query->where('name', $name);
+        });
+    }
+
+    /**
+     * Sort the query by a given client field.
+     *
+     * @param  string  $field
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    protected function sort($field)
+    {
+        $direction = $field[0] === '-' ? 'desc' : 'asc';
+
+        $field = ltrim($field, '-');
+
+        return $this->builder->orderBy($field, $direction);
     }
 }

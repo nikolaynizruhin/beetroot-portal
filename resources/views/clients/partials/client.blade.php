@@ -59,6 +59,23 @@
                 </p>
             </div>
         </div>
+
+        <!-- Technologies -->
+        @if ($client->tags_count)
+            <div class="row">
+                <div class="col-md-12">
+                    <p>
+                        @foreach ($client->tags as $tag)
+                            <a href="{{ route('clients.index', ['tag' => $tag->name]) }}"
+                               class="badge badge-pill badge-light">
+                                {{ $tag->name }}
+                            </a>
+                        @endforeach
+                    </p>
+                </div>
+            </div>
+        @endif
+
         <div class="row">
             <div class="col-md-12">
 

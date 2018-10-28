@@ -29,7 +29,8 @@ class UserController extends Controller
      */
     public function index(UserFilters $filters)
     {
-        $users = User::with(['client', 'office'])
+        $users = User::with(['client', 'office', 'tags'])
+            ->withCount('tags')
             ->filter($filters)
             ->paginate(15);
 

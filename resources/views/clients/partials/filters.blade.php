@@ -1,12 +1,44 @@
 <form method="GET" action="{{ route('clients.index') }}">
     <div class="row mb-3">
-        <div class="col-md-3">
+        <div class="col-md-4">
+
+            <!-- Sorting -->
+            <div class="form-group">
+                <select class="form-control" name="sort">
+                    @foreach ($sorts as $field => $name)
+                        @if (request('sort') == $field)
+                            <option value="{{ $field }}" selected>
+                                Sort By {{ $name }}
+                            </option>
+                        @else
+                            <option value="{{ $field }}">
+                                Sort By {{ $name }}
+                            </option>
+                        @endif
+                    @endforeach
+                </select>
+            </div>
+
+            <!-- Name Filter -->
+            <div class="form-group">
+                <label for="name" class="sr-only">Name</label>
+                <input type="text"
+                       class="form-control"
+                       id="name"
+                       name="name"
+                       value="{{ request('name') }}"
+                       placeholder="Enter name">
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
 
             <!-- Country Filter -->
             <div class="form-group">
                 <select class="form-control" name="country">
                     <option value="" selected>All Countries</option>
-                    @foreach ( $countries as $country )
+                    @foreach ($countries as $country)
                         @if (request('country') == $country)
                             <option value="{{ $country }}" selected>
                                 {{ $country }}
@@ -19,23 +51,28 @@
                     @endforeach
                 </select>
             </div>
-        </div>
 
-        <div class="col-md-3">
-
-            <!-- Name Filter -->
+            <!-- Technology Filter -->
             <div class="form-group">
-                <label for="name" class="sr-only">Name</label>
-                <input type="text"
-                       class="form-control"
-                       id="name"
-                       name="name" 
-                       value="{{ request('name') }}" 
-                       placeholder="Name">
+                <select class="form-control" name="tag">
+                    <option value="" selected>All Technologies</option>
+                    @foreach ($tags as $tag)
+                        @if (request('tag') == $tag->name)
+                            <option value="{{ $tag->name }}" selected>
+                                {{ $tag->name }}
+                            </option>
+                        @else
+                            <option value="{{ $tag->name }}">
+                                {{ $tag->name }}
+                            </option>
+                        @endif
+                    @endforeach
+                </select>
             </div>
+
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-4">
 
             <!-- Clear Button -->
             <div class="form-group">
@@ -45,9 +82,6 @@
                     Clear
                 </a>
             </div>
-        </div>
-
-        <div class="col-md-3">
 
             <!-- Filter Button -->
             <div class="form-group">
