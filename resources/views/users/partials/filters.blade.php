@@ -2,21 +2,34 @@
     <div class="row mb-3">
         <div class="col-md-3">
 
-            <div class="form-group">
-                <input type="text" readonly class="form-control-plaintext" value="Sort By:">
-            </div>
-
             <!-- Sorting -->
             <div class="form-group">
                 <select class="form-control" name="sort">
                     @foreach ($sorts as $field => $name)
                         @if (request('sort') == $field)
                             <option value="{{ $field }}" selected>
-                                {{ $name }}
+                                Sort By {{ $name }}
                             </option>
                         @else
                             <option value="{{ $field }}">
-                                {{ $name }}
+                                Sort By {{ $name }}
+                            </option>
+                        @endif
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="form-group">
+                <select class="form-control" name="tag">
+                    <option value="" selected>All Skills</option>
+                    @foreach ($tags as $tag)
+                        @if (request('tag') == $tag->name)
+                            <option value="{{ $tag->name }}" selected>
+                                {{ $tag->name }}
+                            </option>
+                        @else
+                            <option value="{{ $tag->name }}">
+                                {{ $tag->name }}
                             </option>
                         @endif
                     @endforeach
@@ -49,7 +62,7 @@
             <div class="form-group">
                 <select class="form-control" name="position">
                     <option value="" selected>All Positions</option>
-                    @foreach ( $positions as $position )
+                    @foreach ($positions as $position)
                         @if (request('position') == $position)
                             <option value="{{ $position }}" selected>
                                 {{ $position }}

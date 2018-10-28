@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\User;
 
+use App\Tag;
 use App\User;
 use App\Client;
 use App\Office;
@@ -61,6 +62,21 @@ class UserFiltersTest extends TestCase
 
         $this->actingAs($john)
             ->get(route('users.index', ['office' => $london->city]))
+            ->assertSee($john->name)
+            ->assertDontSee($jane->name);
+    }
+
+    /** @test */
+    public function a_user_can_filter_employees_by_tag()
+    {
+        $tag = factory(Tag::class)->create();
+        $john = factory(User::class)->create(['name' => 'John Doe']);
+        $jane = factory(User::class)->create(['name' => 'Jane Doe']);
+
+        $john->tags()->attach($tag);
+
+        $this->actingAs($john)
+            ->get(route('users.index', ['tag' => $tag->id]))
             ->assertSee($john->name)
             ->assertDontSee($jane->name);
     }

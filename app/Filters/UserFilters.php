@@ -4,6 +4,7 @@ namespace App\Filters;
 
 use App\Client;
 use App\Office;
+use App\Tag;
 
 class UserFilters extends Filters
 {
@@ -12,7 +13,7 @@ class UserFilters extends Filters
      *
      * @var array
      */
-    protected $filters = ['name', 'position', 'office', 'client', 'sort'];
+    protected $filters = ['name', 'position', 'office', 'client', 'sort', 'tag'];
 
     /**
      * Filter the query by a given name.
@@ -60,6 +61,19 @@ class UserFilters extends Filters
         $client = Client::where('name', $name)->firstOrFail();
 
         return $this->builder->where('client_id', $client->id);
+    }
+
+    /**
+     * Filter the query by a given tag name.
+     *
+     * @param  string  $name
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    protected function tag($name)
+    {
+        return $this->builder->whereHas('tags', function ($query) use ($name) {
+            $query->where('name', $name);
+        });
     }
 
     /**

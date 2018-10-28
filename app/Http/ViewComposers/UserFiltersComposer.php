@@ -2,6 +2,7 @@
 
 namespace App\Http\ViewComposers;
 
+use App\Tag;
 use App\User;
 use App\Client;
 use App\Office;
@@ -38,6 +39,13 @@ class UserFiltersComposer
     protected $sorts;
 
     /**
+     * The tags.
+     *
+     * @var array
+     */
+    protected $tags;
+
+    /**
      * Create a new users composer.
      *
      * @return void
@@ -48,6 +56,7 @@ class UserFiltersComposer
         $this->offices = Office::pluck('city')->sort();
         $this->positions = User::pluck('position')->unique()->sort();
         $this->sorts = User::sorts();
+        $this->tags = Tag::all();
     }
 
     /**
@@ -63,6 +72,7 @@ class UserFiltersComposer
             'offices' => $this->offices,
             'positions' => $this->positions,
             'sorts' => $this->sorts,
+            'tags' => $this->tags,
         ]);
     }
 }
