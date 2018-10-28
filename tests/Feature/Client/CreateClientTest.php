@@ -73,24 +73,21 @@ class CreateClientTest extends TestCase
     /** @test */
     public function admin_can_create_a_client()
     {
-        $admin = factory(User::class)->states('admin')->create();
-        $client = factory(Client::class)->make()->toArray();
-
         $file = UploadedFile::fake()->image('logo.jpg');
 
-        $client['logo'] = $file;
+        $admin = factory(User::class)->states('admin')->create();
+        $client = factory(Client::class)->make(['logo' => $file]);
 
         Storage::fake('public');
         Image::shouldReceive('make->fit->save')->once();
 
         $this->actingAs($admin)
-            ->post(route('clients.store'), $client)
+            ->post(route('clients.store'), $client->toArray())
             ->assertSessionHas('status', 'The team was successfully created!');
 
-        $client['logo'] = 'logos/'.$file->hashName();
+        $client->logo = 'logos/'.$file->hashName();
 
-        $this->assertDatabaseHas('clients', $client);
-
+        $this->assertDatabaseHas('clients', $client->toArray());
         Storage::disk('public')->assertExists('logos/'.$file->hashName());
     }
 
@@ -98,17 +95,15 @@ class CreateClientTest extends TestCase
     public function admin_can_create_a_client_without_logo()
     {
         $admin = factory(User::class)->states('admin')->create();
-        $client = factory(Client::class)->make()
-            ->makeHidden('logo')
-            ->toArray();
+        $client = factory(Client::class)->make()->makeHidden('logo');
 
         $this->actingAs($admin)
-            ->post(route('clients.store'), $client)
+            ->post(route('clients.store'), $client->toArray())
             ->assertSessionHas('status', 'The team was successfully created!');
 
-        $client['logo'] = Client::DEFAULT_LOGO;
+        $client->logo = Client::DEFAULT_LOGO;
 
-        $this->assertDatabaseHas('clients', $client);
+        $this->assertDatabaseHas('clients', $client->toArray());
     }
 
     /** @test */

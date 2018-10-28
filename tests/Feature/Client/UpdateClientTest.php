@@ -81,24 +81,22 @@ class UpdateClientTest extends TestCase
     /** @test */
     public function admin_can_update_a_client()
     {
-        $client = factory(Client::class)->create();
-        $admin = factory(User::class)->states('admin')->create();
-
         $file = UploadedFile::fake()->image('logo.jpg');
 
-        $updatedClient = factory(Client::class)->make(['logo' => $file])->toArray();
+        $client = factory(Client::class)->create();
+        $admin = factory(User::class)->states('admin')->create();
+        $updatedClient = factory(Client::class)->make(['logo' => $file]);
 
         Storage::fake('public');
         Image::shouldReceive('make->fit->save')->once();
 
         $this->actingAs($admin)
-            ->put(route('clients.update', $client), $updatedClient)
+            ->put(route('clients.update', $client), $updatedClient->toArray())
             ->assertSessionHas('status', 'The team was successfully updated!');
 
-        $updatedClient['logo'] = 'logos/'.$file->hashName();
+        $updatedClient->logo = 'logos/'.$file->hashName();
 
-        $this->assertDatabaseHas('clients', $updatedClient);
-
+        $this->assertDatabaseHas('clients', $updatedClient->toArray());
         Storage::disk('public')->assertExists('logos/'.$file->hashName());
     }
 

@@ -121,47 +121,40 @@ class UpdateUserTest extends TestCase
     /** @test */
     public function admin_can_update_any_employee_profile()
     {
-        $owner = factory(User::class)->create();
-        $admin = factory(User::class)->states('admin')->create();
-        $user = factory(User::class)->states('admin')->make()
-            ->makeHidden(['avatar', 'accepted_at'])
-            ->toArray();
-
         $file = UploadedFile::fake()->image('avatar.jpg');
 
-        $user['avatar'] = $file;
+        $owner = factory(User::class)->create();
+        $admin = factory(User::class)->states('admin')->create();
+        $user = factory(User::class)->make(['avatar' => $file])->makeHidden('accepted_at');
 
         Storage::fake('public');
         Image::shouldReceive('make->fit->save')->once();
 
         $this->actingAs($admin)
-            ->put(route('users.update', $owner), $user)
+            ->put(route('users.update', $owner), $user->toArray())
             ->assertSessionHas('status', 'The beetroot was successfully updated!');
 
-        $user['avatar'] = 'avatars/'.$file->hashName();
+        $user->avatar = 'avatars/'.$file->hashName();
 
-        $this->assertDatabaseHas('users', $user);
-
+        $this->assertDatabaseHas('users', $user->toArray());
         Storage::disk('public')->assertExists('avatars/'.$file->hashName());
     }
 
     /** @test */
     public function employee_can_update_own_profile()
     {
-        $owner = factory(User::class)->states('employee')->create();
-        $user = factory(User::class)->states('admin')->make()
-            ->makeHidden(['avatar', 'accepted_at'])
-            ->toArray();
-
         $file = UploadedFile::fake()->image('avatar.jpg');
 
-        $user['avatar'] = $file;
+        $owner = factory(User::class)->states('employee')->create();
+        $user = factory(User::class)->make(['avatar' => $file])->makeHidden('accepted_at');
 
         $this->actingAs($owner)
-            ->put(route('profile.update', $owner), $user)
+            ->put(route('profile.update', $owner), $user->toArray())
             ->assertSessionHas('status', 'The beetroot was successfully updated!');
 
-        $user = collect($user)->only(['facebook', 'instagram', 'slack', 'phone', 'skype', 'github', 'bio'])->all();
+        $user = collect($user->toArray())
+            ->only(['facebook', 'instagram', 'slack', 'phone', 'skype', 'github', 'bio'])
+            ->all();
 
         $this->assertDatabaseHas('users', $user);
     }
@@ -171,14 +164,11 @@ class UpdateUserTest extends TestCase
     {
         $owner = factory(User::class)->states('employee')->create();
         $tag = factory(Tag::class)->create();
-        $user = factory(User::class)->states('admin')->make()
-            ->makeHidden(['avatar', 'accepted_at'])
-            ->toArray();
-
-        $user['tags'] = [$tag->id];
+        $user = factory(User::class)->make(['tags' => [$tag->id]])
+            ->makeHidden(['avatar', 'accepted_at']);
 
         $this->actingAs($owner)
-            ->put(route('profile.update', $owner), $user)
+            ->put(route('profile.update', $owner), $user->toArray())
             ->assertSessionHas('status', 'The beetroot was successfully updated!');
 
         $this->assertCount(1, $tag->users);

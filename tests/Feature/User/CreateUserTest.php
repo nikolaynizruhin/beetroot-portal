@@ -74,25 +74,28 @@ class CreateUserTest extends TestCase
     /** @test */
     public function admin_can_create_a_user()
     {
-        $admin = factory(User::class)->states('admin')->create();
-        $user = factory(User::class)->states('admin')->make()
-            ->makeHidden(['avatar', 'accepted_at'])
-            ->toArray();
-
         $file = UploadedFile::fake()->image('avatar.jpg');
 
+        $admin = factory(User::class)->states('admin')->create();
+        $user = factory(User::class)->make([
+            'avatar' => $file,
+            'password' => 'secret',
+            'password_confirmation' => 'secret',
+        ])->makeHidden('accepted_at')
+            ->makeVisible('password');
+
         Storage::fake('public');
-
         Notification::fake();
-
         Image::shouldReceive('make->fit->save')->once();
 
         $this->actingAs($admin)
-            ->post(route('users.store'), $this->input($user, $file))
+            ->post(route('users.store'), $user->toArray())
             ->assertSessionHas('status', 'The beetroot was successfully created!');
 
-        $this->assertDatabaseHas('users', $this->result($user, $file));
+        $user->avatar = 'avatars/'.$file->hashName();
+        $user->makeHidden(['password', 'password_confirmation']);
 
+        $this->assertDatabaseHas('users', $user->toArray());
         Storage::disk('public')->assertExists('avatars/'.$file->hashName());
     }
 
@@ -100,38 +103,45 @@ class CreateUserTest extends TestCase
     public function admin_can_create_a_user_without_avatar()
     {
         $admin = factory(User::class)->states('admin')->create();
-        $user = factory(User::class)->states('admin')->make()
-            ->makeHidden(['avatar', 'accepted_at'])
-            ->toArray();
+        $user = factory(User::class)->make([
+            'password' => 'secret',
+            'password_confirmation' => 'secret',
+        ])->makeHidden(['avatar', 'accepted_at'])
+            ->makeVisible('password');
 
         Notification::fake();
 
         $this->actingAs($admin)
-            ->post(route('users.store'), $this->input($user))
+            ->post(route('users.store'), $user->toArray())
             ->assertSessionHas('status', 'The beetroot was successfully created!');
 
-        $this->assertDatabaseHas('users', $this->result($user));
+        $user->avatar = User::DEFAULT_AVATAR;
+        $user->makeHidden(['password', 'password_confirmation']);
+
+        $this->assertDatabaseHas('users', $user->toArray());
     }
 
     /** @test */
     public function it_should_send_welcome_email_when_user_created()
     {
         $admin = factory(User::class)->states('admin')->create();
-        $user = factory(User::class)->states('admin')->make()
-            ->makeHidden(['avatar', 'accepted_at'])
-            ->toArray();
+        $user = factory(User::class)->make([
+            'password' => 'secret',
+            'password_confirmation' => 'secret',
+        ])->makeHidden(['avatar', 'accepted_at'])
+            ->makeVisible('password');
 
         Notification::fake();
 
         $this->actingAs($admin)
-            ->post(route('users.store'), $input = $this->input($user))
+            ->post(route('users.store'), $user->toArray())
             ->assertSessionHas('status', 'The beetroot was successfully created!');
 
         Notification::assertSentTo(
-            User::whereEmail($input['email'])->first(),
+            User::whereEmail($user->email)->first(),
             WelcomeNotification::class,
-            function ($notification, $channels) use ($input) {
-                return $notification->password === $input['password'];
+            function ($notification, $channels) use ($user) {
+                return $notification->password === $user->password;
             }
         );
     }
@@ -141,17 +151,21 @@ class CreateUserTest extends TestCase
     {
         $admin = factory(User::class)->states('admin')->create();
         $tag = factory(Tag::class)->create();
-        $user = factory(User::class)->states('admin')->make()
+        $user = factory(User::class)
+            ->states('admin')
+            ->make([
+                'password' => 'secret',
+                'password_confirmation' => 'secret',
+                'tags' => [$tag->id],
+            ])
             ->makeHidden(['avatar', 'accepted_at'])
+            ->makeVisible('password')
             ->toArray();
-
-        $input = $this->input($user);
-        $input['tags'] = [$tag->id];
 
         Notification::fake();
 
         $this->actingAs($admin)
-            ->post(route('users.store'), $input)
+            ->post(route('users.store'), $user)
             ->assertSessionHas('status', 'The beetroot was successfully created!');
 
         $this->assertCount(1, $tag->users);
@@ -175,39 +189,5 @@ class CreateUserTest extends TestCase
                 'office_id',
                 'password',
             ]);
-    }
-
-    /**
-     * Get input attributes.
-     *
-     * @param  array  $user
-     * @param  object|null  $file
-     * @return array
-     */
-    protected function input($user, $file = null)
-    {
-        if ($file) {
-            $user['avatar'] = $file;
-        }
-
-        $user['password'] = $user['password_confirmation'] = 'secret';
-
-        return $user;
-    }
-
-    /**
-     * Get result attributes.
-     *
-     * @param  array  $user
-     * @param  object|null  $file
-     * @return array
-     */
-    protected function result($user, $file = null)
-    {
-        $user['avatar'] = $file ? 'avatars/'.$file->hashName() : User::DEFAULT_AVATAR;
-
-        unset($user['password'], $user['password_confirmation']);
-
-        return $user;
     }
 }
