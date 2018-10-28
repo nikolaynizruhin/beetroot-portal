@@ -2,8 +2,8 @@
 
 namespace App\Http\ViewComposers;
 
-use App\Client;
 use App\Tag;
+use App\Client;
 use Illuminate\View\View;
 
 class ClientFiltersComposer

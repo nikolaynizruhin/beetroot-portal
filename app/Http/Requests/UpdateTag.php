@@ -32,7 +32,7 @@ class UpdateTag extends FormRequest
                 'string',
                 'max:255',
                 Rule::unique('tags')->ignore($this->tag->id),
-            ]
+            ],
         ];
     }
 }
