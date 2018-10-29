@@ -7,15 +7,10 @@
                 <select class="form-control" name="office">
                     <option value="" selected>All Locations</option>
                     @foreach ($offices as $city)
-                        @if (request('office') == $city)
-                            <option value="{{ $city }}" selected>
-                                {{ $city }}
-                            </option>
-                        @else
-                            <option value="{{ $city }}">
-                                {{ $city }}
-                            </option>
-                        @endif
+                        <option value="{{ $city }}"
+                                @if (request('office') == $city) selected @endif>
+                            {{ $city }}
+                        </option>
                     @endforeach
                 </select>
             </div>

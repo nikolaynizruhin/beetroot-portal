@@ -190,15 +190,10 @@
                                         required
                                         @employee disabled @endemployee>
                                     @foreach ( $positions as $position )
-                                        @if (old('position', $user->position) == $position)
-                                            <option value="{{ $position }}" selected>
-                                                {{ $position }}
-                                            </option>
-                                        @else
-                                            <option value="{{ $position }}">
-                                                {{ $position }}
-                                            </option>
-                                        @endif
+                                        <option value="{{ $position }}"
+                                                @if (old('position', $user->position) == $position) selected @endif>
+                                            {{ $position }}
+                                        </option>
                                     @endforeach
                                 </select>
 
@@ -223,15 +218,10 @@
                                         required
                                         @employee disabled @endemployee>
                                     @foreach ($clients as $id => $name)
-                                        @if (old('client_id', $user->client_id) == $id)
-                                            <option value="{{ $id }}" selected>
-                                                {{ $name }}
-                                            </option>
-                                        @else
-                                            <option value="{{ $id }}">
-                                                {{ $name }}
-                                            </option>
-                                        @endif
+                                        <option value="{{ $id }}"
+                                                @if (old('client_id', $user->client_id) == $id) selected @endif>
+                                            {{ $name }}
+                                        </option>
                                     @endforeach
                                 </select>
 
@@ -256,15 +246,9 @@
                                         required
                                         @employee disabled @endemployee>
                                     @foreach ($offices as $id => $city)
-                                        @if (old('office_id', $user->office_id) == $id)
-                                            <option value="{{ $id }}" selected>
-                                                {{ $city }}
-                                            </option>
-                                        @else
-                                            <option value="{{ $id }}">
-                                                {{ $city }}
-                                            </option>
-                                        @endif
+                                        <option value="{{ $id }}" @if (old('office_id', $user->office_id) == $id) selected @endif>
+                                            {{ $city }}
+                                        </option>
                                     @endforeach
                                 </select>
 
@@ -339,15 +323,10 @@
                                         name="tags[]"
                                         multiple="multiple">
                                     @foreach ($tags as $tag)
-                                        @if (collect(old('tags', $user->tags->pluck('id')))->contains($tag->id))
-                                            <option value="{{ $tag->id }}" selected>
-                                                {{ $tag->name }}
-                                            </option>
-                                        @else
-                                            <option value="{{ $tag->id }}">
-                                                {{ $tag->name }}
-                                            </option>
-                                        @endif
+                                        <option value="{{ $tag->id }}"
+                                                @if (collect(old('tags', $user->tags->pluck('id')))->contains($tag->id)) selected @endif>
+                                            {{ $tag->name }}
+                                        </option>
                                     @endforeach
                                 </select>
 

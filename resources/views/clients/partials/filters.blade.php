@@ -6,15 +6,10 @@
             <div class="form-group">
                 <select class="form-control" name="sort">
                     @foreach ($sorts as $field => $name)
-                        @if (request('sort') == $field)
-                            <option value="{{ $field }}" selected>
-                                Sort By {{ $name }}
-                            </option>
-                        @else
-                            <option value="{{ $field }}">
-                                Sort By {{ $name }}
-                            </option>
-                        @endif
+                        <option value="{{ $field }}"
+                                @if (request('sort') == $field) selected @endif>
+                            Sort By {{ $name }}
+                        </option>
                     @endforeach
                 </select>
             </div>
@@ -39,15 +34,10 @@
                 <select class="form-control" name="country">
                     <option value="" selected>All Countries</option>
                     @foreach ($countries as $country)
-                        @if (request('country') == $country)
-                            <option value="{{ $country }}" selected>
-                                {{ $country }}
-                            </option>
-                        @else
-                            <option value="{{ $country }}">
-                                {{ $country }}
-                            </option>
-                        @endif
+                        <option value="{{ $country }}"
+                                @if (request('country') == $country) selected @endif>
+                            {{ $country }}
+                        </option>
                     @endforeach
                 </select>
             </div>
@@ -57,15 +47,10 @@
                 <select class="form-control" name="tag">
                     <option value="" selected>All Technologies</option>
                     @foreach ($tags as $tag)
-                        @if (request('tag') == $tag->name)
-                            <option value="{{ $tag->name }}" selected>
-                                {{ $tag->name }}
-                            </option>
-                        @else
-                            <option value="{{ $tag->name }}">
-                                {{ $tag->name }}
-                            </option>
-                        @endif
+                        <option value="{{ $tag->name }}"
+                                @if (request('tag') == $tag->name) selected @endif>
+                            {{ $tag->name }}
+                        </option>
                     @endforeach
                 </select>
             </div>

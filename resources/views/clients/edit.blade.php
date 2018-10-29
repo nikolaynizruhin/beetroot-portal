@@ -115,15 +115,10 @@
                                         name="country"
                                         required>
                                     @foreach ( $countries::all() as $country )
-                                        @if (old('country', $client->country) == $country)
-                                            <option value="{{ $country }}" selected>
-                                                {{ $country }}
-                                            </option>
-                                        @else
-                                            <option value="{{ $country }}">
-                                                {{ $country }}
-                                            </option>
-                                        @endif
+                                        <option value="{{ $country }}"
+                                                @if (old('country', $client->country) == $country) selected @endif>
+                                            {{ $country }}
+                                        </option>
                                     @endforeach
                                 </select>
 
@@ -147,15 +142,10 @@
                                         name="tags[]"
                                         multiple="multiple">
                                     @foreach ($tags as $tag)
-                                        @if (collect(old('tags', $client->tags->pluck('id')))->contains($tag->id))
-                                            <option value="{{ $tag->id }}" selected>
-                                                {{ $tag->name }}
-                                            </option>
-                                        @else
-                                            <option value="{{ $tag->id }}">
-                                                {{ $tag->name }}
-                                            </option>
-                                        @endif
+                                        <option value="{{ $tag->id }}"
+                                                @if (collect(old('tags', $client->tags->pluck('id')))->contains($tag->id)) selected @endif>
+                                            {{ $tag->name }}
+                                        </option>
                                     @endforeach
                                 </select>
 

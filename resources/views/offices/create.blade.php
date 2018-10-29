@@ -33,15 +33,10 @@
                                         required>
                                     <option value="">Select a country...</option>
                                     @foreach ( $countries::all() as $country )
-                                        @if (old('country') == $country)
-                                            <option value="{{ $country }}" selected>
-                                                {{ $country }}
-                                            </option>
-                                        @else
-                                            <option value="{{ $country }}">
-                                                {{ $country }}
-                                            </option>
-                                        @endif
+                                        <option value="{{ $country }}"
+                                                @if (old('country') == $country) selected @endif>
+                                            {{ $country }}
+                                        </option>
                                     @endforeach
                                 </select>
 
