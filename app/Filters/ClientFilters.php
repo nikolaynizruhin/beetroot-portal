@@ -4,6 +4,8 @@ namespace App\Filters;
 
 class ClientFilters extends Filters
 {
+    use HasTag;
+
     /**
      * Registered filters to operate upon.
      *
@@ -31,19 +33,6 @@ class ClientFilters extends Filters
     protected function country($country)
     {
         return $this->builder->where('country', $country);
-    }
-
-    /**
-     * Filter the query by a given tag name.
-     *
-     * @param  string  $name
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    protected function tag($name)
-    {
-        return $this->builder->whereHas('tags', function ($query) use ($name) {
-            $query->where('name', $name);
-        });
     }
 
     /**

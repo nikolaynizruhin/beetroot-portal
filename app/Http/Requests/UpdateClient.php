@@ -9,6 +9,8 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateClient extends FormRequest
 {
+    use HasTag;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -59,16 +61,6 @@ class UpdateClient extends FormRequest
         }
 
         return $attributes;
-    }
-
-    /**
-     * Get tags.
-     *
-     * @return array
-     */
-    public function tags()
-    {
-        return $this->tags ?: [];
     }
 
     /**

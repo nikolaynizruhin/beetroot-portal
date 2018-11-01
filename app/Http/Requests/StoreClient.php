@@ -10,6 +10,8 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class StoreClient extends FormRequest
 {
+    use HasTag;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -56,16 +58,6 @@ class StoreClient extends FormRequest
         $attributes['logo'] = $this->logo();
 
         return $attributes;
-    }
-
-    /**
-     * Get tags.
-     *
-     * @return array
-     */
-    public function tags()
-    {
-        return $this->tags ?: [];
     }
 
     /**

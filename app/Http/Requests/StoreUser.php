@@ -10,6 +10,8 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class StoreUser extends FormRequest
 {
+    use HasTag;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -74,16 +76,6 @@ class StoreUser extends FormRequest
         $attributes['password'] = bcrypt($this->password);
 
         return $attributes;
-    }
-
-    /**
-     * Get tags.
-     *
-     * @return array
-     */
-    public function tags()
-    {
-        return $this->tags ?: [];
     }
 
     /**

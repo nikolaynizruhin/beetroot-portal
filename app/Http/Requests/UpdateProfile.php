@@ -6,6 +6,8 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateProfile extends FormRequest
 {
+    use HasTag;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -49,15 +51,5 @@ class UpdateProfile extends FormRequest
         unset($attributes['tags']);
 
         return $attributes;
-    }
-
-    /**
-     * Get tags.
-     *
-     * @return array
-     */
-    public function tags()
-    {
-        return $this->tags ?: [];
     }
 }
