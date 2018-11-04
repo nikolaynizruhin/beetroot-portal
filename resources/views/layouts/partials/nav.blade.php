@@ -72,7 +72,7 @@
                             <span class="caret"></span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('tags.index') }}">Technologies</a>
+                            <a class="dropdown-item" href="{{ route('tags.index') }}">Skills</a>
                             <a class="dropdown-item" href="{{ route('info') }}">Info</a>
                             <a class="dropdown-item" href="{{ route('privacy') }}">Privacy Policy</a>
                             @admin
@@ -80,7 +80,7 @@
                                 <a class="dropdown-item" href="{{ route('users.create') }}">Add Beetroot</a>
                                 <a class="dropdown-item" href="{{ route('clients.create') }}">Add Team</a>
                                 <a class="dropdown-item" href="{{ route('offices.create') }}">Add Location</a>
-                                <a class="dropdown-item" href="{{ route('tags.create') }}">Add Technology</a>
+                                <a class="dropdown-item" href="{{ route('tags.create') }}">Add Skill</a>
                             @endadmin
                         </div>
                     </li>

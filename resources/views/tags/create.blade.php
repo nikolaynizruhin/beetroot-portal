@@ -8,7 +8,7 @@
                     <div class="card-header">
                         <i class="fas fa-tag fa-lg fa-fw" aria-hidden="true"></i>
                         &nbsp;
-                        Add Technology
+                        Add Skill
                     </div>
 
                     <div class="card-body">

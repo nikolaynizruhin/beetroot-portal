@@ -8,7 +8,7 @@
                     <div class="card-header">
                         <i class="fas fa-tags fa-lg fa-fw" aria-hidden="true"></i>
                         &nbsp;
-                        Technologies {{ $tags->total() }}
+                        Skills {{ $tags->total() }}
                     </div>
 
                     <div class="card-body">
