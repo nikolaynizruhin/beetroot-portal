@@ -16,8 +16,16 @@
                 <tr>
                     <th scope="row">{{ $index + $tags->firstItem() }}</th>
                     <td>{{ $tag->name }}</td>
-                    <td>{{ $tag->users->count() }}</td>
-                    <td>{{ $tag->clients->count() }}</td>
+                    <td>
+                        <a href="{{ route('users.index', ['tag' => $tag->name]) }}">
+                            {{ $tag->users->count() }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ route('clients.index', ['tag' => $tag->name]) }}">
+                            {{ $tag->clients->count() }}
+                        </a>
+                    </td>
                     @admin
                         <td>
                             <a href="{{ route('tags.edit', $tag->id) }}">
