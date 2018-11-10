@@ -104,8 +104,8 @@ class ClientFiltersTest extends TestCase
     {
         $user = factory(User::class)->create();
         $tag = factory(Tag::class)->create();
-        $alliance = factory(Client::class)->create();
-        $brothers = factory(Client::class)->create();
+        $alliance = factory(Client::class)->create(['name' => 'Alliance']);
+        $brothers = factory(Client::class)->create(['name' => 'Brothers']);
 
         $alliance->tags()->attach($tag);
 
