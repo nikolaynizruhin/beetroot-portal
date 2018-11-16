@@ -130,6 +130,7 @@ return [
     | for simpler reading. Otherwise, the default channel will be used.
     |
     */
+
     'log_channel' => env('MAIL_LOG_CHANNEL'),
 
 ];
