@@ -42,6 +42,7 @@ class WelcomeNotification extends Notification
     /**
      * Get the mail representation of the notification.
      *
+     * @codeCoverageIgnore
      * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */

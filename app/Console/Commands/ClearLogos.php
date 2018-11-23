@@ -35,9 +35,9 @@ class ClearLogos extends Command
 
         $unused = collect($all)->diff($used)->values();
 
-        Storage::delete($unused);
-
-        $this->info('('.$unused->count().') Unused logos was removed successfully!');
+        Storage::delete($unused->all())
+            ? $this->info('('.$unused->count().') Unused logos was removed successfully!')
+            : $this->error('Unable to remove unused logos!');
     }
 
     /**

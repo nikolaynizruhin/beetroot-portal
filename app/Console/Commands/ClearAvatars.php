@@ -35,9 +35,9 @@ class ClearAvatars extends Command
 
         $unused = collect($all)->diff($used)->values();
 
-        Storage::delete($unused);
-
-        $this->info('('.$unused->count().') Unused avatars was removed successfully!');
+        Storage::delete($unused->all())
+            ? $this->info('('.$unused->count().') Unused avatars was removed successfully!')
+            : $this->error('Unable to remove unused avatars!');
     }
 
     /**
