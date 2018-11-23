@@ -34,4 +34,22 @@ class ClearAvatarsTest extends TestCase
         Storage::disk('public')->assertMissing($unused);
         Storage::disk('public')->assertExists($used);
     }
+
+    /** @test */
+    public function it_should_give_error_if_remove_unused_avatars_fails()
+    {
+        Storage::shouldReceive('files')
+            ->once()
+            ->with('avatars')
+            ->andReturn([]);
+
+        Storage::shouldReceive('delete')
+            ->once()
+            ->with([])
+            ->andReturn(false);
+
+        $this->artisan('avatar:clear')
+            ->expectsOutput('Unable to remove unused avatars!')
+            ->assertExitCode(0);
+    }
 }
