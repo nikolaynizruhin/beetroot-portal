@@ -13,4 +13,14 @@ trait HasTag
     {
         return $this->tags ?: [];
     }
+
+    /**
+     * Get list of attributes without tags.
+     *
+     * @return array
+     */
+    public function withoutTags($attributes)
+    {
+        return array_except($attributes, 'tags');
+    }
 }

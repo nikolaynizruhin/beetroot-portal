@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Client;
 use App\Http\Utilities\Country;
 use Illuminate\Validation\Rule;
 use Intervention\Image\Facades\Image;
@@ -54,13 +55,11 @@ class UpdateClient extends FormRequest
     {
         $attributes = $this->validated();
 
-        unset($attributes['tags']);
-
         if ($this->hasFile('logo')) {
             $attributes['logo'] = $this->logo();
         }
 
-        return $attributes;
+        return $this->withoutTags($attributes);
     }
 
     /**
@@ -72,7 +71,7 @@ class UpdateClient extends FormRequest
     {
         $path = $this->file('logo')->store('logos');
 
-        Image::make('storage/'.$path)->fit(150)->save();
+        Image::make('storage/'.$path)->fit(Client::LOGO_SIZE)->save();
 
         return $path;
     }

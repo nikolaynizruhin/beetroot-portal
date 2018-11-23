@@ -69,13 +69,11 @@ class StoreUser extends FormRequest
     {
         $attributes = $this->validated();
 
-        unset($attributes['tags']);
-
         $attributes['avatar'] = $this->avatar();
         $attributes['is_admin'] = (bool) $this->is_admin;
         $attributes['password'] = bcrypt($this->password);
 
-        return $attributes;
+        return $this->withoutTags($attributes);
     }
 
     /**
@@ -88,7 +86,7 @@ class StoreUser extends FormRequest
         if ($this->hasFile('avatar')) {
             $path = $this->file('avatar')->store('avatars');
 
-            Image::make('storage/'.$path)->fit(150)->save();
+            Image::make('storage/'.$path)->fit(User::AVATAR_SIZE)->save();
 
             return $path;
         }

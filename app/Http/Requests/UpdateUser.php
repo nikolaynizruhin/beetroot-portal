@@ -75,15 +75,13 @@ class UpdateUser extends FormRequest
     {
         $attributes = $this->validated();
 
-        unset($attributes['tags']);
-
         $attributes['is_admin'] = (bool) $this->is_admin;
 
         if ($this->hasFile('avatar')) {
             $attributes['avatar'] = $this->avatar();
         }
 
-        return $attributes;
+        return $this->withoutTags($attributes);
     }
 
     /**
@@ -95,7 +93,7 @@ class UpdateUser extends FormRequest
     {
         $path = $this->file('avatar')->store('avatars');
 
-        Image::make('storage/'.$path)->fit(150)->save();
+        Image::make('storage/'.$path)->fit(User::AVATAR_SIZE)->save();
 
         return $path;
     }

@@ -32,4 +32,14 @@ class Office extends Model
     {
         return $this->users()->ofPosition($position)->count();
     }
+
+    /**
+     * Get the list of sorted office cities.
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    public static function cities()
+    {
+        return self::pluck('city')->sort();
+    }
 }

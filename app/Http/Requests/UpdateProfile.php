@@ -46,10 +46,6 @@ class UpdateProfile extends FormRequest
      */
     public function prepared()
     {
-        $attributes = $this->validated();
-
-        unset($attributes['tags']);
-
-        return $attributes;
+        return $this->withoutTags($this->validated());
     }
 }

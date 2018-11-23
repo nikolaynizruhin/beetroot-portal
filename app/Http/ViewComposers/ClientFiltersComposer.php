@@ -36,7 +36,7 @@ class ClientFiltersComposer
      */
     public function __construct()
     {
-        $this->countries = Client::pluck('country')->unique()->sort();
+        $this->countries = Client::countries();
         $this->sorts = Client::sorts();
         $this->tags = Tag::all();
     }

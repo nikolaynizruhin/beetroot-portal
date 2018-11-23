@@ -21,6 +21,13 @@ class User extends Authenticatable
     const DEFAULT_AVATAR = 'avatars/default.png';
 
     /**
+     * Avatar size in pixels.
+     *
+     * @var string
+     */
+    const AVATAR_SIZE = 150;
+
+    /**
      * Constant representing a male.
      *
      * @var string
@@ -151,6 +158,16 @@ class User extends Authenticatable
     public static function sorts()
     {
         return static::$sorts;
+    }
+
+    /**
+     * Get list of unique sorted user positions.
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    public static function positions()
+    {
+        return static::pluck('position')->unique()->sort();
     }
 
     /**

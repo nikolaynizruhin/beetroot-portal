@@ -21,7 +21,7 @@ class BirthdayFiltersComposer
      */
     public function __construct()
     {
-        $this->offices = Office::pluck('city')->sort();
+        $this->offices = Office::cities();
     }
 
     /**

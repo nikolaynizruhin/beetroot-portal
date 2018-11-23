@@ -53,11 +53,9 @@ class StoreClient extends FormRequest
     {
         $attributes = $this->validated();
 
-        unset($attributes['tags']);
-
         $attributes['logo'] = $this->logo();
 
-        return $attributes;
+        return $this->withoutTags($attributes);
     }
 
     /**
@@ -70,7 +68,7 @@ class StoreClient extends FormRequest
         if ($this->hasFile('logo')) {
             $path = $this->file('logo')->store('logos');
 
-            Image::make('storage/'.$path)->fit(150)->save();
+            Image::make('storage/'.$path)->fit(Client::LOGO_SIZE)->save();
 
             return $path;
         }

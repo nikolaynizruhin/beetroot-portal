@@ -19,6 +19,13 @@ class Client extends Model
     const DEFAULT_LOGO = 'logos/default.png';
 
     /**
+     * Logo size in pixels.
+     *
+     * @var string
+     */
+    const LOGO_SIZE = 150;
+
+    /**
      * The attributes that aren't mass assignable.
      *
      * @var array
@@ -54,6 +61,16 @@ class Client extends Model
     public static function sorts()
     {
         return static::$sorts;
+    }
+
+    /**
+     * Get list of sorted client countries.
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    public static function countries()
+    {
+        return static::pluck('country')->unique()->sort();
     }
 
     /**
