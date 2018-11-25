@@ -42,7 +42,7 @@ class TagController extends Controller
     {
         $this->authorize('create', User::class);
 
-        return view('tags.create');
+        return view('tags.create')->with('tag', new Tag);
     }
 
     /**

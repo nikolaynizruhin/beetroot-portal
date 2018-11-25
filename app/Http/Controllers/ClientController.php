@@ -46,7 +46,7 @@ class ClientController extends Controller
     {
         $this->authorize('create', Client::class);
 
-        return view('clients.create');
+        return view('clients.create')->with('client', new Client);
     }
 
     /**

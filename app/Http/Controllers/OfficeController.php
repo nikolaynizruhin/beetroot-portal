@@ -44,7 +44,7 @@ class OfficeController extends Controller
     {
         $this->authorize('create', Office::class);
 
-        return view('offices.create');
+        return view('offices.create')->with('office', new Office);
     }
 
     /**
