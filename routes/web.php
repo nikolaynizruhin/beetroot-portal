@@ -15,7 +15,7 @@ Route::view('/', 'welcome');
 Route::view('/privacy', 'privacy')->name('privacy')->middleware('auth');
 Route::view('/info', 'info')->name('info')->middleware(['auth', 'accept']);
 
-Auth::routes();
+Auth::routes(['register' => false, 'verify' => false]);
 
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 

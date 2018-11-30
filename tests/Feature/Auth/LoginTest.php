@@ -20,14 +20,6 @@ class LoginTest extends TestCase
     }
 
     /** @test */
-    public function it_redirects_to_login_page_when_visit_register_page()
-    {
-        $this->get(route('register'))
-            ->assertStatus(302)
-            ->assertRedirect(route('login'));
-    }
-
-    /** @test */
     public function employee_cannot_view_a_login_form_when_authenticated()
     {
         $user = factory(User::class)->make();
