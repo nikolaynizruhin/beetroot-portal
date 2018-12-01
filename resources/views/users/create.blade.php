@@ -52,27 +52,6 @@
                             </div>
                         </div>
 
-                        <!-- Avatar -->
-                        <div class="form-group row">
-                            <label for="avatar" class="col-md-4 col-form-label text-md-right">
-                                <span data-toggle="tooltip"
-                                      data-placement="top"
-                                      title="Square image (jpeg, png, bmp, gif, svg)">
-                                    Avatar
-                                </span>
-                            </label>
-
-                            <div class="col-md-6">
-                                <input class="form-control-file" id="avatar" type="file" name="avatar">
-
-                                @if ($errors->has('avatar'))
-                                    <div class="invalid-feedback">
-                                        {{ $errors->first('avatar') }}
-                                    </div>
-                                @endif
-                            </div>
-                        </div>
-
                         <!-- Gender -->
                         <fieldset class="form-group">
                             <div class="row">
@@ -112,6 +91,30 @@
                                 </div>
                             </div>
                         </fieldset>
+
+                        <!-- Avatar -->
+                        <div class="form-group row">
+                            <label for="avatar" class="col-md-4 col-form-label text-md-right">
+                                <span data-toggle="tooltip"
+                                      data-placement="top"
+                                      title="Square image (jpeg, png, bmp, gif, svg)">
+                                    Avatar
+                                </span>
+                            </label>
+
+                            <div class="col-md-6">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="avatar" name="avatar">
+                                    <label class="custom-file-label" for="avatar">Choose file</label>
+                                </div>
+
+                                @if ($errors->has('avatar'))
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('avatar') }}
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
 
                         <!-- Name -->
                         <div class="form-group row">
