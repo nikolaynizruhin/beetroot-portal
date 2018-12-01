@@ -51,7 +51,7 @@ class Dashboard implements Responsable
      */
     public function usersPerYear()
     {
-        return resolve(UserCountPerYearQuery::class)();
+        return app(UserCountPerYearQuery::class)();
     }
 
     /**
@@ -61,7 +61,7 @@ class Dashboard implements Responsable
      */
     public function genders()
     {
-        return resolve(GenderCountQuery::class)();
+        return app(GenderCountQuery::class)();
     }
 
     /**
@@ -71,7 +71,7 @@ class Dashboard implements Responsable
      */
     public function positions()
     {
-        return resolve(PositionCountQuery::class)();
+        return app(PositionCountQuery::class)();
     }
 
     /**
@@ -81,7 +81,7 @@ class Dashboard implements Responsable
      */
     public function clients()
     {
-        return resolve(ClientCountQuery::class)();
+        return app(ClientCountQuery::class)();
     }
 
     /**
@@ -91,7 +91,7 @@ class Dashboard implements Responsable
      */
     public function offices()
     {
-        return resolve(OfficeUsersCountQuery::class)();
+        return app(OfficeUsersCountQuery::class)();
     }
 
     /**
