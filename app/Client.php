@@ -74,6 +74,18 @@ class Client extends Model
     }
 
     /**
+     * Get collection of logos in use.
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    public static function logosInUse()
+    {
+        return self::pluck('logo')
+            ->merge(self::DEFAULT_LOGO)
+            ->unique();
+    }
+
+    /**
      * The "booting" method of the model.
      *
      * @return void

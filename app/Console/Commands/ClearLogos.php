@@ -31,28 +31,12 @@ class ClearLogos extends Command
     {
         $all = Storage::files('logos');
 
-        $used = $this->getUsedLogos();
+        $used = Client::logosInUse();
 
         $unused = collect($all)->diff($used)->values();
 
         Storage::delete($unused->all())
             ? $this->info('('.$unused->count().') Unused logos was removed successfully!')
             : $this->error('Unable to remove unused logos!');
-    }
-
-    /**
-     * Get used logos.
-     *
-     * @return \Illuminate\Support\Collection
-     */
-    protected function getUsedLogos()
-    {
-        $logos = Client::pluck('logo');
-
-        if (! $logos->contains(Client::DEFAULT_LOGO)) {
-            $logos->push(Client::DEFAULT_LOGO);
-        }
-
-        return $logos;
     }
 }

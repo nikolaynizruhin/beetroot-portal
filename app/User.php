@@ -171,6 +171,18 @@ class User extends Authenticatable
     }
 
     /**
+     * Get collection of avatars in use.
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    public static function avatarsInUse()
+    {
+        return self::pluck('avatar')
+            ->merge(self::DEFAULT_AVATAR)
+            ->unique();
+    }
+
+    /**
      * Send the welcome notification.
      *
      * @param  string  $password

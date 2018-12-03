@@ -31,28 +31,12 @@ class ClearAvatars extends Command
     {
         $all = Storage::files('avatars');
 
-        $used = $this->getUsedAvatars();
+        $used = User::avatarsInUse();
 
         $unused = collect($all)->diff($used)->values();
 
         Storage::delete($unused->all())
             ? $this->info('('.$unused->count().') Unused avatars was removed successfully!')
             : $this->error('Unable to remove unused avatars!');
-    }
-
-    /**
-     * Get used avatars.
-     *
-     * @return \Illuminate\Support\Collection
-     */
-    protected function getUsedAvatars()
-    {
-        $avatars = User::pluck('avatar');
-
-        if (! $avatars->contains(User::DEFAULT_AVATAR)) {
-            $avatars->push(User::DEFAULT_AVATAR);
-        }
-
-        return $avatars;
     }
 }
