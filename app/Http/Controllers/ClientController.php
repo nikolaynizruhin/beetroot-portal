@@ -59,7 +59,7 @@ class ClientController extends Controller
     {
         $client = Client::create($request->prepared());
 
-        $client->tags()->sync($request->tags());
+        $client->syncTags($request->tags());
 
         return back()->with('status', 'The team was successfully created!');
     }
@@ -90,7 +90,7 @@ class ClientController extends Controller
     {
         $client->update($request->prepared());
 
-        $client->tags()->sync($request->tags());
+        $client->syncTags($request->tags());
 
         return back()->with('status', 'The team was successfully updated!');
     }

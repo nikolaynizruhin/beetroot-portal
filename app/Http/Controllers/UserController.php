@@ -61,7 +61,7 @@ class UserController extends Controller
     {
         $user = User::create($request->prepared());
 
-        $user->tags()->sync($request->tags());
+        $user->syncTags($request->tags());
 
         $user->sendWelcomeNotification($request->password);
 
@@ -94,7 +94,7 @@ class UserController extends Controller
     {
         $user->update($request->prepared());
 
-        $user->tags()->sync($request->tags());
+        $user->syncTags($request->tags());
 
         return back()->with('status', 'The beetroot was successfully updated!');
     }
