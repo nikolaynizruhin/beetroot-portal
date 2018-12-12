@@ -135,4 +135,18 @@ class CreateClientTest extends TestCase
                 'name', 'country', 'description', 'site',
             ]);
     }
+
+    /** @test */
+    public function country_should_be_a_valid_country_code()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $client = factory(Client::class)
+            ->make(['country' => 'wrong'])
+            ->makeHidden('logo')
+            ->toArray();
+
+        $this->actingAs($admin)
+            ->post(route('clients.store'))
+            ->assertSessionHasErrors('country');
+    }
 }

@@ -99,4 +99,15 @@ class UpdateOfficeTest extends TestCase
             ->put(route('offices.update', $office))
             ->assertSessionHasErrors(['city', 'country', 'address']);
     }
+
+    /** @test */
+    public function country_should_be_a_valid_country_code()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $office = factory(Office::class)->create();
+
+        $this->actingAs($admin)
+            ->put(route('offices.update', $office), ['country' => 'wrong'])
+            ->assertSessionHasErrors('country');
+    }
 }

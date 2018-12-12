@@ -73,7 +73,7 @@ class CreateTagTest extends TestCase
 
         $this->actingAs($admin)
             ->post(route('tags.store'))
-            ->assertSessionHasErrors(['name']);
+            ->assertSessionHasErrors('name');
     }
 
     /** @test */
@@ -84,7 +84,7 @@ class CreateTagTest extends TestCase
 
         $this->actingAs($admin)
             ->post(route('tags.store'), ['name' => $tag->name])
-            ->assertSessionHasErrors(['name']);
+            ->assertSessionHasErrors('name');
     }
 
     /** @test */

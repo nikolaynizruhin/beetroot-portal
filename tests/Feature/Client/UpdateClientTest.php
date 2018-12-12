@@ -127,4 +127,26 @@ class UpdateClientTest extends TestCase
             ->put(route('clients.update', $client))
             ->assertSessionHasErrors(['name', 'country', 'description', 'site']);
     }
+
+    /** @test */
+    public function country_should_be_a_valid_country_code()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $client = factory(Client::class)->create();
+
+        $this->actingAs($admin)
+            ->put(route('clients.update', $client), ['country' => 'wrong'])
+            ->assertSessionHasErrors('country');
+    }
+
+    /** @test */
+    public function logo_should_be_a_valid_image_file()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $client = factory(Client::class)->create();
+
+        $this->actingAs($admin)
+            ->put(route('clients.update', $client), ['logo' => 'wrong'])
+            ->assertSessionHasErrors('logo');
+    }
 }

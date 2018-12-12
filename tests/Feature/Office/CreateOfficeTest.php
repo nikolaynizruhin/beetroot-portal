@@ -88,4 +88,15 @@ class CreateOfficeTest extends TestCase
             ->post(route('offices.store'))
             ->assertSessionHasErrors(['city', 'country', 'address']);
     }
+
+    /** @test */
+    public function country_should_be_a_valid_country_code()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $office = factory(Office::class)->make(['country' => 'wrong'])->toArray();
+
+        $this->actingAs($admin)
+            ->post(route('offices.store'))
+            ->assertSessionHasErrors('country');
+    }
 }
