@@ -190,4 +190,95 @@ class CreateUserTest extends TestCase
                 'password',
             ]);
     }
+
+    /** @test */
+    public function email_should_be_valid()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $user = factory(User::class)->make([
+            'email' => 'wrong',
+            'password' => 'secret',
+            'password_confirmation' => 'secret',
+        ])->makeVisible('password');
+
+        $this->actingAs($admin)
+            ->post(route('users.store'), $user->toArray())
+            ->assertSessionHasErrors('email');
+    }
+
+    /** @test */
+    public function email_should_be_unique()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $user = factory(User::class)->create();
+        $userWithSameEmail = factory(User::class)->make([
+            'email' => $user->email,
+            'password' => 'secret',
+            'password_confirmation' => 'secret',
+        ])->makeVisible('password');
+
+        $this->actingAs($admin)
+            ->post(route('users.store'), $userWithSameEmail->toArray())
+            ->assertSessionHasErrors('email');
+    }
+
+    /** @test */
+    public function position_should_exist_in_position_list()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $user = factory(User::class)->make([
+            'position' => 'wrong',
+            'password' => 'secret',
+            'password_confirmation' => 'secret',
+        ])->makeVisible('password');
+
+        $this->actingAs($admin)
+            ->post(route('users.store'), $user->toArray())
+            ->assertSessionHasErrors('position');
+    }
+
+    /** @test */
+    public function gender_should_be_valid_gender()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $user = factory(User::class)->make([
+            'gender' => 'wrong',
+            'password' => 'secret',
+            'password_confirmation' => 'secret',
+        ])->makeVisible('password');
+
+        $this->actingAs($admin)
+            ->post(route('users.store'), $user->toArray())
+            ->assertSessionHasErrors('gender');
+    }
+
+    /** @test */
+    public function birthday_should_be_date_before_today()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $user = factory(User::class)->make([
+            'birthday' => now(),
+            'password' => 'secret',
+            'password_confirmation' => 'secret',
+        ])->makeVisible('password');
+
+        $this->actingAs($admin)
+            ->post(route('users.store'), $user->toArray())
+            ->assertSessionHasErrors('birthday');
+    }
+
+    /** @test */
+    public function created_date_should_be_date_before_tomorrow()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $user = factory(User::class)->make([
+            'created_at' => now()->addDays(1),
+            'password' => 'secret',
+            'password_confirmation' => 'secret',
+        ])->makeVisible('password');
+
+        $this->actingAs($admin)
+            ->post(route('users.store'), $user->toArray())
+            ->assertSessionHasErrors('created_at');
+    }
 }
