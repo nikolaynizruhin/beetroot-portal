@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use App\Client;
-use App\Office;
 use App\Queries\UsersQuery;
 use App\Filters\UserFilters;
 use App\Http\Requests\StoreUser;
