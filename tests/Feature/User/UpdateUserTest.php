@@ -192,4 +192,65 @@ class UpdateUserTest extends TestCase
                 'office_id',
             ]);
     }
+
+    /** @test */
+    public function email_should_be_valid()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+
+        $this->actingAs($admin)
+            ->put(route('users.update', $admin), ['email' => 'wrong'])
+            ->assertSessionHasErrors('email');
+    }
+
+    /** @test */
+    public function email_should_be_unique()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $user = factory(User::class)->create();
+
+        $this->actingAs($admin)
+            ->put(route('users.update', $admin), ['email' => $user->email])
+            ->assertSessionHasErrors('email');
+    }
+
+    /** @test */
+    public function position_should_exist_in_position_list()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+
+        $this->actingAs($admin)
+            ->put(route('users.update', $admin), ['position' => 'wrong'])
+            ->assertSessionHasErrors('position');
+    }
+
+    /** @test */
+    public function gender_should_be_valid_gender()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+
+        $this->actingAs($admin)
+            ->put(route('users.update', $admin), ['gender' => 'wrong'])
+            ->assertSessionHasErrors('gender');
+    }
+
+    /** @test */
+    public function birthday_should_be_date_before_today()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+
+        $this->actingAs($admin)
+            ->put(route('users.update', $admin), ['birthday' => now()])
+            ->assertSessionHasErrors('birthday');
+    }
+
+    /** @test */
+    public function created_at_should_be_date_before_tomorrow()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+
+        $this->actingAs($admin)
+            ->put(route('users.update', $admin), ['created_at' => now()->addDay()])
+            ->assertSessionHasErrors('created_at');
+    }
 }

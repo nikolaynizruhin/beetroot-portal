@@ -272,7 +272,7 @@ class CreateUserTest extends TestCase
     {
         $admin = factory(User::class)->states('admin')->create();
         $user = factory(User::class)->make([
-            'created_at' => now()->addDays(1),
+            'created_at' => now()->addDay(),
             'password' => 'secret',
             'password_confirmation' => 'secret',
         ])->makeVisible('password');

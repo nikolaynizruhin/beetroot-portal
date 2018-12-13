@@ -79,4 +79,28 @@ class UpdateUserPasswordTest extends TestCase
             ->put(route('users.password.update', $owner))
             ->assertSessionHasErrors('password');
     }
+
+    /** @test */
+    public function password_should_match_with_password_confirmation()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+
+        $this->actingAs($admin)
+            ->put(route('users.password.update', $admin), [
+                'password' => 'secret',
+                'password_confirmation' => 'another-secret',
+            ])->assertSessionHasErrors('password');
+    }
+
+    /** @test */
+    public function password_should_be_min_six_chars()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+
+        $this->actingAs($admin)
+            ->put(route('users.password.update', $admin), [
+                'password' => 'weak',
+                'password_confirmation' => 'weak',    
+            ])->assertSessionHasErrors('password');
+    }
 }
