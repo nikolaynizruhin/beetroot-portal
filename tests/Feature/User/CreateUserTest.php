@@ -281,4 +281,32 @@ class CreateUserTest extends TestCase
             ->post(route('users.store'), $user->toArray())
             ->assertSessionHasErrors('created_at');
     }
+
+    /** @test */
+    public function password_should_match_with_password_confirmation()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $user = factory(User::class)->make([
+            'password' => 'secret',
+            'password_confirmation' => 'another-secret',
+        ])->makeVisible('password');
+
+        $this->actingAs($admin)
+            ->post(route('users.store'), $user->toArray())
+            ->assertSessionHasErrors('password');
+    }
+
+    /** @test */
+    public function password_should_be_min_six_chars()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $user = factory(User::class)->make([
+            'password' => 'weak',
+            'password_confirmation' => 'weak',
+        ])->makeVisible('password');
+
+        $this->actingAs($admin)
+            ->post(route('users.store'), $user->toArray())
+            ->assertSessionHasErrors('password');
+    }
 }
