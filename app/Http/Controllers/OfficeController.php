@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Office;
+use App\Queries\OfficesQuery;
 use App\Http\Requests\StoreOffice;
 use App\Http\Requests\UpdateOffice;
 
@@ -25,10 +26,7 @@ class OfficeController extends Controller
      */
     public function index()
     {
-        $offices = Office::with('users')
-            ->withCount('users')
-            ->orderBy('users_count', 'desc')
-            ->paginate(10);
+        $offices = app(OfficesQuery::class)();
 
         return view('offices.index')->with('offices', $offices);
     }

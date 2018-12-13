@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Client;
+use App\Queries\ClientsQuery;
 use App\Filters\ClientFilters;
 use App\Http\Requests\StoreClient;
 use App\Http\Requests\UpdateClient;
@@ -27,10 +28,7 @@ class ClientController extends Controller
      */
     public function index(ClientFilters $filters)
     {
-        $clients = Client::with('tags')
-            ->withCount(['users', 'tags'])
-            ->filter($filters)
-            ->paginate(15);
+        $clients = app(ClientsQuery::class)($filters);
 
         return view('clients.index')->with('clients', $clients);
     }

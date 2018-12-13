@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Client;
 use App\Office;
+use App\Queries\UsersQuery;
 use App\Filters\UserFilters;
 use App\Http\Requests\StoreUser;
 use App\Http\Requests\UpdateUser;
@@ -29,10 +30,7 @@ class UserController extends Controller
      */
     public function index(UserFilters $filters)
     {
-        $users = User::with(['client', 'office', 'tags'])
-            ->withCount('tags')
-            ->filter($filters)
-            ->paginate(15);
+        $users = app(UsersQuery::class)($filters);
 
         return view('users.index')->with('users', $users);
     }

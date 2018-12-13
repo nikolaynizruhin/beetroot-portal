@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Queries\BirthdaysQuery;
 use App\Filters\BirthdayFilters;
 
 class BirthdayController extends Controller
@@ -25,11 +26,7 @@ class BirthdayController extends Controller
      */
     public function index(BirthdayFilters $filters)
     {
-        $months = User::with(['client', 'office'])
-            ->filter($filters)
-            ->get()
-            ->sortBy('month_and_day_of_birth')
-            ->groupBy('month_name_of_birth');
+        $months = app(BirthdaysQuery::class)($filters);
 
         return view('birthdays.index')->with('months', $months);
     }
