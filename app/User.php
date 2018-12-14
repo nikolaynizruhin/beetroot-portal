@@ -161,6 +161,16 @@ class User extends Authenticatable
     }
 
     /**
+     * Get list of genders.
+     *
+     * @return array
+     */
+    public static function genders()
+    {
+        return [self::MALE, self::FEMALE];
+    }
+
+    /**
      * Get list of unique sorted user positions.
      *
      * @return \Illuminate\Support\Collection

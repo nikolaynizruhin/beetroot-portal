@@ -47,7 +47,7 @@ class UpdateUser extends FormRequest
             ],
             'gender' => [
                 'required',
-                Rule::in([User::MALE, User::FEMALE]),
+                Rule::in(User::genders()),
             ],
             'birthday' => 'required|date|before:today',
             'created_at' => 'required|date|before:tomorrow',
