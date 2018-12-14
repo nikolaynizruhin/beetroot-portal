@@ -100,7 +100,7 @@ class UpdateUserPasswordTest extends TestCase
         $this->actingAs($admin)
             ->put(route('users.password.update', $admin), [
                 'password' => 'weak',
-                'password_confirmation' => 'weak',    
+                'password_confirmation' => 'weak',
             ])->assertSessionHasErrors('password');
     }
 }
