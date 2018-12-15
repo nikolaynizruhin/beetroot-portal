@@ -79025,7 +79025,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
-        positions: Array
+        positions: {
+            type: Array,
+            default: function _default() {
+                return [];
+            }
+        }
     },
     data: function data() {
         return {
@@ -79158,7 +79163,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
-        genders: Array
+        genders: {
+            type: Array,
+            default: function _default() {
+                return [];
+            }
+        }
     },
     data: function data() {
         return {
@@ -79288,8 +79298,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
-        clients: Array,
-        apiKey: String
+        clients: {
+            type: Array,
+            default: function _default() {
+                return [];
+            }
+        },
+        apiKey: {
+            type: String,
+            default: ''
+        }
     },
     data: function data() {
         return {
@@ -79412,8 +79430,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
-        offices: Array,
-        apiKey: String
+        offices: {
+            type: Array,
+            default: function _default() {
+                return [];
+            }
+        },
+        apiKey: {
+            type: String,
+            default: ''
+        }
     },
     data: function data() {
         return {
@@ -79443,7 +79469,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             var chart = new google.visualization.GeoChart(document.getElementById('markers'));
             chart.draw(data, options);
-        };
+        }
     },
 
     methods: {
@@ -79537,7 +79563,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
-        usersPerYear: Object
+        usersPerYear: {
+            type: Object,
+            default: function _default() {}
+        }
     },
     data: function data() {
         return {
@@ -79673,7 +79702,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
-        count: Number
+        count: {
+            type: Number,
+            default: 0
+        }
     },
     data: function data() {
         return {
