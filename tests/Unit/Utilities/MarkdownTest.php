@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Unit\Utilities;
 
 use Tests\TestCase;
 use App\Http\Utilities\Markdown;

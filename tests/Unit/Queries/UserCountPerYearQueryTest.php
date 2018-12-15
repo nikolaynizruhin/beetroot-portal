@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Unit\Queries;
 
 use App\User;
 use Tests\TestCase;
