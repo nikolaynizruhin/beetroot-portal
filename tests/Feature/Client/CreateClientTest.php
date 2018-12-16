@@ -130,7 +130,9 @@ class CreateClientTest extends TestCase
         $admin = factory(User::class)->states('admin')->create();
 
         $this->actingAs($admin)
+            ->from(route('clients.create'))
             ->post(route('clients.store'))
+            ->assertRedirect(route('clients.create'))
             ->assertSessionHasErrors([
                 'name', 'country', 'description', 'site',
             ]);

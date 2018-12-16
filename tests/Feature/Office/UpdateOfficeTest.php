@@ -96,7 +96,9 @@ class UpdateOfficeTest extends TestCase
         $office = factory(Office::class)->create();
 
         $this->actingAs($admin)
+            ->from(route('offices.edit', $office))
             ->put(route('offices.update', $office))
+            ->assertRedirect(route('offices.edit', $office))
             ->assertSessionHasErrors(['city', 'country', 'address']);
     }
 

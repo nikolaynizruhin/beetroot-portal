@@ -85,7 +85,9 @@ class CreateOfficeTest extends TestCase
         $admin = factory(User::class)->states('admin')->create();
 
         $this->actingAs($admin)
+            ->from(route('offices.create'))
             ->post(route('offices.store'))
+            ->assertRedirect(route('offices.create'))
             ->assertSessionHasErrors(['city', 'country', 'address']);
     }
 

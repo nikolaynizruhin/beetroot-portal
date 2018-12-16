@@ -180,7 +180,9 @@ class UpdateUserTest extends TestCase
         $admin = factory(User::class)->states('admin')->create();
 
         $this->actingAs($admin)
+            ->from(route('users.edit', $admin))
             ->put(route('users.update', $admin))
+            ->assertRedirect(route('users.edit', $admin))
             ->assertSessionHasErrors([
                 'name',
                 'gender',

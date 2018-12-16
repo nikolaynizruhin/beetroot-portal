@@ -124,7 +124,9 @@ class UpdateClientTest extends TestCase
         $client = factory(Client::class)->create();
 
         $this->actingAs($admin)
+            ->from(route('clients.edit', $client))
             ->put(route('clients.update', $client))
+            ->assertRedirect(route('clients.edit', $client))
             ->assertSessionHasErrors(['name', 'country', 'description', 'site']);
     }
 

@@ -81,7 +81,9 @@ class UpdateTagTest extends TestCase
         $tag = factory(Tag::class)->create();
 
         $this->actingAs($admin)
+            ->from(route('tags.edit', $admin))
             ->put(route('tags.update', $tag))
+            ->assertRedirect(route('tags.edit', $admin))
             ->assertSessionHasErrors(['name']);
     }
 

@@ -177,7 +177,9 @@ class CreateUserTest extends TestCase
         $admin = factory(User::class)->states('admin')->create();
 
         $this->actingAs($admin)
+            ->from(route('users.create'))
             ->post(route('users.store'))
+            ->assertRedirect(route('users.create'))
             ->assertSessionHasErrors([
                 'name',
                 'gender',

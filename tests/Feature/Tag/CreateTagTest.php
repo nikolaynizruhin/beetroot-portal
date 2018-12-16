@@ -83,7 +83,9 @@ class CreateTagTest extends TestCase
         $tag = factory(Tag::class)->create();
 
         $this->actingAs($admin)
+            ->from(route('tags.create'))
             ->post(route('tags.store'), ['name' => $tag->name])
+            ->assertRedirect(route('tags.create'))
             ->assertSessionHasErrors('name');
     }
 
