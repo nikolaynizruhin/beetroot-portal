@@ -88,10 +88,12 @@ class UpdateUserPasswordTest extends TestCase
         $admin = factory(User::class)->states('admin')->create();
 
         $this->actingAs($admin)
+            ->from(route('users.edit', $admin))
             ->put(route('users.password.update', $admin), [
                 'password' => 'secret',
                 'password_confirmation' => 'another-secret',
-            ])->assertSessionHasErrors('password');
+            ])->assertRedirect(route('users.edit', $admin))
+            ->assertSessionHasErrors('password');
     }
 
     /** @test */
@@ -100,9 +102,11 @@ class UpdateUserPasswordTest extends TestCase
         $admin = factory(User::class)->states('admin')->create();
 
         $this->actingAs($admin)
+            ->from(route('users.edit', $admin))
             ->put(route('users.password.update', $admin), [
-                'password' => 'weak',
-                'password_confirmation' => 'weak',
-            ])->assertSessionHasErrors('password');
+                'password' => 'short',
+                'password_confirmation' => 'short',
+            ])->assertRedirect(route('users.edit', $admin))
+            ->assertSessionHasErrors('password');
     }
 }

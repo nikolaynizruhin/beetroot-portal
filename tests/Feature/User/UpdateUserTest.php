@@ -164,11 +164,9 @@ class UpdateUserTest extends TestCase
     {
         $owner = factory(User::class)->states('employee')->create();
         $tag = factory(Tag::class)->create();
-        $user = factory(User::class)->make(['tags' => [$tag->id]])
-            ->makeHidden(['avatar', 'accepted_at']);
 
         $this->actingAs($owner)
-            ->put(route('profile.update', $owner), $user->toArray())
+            ->put(route('profile.update', $owner), ['tags' => [$tag->id]])
             ->assertSessionHas('status', 'The beetroot was successfully updated!');
 
         $this->assertCount(1, $tag->users);
@@ -201,7 +199,9 @@ class UpdateUserTest extends TestCase
         $admin = factory(User::class)->states('admin')->create();
 
         $this->actingAs($admin)
+            ->from(route('users.edit', $admin))
             ->put(route('users.update', $admin), ['email' => 'wrong'])
+            ->assertRedirect(route('users.edit', $admin))
             ->assertSessionHasErrors('email');
     }
 
@@ -212,7 +212,9 @@ class UpdateUserTest extends TestCase
         $user = factory(User::class)->create();
 
         $this->actingAs($admin)
+            ->from(route('users.edit', $admin))
             ->put(route('users.update', $admin), ['email' => $user->email])
+            ->assertRedirect(route('users.edit', $admin))
             ->assertSessionHasErrors('email');
     }
 
@@ -222,7 +224,9 @@ class UpdateUserTest extends TestCase
         $admin = factory(User::class)->states('admin')->create();
 
         $this->actingAs($admin)
+            ->from(route('users.edit', $admin))
             ->put(route('users.update', $admin), ['position' => 'wrong'])
+            ->assertRedirect(route('users.edit', $admin))
             ->assertSessionHasErrors('position');
     }
 
@@ -232,7 +236,9 @@ class UpdateUserTest extends TestCase
         $admin = factory(User::class)->states('admin')->create();
 
         $this->actingAs($admin)
+            ->from(route('users.edit', $admin))
             ->put(route('users.update', $admin), ['gender' => 'wrong'])
+            ->assertRedirect(route('users.edit', $admin))
             ->assertSessionHasErrors('gender');
     }
 
@@ -242,7 +248,9 @@ class UpdateUserTest extends TestCase
         $admin = factory(User::class)->states('admin')->create();
 
         $this->actingAs($admin)
+            ->from(route('users.edit', $admin))
             ->put(route('users.update', $admin), ['birthday' => now()])
+            ->assertRedirect(route('users.edit', $admin))
             ->assertSessionHasErrors('birthday');
     }
 
@@ -252,7 +260,9 @@ class UpdateUserTest extends TestCase
         $admin = factory(User::class)->states('admin')->create();
 
         $this->actingAs($admin)
+            ->from(route('users.edit', $admin))
             ->put(route('users.update', $admin), ['created_at' => now()->addDay()])
+            ->assertRedirect(route('users.edit', $admin))
             ->assertSessionHasErrors('created_at');
     }
 }

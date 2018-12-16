@@ -111,14 +111,12 @@ class CreateClientTest extends TestCase
     {
         $admin = factory(User::class)->states('admin')->create();
         $tag = factory(Tag::class)->create();
-        $client = factory(Client::class)->make()
-            ->makeHidden('logo')
-            ->toArray();
-
-        $client['tags'] = [$tag->id];
+        $client = factory(Client::class)
+            ->make(['tags' => [$tag->id]])
+            ->makeHidden('logo');
 
         $this->actingAs($admin)
-            ->post(route('clients.store'), $client)
+            ->post(route('clients.store'), $client->toArray())
             ->assertSessionHas('status', 'The team was successfully created!');
 
         $this->assertCount(1, $tag->clients);
@@ -142,13 +140,10 @@ class CreateClientTest extends TestCase
     public function country_should_be_a_valid_country_code()
     {
         $admin = factory(User::class)->states('admin')->create();
-        $client = factory(Client::class)
-            ->make(['country' => 'wrong'])
-            ->makeHidden('logo')
-            ->toArray();
+        $client = factory(Client::class)->make(['country' => 'wrong']);
 
         $this->actingAs($admin)
-            ->post(route('clients.store'))
+            ->post(route('clients.store'), $client->toArray())
             ->assertSessionHasErrors('country');
     }
 }

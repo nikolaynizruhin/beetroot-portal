@@ -77,25 +77,18 @@ class CreateUserTest extends TestCase
         $file = UploadedFile::fake()->image('avatar.jpg');
 
         $admin = factory(User::class)->states('admin')->create();
-        $user = factory(User::class)->make([
-            'avatar' => $file,
-            'password' => 'secret',
-            'password_confirmation' => 'secret',
-        ])->makeHidden('accepted_at')
-            ->makeVisible('password');
 
         Storage::fake('public');
         Notification::fake();
         Image::shouldReceive('make->fit->save')->once();
 
         $this->actingAs($admin)
-            ->post(route('users.store'), $user->toArray())
+            ->post(route('users.store'), $params = $this->validParams(['avatar' => $file]))
             ->assertSessionHas('status', 'The beetroot was successfully created!');
 
-        $user->avatar = 'avatars/'.$file->hashName();
-        $user->makeHidden(['password', 'password_confirmation']);
+        $params['avatar'] = 'avatars/'.$file->hashName();
 
-        $this->assertDatabaseHas('users', $user->toArray());
+        $this->assertDatabaseHas('users', array_except($params, ['password', 'password_confirmation']));
         Storage::disk('public')->assertExists('avatars/'.$file->hashName());
     }
 
@@ -103,45 +96,34 @@ class CreateUserTest extends TestCase
     public function admin_can_create_a_user_without_avatar()
     {
         $admin = factory(User::class)->states('admin')->create();
-        $user = factory(User::class)->make([
-            'password' => 'secret',
-            'password_confirmation' => 'secret',
-        ])->makeHidden(['avatar', 'accepted_at'])
-            ->makeVisible('password');
 
         Notification::fake();
 
         $this->actingAs($admin)
-            ->post(route('users.store'), $user->toArray())
+            ->post(route('users.store'), $params = $this->validParams())
             ->assertSessionHas('status', 'The beetroot was successfully created!');
 
-        $user->avatar = User::DEFAULT_AVATAR;
-        $user->makeHidden(['password', 'password_confirmation']);
+        $params['avatar'] = User::DEFAULT_AVATAR;
 
-        $this->assertDatabaseHas('users', $user->toArray());
+        $this->assertDatabaseHas('users', array_except($params, ['password', 'password_confirmation']));
     }
 
     /** @test */
     public function it_should_send_welcome_email_when_user_created()
     {
         $admin = factory(User::class)->states('admin')->create();
-        $user = factory(User::class)->make([
-            'password' => 'secret',
-            'password_confirmation' => 'secret',
-        ])->makeHidden(['avatar', 'accepted_at'])
-            ->makeVisible('password');
 
         Notification::fake();
 
         $this->actingAs($admin)
-            ->post(route('users.store'), $user->toArray())
+            ->post(route('users.store'), $params = $this->validParams())
             ->assertSessionHas('status', 'The beetroot was successfully created!');
 
         Notification::assertSentTo(
-            User::whereEmail($user->email)->first(),
+            User::whereEmail($params['email'])->first(),
             WelcomeNotification::class,
-            function ($notification, $channels) use ($user) {
-                return $notification->password === $user->password;
+            function ($notification, $channels) use ($params) {
+                return $notification->password === $params['password'];
             }
         );
     }
@@ -151,21 +133,11 @@ class CreateUserTest extends TestCase
     {
         $admin = factory(User::class)->states('admin')->create();
         $tag = factory(Tag::class)->create();
-        $user = factory(User::class)
-            ->states('admin')
-            ->make([
-                'password' => 'secret',
-                'password_confirmation' => 'secret',
-                'tags' => [$tag->id],
-            ])
-            ->makeHidden(['avatar', 'accepted_at'])
-            ->makeVisible('password')
-            ->toArray();
 
         Notification::fake();
 
         $this->actingAs($admin)
-            ->post(route('users.store'), $user)
+            ->post(route('users.store'), $this->validParams(['tags' => [$tag->id]]))
             ->assertSessionHas('status', 'The beetroot was successfully created!');
 
         $this->assertCount(1, $tag->users);
@@ -197,14 +169,11 @@ class CreateUserTest extends TestCase
     public function email_should_be_valid()
     {
         $admin = factory(User::class)->states('admin')->create();
-        $user = factory(User::class)->make([
-            'email' => 'wrong',
-            'password' => 'secret',
-            'password_confirmation' => 'secret',
-        ])->makeVisible('password');
 
         $this->actingAs($admin)
-            ->post(route('users.store'), $user->toArray())
+            ->from(route('users.create'))
+            ->post(route('users.store'), $this->validParams(['email' => 'wrong']))
+            ->assertRedirect(route('users.create'))
             ->assertSessionHasErrors('email');
     }
 
@@ -213,14 +182,11 @@ class CreateUserTest extends TestCase
     {
         $admin = factory(User::class)->states('admin')->create();
         $user = factory(User::class)->create();
-        $userWithSameEmail = factory(User::class)->make([
-            'email' => $user->email,
-            'password' => 'secret',
-            'password_confirmation' => 'secret',
-        ])->makeVisible('password');
 
         $this->actingAs($admin)
-            ->post(route('users.store'), $userWithSameEmail->toArray())
+            ->from(route('users.create'))
+            ->post(route('users.store'), $this->validParams(['email' => $user->email]))
+            ->assertRedirect(route('users.create'))
             ->assertSessionHasErrors('email');
     }
 
@@ -228,14 +194,11 @@ class CreateUserTest extends TestCase
     public function position_should_exist_in_position_list()
     {
         $admin = factory(User::class)->states('admin')->create();
-        $user = factory(User::class)->make([
-            'position' => 'wrong',
-            'password' => 'secret',
-            'password_confirmation' => 'secret',
-        ])->makeVisible('password');
 
         $this->actingAs($admin)
-            ->post(route('users.store'), $user->toArray())
+            ->from(route('users.create'))
+            ->post(route('users.store'), $this->validParams(['position' => 'wrong']))
+            ->assertRedirect(route('users.create'))
             ->assertSessionHasErrors('position');
     }
 
@@ -243,14 +206,11 @@ class CreateUserTest extends TestCase
     public function gender_should_be_valid_gender()
     {
         $admin = factory(User::class)->states('admin')->create();
-        $user = factory(User::class)->make([
-            'gender' => 'wrong',
-            'password' => 'secret',
-            'password_confirmation' => 'secret',
-        ])->makeVisible('password');
 
         $this->actingAs($admin)
-            ->post(route('users.store'), $user->toArray())
+            ->from(route('users.create'))
+            ->post(route('users.store'), $this->validParams(['gender' => 'wrong']))
+            ->assertRedirect(route('users.create'))
             ->assertSessionHasErrors('gender');
     }
 
@@ -258,14 +218,11 @@ class CreateUserTest extends TestCase
     public function birthday_should_be_date_before_today()
     {
         $admin = factory(User::class)->states('admin')->create();
-        $user = factory(User::class)->make([
-            'birthday' => now(),
-            'password' => 'secret',
-            'password_confirmation' => 'secret',
-        ])->makeVisible('password');
 
         $this->actingAs($admin)
-            ->post(route('users.store'), $user->toArray())
+            ->from(route('users.create'))
+            ->post(route('users.store'), $this->validParams(['birthday' => now()]))
+            ->assertRedirect(route('users.create'))
             ->assertSessionHasErrors('birthday');
     }
 
@@ -273,14 +230,11 @@ class CreateUserTest extends TestCase
     public function created_date_should_be_date_before_tomorrow()
     {
         $admin = factory(User::class)->states('admin')->create();
-        $user = factory(User::class)->make([
-            'created_at' => now()->addDay(),
-            'password' => 'secret',
-            'password_confirmation' => 'secret',
-        ])->makeVisible('password');
 
         $this->actingAs($admin)
-            ->post(route('users.store'), $user->toArray())
+            ->from(route('users.create'))
+            ->post(route('users.store'), $this->validParams(['created_at' => now()->addDay()]))
+            ->assertRedirect(route('users.create'))
             ->assertSessionHasErrors('created_at');
     }
 
@@ -288,13 +242,13 @@ class CreateUserTest extends TestCase
     public function password_should_match_with_password_confirmation()
     {
         $admin = factory(User::class)->states('admin')->create();
-        $user = factory(User::class)->make([
-            'password' => 'secret',
-            'password_confirmation' => 'another-secret',
-        ])->makeVisible('password');
 
         $this->actingAs($admin)
-            ->post(route('users.store'), $user->toArray())
+            ->from(route('users.create'))
+            ->post(route('users.store'), $this->validParams([
+                'password' => 'secret',
+                'password_confirmation' => 'different',
+            ]))->assertRedirect(route('users.create'))
             ->assertSessionHasErrors('password');
     }
 
@@ -302,13 +256,31 @@ class CreateUserTest extends TestCase
     public function password_should_be_min_six_chars()
     {
         $admin = factory(User::class)->states('admin')->create();
-        $user = factory(User::class)->make([
-            'password' => 'weak',
-            'password_confirmation' => 'weak',
-        ])->makeVisible('password');
 
         $this->actingAs($admin)
-            ->post(route('users.store'), $user->toArray())
+            ->from(route('users.create'))
+            ->post(route('users.store'), $this->validParams([
+                'password' => 'short',
+                'password_confirmation' => 'short',
+            ]))->assertRedirect(route('users.create'))
             ->assertSessionHasErrors('password');
+    }
+
+    /**
+     * Get valid user params.
+     *
+     * @param  array  $overrides
+     * @return array
+     */
+    private function validParams($overrides = [])
+    {
+        $user = factory(User::class)->make([
+            'password' => 'secret',
+            'password_confirmation' => 'secret',
+        ])->makeHidden(['avatar', 'accepted_at'])
+            ->makeVisible('password')
+            ->toArray();
+
+        return array_merge($user, $overrides);
     }
 }
