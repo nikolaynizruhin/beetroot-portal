@@ -11,7 +11,7 @@ $factory->define(User::class, function (Faker $faker) {
         'name' => $faker->name,
         'gender' => $faker->randomElement([User::MALE, User::FEMALE]),
         'email' => $userName.'@beetroot.se',
-        'avatar' => 'avatars/default.png',
+        'avatar' => User::DEFAULT_AVATAR,
         'position' => $faker->randomElement(Position::all()),
         'birthday' => $faker->date(),
         'accepted_at' => $faker->date(),
