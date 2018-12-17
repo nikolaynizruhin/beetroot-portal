@@ -214,6 +214,16 @@ class User extends Authenticatable
     }
 
     /**
+     * Check whatever user has a default avatar.
+     *
+     * @return bool
+     */
+    public function hasDefaultAvatar()
+    {
+        return $this->avatar === self::DEFAULT_AVATAR;
+    }
+
+    /**
      * The "booting" method of the model.
      *
      * @return void
@@ -225,7 +235,7 @@ class User extends Authenticatable
         static::addGlobalScope(new NameScope);
 
         static::deleting(function ($user) {
-            if ($user->avatar !== self::DEFAULT_AVATAR) {
+            if (! $user->hasDefaultAvatar()) {
                 Storage::delete($user->avatar);
             }
         });

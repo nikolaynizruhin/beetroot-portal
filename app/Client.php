@@ -74,6 +74,16 @@ class Client extends Model
     }
 
     /**
+     * Check whatever clien has a default logo.
+     *
+     * @return bool
+     */
+    public function hasDefaultLogo()
+    {
+        return $this->logo === self::DEFAULT_LOGO;
+    }
+
+    /**
      * Get collection of logos in use.
      *
      * @return \Illuminate\Support\Collection
@@ -97,7 +107,7 @@ class Client extends Model
         static::addGlobalScope(new NameScope);
 
         static::deleting(function ($client) {
-            if ($client->logo !== self::DEFAULT_LOGO) {
+            if (! $client->hasDefaultLogo()) {
                 Storage::delete($client->logo);
             }
         });
