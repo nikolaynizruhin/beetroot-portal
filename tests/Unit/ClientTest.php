@@ -46,4 +46,12 @@ class ClientTest extends TestCase
         $this->assertTrue($client->tags->contains($tag));
         $this->assertInstanceOf(Collection::class, $client->tags);
     }
+
+    /** @test */
+    public function it_can_check_whatever_logo_is_default()
+    {
+        $client = factory(Client::class)->create();
+
+        $this->assertTrue($client->hasDefaultLogo());
+    }
 }

@@ -99,4 +99,12 @@ class UserTest extends TestCase
         $this->assertTrue($user->tags->contains($tag));
         $this->assertInstanceOf(Collection::class, $user->tags);
     }
+
+    /** @test */
+    public function it_can_check_whatever_avatar_is_default()
+    {
+        $user = factory(User::class)->create();
+
+        $this->assertTrue($user->hasDefaultAvatar());
+    }
 }
