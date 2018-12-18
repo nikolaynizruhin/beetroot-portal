@@ -6,6 +6,7 @@ use App\User;
 use App\Client;
 use Tests\TestCase;
 use Illuminate\Http\UploadedFile;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -61,6 +62,8 @@ class DeleteClientTest extends TestCase
     public function logo_should_be_deleted_along_with_client()
     {
         Storage::fake('public');
+
+        Image::shouldReceive('make->fit->save')->once();
 
         $logo = UploadedFile::fake()
             ->image('logo.jpg')

@@ -56,23 +56,9 @@ class UpdateClient extends FormRequest
         $attributes = $this->validated();
 
         if ($this->hasFile('logo')) {
-            $attributes['logo'] = $this->logo();
+            $attributes['logo'] = $this->file('logo')->store('logos');
         }
 
         return $this->withoutTags($attributes);
-    }
-
-    /**
-     * Get logo path.
-     *
-     * @return string
-     */
-    protected function logo()
-    {
-        $path = $this->file('logo')->store('logos');
-
-        Image::make('storage/'.$path)->fit(Client::LOGO_SIZE)->save();
-
-        return $path;
     }
 }

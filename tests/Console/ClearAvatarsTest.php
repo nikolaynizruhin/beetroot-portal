@@ -5,6 +5,7 @@ namespace Tests\Console;
 use App\User;
 use Tests\TestCase;
 use Illuminate\Http\UploadedFile;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -16,6 +17,8 @@ class ClearAvatarsTest extends TestCase
     public function it_can_clear_unused_avatars()
     {
         Storage::fake('public');
+
+        Image::shouldReceive('make->fit->save')->once();
 
         $unused = UploadedFile::fake()
             ->image('unused.jpg')

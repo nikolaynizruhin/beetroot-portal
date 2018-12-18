@@ -5,6 +5,7 @@ namespace Tests\Feature\User;
 use App\User;
 use Tests\TestCase;
 use Illuminate\Http\UploadedFile;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -60,6 +61,8 @@ class DeleteUserTest extends TestCase
     public function avatar_should_be_deleted_along_with_user()
     {
         Storage::fake('public');
+
+        Image::shouldReceive('make->fit->save')->once();
 
         $avatar = UploadedFile::fake()
             ->image('avatar.jpg')

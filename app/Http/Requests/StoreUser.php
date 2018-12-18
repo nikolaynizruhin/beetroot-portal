@@ -5,7 +5,6 @@ namespace App\Http\Requests;
 use App\User;
 use Illuminate\Validation\Rule;
 use App\Http\Utilities\Position;
-use Intervention\Image\Facades\Image;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreUser extends FormRequest
@@ -83,14 +82,8 @@ class StoreUser extends FormRequest
      */
     protected function avatar()
     {
-        if ($this->hasFile('avatar')) {
-            $path = $this->file('avatar')->store('avatars');
-
-            Image::make('storage/'.$path)->fit(User::AVATAR_SIZE)->save();
-
-            return $path;
-        }
-
-        return User::DEFAULT_AVATAR;
+        return $this->hasFile('avatar')
+            ? $this->file('avatar')->store('avatars') 
+            : User::DEFAULT_AVATAR;
     }
 }

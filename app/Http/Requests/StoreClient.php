@@ -65,14 +65,8 @@ class StoreClient extends FormRequest
      */
     protected function logo()
     {
-        if ($this->hasFile('logo')) {
-            $path = $this->file('logo')->store('logos');
-
-            Image::make('storage/'.$path)->fit(Client::LOGO_SIZE)->save();
-
-            return $path;
-        }
-
-        return Client::DEFAULT_LOGO;
+        return $this->hasFile('logo')
+            ? $this->file('logo')->store('logos')
+            : Client::DEFAULT_LOGO;
     }
 }

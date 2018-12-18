@@ -4,6 +4,7 @@ namespace App;
 
 use App\Scopes\NameScope;
 use App\Filters\Filterable;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
 use App\Notifications\WelcomeNotification;
@@ -214,13 +215,23 @@ class User extends Authenticatable
     }
 
     /**
-     * Check whatever user has a default avatar.
+     * Check whether user has a default avatar.
      *
      * @return bool
      */
     public function hasDefaultAvatar()
     {
         return $this->avatar === self::DEFAULT_AVATAR;
+    }
+
+    /**
+     * Check whether need to optimize an avatar.
+     *
+     * @return bool
+     */
+    public function needToOptimizeAvatar()
+    {
+        return ! $this->hasDefaultAvatar() && $this->isDirty('avatar');
     }
 
     /**
@@ -233,6 +244,12 @@ class User extends Authenticatable
         parent::boot();
 
         static::addGlobalScope(new NameScope);
+
+        static::saved(function ($user) {
+            if ($user->needToOptimizeAvatar()) {
+                Image::make('storage/'.$user->avatar)->fit(self::AVATAR_SIZE)->save();
+            }
+        });
 
         static::deleting(function ($user) {
             if (! $user->hasDefaultAvatar()) {

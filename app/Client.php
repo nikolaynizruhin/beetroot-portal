@@ -4,6 +4,7 @@ namespace App;
 
 use App\Scopes\NameScope;
 use App\Filters\Filterable;
+use Intervention\Image\Facades\Image;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
@@ -96,6 +97,16 @@ class Client extends Model
     }
 
     /**
+     * Check whether need to optimize a logo.
+     *
+     * @return bool
+     */
+    public function needToOptimizeLogo()
+    {
+        return ! $this->hasDefaultLogo() && $this->isDirty('logo');
+    }
+
+    /**
      * The "booting" method of the model.
      *
      * @return void
@@ -105,6 +116,12 @@ class Client extends Model
         parent::boot();
 
         static::addGlobalScope(new NameScope);
+
+        static::saved(function ($client) {
+            if ($client->needToOptimizeLogo()) {
+                Image::make('storage/'.$client->logo)->fit(self::LOGO_SIZE)->save();
+            }
+        });
 
         static::deleting(function ($client) {
             if (! $client->hasDefaultLogo()) {

@@ -78,23 +78,9 @@ class UpdateUser extends FormRequest
         $attributes['is_admin'] = (bool) $this->is_admin;
 
         if ($this->hasFile('avatar')) {
-            $attributes['avatar'] = $this->avatar();
+            $attributes['avatar'] = $this->file('avatar')->store('avatars');
         }
 
         return $this->withoutTags($attributes);
-    }
-
-    /**
-     * Get avatar path.
-     *
-     * @return string
-     */
-    protected function avatar()
-    {
-        $path = $this->file('avatar')->store('avatars');
-
-        Image::make('storage/'.$path)->fit(User::AVATAR_SIZE)->save();
-
-        return $path;
     }
 }
