@@ -83,7 +83,7 @@ class StoreUser extends FormRequest
     protected function avatar()
     {
         return $this->hasFile('avatar')
-            ? $this->file('avatar')->store('avatars') 
+            ? $this->file('avatar')->store('avatars')
             : User::DEFAULT_AVATAR;
     }
 }
