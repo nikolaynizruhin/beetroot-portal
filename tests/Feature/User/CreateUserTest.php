@@ -227,18 +227,6 @@ class CreateUserTest extends TestCase
     }
 
     /** @test */
-    public function created_date_should_be_date_before_tomorrow()
-    {
-        $admin = factory(User::class)->states('admin')->create();
-
-        $this->actingAs($admin)
-            ->from(route('users.create'))
-            ->post(route('users.store'), $this->validParams(['created_at' => now()->addDay()]))
-            ->assertRedirect(route('users.create'))
-            ->assertSessionHasErrors('created_at');
-    }
-
-    /** @test */
     public function password_should_match_with_password_confirmation()
     {
         $admin = factory(User::class)->states('admin')->create();

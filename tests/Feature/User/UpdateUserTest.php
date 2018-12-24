@@ -253,16 +253,4 @@ class UpdateUserTest extends TestCase
             ->assertRedirect(route('users.edit', $admin))
             ->assertSessionHasErrors('birthday');
     }
-
-    /** @test */
-    public function created_at_should_be_date_before_tomorrow()
-    {
-        $admin = factory(User::class)->states('admin')->create();
-
-        $this->actingAs($admin)
-            ->from(route('users.edit', $admin))
-            ->put(route('users.update', $admin), ['created_at' => now()->addDay()])
-            ->assertRedirect(route('users.edit', $admin))
-            ->assertSessionHasErrors('created_at');
-    }
 }

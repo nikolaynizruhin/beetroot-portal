@@ -50,7 +50,7 @@ class UpdateUser extends FormRequest
                 Rule::in(User::genders()),
             ],
             'birthday' => 'required|date|before:today',
-            'created_at' => 'required|date|before:tomorrow',
+            'created_at' => 'required|date',
             'avatar' => 'image',
             'is_admin' => 'boolean',
             'client_id' => 'required|numeric|exists:clients,id',
