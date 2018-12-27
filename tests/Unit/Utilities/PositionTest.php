@@ -12,7 +12,7 @@ class PositionTest extends TestCase
     {
         $positions = Position::all();
 
-        $this->assertEquals(count($positions), 47);
+        $this->assertEquals(count($positions), 48);
         $this->assertEquals($positions[0], 'Administration');
     }
 }
