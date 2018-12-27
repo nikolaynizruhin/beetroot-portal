@@ -33,6 +33,7 @@ class Position
         'Golang Developer',
         'HR',
         'Illustrator',
+        'Intern',
         'Java Developer',
         'JavaScript Developer',
         'Kotlin Developer',
