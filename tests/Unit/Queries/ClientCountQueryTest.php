@@ -16,7 +16,7 @@ class ClientCountQueryTest extends TestCase
     {
         $client = factory(Client::class)->create();
 
-        $collection = resolve(ClientCountQuery::class)();
+        $collection = app(ClientCountQuery::class)();
 
         $this->assertEquals($collection->first()->country, $client->country);
         $this->assertEquals($collection->first()->count, 1);

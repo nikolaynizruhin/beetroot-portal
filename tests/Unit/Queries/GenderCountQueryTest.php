@@ -16,7 +16,7 @@ class GenderCountQueryTest extends TestCase
     {
         $user = factory(User::class)->create();
 
-        $collection = resolve(GenderCountQuery::class)();
+        $collection = app(GenderCountQuery::class)();
 
         $this->assertEquals($collection->first()->gender, $user->gender);
         $this->assertEquals($collection->first()->count, 1);

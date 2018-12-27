@@ -12,7 +12,7 @@ class CountryTest extends TestCase
     {
         $countries = Country::all();
 
-        $this->assertEquals(count($countries), 237);
+        $this->assertCount(237, $countries);
         $this->assertEquals($countries[0], 'Afghanistan');
     }
 }

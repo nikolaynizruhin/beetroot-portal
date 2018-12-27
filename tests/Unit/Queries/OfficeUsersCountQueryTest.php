@@ -16,7 +16,7 @@ class OfficeUsersCountQueryTest extends TestCase
     {
         $user = factory(User::class)->create();
 
-        $collection = resolve(OfficeUsersCountQuery::class)();
+        $collection = app(OfficeUsersCountQuery::class)();
 
         $this->assertEquals($collection->first()->city, $user->office->city);
         $this->assertEquals($collection->first()->users_count, 1);

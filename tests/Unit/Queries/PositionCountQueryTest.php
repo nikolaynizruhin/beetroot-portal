@@ -16,7 +16,7 @@ class PositionCountQueryTest extends TestCase
     {
         $user = factory(User::class)->create();
 
-        $collection = resolve(PositionCountQuery::class)();
+        $collection = app(PositionCountQuery::class)();
 
         $this->assertEquals($collection->first()->title, $user->position);
         $this->assertEquals($collection->first()->count, 1);

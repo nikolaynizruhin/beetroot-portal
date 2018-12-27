@@ -16,7 +16,7 @@ class UserCountPerYearQueryTest extends TestCase
     {
         $user = factory(User::class)->create();
 
-        $collection = resolve(UserCountPerYearQuery::class)();
+        $collection = app(UserCountPerYearQuery::class)();
 
         $this->assertEquals($collection->all(), [
             $user->year_of_created => 1,
