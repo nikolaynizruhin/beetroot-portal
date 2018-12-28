@@ -37,7 +37,6 @@ class UserController extends Controller
      * Show the form for creating a new user.
      *
      * @return \Illuminate\Http\Response
-     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function create()
@@ -69,7 +68,6 @@ class UserController extends Controller
      *
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
-     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit(User $user)
@@ -100,7 +98,6 @@ class UserController extends Controller
      *
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
-     *
      * @throws \Illuminate\Auth\Access\AuthorizationException | \Exception
      */
     public function destroy(User $user)

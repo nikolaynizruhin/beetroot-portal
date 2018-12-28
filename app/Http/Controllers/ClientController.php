@@ -37,7 +37,6 @@ class ClientController extends Controller
      * Show the form for creating a new client.
      *
      * @return \Illuminate\Http\Response
-     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function create()
@@ -67,7 +66,6 @@ class ClientController extends Controller
      *
      * @param  \App\Client  $client
      * @return \Illuminate\Http\Response
-     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit(Client $client)
@@ -98,7 +96,6 @@ class ClientController extends Controller
      *
      * @param  \App\Client  $client
      * @return \Illuminate\Http\Response
-     *
      * @throws \Illuminate\Auth\Access\AuthorizationException | \Exception
      */
     public function destroy(Client $client)

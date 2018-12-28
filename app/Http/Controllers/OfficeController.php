@@ -35,7 +35,6 @@ class OfficeController extends Controller
      * Show the form for creating a new office.
      *
      * @return \Illuminate\Http\Response
-     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function create()
@@ -63,7 +62,6 @@ class OfficeController extends Controller
      *
      * @param  \App\Office  $office
      * @return \Illuminate\Http\Response
-     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit(Office $office)
@@ -92,7 +90,6 @@ class OfficeController extends Controller
      *
      * @param  \App\Office  $office
      * @return \Illuminate\Http\Response
-     *
      * @throws \Illuminate\Auth\Access\AuthorizationException | \Exception
      */
     public function destroy(Office $office)
