@@ -23,6 +23,6 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return new Dashboard();
+        return new Dashboard;
     }
 }
