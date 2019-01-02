@@ -186,7 +186,7 @@ class User extends Authenticatable
      *
      * @return \Illuminate\Support\Collection
      */
-    public static function avatarsInUse()
+    public static function usedAvatars()
     {
         return self::pluck('avatar')
             ->merge(self::DEFAULT_AVATAR)

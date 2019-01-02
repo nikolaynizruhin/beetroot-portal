@@ -89,7 +89,7 @@ class Client extends Model
      *
      * @return \Illuminate\Support\Collection
      */
-    public static function logosInUse()
+    public static function usedLogos()
     {
         return self::pluck('logo')
             ->merge(self::DEFAULT_LOGO)

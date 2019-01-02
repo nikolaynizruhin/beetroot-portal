@@ -31,7 +31,7 @@ class ClearAvatars extends Command
     {
         $all = Storage::files('avatars');
 
-        $used = User::avatarsInUse();
+        $used = User::usedAvatars();
 
         $unused = collect($all)->diff($used)->values();
 

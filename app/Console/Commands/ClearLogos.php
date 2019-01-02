@@ -31,7 +31,7 @@ class ClearLogos extends Command
     {
         $all = Storage::files('logos');
 
-        $used = Client::logosInUse();
+        $used = Client::usedLogos();
 
         $unused = collect($all)->diff($used)->values();
 
