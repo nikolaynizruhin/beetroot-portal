@@ -173,24 +173,107 @@ class UpdateUserTest extends TestCase
     }
 
     /** @test */
-    public function some_of_employee_fields_are_required()
+    public function name_is_required()
     {
         $admin = factory(User::class)->states('admin')->create();
+        $user = factory(User::class)->make(['name' => null]);
 
         $this->actingAs($admin)
             ->from(route('users.edit', $admin))
-            ->put(route('users.update', $admin))
+            ->put(route('users.update', $admin), $user->toArray())
             ->assertRedirect(route('users.edit', $admin))
-            ->assertSessionHasErrors([
-                'name',
-                'gender',
-                'email',
-                'position',
-                'birthday',
-                'created_at',
-                'client_id',
-                'office_id',
-            ]);
+            ->assertSessionHasErrors('name');
+    }
+
+    /** @test */
+    public function email_is_required()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $user = factory(User::class)->make(['email' => null]);
+
+        $this->actingAs($admin)
+            ->from(route('users.edit', $admin))
+            ->put(route('users.update', $admin), $user->toArray())
+            ->assertRedirect(route('users.edit', $admin))
+            ->assertSessionHasErrors('email');
+    }
+
+    /** @test */
+    public function position_is_required()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $user = factory(User::class)->make(['position' => null]);
+
+        $this->actingAs($admin)
+            ->from(route('users.edit', $admin))
+            ->put(route('users.update', $admin), $user->toArray())
+            ->assertRedirect(route('users.edit', $admin))
+            ->assertSessionHasErrors('position');
+    }
+
+    /** @test */
+    public function gender_is_required()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $user = factory(User::class)->make(['gender' => null]);
+
+        $this->actingAs($admin)
+            ->from(route('users.edit', $admin))
+            ->put(route('users.update', $admin), $user->toArray())
+            ->assertRedirect(route('users.edit', $admin))
+            ->assertSessionHasErrors('gender');
+    }
+
+    /** @test */
+    public function birthday_is_required()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $user = factory(User::class)->make(['birthday' => null]);
+
+        $this->actingAs($admin)
+            ->from(route('users.edit', $admin))
+            ->put(route('users.update', $admin), $user->toArray())
+            ->assertRedirect(route('users.edit', $admin))
+            ->assertSessionHasErrors('birthday');
+    }
+
+    /** @test */
+    public function created_at_field_is_required()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $user = factory(User::class)->make(['created_at' => null]);
+
+        $this->actingAs($admin)
+            ->from(route('users.edit', $admin))
+            ->put(route('users.update', $admin), $user->toArray())
+            ->assertRedirect(route('users.edit', $admin))
+            ->assertSessionHasErrors('created_at');
+    }
+
+    /** @test */
+    public function client_id_field_is_required()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $user = factory(User::class)->make(['client_id' => null]);
+
+        $this->actingAs($admin)
+            ->from(route('users.edit', $admin))
+            ->put(route('users.update', $admin), $user->toArray())
+            ->assertRedirect(route('users.edit', $admin))
+            ->assertSessionHasErrors('client_id');
+    }
+
+    /** @test */
+    public function office_id_field_is_required()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $user = factory(User::class)->make(['office_id' => null]);
+
+        $this->actingAs($admin)
+            ->from(route('users.edit', $admin))
+            ->put(route('users.update', $admin), $user->toArray())
+            ->assertRedirect(route('users.edit', $admin))
+            ->assertSessionHasErrors('office_id');
     }
 
     /** @test */
