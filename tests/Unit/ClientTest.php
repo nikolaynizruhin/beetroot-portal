@@ -50,7 +50,7 @@ class ClientTest extends TestCase
     /** @test */
     public function it_can_check_whatever_logo_is_default()
     {
-        $client = factory(Client::class)->create();
+        $client = factory(Client::class)->create(['logo' => Client::DEFAULT_LOGO]);
 
         $this->assertTrue($client->hasDefaultLogo());
     }

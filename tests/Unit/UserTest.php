@@ -103,7 +103,7 @@ class UserTest extends TestCase
     /** @test */
     public function it_can_check_whatever_avatar_is_default()
     {
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->create(['avatar' => User::DEFAULT_AVATAR]);
 
         $this->assertTrue($user->hasDefaultAvatar());
     }

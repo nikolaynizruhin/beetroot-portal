@@ -19,7 +19,7 @@
             <div class="col-md-12">
 
                 <!-- Name -->
-                <p>
+                <p class="mb-0">
                     <strong>
                         <a class="link-unstyled" href="#" data-toggle="modal" data-target="#userModal{{ $user->id }}">
                             {{ $user->name }}
