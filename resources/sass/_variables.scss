@@ -14,9 +14,10 @@ $text-muted: #C1C0BA;
 
 // Cards
 $card-cap-bg: $primary;
+$card-cap-color: var(--white);
 
 // Thumbnails
-$thumbnail-bg: #fff;
+$thumbnail-bg: var(--white);
 
 // Links
 $link-hover-decoration: none;
