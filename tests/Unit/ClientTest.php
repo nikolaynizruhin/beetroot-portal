@@ -41,7 +41,7 @@ class ClientTest extends TestCase
         $client = factory(Client::class)->create();
         $tag = factory(Tag::class)->create();
 
-        $client->tags()->attach($tag);
+        $client->syncTags($tag);
 
         $this->assertTrue($client->tags->contains($tag));
         $this->assertInstanceOf(Collection::class, $client->tags);
@@ -53,5 +53,21 @@ class ClientTest extends TestCase
         $client = factory(Client::class)->create(['logo' => Client::DEFAULT_LOGO]);
 
         $this->assertTrue($client->hasDefaultLogo());
+    }
+
+    /** @test */
+    public function it_can_get_used_logos()
+    {
+        $client = factory(Client::class)->create();
+
+        $this->assertEquals([Client::DEFAULT_LOGO], Client::usedLogos()->all());
+    }
+
+    /** @test */
+    public function it_can_get_countries_list()
+    {
+        $client = factory(Client::class)->create(['country' => 'Egypt']);
+
+        $this->assertEquals(['Egypt'], Client::countries()->all());
     }
 }

@@ -94,7 +94,7 @@ class UserTest extends TestCase
         $user = factory(User::class)->create();
         $tag = factory(Tag::class)->create();
 
-        $user->tags()->attach($tag);
+        $user->syncTags($tag);
 
         $this->assertTrue($user->tags->contains($tag));
         $this->assertInstanceOf(Collection::class, $user->tags);
@@ -106,5 +106,19 @@ class UserTest extends TestCase
         $user = factory(User::class)->create(['avatar' => User::DEFAULT_AVATAR]);
 
         $this->assertTrue($user->hasDefaultAvatar());
+    }
+
+    /** @test */
+    public function it_can_get_used_avatars()
+    {
+        $user = factory(User::class)->create();
+
+        $this->assertEquals([User::DEFAULT_AVATAR], User::usedAvatars()->all());
+    }
+
+    /** @test */
+    public function it_can_get_genders_list()
+    {
+        $this->assertEquals([User::MALE, User::FEMALE], User::genders());
     }
 }
