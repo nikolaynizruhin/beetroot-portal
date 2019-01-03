@@ -9,7 +9,7 @@ $factory->define(User::class, function (Faker $faker) {
 
     return [
         'name' => $faker->name,
-        'gender' => $faker->randomElement([User::MALE, User::FEMALE]),
+        'gender' => $faker->randomElement(User::genders()),
         'email' => $userName.'@beetroot.se',
         'avatar' => User::DEFAULT_AVATAR,
         'position' => $faker->randomElement(Position::all()),
