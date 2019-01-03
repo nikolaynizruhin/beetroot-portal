@@ -45,5 +45,5 @@ storage/public/logos/default.png
 ## Testing
 
 ```
-phpunit
+vendor/bin/phpunit
 ```
