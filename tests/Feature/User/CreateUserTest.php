@@ -144,25 +144,111 @@ class CreateUserTest extends TestCase
     }
 
     /** @test */
-    public function some_of_user_fields_are_required()
+    public function user_name_is_required()
     {
         $admin = factory(User::class)->states('admin')->create();
 
         $this->actingAs($admin)
             ->from(route('users.create'))
-            ->post(route('users.store'))
+            ->post(route('users.store'), $this->validParams(['name' => null]))
             ->assertRedirect(route('users.create'))
-            ->assertSessionHasErrors([
-                'name',
-                'gender',
-                'email',
-                'position',
-                'birthday',
-                'created_at',
-                'client_id',
-                'office_id',
-                'password',
-            ]);
+            ->assertSessionHasErrors('name');
+    }
+
+    /** @test */
+    public function user_email_is_required()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+
+        $this->actingAs($admin)
+            ->from(route('users.create'))
+            ->post(route('users.store'), $this->validParams(['email' => null]))
+            ->assertRedirect(route('users.create'))
+            ->assertSessionHasErrors('email');
+    }
+
+    /** @test */
+    public function user_position_is_required()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+
+        $this->actingAs($admin)
+            ->from(route('users.create'))
+            ->post(route('users.store'), $this->validParams(['position' => null]))
+            ->assertRedirect(route('users.create'))
+            ->assertSessionHasErrors('position');
+    }
+
+    /** @test */
+    public function user_gender_is_required()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+
+        $this->actingAs($admin)
+            ->from(route('users.create'))
+            ->post(route('users.store'), $this->validParams(['gender' => null]))
+            ->assertRedirect(route('users.create'))
+            ->assertSessionHasErrors('gender');
+    }
+
+    /** @test */
+    public function user_birthday_is_required()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+
+        $this->actingAs($admin)
+            ->from(route('users.create'))
+            ->post(route('users.store'), $this->validParams(['birthday' => null]))
+            ->assertRedirect(route('users.create'))
+            ->assertSessionHasErrors('birthday');
+    }
+
+    /** @test */
+    public function user_created_at_field_is_required()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+
+        $this->actingAs($admin)
+            ->from(route('users.create'))
+            ->post(route('users.store'), $this->validParams(['created_at' => null]))
+            ->assertRedirect(route('users.create'))
+            ->assertSessionHasErrors('created_at');
+    }
+
+    /** @test */
+    public function user_client_id_is_required()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+
+        $this->actingAs($admin)
+            ->from(route('users.create'))
+            ->post(route('users.store'), $this->validParams(['client_id' => null]))
+            ->assertRedirect(route('users.create'))
+            ->assertSessionHasErrors('client_id');
+    }
+
+    /** @test */
+    public function user_office_id_is_required()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+
+        $this->actingAs($admin)
+            ->from(route('users.create'))
+            ->post(route('users.store'), $this->validParams(['office_id' => null]))
+            ->assertRedirect(route('users.create'))
+            ->assertSessionHasErrors('office_id');
+    }
+
+    /** @test */
+    public function user_password_is_required()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+
+        $this->actingAs($admin)
+            ->from(route('users.create'))
+            ->post(route('users.store'), $this->validParams(['password' => null]))
+            ->assertRedirect(route('users.create'))
+            ->assertSessionHasErrors('password');
     }
 
     /** @test */
