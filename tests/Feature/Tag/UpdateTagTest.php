@@ -82,9 +82,9 @@ class UpdateTagTest extends TestCase
 
         $this->actingAs($admin)
             ->from(route('tags.edit', $admin))
-            ->put(route('tags.update', $tag))
+            ->put(route('tags.update', $tag), ['name' => null])
             ->assertRedirect(route('tags.edit', $admin))
-            ->assertSessionHasErrors(['name']);
+            ->assertSessionHasErrors('name');
     }
 
     /** @test */

@@ -72,7 +72,7 @@ class CreateTagTest extends TestCase
         $admin = factory(User::class)->states('admin')->create();
 
         $this->actingAs($admin)
-            ->post(route('tags.store'))
+            ->post(route('tags.store'), ['name' => null])
             ->assertSessionHasErrors('name');
     }
 
