@@ -28,7 +28,7 @@ class OfficeController extends Controller
     {
         $offices = app(OfficesQuery::class)();
 
-        return view('offices.index')->with('offices', $offices);
+        return view('offices.index', compact('offices'));
     }
 
     /**
@@ -41,7 +41,7 @@ class OfficeController extends Controller
     {
         $this->authorize('create', Office::class);
 
-        return view('offices.create')->with('office', new Office);
+        return view('offices.create', ['office' => new Office]);
     }
 
     /**
@@ -68,7 +68,7 @@ class OfficeController extends Controller
     {
         $this->authorize('edit', $office);
 
-        return view('offices.edit')->with('office', $office);
+        return view('offices.edit', compact('office'));
     }
 
     /**

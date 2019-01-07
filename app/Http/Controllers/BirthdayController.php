@@ -27,6 +27,6 @@ class BirthdayController extends Controller
     {
         $months = app(BirthdaysQuery::class)($filters);
 
-        return view('birthdays.index')->with('months', $months);
+        return view('birthdays.index', compact('months'));
     }
 }

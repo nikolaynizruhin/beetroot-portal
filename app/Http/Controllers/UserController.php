@@ -30,7 +30,7 @@ class UserController extends Controller
     {
         $users = app(UsersQuery::class)($filters);
 
-        return view('users.index')->with('users', $users);
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -74,7 +74,7 @@ class UserController extends Controller
     {
         $this->authorize('edit', $user);
 
-        return view('users.edit')->with('user', $user);
+        return view('users.edit', compact('user'));
     }
 
     /**

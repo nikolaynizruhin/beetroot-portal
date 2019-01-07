@@ -28,7 +28,7 @@ class TagController extends Controller
     {
         $tags = Tag::with(['users', 'clients'])->paginate(15);
 
-        return view('tags.index')->with('tags', $tags);
+        return view('tags.index', compact('tags'));
     }
 
     /**
@@ -41,7 +41,7 @@ class TagController extends Controller
     {
         $this->authorize('create', User::class);
 
-        return view('tags.create')->with('tag', new Tag);
+        return view('tags.create', ['tag' => new Tag]);
     }
 
     /**
@@ -68,7 +68,7 @@ class TagController extends Controller
     {
         $this->authorize('edit', $tag);
 
-        return view('tags.edit')->with('tag', $tag);
+        return view('tags.edit', compact('tag'));
     }
 
     /**

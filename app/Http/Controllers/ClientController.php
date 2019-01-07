@@ -30,7 +30,7 @@ class ClientController extends Controller
     {
         $clients = app(ClientsQuery::class)($filters);
 
-        return view('clients.index')->with('clients', $clients);
+        return view('clients.index', compact('clients'));
     }
 
     /**
@@ -43,7 +43,7 @@ class ClientController extends Controller
     {
         $this->authorize('create', Client::class);
 
-        return view('clients.create')->with('client', new Client);
+        return view('clients.create', ['client' => new Client]);
     }
 
     /**
@@ -72,7 +72,7 @@ class ClientController extends Controller
     {
         $this->authorize('edit', $client);
 
-        return view('clients.edit')->with('client', $client);
+        return view('clients.edit', compact('client'));
     }
 
     /**

@@ -28,7 +28,7 @@ class ProfileController extends Controller
     {
         $user->update($request->prepared());
 
-        $user->tags()->sync($request->tags());
+        $user->syncTags($request->tags());
 
         return back()->with('status', 'The beetroot was successfully updated!');
     }
