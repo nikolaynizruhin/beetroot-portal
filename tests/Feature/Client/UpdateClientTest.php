@@ -118,16 +118,55 @@ class UpdateClientTest extends TestCase
     }
 
     /** @test */
-    public function some_of_client_fields_are_required()
+    public function client_name_is_required()
     {
         $admin = factory(User::class)->states('admin')->create();
         $client = factory(Client::class)->create();
 
         $this->actingAs($admin)
             ->from(route('clients.edit', $client))
-            ->put(route('clients.update', $client))
+            ->put(route('clients.update', $client), ['name' => null])
             ->assertRedirect(route('clients.edit', $client))
-            ->assertSessionHasErrors(['name', 'country', 'description', 'site']);
+            ->assertSessionHasErrors('name');
+    }
+
+    /** @test */
+    public function client_site_is_required()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $client = factory(Client::class)->create();
+
+        $this->actingAs($admin)
+            ->from(route('clients.edit', $client))
+            ->put(route('clients.update', $client), ['site' => null])
+            ->assertRedirect(route('clients.edit', $client))
+            ->assertSessionHasErrors('site');
+    }
+
+    /** @test */
+    public function client_description_is_required()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $client = factory(Client::class)->create();
+
+        $this->actingAs($admin)
+            ->from(route('clients.edit', $client))
+            ->put(route('clients.update', $client), ['description' => null])
+            ->assertRedirect(route('clients.edit', $client))
+            ->assertSessionHasErrors('description');
+    }
+
+    /** @test */
+    public function client_country_is_required()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $client = factory(Client::class)->create();
+
+        $this->actingAs($admin)
+            ->from(route('clients.edit', $client))
+            ->put(route('clients.update', $client), ['country' => null])
+            ->assertRedirect(route('clients.edit', $client))
+            ->assertSessionHasErrors('country');
     }
 
     /** @test */

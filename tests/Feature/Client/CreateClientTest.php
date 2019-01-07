@@ -74,20 +74,18 @@ class CreateClientTest extends TestCase
     public function admin_can_create_a_client()
     {
         $file = UploadedFile::fake()->image('logo.jpg');
-
         $admin = factory(User::class)->states('admin')->create();
-        $client = factory(Client::class)->make(['logo' => $file]);
 
         Storage::fake('public');
         Image::shouldReceive('make->fit->save')->once();
 
         $this->actingAs($admin)
-            ->post(route('clients.store'), $client->toArray())
+            ->post(route('clients.store'), $client = $this->validParams(['logo' => $file]))
             ->assertSessionHas('status', 'The team was successfully created!');
 
-        $client->logo = 'logos/'.$file->hashName();
+        $client['logo'] = 'logos/'.$file->hashName();
 
-        $this->assertDatabaseHas('clients', $client->toArray());
+        $this->assertDatabaseHas('clients', $client);
         Storage::disk('public')->assertExists('logos/'.$file->hashName());
     }
 
@@ -95,15 +93,14 @@ class CreateClientTest extends TestCase
     public function admin_can_create_a_client_without_logo()
     {
         $admin = factory(User::class)->states('admin')->create();
-        $client = factory(Client::class)->make()->makeHidden('logo');
 
         $this->actingAs($admin)
-            ->post(route('clients.store'), $client->toArray())
+            ->post(route('clients.store'), $client = $this->validParams())
             ->assertSessionHas('status', 'The team was successfully created!');
 
-        $client->logo = Client::DEFAULT_LOGO;
+        $client['logo'] = Client::DEFAULT_LOGO;
 
-        $this->assertDatabaseHas('clients', $client->toArray());
+        $this->assertDatabaseHas('clients', $client);
     }
 
     /** @test */
@@ -111,39 +108,85 @@ class CreateClientTest extends TestCase
     {
         $admin = factory(User::class)->states('admin')->create();
         $tag = factory(Tag::class)->create();
-        $client = factory(Client::class)
-            ->make(['tags' => [$tag->id]])
-            ->makeHidden('logo');
 
         $this->actingAs($admin)
-            ->post(route('clients.store'), $client->toArray())
+            ->post(route('clients.store'), $this->validParams(['tags' => [$tag->id]]))
             ->assertSessionHas('status', 'The team was successfully created!');
 
         $this->assertCount(1, $tag->clients);
     }
 
     /** @test */
-    public function some_of_client_fields_are_required()
+    public function client_name_is_required()
     {
         $admin = factory(User::class)->states('admin')->create();
 
         $this->actingAs($admin)
             ->from(route('clients.create'))
-            ->post(route('clients.store'))
+            ->post(route('clients.store'), $this->validParams(['name' => null]))
             ->assertRedirect(route('clients.create'))
-            ->assertSessionHasErrors([
-                'name', 'country', 'description', 'site',
-            ]);
+            ->assertSessionHasErrors('name');
+    }
+
+    /** @test */
+    public function client_country_is_required()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+
+        $this->actingAs($admin)
+            ->from(route('clients.create'))
+            ->post(route('clients.store'), $this->validParams(['country' => null]))
+            ->assertRedirect(route('clients.create'))
+            ->assertSessionHasErrors('country');
+    }
+
+    /** @test */
+    public function client_description_is_required()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+
+        $this->actingAs($admin)
+            ->from(route('clients.create'))
+            ->post(route('clients.store'), $this->validParams(['description' => null]))
+            ->assertRedirect(route('clients.create'))
+            ->assertSessionHasErrors('description');
+    }
+
+    /** @test */
+    public function client_site_is_required()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+
+        $this->actingAs($admin)
+            ->from(route('clients.create'))
+            ->post(route('clients.store'), $this->validParams(['site' => null]))
+            ->assertRedirect(route('clients.create'))
+            ->assertSessionHasErrors('site');
     }
 
     /** @test */
     public function country_should_be_a_valid_country_code()
     {
         $admin = factory(User::class)->states('admin')->create();
-        $client = factory(Client::class)->make(['country' => 'wrong']);
 
         $this->actingAs($admin)
-            ->post(route('clients.store'), $client->toArray())
+            ->post(route('clients.store'), $this->validParams(['country' => 'wrong']))
             ->assertSessionHasErrors('country');
+    }
+
+    /**
+     * Get valid client params.
+     *
+     * @param  array  $overrides
+     * @return array
+     */
+    private function validParams($overrides = [])
+    {
+        $client = factory(Client::class)
+            ->make()
+            ->makeHidden('logo')
+            ->toArray();
+
+        return array_merge($client, $overrides);
     }
 }
