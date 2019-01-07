@@ -70,7 +70,7 @@ class CreateOfficeTest extends TestCase
     public function admin_can_create_an_office()
     {
         $admin = factory(User::class)->states('admin')->create();
-        $office = factory(Office::class)->make()->toArray();
+        $office = factory(Office::class)->raw();
 
         $this->actingAs($admin)
             ->post(route('offices.store'), $office)
@@ -80,25 +80,52 @@ class CreateOfficeTest extends TestCase
     }
 
     /** @test */
-    public function some_of_office_fields_are_required()
+    public function office_city_is_required()
     {
         $admin = factory(User::class)->states('admin')->create();
+        $office = factory(Office::class)->raw(['city' => null]);
 
         $this->actingAs($admin)
             ->from(route('offices.create'))
-            ->post(route('offices.store'))
+            ->post(route('offices.store'), $office)
             ->assertRedirect(route('offices.create'))
-            ->assertSessionHasErrors(['city', 'country', 'address']);
+            ->assertSessionHasErrors('city');
+    }
+
+    /** @test */
+    public function office_country_is_required()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $office = factory(Office::class)->raw(['country' => null]);
+
+        $this->actingAs($admin)
+            ->from(route('offices.create'))
+            ->post(route('offices.store'), $office)
+            ->assertRedirect(route('offices.create'))
+            ->assertSessionHasErrors('country');
+    }
+
+    /** @test */
+    public function office_address_is_required()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $office = factory(Office::class)->raw(['address' => null]);
+
+        $this->actingAs($admin)
+            ->from(route('offices.create'))
+            ->post(route('offices.store'), $office)
+            ->assertRedirect(route('offices.create'))
+            ->assertSessionHasErrors('address');
     }
 
     /** @test */
     public function country_should_be_a_valid_country_code()
     {
         $admin = factory(User::class)->states('admin')->create();
-        $office = factory(Office::class)->make(['country' => 'wrong']);
+        $office = factory(Office::class)->raw(['country' => 'wrong']);
 
         $this->actingAs($admin)
-            ->post(route('offices.store'), $office->toArray())
+            ->post(route('offices.store'), $office)
             ->assertSessionHasErrors('country');
     }
 }
