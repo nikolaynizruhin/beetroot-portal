@@ -34,8 +34,9 @@ class ClearAvatarsTest extends TestCase
             ->expectsOutput('(1) Unused avatars was removed successfully!')
             ->assertExitCode(0);
 
-        Storage::disk('public')->assertMissing($unused);
-        Storage::disk('public')->assertExists($used);
+        Storage::disk('public')
+            ->assertMissing($unused)
+            ->assertExists($used);
     }
 
     /** @test */
