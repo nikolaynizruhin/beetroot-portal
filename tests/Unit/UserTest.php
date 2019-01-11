@@ -7,6 +7,8 @@ use App\User;
 use App\Client;
 use App\Office;
 use Tests\TestCase;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -120,5 +122,66 @@ class UserTest extends TestCase
     public function it_can_get_genders_list()
     {
         $this->assertEquals([User::MALE, User::FEMALE], User::genders());
+    }
+
+    /** @test */
+    public function it_should_not_optimize_default_avatar_when_user_created()
+    {
+        Image::shouldReceive('make->fit->save')->never();
+
+        factory(User::class)->create();
+    }
+
+    /** @test */
+    public function it_should_not_optimize_default_avatar_when_user_updated()
+    {
+        Image::shouldReceive('make->fit->save')->never();
+
+        $user = factory(User::class)->create();
+
+        $user->update(['name' => 'John Doe']);
+    }
+
+    /** @test */
+    public function it_should_optimize_avatar_when_user_created()
+    {
+        Image::shouldReceive('make->fit->save')->once();
+
+        factory(User::class)->create(['avatar' => 'path/to/avatar.jpg']);
+    }
+
+    /** @test */
+    public function it_should_optimize_avatar_when_user_updated()
+    {
+        Image::shouldReceive('make->fit->save')->once();
+
+        $user = factory(User::class)->create();
+
+        $user->update(['avatar' => 'path/to/avatar.jpg']);
+    }
+
+    /** @test */
+    public function it_should_not_delete_default_avatar_if_user_deleted()
+    {
+        Image::shouldReceive('make->fit->save')->never();
+
+        $user = factory(User::class)->create();
+
+        $user->delete();
+    }
+
+    /** @test */
+    public function it_should_delete_avatar_if_user_deleted()
+    {
+        Image::shouldReceive('make->fit->save')->once();
+
+        Storage::shouldReceive('delete')
+            ->once()
+            ->with('path/to/avatar.jpg')
+            ->andReturn(true);
+
+        $user = factory(User::class)->create(['avatar' => 'path/to/avatar.jpg']);
+
+        $user->delete();
     }
 }
