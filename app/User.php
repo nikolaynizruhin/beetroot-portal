@@ -225,6 +225,18 @@ class User extends Authenticatable
     }
 
     /**
+     * Optimize user avatar.
+     *
+     * @return void
+     */
+    public function optimizeAvatar()
+    {
+        if ($this->needToOptimizeAvatar()) {
+            Image::make('storage/'.$this->avatar)->fit(self::AVATAR_SIZE)->save();
+        }
+    }
+
+    /**
      * Check whether need to optimize an avatar.
      *
      * @return bool
@@ -232,6 +244,18 @@ class User extends Authenticatable
     public function needToOptimizeAvatar()
     {
         return ! $this->hasDefaultAvatar() && $this->isDirty('avatar');
+    }
+
+    /**
+     * Delete user avatar.
+     *
+     * @return void
+     */
+    public function deleteAvatar()
+    {
+        if (! $this->hasDefaultAvatar()) {
+            Storage::delete($this->avatar);
+        }
     }
 
     /**
@@ -244,17 +268,5 @@ class User extends Authenticatable
         parent::boot();
 
         static::addGlobalScope(new NameScope);
-
-        static::saved(function ($user) {
-            if ($user->needToOptimizeAvatar()) {
-                Image::make('storage/'.$user->avatar)->fit(self::AVATAR_SIZE)->save();
-            }
-        });
-
-        static::deleting(function ($user) {
-            if (! $user->hasDefaultAvatar()) {
-                Storage::delete($user->avatar);
-            }
-        });
     }
 }

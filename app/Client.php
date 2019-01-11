@@ -97,6 +97,18 @@ class Client extends Model
     }
 
     /**
+     * Optimize client logo.
+     *
+     * @return void
+     */
+    public function optimizeLogo()
+    {
+        if ($this->needToOptimizeLogo()) {
+            Image::make('storage/'.$this->logo)->fit(self::LOGO_SIZE)->save();
+        }
+    }
+
+    /**
      * Check whether need to optimize a logo.
      *
      * @return bool
@@ -104,6 +116,18 @@ class Client extends Model
     public function needToOptimizeLogo()
     {
         return ! $this->hasDefaultLogo() && $this->isDirty('logo');
+    }
+
+    /**
+     * Delete client logo.
+     *
+     * @return void
+     */
+    public function deleteLogo()
+    {
+        if (! $this->hasDefaultLogo()) {
+            Storage::delete($this->logo);
+        }
     }
 
     /**
@@ -116,17 +140,5 @@ class Client extends Model
         parent::boot();
 
         static::addGlobalScope(new NameScope);
-
-        static::saved(function ($client) {
-            if ($client->needToOptimizeLogo()) {
-                Image::make('storage/'.$client->logo)->fit(self::LOGO_SIZE)->save();
-            }
-        });
-
-        static::deleting(function ($client) {
-            if (! $client->hasDefaultLogo()) {
-                Storage::delete($client->logo);
-            }
-        });
     }
 }
