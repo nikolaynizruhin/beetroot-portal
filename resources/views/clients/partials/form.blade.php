@@ -11,7 +11,10 @@
     </label>
 
     <div class="col-md-6">
-        <input class="form-control-file" id="logo" type="file" name="logo">
+        <div class="custom-file">
+            <input type="file" accept="image/*" class="custom-file-input" id="logo" name="logo">
+            <label class="custom-file-label" for="logo">Choose file</label>
+        </div>
 
         @if ($errors->has('logo'))
             <div class="invalid-feedback">
