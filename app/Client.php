@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 
 class Client extends Model
 {
-    use Filterable, Taggable;
+    use Filterable, Taggable, HasImage;
 
     /**
      * Constant representing a default client logo.
@@ -32,6 +32,13 @@ class Client extends Model
      * @var array
      */
     protected $guarded = [];
+
+    /**
+     * Determine model image attribute.
+     *
+     * @var string
+     */
+    protected static $image = 'logo';
 
     /**
      * The list of sorts.
@@ -75,16 +82,6 @@ class Client extends Model
     }
 
     /**
-     * Check whatever clien has a default logo.
-     *
-     * @return bool
-     */
-    public function hasDefaultLogo()
-    {
-        return $this->logo === self::DEFAULT_LOGO;
-    }
-
-    /**
      * Get collection of logos in use.
      *
      * @return \Illuminate\Support\Collection
@@ -94,40 +91,6 @@ class Client extends Model
         return self::pluck('logo')
             ->merge(self::DEFAULT_LOGO)
             ->unique();
-    }
-
-    /**
-     * Optimize client logo.
-     *
-     * @return void
-     */
-    public function optimizeLogo()
-    {
-        if ($this->needToOptimizeLogo()) {
-            Image::make('storage/'.$this->logo)->fit(self::LOGO_SIZE)->save();
-        }
-    }
-
-    /**
-     * Check whether need to optimize a logo.
-     *
-     * @return bool
-     */
-    public function needToOptimizeLogo()
-    {
-        return ! $this->hasDefaultLogo() && $this->isDirty('logo');
-    }
-
-    /**
-     * Delete client logo.
-     *
-     * @return void
-     */
-    public function deleteLogo()
-    {
-        if (! $this->hasDefaultLogo()) {
-            Storage::delete($this->logo);
-        }
     }
 
     /**

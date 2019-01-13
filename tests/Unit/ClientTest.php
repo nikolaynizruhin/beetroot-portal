@@ -50,11 +50,13 @@ class ClientTest extends TestCase
     }
 
     /** @test */
-    public function it_can_check_whatever_logo_is_default()
+    public function it_can_check_whatever_logo_is_not_default()
     {
-        $client = factory(Client::class)->create(['logo' => Client::DEFAULT_LOGO]);
+        Image::shouldReceive('make->fit->save')->once();
 
-        $this->assertTrue($client->hasDefaultLogo());
+        $client = factory(Client::class)->create(['logo' => 'path/to/logo.jpg']);
+
+        $this->assertTrue($client->hasNoDefaultImage());
     }
 
     /** @test */

@@ -12,7 +12,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable, Filterable, Taggable;
+    use Notifiable, Filterable, Taggable, HasImage;
 
     /**
      * Constant representing a default user avatar.
@@ -41,6 +41,13 @@ class User extends Authenticatable
      * @var string
      */
     const FEMALE = 'female';
+
+    /**
+     * Determine model image attribute.
+     *
+     * @var string
+     */
+    protected static $image = 'avatar';
 
     /**
      * The list of sorts.
@@ -212,50 +219,6 @@ class User extends Authenticatable
     public function accept()
     {
         $this->update(['accepted_at' => now()]);
-    }
-
-    /**
-     * Check whether user has a default avatar.
-     *
-     * @return bool
-     */
-    public function hasDefaultAvatar()
-    {
-        return $this->avatar === self::DEFAULT_AVATAR;
-    }
-
-    /**
-     * Optimize user avatar.
-     *
-     * @return void
-     */
-    public function optimizeAvatar()
-    {
-        if ($this->needToOptimizeAvatar()) {
-            Image::make('storage/'.$this->avatar)->fit(self::AVATAR_SIZE)->save();
-        }
-    }
-
-    /**
-     * Check whether need to optimize an avatar.
-     *
-     * @return bool
-     */
-    public function needToOptimizeAvatar()
-    {
-        return ! $this->hasDefaultAvatar() && $this->isDirty('avatar');
-    }
-
-    /**
-     * Delete user avatar.
-     *
-     * @return void
-     */
-    public function deleteAvatar()
-    {
-        if (! $this->hasDefaultAvatar()) {
-            Storage::delete($this->avatar);
-        }
     }
 
     /**
