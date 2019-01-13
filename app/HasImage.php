@@ -94,11 +94,11 @@ trait HasImage
      */
     public static function bootHasImage()
     {
-        static::saved(function($model) {
+        static::saved(function ($model) {
             $model->optimizeImage();
         });
 
-        static::deleting(function($model) {
+        static::deleting(function ($model) {
             $model->deleteImage();
         });
     }

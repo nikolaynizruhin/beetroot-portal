@@ -5,7 +5,6 @@ namespace App;
 use App\Scopes\NameScope;
 use App\Filters\Filterable;
 use Intervention\Image\Facades\Image;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
 use App\Notifications\WelcomeNotification;
 use Illuminate\Foundation\Auth\User as Authenticatable;
