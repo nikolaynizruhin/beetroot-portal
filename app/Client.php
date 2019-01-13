@@ -6,7 +6,6 @@ use App\Scopes\NameScope;
 use App\Filters\Filterable;
 use Intervention\Image\Facades\Image;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
 
 class Client extends Model
 {
