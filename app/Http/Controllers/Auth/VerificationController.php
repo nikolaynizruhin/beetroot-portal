@@ -23,6 +23,7 @@ class VerificationController extends Controller
     /**
      * Where to redirect users after verification.
      *
+     * @codeCoverageIgnore
      * @var string
      */
     protected $redirectTo = '/home';
@@ -30,6 +31,7 @@ class VerificationController extends Controller
     /**
      * Create a new controller instance.
      *
+     * @codeCoverageIgnore
      * @return void
      */
     public function __construct()
