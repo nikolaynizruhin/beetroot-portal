@@ -2,7 +2,7 @@
     <div class="container">
 
         <!-- Branding Image -->
-        <a class="navbar-brand" href="{{ url('/') }}">
+        <a class="navbar-brand" href="{{ route('dashboard') }}">
             <img src="{{ asset('images/logo.svg') }}" height="50" width="140" alt="Beetroot">
         </a>
 
