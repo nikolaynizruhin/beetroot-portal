@@ -44,14 +44,4 @@ class ComposerServiceProvider extends ServiceProvider
             BirthdayFiltersComposer::class
         );
     }
-
-    /**
-     * Register the application services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        //
-    }
 }

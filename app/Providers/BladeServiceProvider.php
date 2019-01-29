@@ -31,14 +31,4 @@ class BladeServiceProvider extends ServiceProvider
             return Route::currentRouteName() === $route;
         });
     }
-
-    /**
-     * Register services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        //
-    }
 }
