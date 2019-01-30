@@ -72,6 +72,7 @@
                             <span class="caret"></span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('calendar') }}">Calendar</a>
                             <a class="dropdown-item" href="{{ route('tags.index') }}">Skills</a>
                             <a class="dropdown-item" href="{{ route('info') }}">Info</a>
                             <a class="dropdown-item" href="{{ route('privacy') }}">Privacy Policy</a>

@@ -13,7 +13,11 @@
 
 Route::view('/', 'welcome')->name('welcome')->middleware('guest');
 Route::view('/privacy', 'privacy')->name('privacy')->middleware('auth');
-Route::view('/info', 'info')->name('info')->middleware(['auth', 'accept']);
+
+Route::middleware(['auth', 'accept'])->group(function () {
+    Route::view('/info', 'info')->name('info');
+    Route::view('/calendar', 'calendar')->name('calendar');
+});
 
 Auth::routes(['register' => false, 'verify' => false]);
 
