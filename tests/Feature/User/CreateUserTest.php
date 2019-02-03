@@ -5,6 +5,7 @@ namespace Tests\Feature\User;
 use App\Tag;
 use App\User;
 use Tests\TestCase;
+use Illuminate\Support\Arr;
 use Illuminate\Http\UploadedFile;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
@@ -88,7 +89,7 @@ class CreateUserTest extends TestCase
 
         $params['avatar'] = 'avatars/'.$file->hashName();
 
-        $this->assertDatabaseHas('users', array_except($params, ['password', 'password_confirmation']));
+        $this->assertDatabaseHas('users', Arr::except($params, ['password', 'password_confirmation']));
         Storage::disk('public')->assertExists('avatars/'.$file->hashName());
     }
 
@@ -105,7 +106,7 @@ class CreateUserTest extends TestCase
 
         $params['avatar'] = User::DEFAULT_AVATAR;
 
-        $this->assertDatabaseHas('users', array_except($params, ['password', 'password_confirmation']));
+        $this->assertDatabaseHas('users', Arr::except($params, ['password', 'password_confirmation']));
     }
 
     /** @test */

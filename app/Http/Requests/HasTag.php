@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Support\Arr;
+
 trait HasTag
 {
     /**
@@ -21,6 +23,6 @@ trait HasTag
      */
     public function withoutTags($attributes)
     {
-        return array_except($attributes, 'tags');
+        return Arr::except($attributes, 'tags');
     }
 }
