@@ -10,7 +10,7 @@
         <link rel="shortcut icon" type="image/ico" href="{{ asset('favicon.ico') }}"/>
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,600" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,600" rel="stylesheet">
 
         <!-- Styles -->
         <style>
