@@ -48,6 +48,7 @@ class Position
         'Project Coordination',
         'Project Manager',
         'Python Developer',
+        'QA Automation Engineer',
         'QA Engineer',
         'Ruby/Rails Developer',
         'Sales Manager',
