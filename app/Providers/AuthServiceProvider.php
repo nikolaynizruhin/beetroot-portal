@@ -2,14 +2,6 @@
 
 namespace App\Providers;
 
-use App\Tag;
-use App\User;
-use App\Client;
-use App\Office;
-use App\Policies\TagPolicy;
-use App\Policies\UserPolicy;
-use App\Policies\ClientPolicy;
-use App\Policies\OfficePolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
