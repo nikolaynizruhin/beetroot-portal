@@ -321,7 +321,7 @@ class CreateUserTest extends TestCase
         $this->actingAs($admin)
             ->from(route('users.create'))
             ->post(route('users.store'), $this->validParams([
-                'password' => 'secret',
+                'password' => 'password',
                 'password_confirmation' => 'different',
             ]))->assertRedirect(route('users.create'))
             ->assertSessionHasErrors('password');
@@ -350,8 +350,8 @@ class CreateUserTest extends TestCase
     private function validParams($overrides = [])
     {
         $user = factory(User::class)->make([
-            'password' => 'secret',
-            'password_confirmation' => 'secret',
+            'password' => 'password',
+            'password_confirmation' => 'password',
         ])->makeHidden(['avatar', 'accepted_at'])
             ->makeVisible('password')
             ->toArray();

@@ -29,7 +29,7 @@ class ResetPasswordTest extends TestCase
 
         $token = Password::broker()->createToken($user);
 
-        $this->get(route('password.reset', $token))
+        $this->get(route('password.reset', ['token' => $token]))
             ->assertSuccessful()
             ->assertViewIs('auth.passwords.reset')
             ->assertViewHas('token', $token);
@@ -87,15 +87,15 @@ class ResetPasswordTest extends TestCase
         $user = factory(User::class)->create();
         $token = 'invalid-token';
 
-        $this->from(route('password.reset', $token))
+        $this->from(route('password.reset', ['token' => $token]))
             ->post(url('/password/reset'), [
                 'token' => $token,
                 'email' => $user->email,
                 'password' => 'new-password',
                 'password_confirmation' => 'new-password',
-            ])->assertRedirect(route('password.reset', $token));
+            ])->assertRedirect(route('password.reset', ['token' => $token]));
 
-        $this->assertTrue(Hash::check('secret', $user->fresh()->password));
+        $this->assertTrue(Hash::check('password', $user->fresh()->password));
         $this->assertGuest();
     }
 
@@ -105,16 +105,16 @@ class ResetPasswordTest extends TestCase
         $user = factory(User::class)->create();
         $token = Password::broker()->createToken($user);
 
-        $this->from(route('password.reset', $token))
+        $this->from(route('password.reset', ['token' => $token]))
             ->post(url('/password/reset'), [
                 'token' => $token,
                 'email' => $user->email,
                 'password' => '',
                 'password_confirmation' => '',
-            ])->assertRedirect(route('password.reset', $token))
+            ])->assertRedirect(route('password.reset', ['token' => $token]))
             ->assertSessionHasErrors('password');
 
-        $this->assertTrue(Hash::check('secret', $user->fresh()->password));
+        $this->assertTrue(Hash::check('password', $user->fresh()->password));
         $this->assertGuest();
     }
 
@@ -124,16 +124,16 @@ class ResetPasswordTest extends TestCase
         $user = factory(User::class)->create();
         $token = Password::broker()->createToken($user);
 
-        $this->from(route('password.reset', $token))
+        $this->from(route('password.reset', ['token' => $token]))
             ->post(url('/password/reset'), [
                 'token' => $token,
                 'email' => '',
                 'password' => 'new-awesome-password',
                 'password_confirmation' => 'new-awesome-password',
-            ])->assertRedirect(route('password.reset', $token))
+            ])->assertRedirect(route('password.reset', ['token' => $token]))
             ->assertSessionHasErrors('email');
 
-        $this->assertTrue(Hash::check('secret', $user->fresh()->password));
+        $this->assertTrue(Hash::check('password', $user->fresh()->password));
         $this->assertGuest();
     }
 }
