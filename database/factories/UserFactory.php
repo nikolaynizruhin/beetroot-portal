@@ -1,8 +1,8 @@
 <?php
 
-use App\User;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
+use App\{User, Office, Client};
 use App\Http\Utilities\Position;
 
 $factory->define(User::class, function (Faker $faker) {
@@ -24,22 +24,22 @@ $factory->define(User::class, function (Faker $faker) {
         'github' => $userName,
         'facebook' => $userName,
         'instagram' => $userName,
-        'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
+        'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         'is_admin' => $faker->boolean,
         'remember_token' => Str::random(10),
-        'client_id' => factory(App\Client::class),
-        'office_id' => factory(App\Office::class),
+        'client_id' => factory(Client::class),
+        'office_id' => factory(Office::class),
     ];
 });
 
-$factory->state(App\User::class, 'admin', [
+$factory->state(User::class, 'admin', [
     'is_admin' => true,
 ]);
 
-$factory->state(App\User::class, 'employee', [
+$factory->state(User::class, 'employee', [
     'is_admin' => false,
 ]);
 
-$factory->state(App\User::class, 'unacceptable', [
+$factory->state(User::class, 'unacceptable', [
     'accepted_at' => null,
 ]);

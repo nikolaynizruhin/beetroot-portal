@@ -47,7 +47,7 @@ class StoreUser extends FormRequest
             'is_admin' => 'boolean',
             'client_id' => 'required|numeric|exists:clients,id',
             'office_id' => 'required|numeric|exists:offices,id',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|min:8|confirmed',
             'slack' => 'nullable|string|max:255',
             'facebook' => 'nullable|string|max:255',
             'instagram' => 'nullable|string|max:255',

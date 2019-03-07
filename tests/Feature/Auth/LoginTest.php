@@ -36,7 +36,7 @@ class LoginTest extends TestCase
 
         $this->post(route('login'), [
             'email' => $user->email,
-            'password' => 'secret',
+            'password' => 'password',
         ])->assertStatus(302)
             ->assertRedirect(route('dashboard'));
 
@@ -50,7 +50,7 @@ class LoginTest extends TestCase
 
         $this->post(route('login'), [
             'email' => $user->email,
-            'password' => 'secret',
+            'password' => 'password',
             'remember' => 'on',
         ])->assertRedirect(route('dashboard'))
             ->assertCookieNotExpired(Auth::guard()->getRecallerName());
@@ -63,7 +63,7 @@ class LoginTest extends TestCase
     {
         $this->from(route('login'))->post(route('login'), [
             'email' => 'test@example.com',
-            'password' => 'secret',
+            'password' => 'password',
         ])->assertSessionHasErrors('email')
             ->assertRedirect(route('login'));
 
