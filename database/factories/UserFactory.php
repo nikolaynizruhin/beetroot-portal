@@ -1,8 +1,10 @@
 <?php
 
+use App\User;
+use App\Client;
+use App\Office;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
-use App\{User, Office, Client};
 use App\Http\Utilities\Position;
 
 $factory->define(User::class, function (Faker $faker) {
