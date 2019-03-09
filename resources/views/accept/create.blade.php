@@ -41,6 +41,7 @@
                             <div class="form-group row mb-0">
                                 <div class="col text-center">
                                     <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-check fa-fw"></i>
                                         Accept
                                     </button>
                                 </div>
