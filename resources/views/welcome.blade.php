@@ -76,9 +76,6 @@
                 }
             }
         </style>
-
-        <!-- Scripts -->
-        <script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
     </head>
     <body class="background-image">
         <div class="flex-center full-height">
@@ -96,7 +93,7 @@
                         Does it sound exciting?
                     </p>
 
-                    <a href="@auth {{ route('dashboard') }} @else {{ @route('login') }} @endauth">
+                    <a href="{{ route('dashboard') }}">
                         Let's roll!
                     </a>
                 </div>
