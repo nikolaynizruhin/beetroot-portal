@@ -10,7 +10,7 @@ class PositionCountQuery
      * Call an object as a function.
      *
      * @param  int  $limit
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return \Illuminate\Support\Collection
      */
     public function __invoke($limit = 6)
     {

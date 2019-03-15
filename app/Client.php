@@ -4,7 +4,6 @@ namespace App;
 
 use App\Scopes\NameScope;
 use App\Filters\Filterable;
-use Intervention\Image\Facades\Image;
 use Illuminate\Database\Eloquent\Model;
 
 class Client extends Model

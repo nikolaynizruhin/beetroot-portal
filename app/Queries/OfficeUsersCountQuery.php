@@ -9,7 +9,7 @@ class OfficeUsersCountQuery
     /**
      * Call an object as a function.
      *
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return \Illuminate\Support\Collection
      */
     public function __invoke()
     {
