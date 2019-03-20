@@ -220,6 +220,17 @@ class User extends Authenticatable
     }
 
     /**
+     * Check if user was created before given year.
+     *
+     * @param  string  $year
+     * @return bool
+     */
+    public function isBefore($year)
+    {
+        return $this->year_of_created <= $year;
+    }
+
+    /**
      * The "booting" method of the model.
      *
      * @return void
