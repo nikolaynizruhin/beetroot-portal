@@ -19,7 +19,7 @@
             <strong>{{ $office->country }}, {{ $office->city }}</strong>
             @admin
                 &nbsp;
-                <a href="{{ route('offices.edit', $office->id) }}">
+                <a href="{{ route('offices.edit', $office) }}">
                     <i class="fas fa-pencil-alt" aria-hidden="true"></i>
                 </a>
             @endadmin

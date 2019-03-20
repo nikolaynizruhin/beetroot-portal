@@ -17,7 +17,7 @@
                     <strong>{{ $client->name }}</strong>
                     &nbsp;
                     @admin
-                        <a href="{{ route('clients.edit', $client->id) }}">
+                        <a href="{{ route('clients.edit', $client) }}">
                             <i class="fas fa-pencil-alt" aria-hidden="true"></i>
                         </a>
                     @endadmin
