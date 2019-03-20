@@ -24,16 +24,6 @@ class Office extends Model
     }
 
     /**
-     * Get the count of users by position for the office.
-     *
-     * @return int
-     */
-    public function countOf($position)
-    {
-        return $this->users()->ofPosition($position)->count();
-    }
-
-    /**
      * Get the list of sorted office cities.
      *
      * @return \Illuminate\Support\Collection

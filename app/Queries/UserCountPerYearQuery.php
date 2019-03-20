@@ -13,10 +13,12 @@ class UserCountPerYearQuery
      */
     public function __invoke()
     {
-        return User::all()
+        return ($users = User::all())
             ->groupBy('year_of_created')
-            ->map(function ($users, $year) {
-                return User::whereYear('created_at', '<=', $year)->count();
+            ->map(function ($usersByYear, $year) use ($users) {
+                return $users->filter(function ($user) use ($year) {
+                    return $user->year_of_created <= $year;
+                })->count();
             });
     }
 }

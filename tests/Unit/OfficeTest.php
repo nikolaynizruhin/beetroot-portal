@@ -21,13 +21,4 @@ class OfficeTest extends TestCase
         $this->assertTrue($office->users->contains($user));
         $this->assertInstanceOf(Collection::class, $office->users);
     }
-
-    /** @test */
-    public function it_can_get_count_of_users_by_position()
-    {
-        $office = factory(Office::class)->create();
-        $user = factory(User::class)->create(['office_id' => $office->id]);
-
-        $this->assertEquals($office->countOf($user->position), 1);
-    }
 }
