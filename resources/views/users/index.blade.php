@@ -21,7 +21,7 @@
 
                         <!-- Pagination -->
                         <div class="d-flex justify-content-center">
-                            {{ $users->appends($_GET)->links() }}
+                            {{ $users->onEachSide(1)->appends($_GET)->links() }}
                         </div>
 
                     </div>
