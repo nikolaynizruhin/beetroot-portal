@@ -50,7 +50,7 @@
         @if ($user->tags_count)
             <div class="row">
                 <div class="col-md-12">
-                    <p>
+                    <p class="text-center text-md-left">
                         @foreach ($user->tags as $tag)
                             <a href="{{ route('users.index', ['tag' => $tag->name]) }}"
                                class="badge badge-pill badge-light">
