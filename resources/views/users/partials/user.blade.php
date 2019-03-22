@@ -2,7 +2,7 @@
 
     @include('users.partials.modal')
 
-    <div class="col-md-4">
+    <div class="col-md-4 mb-md-0 mb-3">
 
         <!-- Avatar -->
         <a href="#" data-toggle="modal" data-target="#userModal{{ $user->id }}">
