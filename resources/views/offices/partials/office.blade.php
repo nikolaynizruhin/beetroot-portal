@@ -1,14 +1,13 @@
 <div class="row mb-3">
 
     <!-- Office Map -->
-    <div class="col-md-8">
-        <iframe width="100%"
-                height="350"
-                frameborder="0"
-                style="border:0"
-                src="https://www.google.com/maps/embed/v1/place?key={{ config('services.googlemaps.key') }}&q={{ $office->link }}"
-                allowfullscreen>
-        </iframe>
+    <div class="col-md-8 mb-3 mb-md-0">
+        <div class="embed-responsive embed-responsive-4by3">
+            <iframe class="embed-responsive-item"
+                    src="https://www.google.com/maps/embed/v1/place?key={{ config('services.googlemaps.key') }}&q={{ $office->link }}"
+                    allowfullscreen>
+            </iframe>
+        </div>
     </div>
 
     <!-- Office Info -->
