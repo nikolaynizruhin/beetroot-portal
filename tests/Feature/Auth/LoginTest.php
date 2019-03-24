@@ -30,6 +30,14 @@ class LoginTest extends TestCase
     }
 
     /** @test */
+    public function it_should_throw_unauthenticated_on_guest_json_requests()
+    {
+        $this->json('GET', route('dashboard'))
+            ->assertStatus(401)
+            ->assertJson(['message' => 'Unauthenticated.']);
+    }
+
+    /** @test */
     public function employee_can_login()
     {
         $user = factory(User::class)->create();
