@@ -1771,13 +1771,13 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     clients: {
       type: Array,
-      default: function _default() {
+      "default": function _default() {
         return [];
       }
     },
     apiKey: {
       type: String,
-      default: ''
+      "default": ''
     }
   },
   data: function data() {
@@ -1835,7 +1835,7 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     count: {
       type: Number,
-      default: 0
+      "default": 0
     }
   },
   data: function data() {
@@ -1875,7 +1875,7 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     genders: {
       type: Array,
-      default: function _default() {
+      "default": function _default() {
         return [];
       }
     }
@@ -1945,7 +1945,7 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     usersPerYear: {
       type: Object,
-      default: function _default() {}
+      "default": function _default() {}
     }
   },
   data: function data() {
@@ -2019,13 +2019,13 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     offices: {
       type: Array,
-      default: function _default() {
+      "default": function _default() {
         return [];
       }
     },
     apiKey: {
       type: String,
-      default: ''
+      "default": ''
     }
   },
   data: function data() {
@@ -2085,7 +2085,7 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     positions: {
       type: Array,
-      default: function _default() {
+      "default": function _default() {
         return [];
       }
     }
@@ -81767,12 +81767,12 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
-Vue.component('positions-chart', __webpack_require__(/*! ./components/PositionsChart.vue */ "./resources/js/components/PositionsChart.vue").default);
-Vue.component('gender-chart', __webpack_require__(/*! ./components/GenderChart.vue */ "./resources/js/components/GenderChart.vue").default);
-Vue.component('clients-map', __webpack_require__(/*! ./components/ClientsMap.vue */ "./resources/js/components/ClientsMap.vue").default);
-Vue.component('offices-map', __webpack_require__(/*! ./components/OfficesMap.vue */ "./resources/js/components/OfficesMap.vue").default);
-Vue.component('grow-chart', __webpack_require__(/*! ./components/GrowChart.vue */ "./resources/js/components/GrowChart.vue").default);
-Vue.component('counter', __webpack_require__(/*! ./components/Counter.vue */ "./resources/js/components/Counter.vue").default); // const files = require.context('./', true, /\.vue$/i);
+Vue.component('positions-chart', __webpack_require__(/*! ./components/PositionsChart.vue */ "./resources/js/components/PositionsChart.vue")["default"]);
+Vue.component('gender-chart', __webpack_require__(/*! ./components/GenderChart.vue */ "./resources/js/components/GenderChart.vue")["default"]);
+Vue.component('clients-map', __webpack_require__(/*! ./components/ClientsMap.vue */ "./resources/js/components/ClientsMap.vue")["default"]);
+Vue.component('offices-map', __webpack_require__(/*! ./components/OfficesMap.vue */ "./resources/js/components/OfficesMap.vue")["default"]);
+Vue.component('grow-chart', __webpack_require__(/*! ./components/GrowChart.vue */ "./resources/js/components/GrowChart.vue")["default"]);
+Vue.component('counter', __webpack_require__(/*! ./components/Counter.vue */ "./resources/js/components/Counter.vue")["default"]); // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 /**
@@ -81804,7 +81804,7 @@ window.Chart = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist
  */
 
 try {
-  window.Popper = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js").default;
+  window.Popper = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js")["default"];
   window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 
   __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
