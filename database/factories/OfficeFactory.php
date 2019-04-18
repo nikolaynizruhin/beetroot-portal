@@ -1,5 +1,7 @@
 <?php
 
+/* @var $factory \Illuminate\Database\Eloquent\Factory */
+
 use App\Office;
 use Faker\Generator as Faker;
 use App\Http\Utilities\Country;
