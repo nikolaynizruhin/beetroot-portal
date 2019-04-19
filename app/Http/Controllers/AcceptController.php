@@ -21,7 +21,6 @@ class AcceptController extends Controller
      * Show the form for accept a privacy policy.
      *
      * @return \Illuminate\Http\Response
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function create()
     {

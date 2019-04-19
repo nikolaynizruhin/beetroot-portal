@@ -2,7 +2,6 @@
 
 namespace App\Filters;
 
-use App\Tag;
 use App\Client;
 use App\Office;
 

@@ -2,10 +2,8 @@
 
 namespace App\Http\Requests;
 
-use App\Client;
 use App\Http\Utilities\Country;
 use Illuminate\Validation\Rule;
-use Intervention\Image\Facades\Image;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateClient extends FormRequest

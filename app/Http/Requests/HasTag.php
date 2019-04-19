@@ -19,6 +19,7 @@ trait HasTag
     /**
      * Get list of attributes without tags.
      *
+     * @param  array  $attributes
      * @return array
      */
     public function withoutTags($attributes)

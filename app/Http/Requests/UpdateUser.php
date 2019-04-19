@@ -5,7 +5,6 @@ namespace App\Http\Requests;
 use App\User;
 use Illuminate\Validation\Rule;
 use App\Http\Utilities\Position;
-use Intervention\Image\Facades\Image;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateUser extends FormRequest
