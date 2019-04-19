@@ -29,7 +29,7 @@
                     <form method="POST"
                           action="{{ route('clients.store') }}"
                           enctype="multipart/form-data">
-                    @include('clients.partials.form')
+                        @include('clients.partials.form')
                     </form>
                 </div>
             </div>
