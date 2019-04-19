@@ -16,11 +16,11 @@
             <label class="custom-file-label" for="logo">Choose file</label>
         </div>
 
-        @if ($errors->has('logo'))
+        @error('logo')
             <div class="invalid-feedback">
-                {{ $errors->first('logo') }}
+                {{ $message }}
             </div>
-        @endif
+        @enderror
     </div>
 </div>
 
@@ -33,17 +33,17 @@
     <div class="col-md-6">
         <input id="name"
                type="text"
-               class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
+               class="form-control @error('name') is-invalid @enderror"
                name="name"
                value="{{ old('name', $client->name) }}"
                required
                @if ($errors->isEmpty()) autofocus @endif>
 
-        @if ($errors->has('name'))
+        @error('name')
             <div class="invalid-feedback">
-                {{ $errors->first('name') }}
+                {{ $message }}
             </div>
-        @endif
+        @enderror
     </div>
 </div>
 
@@ -61,16 +61,16 @@
     <div class="col-md-6">
         <input id="site"
                type="text"
-               class="form-control{{ $errors->has('site') ? ' is-invalid' : '' }}"
+               class="form-control @error('site') is-invalid @enderror"
                name="site"
                value="{{ old('site', $client->site) }}"
                required>
 
-        @if ($errors->has('site'))
+        @error('site')
             <div class="invalid-feedback">
-                {{ $errors->first('site') }}
+                {{ $message }}
             </div>
-        @endif
+        @enderror
     </div>
 </div>
 
@@ -82,7 +82,7 @@
 
     <div class="col-md-6">
         <select id="country" 
-                class="form-control{{ $errors->has('country') ? ' is-invalid' : '' }}"
+                class="form-control @error('country') is-invalid @enderror"
                 name="country"
                 required>
             @foreach ( $countries::all() as $country )
@@ -93,11 +93,11 @@
             @endforeach
         </select>
 
-        @if ($errors->has('country'))
+        @error('country')
             <div class="invalid-feedback">
-                {{ $errors->first('country') }}
+                {{ $message }}
             </div>
-        @endif
+        @enderror
     </div>
 </div>
 
@@ -109,7 +109,7 @@
 
     <div class="col-md-6">
         <select id="tags"
-                class="form-control{{ $errors->has('tags') ? ' is-invalid' : '' }}"
+                class="form-control @error('tags') is-invalid @enderror"
                 name="tags[]"
                 multiple="multiple">
             @foreach ($tags as $tag)
@@ -120,11 +120,11 @@
             @endforeach
         </select>
 
-        @if ($errors->has('tags'))
+        @error('tags')
             <div class="invalid-feedback">
-                {{ $errors->first('tags') }}
+                {{ $message }}
             </div>
-        @endif
+        @enderror
     </div>
 </div>
 
@@ -135,16 +135,16 @@
     </label>
 
     <div class="col-md-6">
-        <textarea class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}"
+        <textarea class="form-control @error('description') is-invalid @enderror"
                   rows="3"
                   name="description"
                   required>{{ old('description', $client->description) }}</textarea>
 
-        @if ($errors->has('description'))
+        @error('description')
             <div class="invalid-feedback">
-                {{ $errors->first('description') }}
+                {{ $message }}
             </div>
-        @endif
+        @enderror
     </div>
 </div>
 

@@ -4,7 +4,7 @@
 <div class="form-group row">
     <div class="col-md-10 offset-md-1">
         <div class="form-check">
-            <input class="form-check-input{{ $errors->has('privacy') ? ' is-invalid' : '' }}"
+            <input class="form-check-input @error('privacy') is-invalid @enderror"
                    type="checkbox"
                    id="privacy"
                    name="privacy"
@@ -14,11 +14,11 @@
                 I agree that Beetroot saves my information according to their <a href="{{ route('privacy') }}" target="_blank">Privacy Policy</a>, and it is gathered for internal use only.
             </label>
 
-            @if ($errors->has('privacy'))
+            @error('privacy')
                 <div class="invalid-feedback">
-                    {{ $errors->first('privacy') }}
+                    {{ $message }}
                 </div>
-            @endif
+            @enderror
         </div>
     </div>
 </div>

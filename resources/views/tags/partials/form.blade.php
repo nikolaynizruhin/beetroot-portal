@@ -9,17 +9,17 @@
     <div class="col-md-6">
         <input id="name"
                type="text"
-               class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
+               class="form-control @error('name') is-invalid @enderror"
                name="name"
                value="{{ old('name', $tag->name) }}"
                required
                autofocus>
 
-        @if ($errors->has('name'))
+        @error('name')
             <div class="invalid-feedback">
-                {{ $errors->first('name') }}
+                {{ $message }}
             </div>
-        @endif
+        @enderror
     </div>
 </div>
 

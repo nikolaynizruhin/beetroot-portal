@@ -33,7 +33,7 @@
                         <div class="form-group row">
                             <div class="col-md-6 offset-md-4">
                                 <div class="form-check">
-                                    <input class="form-check-input{{ $errors->has('is_admin') ? ' is-invalid' : '' }}"
+                                    <input class="form-check-input @error('is_admin') is-invalid @enderror"
                                            type="checkbox"
                                            id="checkbox-admin"
                                            name="is_admin"
@@ -43,11 +43,11 @@
                                         Admin
                                     </label>
 
-                                    @if ($errors->has('is_admin'))
+                                    @error('is_admin')
                                         <div class="invalid-feedback">
-                                            {{ $errors->first('is_admin') }}
+                                            {{ $message }}
                                         </div>
-                                    @endif
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -60,7 +60,7 @@
                                 </legend>
                                 <div class="col-md-6">
                                     <div class="form-check">
-                                        <input class="form-check-input{{ $errors->has('gender') ? ' is-invalid' : '' }}"
+                                        <input class="form-check-input @error('gender') is-invalid @enderror"
                                                type="radio"
                                                name="gender"
                                                id="gender-male"
@@ -72,7 +72,7 @@
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input{{ $errors->has('gender') ? ' is-invalid' : '' }}"
+                                        <input class="form-check-input @error('gender') is-invalid @enderror"
                                                type="radio"
                                                name="gender"
                                                id="gender-female"
@@ -82,11 +82,11 @@
                                             Female
                                         </label>
 
-                                        @if ($errors->has('gender'))
+                                        @error('gender')
                                             <div class="invalid-feedback">
-                                                {{ $errors->first('gender') }}
+                                                {{ $message }}
                                             </div>
-                                        @endif
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -108,11 +108,11 @@
                                     <label class="custom-file-label" for="avatar">Choose file</label>
                                 </div>
 
-                                @if ($errors->has('avatar'))
+                                @error('avatar')
                                     <div class="invalid-feedback">
-                                        {{ $errors->first('avatar') }}
+                                        {{ $message }}
                                     </div>
-                                @endif
+                                @enderror
                             </div>
                         </div>
 
@@ -130,17 +130,17 @@
                             <div class="col-md-6">
                                 <input id="name"
                                        type="text"
-                                       class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
+                                       class="form-control @error('name') is-invalid @enderror"
                                        name="name"
                                        value="{{ old('name') }}"
                                        required
                                        @if ($errors->isEmpty()) autofocus @endif>
 
-                                @if ($errors->has('name'))
+                                @error('name')
                                     <div class="invalid-feedback">
-                                        {{ $errors->first('name') }}
+                                        {{ $message }}
                                     </div>
-                                @endif
+                                @enderror
                             </div>
                         </div>
 
@@ -153,16 +153,16 @@
                             <div class="col-md-6">
                                 <input id="email"
                                        type="email"
-                                       class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
+                                       class="form-control @error('email') is-invalid @enderror"
                                        name="email"
                                        value="{{ old('email') }}"
                                        required>
 
-                                @if ($errors->has('email'))
+                                @error('email')
                                     <div class="invalid-feedback">
-                                        {{ $errors->first('email') }}
+                                        {{ $message }}
                                     </div>
-                                @endif
+                                @enderror
                             </div>
                         </div>
 
@@ -174,7 +174,7 @@
 
                             <div class="col-md-6">
                                 <select id="position" 
-                                        class="form-control{{ $errors->has('position') ? ' is-invalid' : '' }}"
+                                        class="form-control @error('position') is-invalid @enderror"
                                         name="position"
                                         required>
                                     <option value="">Select a position...</option>
@@ -185,11 +185,11 @@
                                     @endforeach
                                 </select>
 
-                                @if ($errors->has('position'))
+                                @error('position')
                                     <div class="invalid-feedback">
-                                        {{ $errors->first('position') }}
+                                        {{ $message }}
                                     </div>
-                                @endif
+                                @enderror
                             </div>
                         </div>
 
@@ -201,7 +201,7 @@
 
                             <div class="col-md-6">
                                 <select id="client-id"
-                                        class="form-control{{ $errors->has('client_id') ? ' is-invalid' : '' }}"
+                                        class="form-control @error('client_id') is-invalid @enderror"
                                         name="client_id"
                                         required>
                                     <option value="">Select a team...</option>
@@ -212,11 +212,11 @@
                                     @endforeach
                                 </select>
 
-                                @if ($errors->has('client_id'))
+                                @error('client_id')
                                     <div class="invalid-feedback">
-                                        {{ $errors->first('client_id') }}
+                                        {{ $message }}
                                     </div>
-                                @endif
+                                @enderror
                             </div>
                         </div>
 
@@ -228,7 +228,7 @@
 
                             <div class="col-md-6">
                                 <select id="office-id"
-                                        class="form-control{{ $errors->has('office_id') ? ' is-invalid' : '' }}"
+                                        class="form-control @error('office_id') is-invalid @enderror"
                                         name="office_id"
                                         required>
                                     <option value="">Select a location...</option>
@@ -239,11 +239,11 @@
                                     @endforeach
                                 </select>
 
-                                @if ($errors->has('office_id'))
+                                @error('office_id')
                                     <div class="invalid-feedback">
-                                        {{ $errors->first('office_id') }}
+                                        {{ $message }}
                                     </div>
-                                @endif
+                                @enderror
                             </div>
                         </div>
 
@@ -256,16 +256,16 @@
                             <div class="col-md-6">
                                 <input id="birthday"
                                        type="date"
-                                       class="form-control{{ $errors->has('birthday') ? ' is-invalid' : '' }}"
+                                       class="form-control @error('birthday') is-invalid @enderror"
                                        name="birthday"
                                        value="{{ old('birthday') }}"
                                        required>
 
-                                @if ($errors->has('birthday'))
+                                @error('birthday')
                                     <div class="invalid-feedback">
-                                        {{ $errors->first('birthday') }}
+                                        {{ $message }}
                                     </div>
-                                @endif
+                                @enderror
                             </div>
                         </div>
 
@@ -283,16 +283,16 @@
                             <div class="col-md-6">
                                 <input id="created_at"
                                        type="date"
-                                       class="form-control{{ $errors->has('created_at') ? ' is-invalid' : '' }}"
+                                       class="form-control @error('created_at') is-invalid @enderror"
                                        name="created_at"
                                        value="{{ old('created_at', now()->toDateString()) }}"
                                        required>
 
-                                @if ($errors->has('created_at'))
+                                @error('created_at')
                                     <div class="invalid-feedback">
-                                        {{ $errors->first('created_at') }}
+                                        {{ $message }}
                                     </div>
-                                @endif
+                                @enderror
                             </div>
                         </div>
 
@@ -304,7 +304,7 @@
 
                             <div class="col-md-6">
                                 <select id="tags"
-                                        class="form-control{{ $errors->has('tags') ? ' is-invalid' : '' }}"
+                                        class="form-control @error('tags') is-invalid @enderror"
                                         name="tags[]"
                                         multiple="multiple">
                                     @foreach ($tags as $tag)
@@ -314,11 +314,11 @@
                                     @endforeach
                                 </select>
 
-                                @if ($errors->has('tags'))
+                                @error('tags')
                                     <div class="invalid-feedback">
-                                        {{ $errors->first('tags') }}
+                                        {{ $message }}
                                     </div>
-                                @endif
+                                @enderror
                             </div>
                         </div>
 
@@ -329,15 +329,15 @@
                             <div class="col-md-6">
                                 <input id="phone"
                                        type="text"
-                                       class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}"
+                                       class="form-control @error('phone') is-invalid @enderror"
                                        name="phone"
                                        value="{{ old('phone') }}">
 
-                                @if ($errors->has('phone'))
+                                @error('phone')
                                     <div class="invalid-feedback">
-                                        {{ $errors->first('phone') }}
+                                        {{ $message }}
                                     </div>
-                                @endif
+                                @enderror
                             </div>
                         </div>
 
@@ -350,15 +350,15 @@
                             <div class="col-md-6">
                                 <input id="slack"
                                        type="text"
-                                       class="form-control{{ $errors->has('slack') ? ' is-invalid' : '' }}"
+                                       class="form-control @error('slack') is-invalid @enderror"
                                        name="slack"
                                        value="{{ old('slack') }}">
 
-                                @if ($errors->has('slack'))
+                                @error('slack')
                                     <div class="invalid-feedback">
-                                        {{ $errors->first('slack') }}
+                                        {{ $message }}
                                     </div>
-                                @endif
+                                @enderror
                             </div>
                         </div>
 
@@ -371,15 +371,15 @@
                             <div class="col-md-6">
                                 <input id="facebook"
                                        type="text"
-                                       class="form-control{{ $errors->has('facebook') ? ' is-invalid' : '' }}"
+                                       class="form-control @error('facebook') is-invalid @enderror"
                                        name="facebook"
                                        value="{{ old('facebook') }}">
 
-                                @if ($errors->has('facebook'))
+                                @error('facebook')
                                     <div class="invalid-feedback">
-                                        {{ $errors->first('facebook') }}
+                                        {{ $message }}
                                     </div>
-                                @endif
+                                @enderror
                             </div>
                         </div>
 
@@ -392,15 +392,15 @@
                             <div class="col-md-6">
                                 <input id="instagram"
                                        type="text"
-                                       class="form-control{{ $errors->has('instagram') ? ' is-invalid' : '' }}"
+                                       class="form-control @error('instagram') is-invalid @enderror"
                                        name="instagram"
                                        value="{{ old('instagram') }}">
 
-                                @if ($errors->has('instagram'))
+                                @error('instagram')
                                     <div class="invalid-feedback">
-                                        {{ $errors->first('instagram') }}
+                                        {{ $message }}
                                     </div>
-                                @endif
+                                @enderror
                             </div>
                         </div>
 
@@ -411,15 +411,15 @@
                             <div class="col-md-6">
                                 <input id="skype"
                                        type="text"
-                                       class="form-control{{ $errors->has('skype') ? ' is-invalid' : '' }}"
+                                       class="form-control @error('skype') is-invalid @enderror"
                                        name="skype"
                                        value="{{ old('skype') }}">
 
-                                @if ($errors->has('skype'))
+                                @error('skype')
                                     <div class="invalid-feedback">
-                                        {{ $errors->first('skype') }}
+                                        {{ $message }}
                                     </div>
-                                @endif
+                                @enderror
                             </div>
                         </div>
 
@@ -436,15 +436,15 @@
                             <div class="col-md-6">
                                 <input id="github"
                                        type="text"
-                                       class="form-control{{ $errors->has('github') ? ' is-invalid' : '' }}"
+                                       class="form-control @error('github') is-invalid @enderror"
                                        name="github"
                                        value="{{ old('github') }}">
 
-                                @if ($errors->has('github'))
+                                @error('github')
                                     <div class="invalid-feedback">
-                                        {{ $errors->first('github') }}
+                                        {{ $message }}
                                     </div>
-                                @endif
+                                @enderror
                             </div>
                         </div>
 
@@ -453,15 +453,15 @@
                             <label for="bio" class="col-md-4 col-form-label text-md-right">Bio</label>
 
                             <div class="col-md-6">
-                                <textarea class="form-control{{ $errors->has('bio') ? ' is-invalid' : '' }}"
+                                <textarea class="form-control @error('bio') is-invalid @enderror"
                                           rows="3"
                                           name="bio">{{ old('bio') }}</textarea>
 
-                                @if ($errors->has('bio'))
+                                @error('bio')
                                     <div class="invalid-feedback">
-                                        {{ $errors->first('bio') }}
+                                        {{ $message }}
                                     </div>
-                                @endif
+                                @enderror
                             </div>
                         </div>
 
@@ -474,15 +474,16 @@
                             <div class="col-md-6">
                                 <input id="password"
                                        type="password"
-                                       class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
+                                       class="form-control @error('password') is-invalid @enderror"
                                        name="password"
+                                       minlength="8"
                                        required>
 
-                                @if ($errors->has('password'))
+                                @error('password')
                                     <div class="invalid-feedback">
-                                        {{ $errors->first('password') }}
+                                        {{ $message }}
                                     </div>
-                                @endif
+                                @enderror
                             </div>
                         </div>
 
@@ -497,6 +498,7 @@
                                        type="password"
                                        class="form-control"
                                        name="password_confirmation"
+                                       minlength="8"
                                        required>
                             </div>
                         </div>

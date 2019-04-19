@@ -8,7 +8,7 @@
 
     <div class="col-md-6">
         <select id="country"
-                class="form-control{{ $errors->has('country') ? ' is-invalid' : '' }}"
+                class="form-control @error('country') is-invalid @enderror"
                 name="country"
                 required>
             @foreach ($countries::all() as $country)
@@ -19,11 +19,11 @@
             @endforeach
         </select>
 
-        @if ($errors->has('country'))
+        @error('country')
             <div class="invalid-feedback">
-                {{ $errors->first('country') }}
+                {{ $message }}
             </div>
-        @endif
+        @enderror
     </div>
 </div>
 
@@ -36,17 +36,17 @@
     <div class="col-md-6">
         <input id="city"
                type="text"
-               class="form-control{{ $errors->has('city') ? ' is-invalid' : '' }}"
+               class="form-control @error('city') is-invalid @enderror"
                name="city"
                value="{{ old('city', $office->city) }}"
                required
                autofocus>
 
-        @if ($errors->has('city'))
+        @error('city')
             <div class="invalid-feedback">
-                {{ $errors->first('city') }}
+                {{ $message }}
             </div>
-        @endif
+        @enderror
     </div>
 </div>
 
@@ -59,17 +59,17 @@
     <div class="col-md-6">
         <input id="address"
                type="text"
-               class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}"
+               class="form-control @error('address') is-invalid @enderror"
                name="address"
                value="{{ old('address', $office->address) }}"
                required
                autofocus>
 
-        @if ($errors->has('address'))
+        @error('address')
             <div class="invalid-feedback">
-                {{ $errors->first('address') }}
+                {{ $message }}
             </div>
-        @endif
+        @enderror
     </div>
 </div>
 
@@ -87,16 +87,16 @@
     <div class="col-md-6">
         <input id="link"
                type="text"
-               class="form-control{{ $errors->has('link') ? ' is-invalid' : '' }}"
+               class="form-control @error('link') is-invalid @enderror"
                name="link"
                value="{{ old('link', $office->link) }}"
                required>
 
-        @if ($errors->has('link'))
+        @error('link')
             <div class="invalid-feedback">
-                {{ $errors->first('link') }}
+                {{ $message }}
             </div>
-        @endif
+        @enderror
     </div>
 </div>
 
