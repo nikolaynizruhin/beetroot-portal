@@ -115,7 +115,7 @@ class UserTest extends TestCase
     /** @test */
     public function it_can_get_used_avatars()
     {
-        $user = factory(User::class)->create();
+        factory(User::class)->create();
 
         $this->assertEquals([User::DEFAULT_AVATAR], User::usedAvatars()->all());
     }

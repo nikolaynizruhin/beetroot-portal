@@ -62,7 +62,7 @@ class ClientTest extends TestCase
     /** @test */
     public function it_can_get_used_logos()
     {
-        $client = factory(Client::class)->create();
+        factory(Client::class)->create();
 
         $this->assertEquals([Client::DEFAULT_LOGO], Client::usedLogos()->all());
     }
@@ -70,7 +70,7 @@ class ClientTest extends TestCase
     /** @test */
     public function it_can_get_countries_list()
     {
-        $client = factory(Client::class)->create(['country' => 'Egypt']);
+        factory(Client::class)->create(['country' => 'Egypt']);
 
         $this->assertEquals(['Egypt'], Client::countries()->all());
     }
