@@ -23,7 +23,7 @@ class UserTest extends TestCase
         $client = Client::first();
 
         $this->assertInstanceOf(Client::class, $user->client);
-        $this->assertEquals($user->client->id, $client->id);
+        $this->assertTrue($user->client->is($client));
     }
 
     /** @test */
@@ -33,7 +33,7 @@ class UserTest extends TestCase
         $office = Office::first();
 
         $this->assertInstanceOf(Office::class, $user->office);
-        $this->assertEquals($user->office->id, $office->id);
+        $this->assertTrue($user->office->is($office));
     }
 
     /** @test */
@@ -83,7 +83,9 @@ class UserTest extends TestCase
     /** @test */
     public function it_can_accept_privacy_policy()
     {
-        $user = factory(User::class)->create(['accepted_at' => null]);
+        $user = factory(User::class)
+            ->state('unacceptable')
+            ->create();
 
         $user->accept();
 

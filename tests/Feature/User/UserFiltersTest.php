@@ -48,7 +48,7 @@ class UserFiltersTest extends TestCase
     public function a_user_can_filter_employees_by_office()
     {
         $london = factory(Office::class)->create(['city' => 'London']);
-        $ny = factory(Office::class)->create(['city' => 'NY']);
+        $paris = factory(Office::class)->create(['city' => 'Paris']);
 
         $john = factory(User::class)->create([
             'name' => 'John Doe',
@@ -57,7 +57,7 @@ class UserFiltersTest extends TestCase
 
         $jane = factory(User::class)->create([
             'name' => 'Jane Doe',
-            'office_id' => $ny->id,
+            'office_id' => $paris->id,
         ]);
 
         $this->actingAs($john)
