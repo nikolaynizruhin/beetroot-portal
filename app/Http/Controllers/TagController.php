@@ -98,6 +98,8 @@ class TagController extends Controller
 
         $tag->delete();
 
-        return redirect()->route('tags.create')->with('status', 'The technology was successfully deleted!');
+        return redirect()
+            ->route('tags.create')
+            ->with('status', 'The technology was successfully deleted!');
     }
 }

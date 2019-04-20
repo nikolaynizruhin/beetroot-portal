@@ -98,6 +98,8 @@ class OfficeController extends Controller
 
         $office->delete();
 
-        return redirect()->route('offices.create')->with('status', 'The location was successfully deleted!');
+        return redirect()
+            ->route('offices.create')
+            ->with('status', 'The location was successfully deleted!');
     }
 }

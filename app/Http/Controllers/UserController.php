@@ -106,6 +106,8 @@ class UserController extends Controller
 
         $user->delete();
 
-        return redirect()->route('users.create')->with('status', 'The beetroot was successfully deleted!');
+        return redirect()
+            ->route('users.create')
+            ->with('status', 'The beetroot was successfully deleted!');
     }
 }
