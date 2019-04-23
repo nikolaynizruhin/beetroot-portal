@@ -73,6 +73,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('calendar') }}">Calendar</a>
+                            <a class="dropdown-item" href="https://docs.google.com/spreadsheets/d/1EZoCCLXrQS2_w1SdDudUfKuFwiaddaBmtemGabIsIjo/edit#gid=0" target="_blank">Discounts</a>
                             <a class="dropdown-item" href="{{ route('tags.index') }}">Skills</a>
                             <a class="dropdown-item" href="{{ route('info') }}">Info</a>
                             <a class="dropdown-item" href="{{ route('privacy') }}">Privacy Policy</a>
