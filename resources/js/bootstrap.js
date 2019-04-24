@@ -1,4 +1,3 @@
-
 window._ = require('lodash');
 window.moment = require('moment');
 window.Chart = require('chart.js');

@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -34,5 +33,5 @@ Vue.component('counter', require('./components/Counter.vue').default);
  */
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
 });
