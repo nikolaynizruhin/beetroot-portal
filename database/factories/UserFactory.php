@@ -1,7 +1,6 @@
 <?php
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-
 use App\User;
 use App\Client;
 use App\Office;

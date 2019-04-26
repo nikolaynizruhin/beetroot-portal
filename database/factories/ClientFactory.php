@@ -1,7 +1,6 @@
 <?php
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-
 use App\Client;
 use Faker\Generator as Faker;
 use App\Http\Utilities\Country;
