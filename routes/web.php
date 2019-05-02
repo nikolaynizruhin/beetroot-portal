@@ -29,6 +29,7 @@ Route::resource('offices', 'OfficeController', ['except' => ['show']]);
 Route::resource('tags', 'TagController', ['except' => ['show']]);
 Route::resource('birthdays', 'BirthdayController', ['only' => ['index']]);
 Route::resource('accept', 'AcceptController', ['only' => ['create', 'store']]);
+Route::resource('activities', 'ActivityController', ['only' => ['index', 'destroy']]);
 
 Route::put('profile/{user}', 'ProfileController@update')->name('profile.update');
 Route::put('users/{user}/password', 'UserPasswordController@update')->name('users.password.update');

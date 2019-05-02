@@ -16,7 +16,7 @@
 
                         <!-- Total Employees -->
                         <div class="col-md-4">
-                            <a href="{{ route('users.index') }}" class="link-unstyled">
+                            <a href="{{ route('users.index') }}" class="text-reset">
                                 <div class="card mb-2">
                                     <div class="card-body">
                                         <p class="card-text">TOTAL BEETROOTS</p>
@@ -30,7 +30,7 @@
 
                         <!-- Total Clients -->
                         <div class="col-md-4">
-                            <a href="{{ route('clients.index') }}" class="link-unstyled">
+                            <a href="{{ route('clients.index') }}" class="text-reset">
                                 <div class="card mb-2">
                                     <div class="card-body">
                                         <p class="card-text">TOTAL TEAMS</p>
@@ -44,7 +44,7 @@
 
                         <!-- Total Offices -->
                         <div class="col-md-4">
-                            <a href="{{ route('offices.index') }}" class="link-unstyled">
+                            <a href="{{ route('offices.index') }}" class="text-reset">
                                 <div class="card mb-2">
                                     <div class="card-body">
                                         <p class="card-text">TOTAL LOCATIONS</p>

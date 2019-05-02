@@ -50,7 +50,7 @@
 
                             <!-- Email -->
                             <p>
-                                <a class="link-unstyled" href="mailto:{{ $user->email }}">
+                                <a class="text-reset" href="mailto:{{ $user->email }}">
                                     <i aria-hidden="true" class="far fa-envelope fa-fw"></i>
                                     &nbsp;
                                     {{ $user->email }}
@@ -60,7 +60,7 @@
                             <!-- Phone -->
                             @if ($user->phone)
                                 <p>
-                                    <a class="link-unstyled" href="tel:{{ $user->phone }}">
+                                    <a class="text-reset" href="tel:{{ $user->phone }}">
                                         <i aria-hidden="true" class="fas fa-phone fa-fw"></i>
                                         &nbsp;
                                         {{ $user->phone }}
@@ -80,7 +80,7 @@
                             <!-- Facebook -->
                             @if ($user->facebook)
                                 <p>
-                                    <a class="link-unstyled" href="https://facebook.com/{{ $user->facebook }}" target="_blank">
+                                    <a class="text-reset" href="https://facebook.com/{{ $user->facebook }}" target="_blank">
                                         <i aria-hidden="true" class="fab fa-facebook fa-fw"></i>
                                         &nbsp;
                                         {{ $user->facebook }}
@@ -91,7 +91,7 @@
                             <!-- Instagram -->
                             @if ($user->instagram)
                                 <p>
-                                    <a class="link-unstyled" href="https://instagram.com/{{ $user->instagram }}" target="_blank">
+                                    <a class="text-reset" href="https://instagram.com/{{ $user->instagram }}" target="_blank">
                                         <i aria-hidden="true" class="fab fa-instagram fa-fw"></i>
                                         &nbsp;
                                         {{ $user->instagram }}
@@ -102,7 +102,7 @@
                             <!-- Skype -->
                             @if ($user->skype)
                                 <p>
-                                    <a class="link-unstyled" href="skype:{{ $user->skype }}?userinfo">
+                                    <a class="text-reset" href="skype:{{ $user->skype }}?userinfo">
                                         <i aria-hidden="true" class="fab fa-skype fa-fw"></i>
                                         &nbsp;
                                         {{ $user->skype }}
@@ -113,7 +113,7 @@
                             <!-- Github -->
                             @if ($user->github)
                                 <p>
-                                    <a class="link-unstyled" href="https://github.com/{{ $user->github }}" target="_blank">
+                                    <a class="text-reset" href="https://github.com/{{ $user->github }}" target="_blank">
                                         <i aria-hidden="true" class="fab fa-github fa-fw"></i>
                                         &nbsp;
                                         {{ $user->github }}

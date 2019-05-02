@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
     <div class="container">
 
         <!-- Branding Image -->
@@ -72,6 +72,7 @@
                             <span class="caret"></span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('activities.index') }}">News</a>
                             <a class="dropdown-item" href="{{ route('calendar') }}">Calendar</a>
                             <a class="dropdown-item" href="https://docs.google.com/spreadsheets/d/1EZoCCLXrQS2_w1SdDudUfKuFwiaddaBmtemGabIsIjo/edit#gid=0" target="_blank">Discounts</a>
                             <a class="dropdown-item" href="{{ route('tags.index') }}">Skills</a>

@@ -10672,19 +10672,6 @@ html body {
   margin-bottom: 60px;
 }
 
-html body .navbar-laravel {
-  background-color: var(--white);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-}
-
-html body .link-unstyled {
-  color: inherit;
-}
-
-html body .link-unstyled:hover {
-  color: #3d3935;
-}
-
 html body a[data-toggle=modal]:focus,
 html body button.close[data-dismiss=modal]:focus {
   outline: none;
