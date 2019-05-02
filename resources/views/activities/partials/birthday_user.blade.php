@@ -6,7 +6,7 @@
     <a href="#" data-toggle="modal" data-target="#userModal{{ $activity->subject->id }}">
         <img src="{{ asset('storage/'.$activity->subject->avatar) }}"
              alt="Avatar"
-             class="mr-4 rounded-circle"
+             class="mr-4 img-thumbnail rounded-circle"
              width="120"
              height="120">
     </a>

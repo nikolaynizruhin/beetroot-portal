@@ -3,7 +3,7 @@
     <!-- Location Image -->
     <img src="{{ asset('images/office.svg') }}"
          alt="Office"
-         class="mr-4 rounded-circle"
+         class="mr-4 img-thumbnail rounded-circle"
          width="120"
          height="120">
     <div class="media-body">

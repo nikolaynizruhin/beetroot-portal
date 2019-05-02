@@ -3,7 +3,7 @@
     <!-- Logo -->
     <img src="{{ asset('storage/'.$activity->subject->logo) }}"
          alt="Logo"
-         class="mr-4 rounded-circle"
+         class="mr-4 img-thumbnail rounded-circle"
          width="120"
          height="120">
     <div class="media-body">
