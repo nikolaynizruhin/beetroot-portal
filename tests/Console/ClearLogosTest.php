@@ -38,22 +38,4 @@ class ClearLogosTest extends TestCase
             ->assertMissing($unused)
             ->assertExists($used);
     }
-
-    /** @test */
-    public function it_should_give_error_if_remove_unused_logos_fails()
-    {
-        Storage::shouldReceive('files')
-            ->once()
-            ->with('logos')
-            ->andReturn([]);
-
-        Storage::shouldReceive('delete')
-            ->once()
-            ->with([])
-            ->andReturn(false);
-
-        $this->artisan('logo:clear')
-            ->expectsOutput('Unable to remove unused logos!')
-            ->assertExitCode(0);
-    }
 }

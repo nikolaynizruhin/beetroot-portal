@@ -188,4 +188,21 @@ class UserTest extends TestCase
 
         $user->delete();
     }
+
+    /** @test */
+    public function it_can_check_whatever_today_is_birthday()
+    {
+        $user = factory(User::class)->create(['birthday' => today()]);
+
+        $this->assertTrue($user->hasBirthday());
+    }
+
+    /** @test */
+    public function it_can_check_whatever_today_is_anniversary()
+    {
+        $user = factory(User::class)->create(['created_at' => now()->subYear()]);
+
+        $this->assertTrue($user->hasAnniversary());
+        $this->assertEquals(1, $user->anniversary());
+    }
 }
