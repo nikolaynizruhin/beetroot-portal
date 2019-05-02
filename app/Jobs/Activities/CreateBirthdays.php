@@ -2,8 +2,8 @@
 
 namespace App\Jobs\Activities;
 
-use App\Activity;
 use App\User;
+use App\Activity;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
