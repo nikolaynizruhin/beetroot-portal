@@ -60,7 +60,7 @@
 
     <div class="col-md-6">
         <input id="site"
-               type="text"
+               type="url"
                class="form-control @error('site') is-invalid @enderror"
                name="site"
                value="{{ old('site', $client->site) }}"

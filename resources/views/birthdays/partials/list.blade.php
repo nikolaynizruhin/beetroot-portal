@@ -1,7 +1,7 @@
 @forelse ($months as $month => $users)
     <div class="row mb-3">
         <div class="col">
-            <a class="link-unstyled" href="#{{ $month }}">
+            <a class="text-reset" href="#{{ $month }}">
                 <h3 id="{{ $month }}" class="text-right">
                     {{ $month }}
                     <i class="far fa-calendar-alt"></i>

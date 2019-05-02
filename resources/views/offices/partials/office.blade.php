@@ -29,7 +29,7 @@
             {{ $office->address }}
         </p>
         <p>
-            <a class="link-unstyled" href="{{ route('users.index', ['office' => $office->city]) }}">
+            <a class="text-reset" href="{{ route('users.index', ['office' => $office->city]) }}">
                 <i class="fas fa-users fa-fw" aria-hidden="true"></i>
                 &nbsp;
                 Beetroots
@@ -38,7 +38,7 @@
         </p>
         @if ($office->office_managers_count)
             <p>
-                <a class="link-unstyled" href="{{ route('users.index', ['office' => $office->city, 'position' => 'Office Manager']) }}">
+                <a class="text-reset" href="{{ route('users.index', ['office' => $office->city, 'position' => 'Office Manager']) }}">
                     <i class="fas fa-user-tie fa-fw" aria-hidden="true"></i>
                     &nbsp;
                     Office Managers
@@ -48,7 +48,7 @@
         @endif
         @if ($office->local_managers_count)
             <p>
-                <a class="link-unstyled" href="{{ route('users.index', ['office' => $office->city, 'position' => 'Local Management']) }}">
+                <a class="text-reset" href="{{ route('users.index', ['office' => $office->city, 'position' => 'Local Management']) }}">
                     <i class="fas fa-street-view fa-fw" aria-hidden="true"></i>
                     &nbsp;
                     Local Managers

@@ -21,7 +21,7 @@
                 <!-- Name -->
                 <p class="mb-0 text-center text-md-left">
                     <strong>
-                        <a class="link-unstyled" href="#" data-toggle="modal" data-target="#userModal{{ $user->id }}">
+                        <a class="text-reset" href="#" data-toggle="modal" data-target="#userModal{{ $user->id }}">
                             {{ $user->name }}
                         </a>
                     </strong>
@@ -39,7 +39,7 @@
 
                 <!-- Position -->
                 <p class="text-center text-md-left">
-                    <a class="link-unstyled" href="{{ route('users.index', ['position' => $user->position]) }}">
+                    <a class="text-reset" href="{{ route('users.index', ['position' => $user->position]) }}">
                         <em>{{ $user->position }}</em>
                     </a>
                 </p>
@@ -67,7 +67,7 @@
 
                 <!-- Client -->
                 <p>
-                    <a class="link-unstyled" href="{{ route('clients.index', ['name' => $user->client->name]) }}">
+                    <a class="text-reset" href="{{ route('clients.index', ['name' => $user->client->name]) }}">
                         <i class="far fa-handshake fa-fw" aria-hidden="true"></i>
                         &nbsp;
                         {{ $user->client->name }}
@@ -76,7 +76,7 @@
 
                 <!-- Email -->
                 <p>
-                    <a class="link-unstyled" href="mailto:{{ $user->email }}">
+                    <a class="text-reset" href="mailto:{{ $user->email }}">
                         <i class="far fa-envelope fa-fw" aria-hidden="true"></i>
                         &nbsp;
                         {{ $user->email }}
@@ -87,7 +87,7 @@
 
                 <!-- Birthday -->
                 <p>
-                    <a class="link-unstyled" href="{{ route('birthdays.index').'#'.$user->birthday->format('F') }}">
+                    <a class="text-reset" href="{{ route('birthdays.index').'#'.$user->birthday->format('F') }}">
                         <i class="fas fa-birthday-cake fa-fw" aria-hidden="true"></i>
                         &nbsp;
                         {{ $user->birthday->format('d F Y') }}
@@ -96,7 +96,7 @@
 
                 <!-- City -->
                 <p>
-                    <a class="link-unstyled" href="{{ route('users.index', ['office' => $user->office->city]) }}">
+                    <a class="text-reset" href="{{ route('users.index', ['office' => $user->office->city]) }}">
                         <i class="fas fa-map-marker-alt fa-fw" aria-hidden="true"></i>
                         &nbsp;
                         {{ $user->office->city }}

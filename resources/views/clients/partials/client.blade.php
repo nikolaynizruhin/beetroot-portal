@@ -29,7 +29,7 @@
 
                 <!-- Site -->
                 <p>
-                    <a class="link-unstyled" target="_blank" href="{{ $client->site }}">
+                    <a class="text-reset" target="_blank" href="{{ $client->site }}">
                         <i class="fas fa-globe fa-fw" aria-hidden="true"></i>
                         &nbsp;
                         @host($client->site)
@@ -40,7 +40,7 @@
 
                 <!-- Country -->
                 <p>
-                    <a class="link-unstyled" href="{{ route('clients.index', ['country' => $client->country]) }}">
+                    <a class="text-reset" href="{{ route('clients.index', ['country' => $client->country]) }}">
                         <i class="fas fa-map-marker-alt fa-fw" aria-hidden="true"></i>
                         &nbsp;
                         {{ $client->country }}
@@ -51,7 +51,7 @@
 
                 <!-- Employees -->
                 <p>
-                    <a class="link-unstyled" href="{{ route('users.index', ['client' => $client->name]) }}">
+                    <a class="text-reset" href="{{ route('users.index', ['client' => $client->name]) }}">
                         <i class="fas fa-users fa-fw" aria-hidden="true"></i>
                         &nbsp;
                         {{ $client->users_count }}
