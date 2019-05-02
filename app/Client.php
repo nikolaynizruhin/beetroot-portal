@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Client extends Model
 {
-    use Filterable, Taggable, HasImage;
+    use Filterable, Taggable, HasImage, RecordsActivity;
 
     /**
      * Constant representing a default client logo.

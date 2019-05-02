@@ -10,7 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable, Filterable, Taggable, HasImage;
+    use Notifiable, Filterable, Taggable, HasImage, RecordsActivity;
 
     /**
      * Constant representing a default user avatar.
@@ -157,6 +157,19 @@ class User extends Authenticatable
     }
 
     /**
+     * Get user anniversary for a given date.
+     *
+     * @param  \Carbon\Carbon|null  $date
+     * @return int|null
+     */
+    public function anniversary($date = null)
+    {
+        return $this->hasAnniversary($date = $date ?: now())
+            ? $this->created_at->diffInYears($date)
+            : null;
+    }
+
+    /**
      * Get list of sorts.
      *
      * @return array
@@ -228,6 +241,28 @@ class User extends Authenticatable
     public function isBefore($year)
     {
         return $this->year_of_created <= $year;
+    }
+
+    /**
+     * Check if user has birthday.
+     *
+     * @return bool
+     */
+    public function hasBirthday()
+    {
+        return $this->birthday->isBirthday();
+    }
+
+    /**
+     * Check if user has anniversary.
+     *
+     * @param  \Carbon\Carbon|null  $date
+     * @return bool
+     */
+    public function hasAnniversary($date = null)
+    {
+        return $this->created_at->isBirthday($date = $date ?: now())
+            && $this->created_at->diffInYears($date) >= 1;
     }
 
     /**

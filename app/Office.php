@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Office extends Model
 {
+    use RecordsActivity;
+
     /**
      * The attributes that aren't mass assignable.
      *
