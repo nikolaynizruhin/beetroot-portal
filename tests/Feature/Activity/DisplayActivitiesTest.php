@@ -4,7 +4,6 @@ namespace Tests\Feature\Activity;
 
 use App\User;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class DisplayActivitiesTest extends TestCase
