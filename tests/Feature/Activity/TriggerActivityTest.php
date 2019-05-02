@@ -3,10 +3,9 @@
 namespace Tests\Feature\Activity;
 
 use App\User;
-use App\Office;
 use App\Client;
+use App\Office;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class TriggerActivityTest extends TestCase

@@ -2,8 +2,8 @@
 
 namespace Tests\Console;
 
-use App\Activity;
 use App\User;
+use App\Activity;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
