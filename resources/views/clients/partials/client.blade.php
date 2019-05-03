@@ -1,5 +1,5 @@
 <div class="row mb-3">
-    <div class="col-md-4">
+    <div class="col-md-4 mb-md-0 mb-3">
 
         <!-- Logo -->
         <img src="{{ asset('storage/'.$client->logo) }}"
@@ -13,7 +13,7 @@
             <div class="col-md-12">
 
                 <!-- Name -->
-                <p>
+                <p class="text-center text-md-left">
                     <strong>{{ $client->name }}</strong>
                     &nbsp;
                     @admin

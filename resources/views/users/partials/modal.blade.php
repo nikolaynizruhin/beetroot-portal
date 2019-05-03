@@ -46,7 +46,7 @@
                     <br>
 
                     <div class="row">
-                        <div class="col">
+                        <div class="col-12 col-md-6">
 
                             <!-- Email -->
                             <p>
@@ -121,7 +121,7 @@
                                 </p>
                             @endif
                         </div>
-                        <div class="col">
+                        <div class="col-12 col-md-6">
 
                             <!-- Client -->
                             <p>
