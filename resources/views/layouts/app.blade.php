@@ -12,7 +12,7 @@
     <title>Beetroot Family Portal</title>
 
     <!-- Scripts -->
-    <script src="https://www.gstatic.com/charts/loader.js" defer></script>
+    @stack('scripts')
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Favicon -->

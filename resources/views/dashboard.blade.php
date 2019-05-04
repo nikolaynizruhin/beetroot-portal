@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@push('scripts')
+    <script src="https://www.gstatic.com/charts/loader.js" defer></script>
+@endpush
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
