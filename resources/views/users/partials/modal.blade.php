@@ -134,14 +134,14 @@
                             <p>
                                 <i aria-hidden="true" class="fas fa-birthday-cake fa-fw"></i>
                                 &nbsp;
-                                {{ $user->birthday->format('d F Y') }}
+                                @date($user->birthday)
                             </p>
 
                             <!-- First day at Beetroot -->
                             <p>
                                 <i aria-hidden="true" class="fas fa-briefcase fa-fw"></i>
                                 &nbsp;
-                                {{ $user->created_at->format('d F Y') }}
+                                @date($user->created_at)
                             </p>
 
                             <!-- Office -->

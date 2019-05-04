@@ -30,5 +30,9 @@ class BladeServiceProvider extends ServiceProvider
         Blade::if('routeis', function ($route) {
             return Route::currentRouteName() === $route;
         });
+
+        Blade::directive('date', function ($expression) {
+            return "<?php echo ($expression)->format('d F Y'); ?>";
+        });
     }
 }

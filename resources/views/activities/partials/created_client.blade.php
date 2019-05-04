@@ -20,7 +20,7 @@
                 </span>
             </div>
             <div class="col text-md-right">
-                {{ $activity->created_at->format('d F Y') }}
+                @date($activity->created_at)
                 <span class="d-none d-md-inline ml-1">
                     @include('activities.partials.delete')
                 </span>

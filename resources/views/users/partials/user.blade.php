@@ -90,7 +90,7 @@
                     <a class="text-reset" href="{{ route('birthdays.index').'#'.$user->birthday->format('F') }}">
                         <i class="fas fa-birthday-cake fa-fw" aria-hidden="true"></i>
                         &nbsp;
-                        {{ $user->birthday->format('d F Y') }}
+                        @date($user->birthday)
                     </a>
                 </p>
 
