@@ -16,6 +16,16 @@ class DirectivesTest extends TestCase
         $this->assertEquals('example.com', $this->output($code));
     }
 
+    /** @test */
+    public function it_compile_date_directive()
+    {
+        $blade = '@date($expression)';
+
+        $code = app('blade.compiler')->compileString($blade);
+
+        $this->assertEquals('<?php echo ($expression)->format(\'d F Y\'); ?>', $code);
+    }
+
     /**
      * Get output of code.
      *
