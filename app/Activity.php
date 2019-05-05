@@ -58,4 +58,16 @@ class Activity extends Model
     {
         return $this->name === self::ANNIVERSARY;
     }
+
+    /**
+     * Scope a query to only include activities before given date.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  \Carbon\Carbon  $date
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeIsBefore($query, $date)
+    {
+        return $query->where('created_at', '<', $date);
+    }
 }
