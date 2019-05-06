@@ -28,6 +28,14 @@
                             @endrouteis
                         </a>
                     </li>
+                    <li class="nav-item @routeis('activities.index') active @endrouteis">
+                        <a class="nav-link" href="{{ route('activities.index') }}">
+                            News
+                            @routeis('activities.index')
+                                <span class="sr-only">(current)</span>
+                            @endrouteis
+                        </a>
+                    </li>
                     <li class="nav-item @routeis('users.index') active @endrouteis">
                         <a class="nav-link" href="{{ route('users.index') }}">
                             Beetroots
@@ -52,14 +60,6 @@
                             @endrouteis
                         </a>
                     </li>
-                    <li class="nav-item @routeis('birthdays.index') active @endrouteis">
-                        <a class="nav-link" href="{{ route('birthdays.index') }}">
-                            Birthdays
-                            @routeis('birthdays.index')
-                                <span class="sr-only">(current)</span>
-                            @endrouteis
-                        </a>
-                    </li>
                     <li class="nav-item dropdown">
                         <a href="#"
                            id="navbarDropdown"
@@ -72,7 +72,7 @@
                             <span class="caret"></span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('activities.index') }}">News</a>
+                            <a class="dropdown-item" href="{{ route('birthdays.index') }}">Birthdays</a>
                             <a class="dropdown-item" href="{{ route('gallery') }}">Gallery</a>
                             <a class="dropdown-item" href="{{ route('calendar') }}">Calendar</a>
                             <a class="dropdown-item" href="https://docs.google.com/spreadsheets/d/1EZoCCLXrQS2_w1SdDudUfKuFwiaddaBmtemGabIsIjo/edit#gid=0" target="_blank">Discounts</a>
