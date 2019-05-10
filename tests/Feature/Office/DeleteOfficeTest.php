@@ -54,4 +54,17 @@ class DeleteOfficeTest extends TestCase
 
         $this->assertDatabaseMissing('users', $office->toArray());
     }
+
+    /** @test */
+    public function activities_should_be_deleted_along_with_office()
+    {
+        $office = factory(Office::class)->create();
+        $admin = factory(User::class)->states('admin')->create();
+
+        $this->actingAs($admin)
+            ->delete(route('offices.destroy', $office))
+            ->assertSessionHas('status', 'The location was successfully deleted!');
+
+        $this->assertTrue($office->activities->isEmpty());
+    }
 }

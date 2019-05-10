@@ -77,4 +77,17 @@ class DeleteUserTest extends TestCase
 
         Storage::disk('public')->assertMissing($userToDelete->avatar);
     }
+
+    /** @test */
+    public function activities_should_be_deleted_along_with_user()
+    {
+        $userToDelete = factory(User::class)->create();
+        $admin = factory(User::class)->states('admin')->create();
+
+        $this->actingAs($admin)
+            ->delete(route('users.destroy', $userToDelete))
+            ->assertSessionHas('status', 'The beetroot was successfully deleted!');
+
+        $this->assertTrue($userToDelete->activities->isEmpty());
+    }
 }

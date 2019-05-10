@@ -78,4 +78,17 @@ class DeleteClientTest extends TestCase
 
         Storage::disk('public')->assertMissing($client->logo);
     }
+
+    /** @test */
+    public function activities_should_be_deleted_along_with_client()
+    {
+        $client = factory(Client::class)->create();
+        $admin = factory(User::class)->states('admin')->create();
+
+        $this->actingAs($admin)
+            ->delete(route('clients.destroy', $client))
+            ->assertSessionHas('status', 'The team was successfully deleted!');
+
+        $this->assertTrue($client->activities->isEmpty());
+    }
 }

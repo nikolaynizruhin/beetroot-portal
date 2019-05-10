@@ -14,6 +14,10 @@ trait RecordsActivity
                 $model->recordActivity($model->activityName($event));
             });
         }
+
+        static::deleting(function ($model) {
+            $model->activities()->delete();
+        });
     }
 
     /**
@@ -34,10 +38,6 @@ trait RecordsActivity
      */
     protected static function recordableEvents()
     {
-        if (isset(static::$recordableEvents)) {
-            return static::$recordableEvents;
-        }
-
         return ['created'];
     }
 
