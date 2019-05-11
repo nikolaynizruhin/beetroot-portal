@@ -11,11 +11,12 @@ class ActivityFeedQuery
     /**
      * Call an object as a function.
      *
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @param  int  $perPage
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function __invoke()
+    public function __invoke($perPage = 15)
     {
-        $activities = Activity::with('subject')->latest()->paginate(15);
+        $activities = Activity::with('subject')->latest()->paginate($perPage);
 
         $activities->getCollection()->loadMorph('subject', [
             User::class => ['client', 'office'],

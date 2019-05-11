@@ -9,9 +9,10 @@ class OfficesQuery
     /**
      * Call an object as a function.
      *
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @param  int  $perPage
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function __invoke()
+    public function __invoke($perPage = 10)
     {
         return Office::with('users')
             ->withCount([
@@ -23,6 +24,6 @@ class OfficesQuery
                     $query->ofPosition('Office Manager');
                 },
             ])->orderBy('users_count', 'desc')
-            ->paginate(10);
+            ->paginate($perPage);
     }
 }

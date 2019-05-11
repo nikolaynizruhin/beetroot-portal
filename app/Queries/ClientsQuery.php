@@ -11,13 +11,14 @@ class ClientsQuery
      * Call an object as a function.
      *
      * @param  ClientFilters  $filters
+     * @param  int  $perPage
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function __invoke(ClientFilters $filters)
+    public function __invoke(ClientFilters $filters, $perPage = 15)
     {
         return Client::with('tags')
             ->withCount(['users', 'tags'])
             ->filter($filters)
-            ->paginate(15);
+            ->paginate($perPage);
     }
 }
