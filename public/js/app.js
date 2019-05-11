@@ -1786,16 +1786,23 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    this.init();
-    var clients = this.data;
     google.charts.load('current', {
       'packages': ['geochart'],
       'mapsApiKey': this.apiKey
     });
-    google.charts.setOnLoadCallback(drawRegionsMap);
+    google.charts.setOnLoadCallback(this.drawRegionsMap);
+  },
+  methods: {
+    init: function init() {
+      var _this = this;
 
-    function drawRegionsMap() {
-      var data = google.visualization.arrayToDataTable(clients);
+      this.clients.forEach(function (client) {
+        return _this.data.push([client.country, client.count]);
+      });
+    },
+    drawRegionsMap: function drawRegionsMap() {
+      this.init();
+      var data = google.visualization.arrayToDataTable(this.data);
       var options = {
         colorAxis: {
           colors: ['#A51140']
@@ -1803,15 +1810,6 @@ __webpack_require__.r(__webpack_exports__);
       };
       var chart = new google.visualization.GeoChart(document.getElementById('regions'));
       chart.draw(data, options);
-    }
-  },
-  methods: {
-    init: function init() {
-      var _this = this;
-
-      this.clients.forEach(function (client) {
-        _this.data.push([client.country, client.count]);
-      });
     }
   }
 });
@@ -1912,7 +1910,7 @@ __webpack_require__.r(__webpack_exports__);
       this.genders.forEach(function (gender) {
         _this.data.push(gender.count);
 
-        gender.gender == 'male' ? _this.setMaleData() : _this.setFemaleData();
+        _this["set".concat(_this.capitalizeFirstLetter(gender.gender), "Data")]();
       });
     },
     setMaleData: function setMaleData() {
@@ -1922,6 +1920,9 @@ __webpack_require__.r(__webpack_exports__);
     setFemaleData: function setFemaleData() {
       this.labels.push('Beetgirls');
       this.backgroundColor.push('#EDB700');
+    },
+    capitalizeFirstLetter: function capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
     }
   }
 });
@@ -2034,16 +2035,23 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    this.init();
-    var offices = this.data;
     google.charts.load('current', {
       'packages': ['geochart'],
       'mapsApiKey': this.apiKey
     });
-    google.charts.setOnLoadCallback(drawMarkersMap);
+    google.charts.setOnLoadCallback(this.drawMarkersMap);
+  },
+  methods: {
+    init: function init() {
+      var _this = this;
 
-    function drawMarkersMap() {
-      var data = google.visualization.arrayToDataTable(offices);
+      this.offices.forEach(function (office) {
+        _this.data.push([office.city, office.users_count]);
+      });
+    },
+    drawMarkersMap: function drawMarkersMap() {
+      this.init();
+      var data = google.visualization.arrayToDataTable(this.data);
       var options = {
         region: 'UA',
         displayMode: 'markers',
@@ -2053,15 +2061,6 @@ __webpack_require__.r(__webpack_exports__);
       };
       var chart = new google.visualization.GeoChart(document.getElementById('markers'));
       chart.draw(data, options);
-    }
-  },
-  methods: {
-    init: function init() {
-      var _this = this;
-
-      this.offices.forEach(function (office) {
-        _this.data.push([office.city, office.users_count]);
-      });
     }
   }
 });

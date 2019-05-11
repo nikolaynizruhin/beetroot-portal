@@ -40,10 +40,7 @@ export default {
         init() {
             this.genders.forEach(gender => {
                 this.data.push(gender.count);
-
-                gender.gender == 'male'
-                    ? this.setMaleData()
-                    : this.setFemaleData();
+                this[`set${this.capitalizeFirstLetter(gender.gender)}Data`]();
             });
         },
         setMaleData() {
@@ -53,6 +50,9 @@ export default {
         setFemaleData() {
             this.labels.push('Beetgirls');
             this.backgroundColor.push('#EDB700');
+        },
+        capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
         }
     }
 }

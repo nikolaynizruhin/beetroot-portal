@@ -20,19 +20,23 @@ export default {
         }
     },
     mounted() {
-        this.init();
-
-        const offices = this.data;
-
         google.charts.load('current', {
             'packages': ['geochart'],
             'mapsApiKey': this.apiKey
         });
 
-        google.charts.setOnLoadCallback(drawMarkersMap);
+        google.charts.setOnLoadCallback(this.drawMarkersMap);
+    },
+    methods: {
+        init() {
+            this.offices.forEach((office) => {
+                this.data.push([office.city, office.users_count]);
+            });
+        },
+        drawMarkersMap() {
+            this.init();
 
-        function drawMarkersMap() {
-            const data = google.visualization.arrayToDataTable(offices);
+            const data = google.visualization.arrayToDataTable(this.data);
 
             const options = {
                 region: 'UA',
@@ -41,14 +45,8 @@ export default {
             };
 
             const chart = new google.visualization.GeoChart(document.getElementById('markers'));
+
             chart.draw(data, options);
-        }
-    },
-    methods: {
-        init() {
-            this.offices.forEach((office) => {
-                this.data.push([office.city, office.users_count]);
-            });
         }
     }
 }
