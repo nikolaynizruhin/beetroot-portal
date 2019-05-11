@@ -29,9 +29,7 @@ export default {
     },
     methods: {
         init() {
-            this.offices.forEach((office) => {
-                this.data.push([office.city, office.users_count]);
-            });
+            this.offices.forEach(office => this.data.push([office.city, office.users_count]));
         },
         drawMarkersMap() {
             this.init();

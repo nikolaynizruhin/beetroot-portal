@@ -35,6 +35,16 @@ class Tag extends Model
     }
 
     /**
+     * Get users and clients count.
+     *
+     * @return int
+     */
+    public function getUsersAndClientsCountAttribute()
+    {
+        return $this->users_count + $this->clients_count;
+    }
+
+    /**
      * The "booting" method of the model.
      *
      * @return void

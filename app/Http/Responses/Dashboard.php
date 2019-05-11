@@ -5,6 +5,7 @@ namespace App\Http\Responses;
 use App\User;
 use App\Client;
 use App\Office;
+use App\Queries\TagCountQuery;
 use App\Queries\ClientCountQuery;
 use App\Queries\GenderCountQuery;
 use App\Queries\PositionCountQuery;
@@ -95,6 +96,16 @@ class Dashboard implements Responsable
     }
 
     /**
+     * Get tag count collection.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function tags()
+    {
+        return app(TagCountQuery::class)();
+    }
+
+    /**
      * Create an HTTP response that represents the object.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -110,6 +121,7 @@ class Dashboard implements Responsable
             'clients' => $this->clients(),
             'offices' => $this->offices(),
             'genders' => $this->genders(),
+            'tags' => $this->tags(),
             'usersPerYear' => $this->usersPerYear(),
         ]);
     }

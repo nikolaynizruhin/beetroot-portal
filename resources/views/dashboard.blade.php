@@ -91,6 +91,16 @@
                         </div>
                     </div>
 
+                    <!-- Top Skills -->
+                    <hr>
+                    <h3 class="text-center">TOP SKILLS</h3>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <tags-chart :tags="{{ $tags }}"></tags-chart>
+                        </div>
+                    </div>
+
                     <!-- Clients -->
                     <hr>
                     <h3 class="text-center">TEAMS</h3>
