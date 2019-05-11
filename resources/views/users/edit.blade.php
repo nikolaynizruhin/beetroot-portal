@@ -343,7 +343,13 @@
 
                         <!-- Phone -->
                         <div class="form-group row">
-                            <label for="phone" class="col-md-4 col-form-label text-md-right">Phone</label>
+                            <label for="phone" class="col-md-4 col-form-label text-md-right">
+                                <span data-toggle="tooltip"
+                                      data-placement="top"
+                                      title="+38(063)1234567">
+                                    Phone
+                                </span>
+                            </label>
 
                             <div class="col-md-6">
                                 <input id="phone"
@@ -363,7 +369,11 @@
                         <!-- Slack -->
                         <div class="form-group row">
                             <label for="slack" class="col-md-4 col-form-label text-md-right">
-                                Slack
+                                <span data-toggle="tooltip"
+                                      data-placement="top"
+                                      title="Slack username">
+                                    Slack
+                                </span>
                             </label>
 
                             <div class="col-md-6">
@@ -384,7 +394,11 @@
                         <!-- Facebook -->
                         <div class="form-group row">
                             <label for="facebook" class="col-md-4 col-form-label text-md-right">
-                                Facebook
+                                <span data-toggle="tooltip"
+                                      data-placement="top"
+                                      title="Facebook username">
+                                    Facebook
+                                </span>
                             </label>
 
                             <div class="col-md-6">
@@ -405,7 +419,11 @@
                         <!-- Instagram -->
                         <div class="form-group row">
                             <label for="instagram" class="col-md-4 col-form-label text-md-right">
-                                Instagram
+                                <span data-toggle="tooltip"
+                                      data-placement="top"
+                                      title="Instagram username">
+                                    Instagram
+                                </span>
                             </label>
 
                             <div class="col-md-6">
@@ -426,7 +444,11 @@
                         <!-- Skype -->
                         <div class="form-group row">
                             <label for="skype" class="col-md-4 col-form-label text-md-right">
-                                Skype
+                                <span data-toggle="tooltip"
+                                      data-placement="top"
+                                      title="Skype username">
+                                    Skype
+                                </span>
                             </label>
 
                             <div class="col-md-6">
