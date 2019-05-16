@@ -92,6 +92,7 @@ class User extends Authenticatable
         'created_at',
         'updated_at',
         'birthday',
+        'start_of_created_day',
     ];
 
     /**
@@ -157,6 +158,16 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the year of created at.
+     *
+     * @return \Carbon\Carbon
+     */
+    public function getStartOfCreatedDayAttribute()
+    {
+        return $this->created_at->startOfDay();
+    }
+
+    /**
      * Get user anniversary for a given date.
      *
      * @param  \Carbon\Carbon|null  $date
@@ -165,7 +176,7 @@ class User extends Authenticatable
     public function anniversary($date = null)
     {
         return $this->hasAnniversary($date = $date ?: now())
-            ? $this->created_at->diffInYears($date)
+            ? $this->start_of_created_day->diffInYears($date)
             : null;
     }
 
@@ -262,7 +273,7 @@ class User extends Authenticatable
     public function hasAnniversary($date = null)
     {
         return $this->created_at->isBirthday($date = $date ?: now())
-            && $this->created_at->diffInYears($date) >= 1;
+            && $this->start_of_created_day->diffInYears($date) >= 1;
     }
 
     /**
