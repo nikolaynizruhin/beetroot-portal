@@ -12,7 +12,7 @@ class ClearActivities extends Command
      *
      * @var string
      */
-    protected $signature = 'activity:clear {months=3 : Month count}';
+    protected $signature = 'activity:clear {months=1 : Month count}';
 
     /**
      * The console command description.

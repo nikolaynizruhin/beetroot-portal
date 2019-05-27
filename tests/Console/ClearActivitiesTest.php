@@ -12,17 +12,17 @@ class ClearActivitiesTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function it_should_remove_activities_older_than_three_months()
+    public function it_should_remove_activities_older_than_month()
     {
         $user = factory(User::class)->create();
 
         $user->activities()->create([
             'name' => Activity::ANNIVERSARY,
-            'created_at' => now()->subMonths(4),
+            'created_at' => now()->subMonths(2),
         ]);
 
         $this->artisan('activity:clear')
-            ->expectsOutput('(1) Activities older than 3 months was removed successfully!')
+            ->expectsOutput('(1) Activities older than 1 months was removed successfully!')
             ->assertExitCode(0);
 
         $this->assertCount(1, $user->activities);
@@ -36,11 +36,11 @@ class ClearActivitiesTest extends TestCase
 
         $user->activities()->create([
             'name' => Activity::ANNIVERSARY,
-            'created_at' => now()->subMonths(2),
+            'created_at' => now()->subMonths(4),
         ]);
 
-        $this->artisan('activity:clear', ['months' => 1])
-            ->expectsOutput('(1) Activities older than 1 months was removed successfully!')
+        $this->artisan('activity:clear', ['months' => 3])
+            ->expectsOutput('(1) Activities older than 3 months was removed successfully!')
             ->assertExitCode(0);
 
         $this->assertCount(1, $user->activities);
