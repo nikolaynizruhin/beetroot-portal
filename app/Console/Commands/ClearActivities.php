@@ -30,7 +30,7 @@ class ClearActivities extends Command
     {
         $months = $this->argument('months');
 
-        $activities = Activity::isBefore(now()->subMonths($months));
+        $activities = Activity::before(now()->subMonths($months));
 
         $count = $activities->count();
 

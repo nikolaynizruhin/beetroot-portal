@@ -66,7 +66,7 @@ class Activity extends Model
      * @param  \Carbon\Carbon  $date
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeIsBefore($query, $date)
+    public function scopeBefore($query, $date)
     {
         return $query->where('created_at', '<', $date);
     }
