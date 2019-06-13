@@ -5,6 +5,7 @@ namespace App\Queries;
 use App\User;
 use App\Office;
 use App\Activity;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class ActivityFeedQuery
 {
@@ -16,13 +17,13 @@ class ActivityFeedQuery
      */
     public function __invoke($perPage = 15)
     {
-        $activities = Activity::with('subject')->latest()->paginate($perPage);
-
-        $activities->getCollection()->loadMorph('subject', [
-            User::class => ['client', 'office'],
-            Office::class => ['users'],
-        ]);
-
-        return $activities;
+        return Activity::with([
+            'subject' => function (MorphTo $morphTo) {
+                $morphTo->morphWith([
+                    User::class => ['client', 'office'],
+                    Office::class => ['users'],
+                ]);
+            }])->latest()
+            ->paginate($perPage);
     }
 }
