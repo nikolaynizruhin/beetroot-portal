@@ -23,7 +23,7 @@ class ActivityFeedQuery
                     User::class => ['client', 'office'],
                     Office::class => ['users'],
                 ]);
-            }])->latest()
+            }, ])->latest()
             ->paginate($perPage);
     }
 }
