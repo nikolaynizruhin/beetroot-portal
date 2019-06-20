@@ -38,7 +38,7 @@ trait HasImage
      */
     public function needToOptimizeImage()
     {
-        return $this->hasNoDefaultImage() && $this->isDirty(static::$image);
+        return $this->hasNoDefaultImage() && $this->isDirty(static::IMAGE);
     }
 
     /**
@@ -60,7 +60,7 @@ trait HasImage
      */
     protected function imageSize()
     {
-        $imageSize = strtoupper(static::$image).'_SIZE';
+        $imageSize = strtoupper(static::IMAGE).'_SIZE';
 
         return constant(static::class.'::'.$imageSize);
     }
@@ -72,7 +72,7 @@ trait HasImage
      */
     protected function defaultImage()
     {
-        $defaultImage = 'DEFAULT_'.strtoupper(static::$image);
+        $defaultImage = 'DEFAULT_'.strtoupper(static::IMAGE);
 
         return constant(static::class.'::'.$defaultImage);
     }
@@ -84,7 +84,7 @@ trait HasImage
      */
     protected function image()
     {
-        return $this->{static::$image};
+        return $this->{static::IMAGE};
     }
 
     /**

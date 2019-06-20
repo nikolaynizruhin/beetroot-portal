@@ -25,18 +25,18 @@ class Client extends Model
     const LOGO_SIZE = 150;
 
     /**
+     * Determine model image attribute.
+     *
+     * @var string
+     */
+    const IMAGE = 'logo';
+
+    /**
      * The attributes that aren't mass assignable.
      *
      * @var array
      */
     protected $guarded = [];
-
-    /**
-     * Determine model image attribute.
-     *
-     * @var string
-     */
-    protected static $image = 'logo';
 
     /**
      * The list of sorts.

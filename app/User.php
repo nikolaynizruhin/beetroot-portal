@@ -45,7 +45,7 @@ class User extends Authenticatable
      *
      * @var string
      */
-    protected static $image = 'avatar';
+    const IMAGE = 'avatar';
 
     /**
      * The list of sorts.
