@@ -36,7 +36,7 @@ class DeleteActivityTest extends TestCase
 
         $this->actingAs($user)
             ->delete(route('activities.destroy', $user->activities->last()))
-            ->assertStatus(403);
+            ->assertForbidden();
     }
 
     /** @test */

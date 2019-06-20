@@ -42,7 +42,7 @@ class DeleteClientTest extends TestCase
 
         $this->actingAs($user)
             ->delete(route('clients.destroy', $client))
-            ->assertStatus(403);
+            ->assertForbidden();
     }
 
     /** @test */

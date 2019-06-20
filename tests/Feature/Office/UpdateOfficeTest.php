@@ -39,7 +39,7 @@ class UpdateOfficeTest extends TestCase
 
         $this->actingAs($user)
             ->put(route('offices.update', $office))
-            ->assertStatus(403);
+            ->assertForbidden();
     }
 
     /** @test */
@@ -59,7 +59,7 @@ class UpdateOfficeTest extends TestCase
 
         $this->actingAs($user)
             ->get(route('offices.edit', $office))
-            ->assertStatus(403);
+            ->assertForbidden();
     }
 
     /** @test */

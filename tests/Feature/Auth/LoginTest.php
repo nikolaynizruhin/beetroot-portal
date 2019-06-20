@@ -33,7 +33,7 @@ class LoginTest extends TestCase
     public function it_should_throw_unauthenticated_on_guest_json_requests()
     {
         $this->json('GET', route('dashboard'))
-            ->assertStatus(401)
+            ->assertUnauthorized()
             ->assertJson(['message' => 'Unauthenticated.']);
     }
 
@@ -45,8 +45,7 @@ class LoginTest extends TestCase
         $this->post(route('login'), [
             'email' => $user->email,
             'password' => 'password',
-        ])->assertStatus(302)
-            ->assertRedirect(route('dashboard'));
+        ])->assertRedirect(route('dashboard'));
 
         $this->assertAuthenticatedAs($user);
     }
@@ -99,13 +98,13 @@ class LoginTest extends TestCase
 
         $this->actingAs($user)
             ->post(route('logout'))
-            ->assertStatus(302);
+            ->assertRedirect();
     }
 
     /** @test */
     public function it_redirects_to_logout_page_if_employee_not_logged_in()
     {
         $this->post(route('logout'))
-            ->assertStatus(302);
+            ->assertRedirect();
     }
 }

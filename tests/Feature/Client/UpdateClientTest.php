@@ -43,7 +43,7 @@ class UpdateClientTest extends TestCase
 
         $this->actingAs($user)
             ->put(route('clients.update', $client))
-            ->assertStatus(403);
+            ->assertForbidden();
     }
 
     /** @test */
@@ -63,7 +63,7 @@ class UpdateClientTest extends TestCase
 
         $this->actingAs($user)
             ->get(route('clients.edit', $client))
-            ->assertStatus(403);
+            ->assertForbidden();
     }
 
     /** @test */

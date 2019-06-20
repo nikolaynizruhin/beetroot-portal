@@ -25,7 +25,7 @@ class CreateTagTest extends TestCase
 
         $this->actingAs($user)
             ->get(route('tags.create'))
-            ->assertStatus(403);
+            ->assertForbidden();
     }
 
     /** @test */
@@ -63,7 +63,7 @@ class CreateTagTest extends TestCase
 
         $this->actingAs($user)
             ->post(route('tags.store'))
-            ->assertStatus(403);
+            ->assertForbidden();
     }
 
     /** @test */

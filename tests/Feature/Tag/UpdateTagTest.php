@@ -28,7 +28,7 @@ class UpdateTagTest extends TestCase
 
         $this->actingAs($user)
             ->get(route('tags.edit', $tag))
-            ->assertStatus(403);
+            ->assertForbidden();
     }
 
     /** @test */
@@ -71,7 +71,7 @@ class UpdateTagTest extends TestCase
 
         $this->actingAs($user)
             ->put(route('tags.update', $tag))
-            ->assertStatus(403);
+            ->assertForbidden();
     }
 
     /** @test */

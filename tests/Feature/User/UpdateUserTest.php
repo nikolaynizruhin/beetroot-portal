@@ -50,7 +50,7 @@ class UpdateUserTest extends TestCase
 
         $this->actingAs($user)
             ->put(route('users.update', $owner))
-            ->assertStatus(403);
+            ->assertForbidden();
     }
 
     /** @test */
@@ -61,7 +61,7 @@ class UpdateUserTest extends TestCase
 
         $this->actingAs($user)
             ->put(route('profile.update', $owner))
-            ->assertStatus(403);
+            ->assertForbidden();
     }
 
     /** @test */
@@ -71,7 +71,7 @@ class UpdateUserTest extends TestCase
 
         $this->actingAs($owner)
             ->put(route('users.update', $owner))
-            ->assertStatus(403);
+            ->assertForbidden();
     }
 
     /** @test */
@@ -91,7 +91,7 @@ class UpdateUserTest extends TestCase
 
         $this->actingAs($user)
             ->get(route('users.edit', $userToEdit))
-            ->assertStatus(403);
+            ->assertForbidden();
     }
 
     /** @test */

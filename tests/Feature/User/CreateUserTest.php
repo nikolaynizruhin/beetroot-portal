@@ -41,7 +41,7 @@ class CreateUserTest extends TestCase
 
         $this->actingAs($user)
             ->post(route('users.store'))
-            ->assertStatus(403);
+            ->assertForbidden();
     }
 
     /** @test */
@@ -58,7 +58,7 @@ class CreateUserTest extends TestCase
 
         $this->actingAs($user)
             ->get(route('users.create'))
-            ->assertStatus(403);
+            ->assertForbidden();
     }
 
     /** @test */

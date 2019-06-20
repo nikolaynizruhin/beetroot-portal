@@ -41,7 +41,7 @@ class DeleteUserTest extends TestCase
 
         $this->actingAs($user)
             ->delete(route('users.destroy', $userToDelete))
-            ->assertStatus(403);
+            ->assertForbidden();
     }
 
     /** @test */

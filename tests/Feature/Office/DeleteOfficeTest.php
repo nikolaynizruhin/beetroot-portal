@@ -39,7 +39,7 @@ class DeleteOfficeTest extends TestCase
 
         $this->actingAs($user)
             ->delete(route('offices.destroy', $office))
-            ->assertStatus(403);
+            ->assertForbidden();
     }
 
     /** @test */

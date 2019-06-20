@@ -39,7 +39,7 @@ class DeleteTagTest extends TestCase
 
         $this->actingAs($user)
             ->delete(route('tags.destroy', $tag))
-            ->assertStatus(403);
+            ->assertForbidden();
     }
 
     /** @test */

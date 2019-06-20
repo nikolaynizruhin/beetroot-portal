@@ -39,7 +39,7 @@ class CreateClientTest extends TestCase
 
         $this->actingAs($user)
             ->post(route('clients.store'))
-            ->assertStatus(403);
+            ->assertForbidden();
     }
 
     /** @test */
@@ -56,7 +56,7 @@ class CreateClientTest extends TestCase
 
         $this->actingAs($user)
             ->get(route('clients.create'))
-            ->assertStatus(403);
+            ->assertForbidden();
     }
 
     /** @test */

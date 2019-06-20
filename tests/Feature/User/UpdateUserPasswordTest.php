@@ -38,7 +38,7 @@ class UpdateUserPasswordTest extends TestCase
 
         $this->actingAs($user)
             ->put(route('users.password.update', $owner))
-            ->assertStatus(403);
+            ->assertForbidden();
     }
 
     /** @test */

@@ -35,7 +35,7 @@ class CreateOfficeTest extends TestCase
 
         $this->actingAs($user)
             ->post(route('offices.store'))
-            ->assertStatus(403);
+            ->assertForbidden();
     }
 
     /** @test */
@@ -52,7 +52,7 @@ class CreateOfficeTest extends TestCase
 
         $this->actingAs($user)
             ->get(route('offices.create'))
-            ->assertStatus(403);
+            ->assertForbidden();
     }
 
     /** @test */
