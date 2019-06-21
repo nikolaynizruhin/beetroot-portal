@@ -39,17 +39,6 @@ class Client extends Model
     protected $guarded = [];
 
     /**
-     * The list of sorts.
-     *
-     * @var array
-     */
-    protected static $sorts = [
-        'name' => 'Name',
-        '-created_at' => 'Recent',
-        'created_at' => 'Oldest',
-    ];
-
-    /**
      * Get the users for the client.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -66,7 +55,11 @@ class Client extends Model
      */
     public static function sorts()
     {
-        return static::$sorts;
+        return [
+            'name' => 'Name',
+            '-created_at' => 'Recent',
+            'created_at' => 'Oldest',
+        ];
     }
 
     /**

@@ -48,17 +48,6 @@ class User extends Authenticatable
     const IMAGE = 'avatar';
 
     /**
-     * The list of sorts.
-     *
-     * @var array
-     */
-    protected static $sorts = [
-        'name' => 'Name',
-        '-created_at' => 'Newcomers',
-        'created_at' => 'Elders',
-    ];
-
-    /**
      * The attributes that should be cast to native types.
      *
      * @var array
@@ -187,7 +176,11 @@ class User extends Authenticatable
      */
     public static function sorts()
     {
-        return static::$sorts;
+        return [
+            'name' => 'Name',
+            '-created_at' => 'Newcomers',
+            'created_at' => 'Elders',
+        ];
     }
 
     /**
